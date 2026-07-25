@@ -110,22 +110,7 @@
     });
   }
 
-  // ─── Inject auth button into topbar ───────────────────────────────────────────
-  function injectAuthButton() {
-    const topbar = document.querySelector('.topbar');
-    if (!topbar) return;
-    if (document.getElementById('auth-btn')) return; // Already there
-
-    const btn = document.createElement('button');
-    btn.id = 'auth-btn';
-    btn.className = 'btn btn-p btn-sm';
-    btn.style.cssText = 'padding: 8px 16px; font-size: 0.85rem; cursor: pointer;';
-    btn.textContent = 'ورود';
-    btn.onclick = () => {
-      if (typeof Auth !== 'undefined') Auth.showAuthModal();
-    };
-    topbar.appendChild(btn);
-  }
+  // Auth button injection removed - authentication not used in main site
 
   // ─── Init ─────────────────────────────────────────────────────────────────────
   document.addEventListener('DOMContentLoaded', () => {
@@ -134,7 +119,7 @@
       loadSpecialtiesBento();
       loadDoctorPreview();
       patchBookButtons();
-      injectAuthButton();
+      // Auth button removed - authentication not used in main site
     });
   });
 

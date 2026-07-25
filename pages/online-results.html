@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>دریافت نتایج آنلاین | بیمارستان امید</title>
+<meta name="description" content="مشاهده و دانلود نتایج آزمایش و تصویربرداری به صورت آنلاین با کد ملی و کد پیگیری">
+<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@200..900&display=swap" rel="stylesheet">
+<style>
+:root {
+  --c1: #070E1A; --c2: #0C1A2E; --c3: #122340; --c4: #163A5C;
+  --c5: #0284C7; --c6: #06B6D4; --c7: #22D3EE; --c8: #A5F3FC;
+  --gold: #D4A843; --green: #10B981; --rose: #F43F5E;
+  --f: 'Vazirmatn', system-ui, sans-serif;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: var(--f);
+  background: linear-gradient(135deg, var(--c1) 0%, var(--c2) 100%);
+  color: #CBD5E1;
+  min-height: 100vh;
+  padding: 20px;
+}
+.container { max-width: 900px; margin: 40px auto; }
+.header {
+  text-align: center;
+  margin-bottom: 40px;
+  animation: fadeIn 0.6s ease;
+}
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.logo {
+  width: 80px;
+  height: 80px;
+  margin: 0 auto 20px;
+  background: linear-gradient(135deg, var(--c6), var(--c5));
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2.5rem;
+  box-shadow: 0 10px 40px rgba(6,182,212,0.3);
+}
+h1 {
+  font-size: 2rem;
+  font-weight: 900;
+  color: #fff;
+  margin-bottom: 10px;
+}
+.subtitle {
+  color: #64748B;
+  font-size: 0.95rem;
+}
+.tabs {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 30px;
+  justify-content: center;
+}
+.tab {
+  padding: 12px 28px;
+  border-radius: 12px;
+  border: 2px solid rgba(6,182,212,0.2);
+  background: transparent;
+  color: #94A3B8;
+  font-weight: 700;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.3s;
+  font-family: var(--f);
+}
+.tab:hover { border-color: var(--c6); color: var(--c7); }
+.tab.active {
+  background: linear-gradient(135deg, var(--c6), var(--c5));
+  border-color: transparent;
+  color: #fff;
+  box-shadow: 0 4px 20px rgba(6,182,212,0.4);
+}
+.tab-content { display: none; }
+.tab-content.active {
+  display: block;
+  animation: slideIn 0.4s ease;
+}
+@keyframes slideIn {
+  from { opacity: 0; transform: translateX(20px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+.card {
+  background: var(--c2);
+  border: 1px solid rgba(6,182,212,0.1);
+  border-radius: 20px;
+  padding: 40px;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+}
+.form-group {
+  margin-bottom: 24px;
+}
+label {
+  display: block;
+  font-weight: 700;
+  font-size: 0.85rem;
+  color: #94A3B8;
+  margin-bottom: 8px;
+}
+input {
+  width: 100%;
+  padding: 14px 18px;
+  border-radius: 12px;
+  border: 2px solid rgba(6,182,212,0.15);
+  background: var(--c1);
+  font-size: 0.95rem;
+  color: #E2E8F0;
+  transition: all 0.3s;
+  font-family: var(--f);
+  direction: ltr;
+  text-align: right;
+}
+input:focus {
+  outline: none;
+  border-color: var(--c6);
+  box-shadow: 0 0 0 4px rgba(6,182,212,0.1);
+}
+input::placeholder { color: #475569; direction: rtl; }
+.btn {
+  width: 100%;
+  padding: 16px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, var(--c6), var(--c5));
+  color: #fff;
+  font-weight: 800;
+  font-size: 1rem;
+  cursor: pointer;
+  border: none;
+  transition: all 0.3s;
+  font-family: var(--f);
+  margin-top: 10px;
+}
+.btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 30px rgba(6,182,212,0.5);
+}
+.btn:active { transform: translateY(0); }
+.info-box {
+  background: rgba(6,182,212,0.08);
+  border: 1px solid rgba(6,182,212,0.2);
+  border-radius: 12px;
+  padding: 16px;
+  margin-top: 24px;
+  font-size: 0.85rem;
+  color: #64748B;
+  line-height: 1.8;
+}
+.info-box strong { color: var(--c7); }
+.result-container {
+  display: none;
+  margin-top: 30px;
+}
+.result-container.show {
+  display: block;
+  animation: fadeIn 0.5s ease;
+}
+.result-card {
+  background: var(--c3);
+  border: 1px solid rgba(6,182,212,0.15);
+  border-radius: 16px;
+  padding: 24px;
+  margin-bottom: 16px;
+}
+.result-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+}
+.result-title {
+  font-weight: 800;
+  color: #fff;
+  font-size: 1.1rem;
+}
+.result-date {
+  color: #64748B;
+  font-size: 0.8rem;
+}
+.result-status {
+  display: inline-block;
+  padding: 4px 12px;
+  border-radius: 99px;
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+.status-ready {
+  background: rgba(16,185,129,0.15);
+  color: var(--green);
+}
+.download-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 20px;
+  background: rgba(6,182,212,0.1);
+  border: 1px solid rgba(6,182,212,0.3);
+  border-radius: 10px;
+  color: var(--c7);
+  font-weight: 700;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+.download-btn:hover {
+  background: rgba(6,182,212,0.2);
+  transform: translateY(-2px);
+}
+.back-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 20px;
+  background: transparent;
+  border: 1.5px solid rgba(255,255,255,0.1);
+  border-radius: 10px;
+  color: #94A3B8;
+  font-weight: 700;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: all 0.3s;
+  margin-top: 20px;
+  font-family: var(--f);
+}
+.back-btn:hover {
+  border-color: rgba(255,255,255,0.2);
+  color: #fff;
+}
+.loading {
+  display: none;
+  text-align: center;
+  padding: 40px;
+}
+.loading.show { display: block; }
+.spinner {
+  width: 50px;
+  height: 50px;
+  border: 4px solid rgba(6,182,212,0.2);
+  border-top-color: var(--c6);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+  margin: 0 auto 16px;
+}
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+@media (max-width: 600px) {
+  .container { margin: 20px auto; }
+  .card { padding: 24px; }
+  h1 { font-size: 1.5rem; }
+  .tabs { flex-direction: column; }
+  .tab { width: 100%; }
+  .result-header { flex-direction: column; align-items: flex-start; gap: 10px; }
+}
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="header">
+    <div class="logo">🔬</div>
+    <h1>دریافت نتایج آنلاین</h1>
+    <p class="subtitle">مشاهده نتایج آزمایش و تصویربرداری با کد ملی و کد پیگیری</p>
+  </div>
+
+  <div class="tabs">
+    <button class="tab active" onclick="switchTab('lab')">🧪 نتایج آزمایش</button>
+    <button class="tab" onclick="switchTab('imaging')">🩻 نتایج تصویربرداری</button>
+  </div>
+
+  <!-- Lab Results Tab -->
+  <div id="lab-tab" class="tab-content active">
+    <div class="card">
+      <form id="lab-form" onsubmit="event.preventDefault(); getLabResults();">
+        <div class="form-group">
+          <label>کد ملی</label>
+          <input type="text" id="lab-national-code" placeholder="0123456789" maxlength="10" required>
+        </div>
+        <div class="form-group">
+          <label>کد پیگیری آزمایش</label>
+          <input type="text" id="lab-tracking-code" placeholder="LAB-12345" required>
+        </div>
+        <button type="submit" class="btn">🔍 مشاهده نتایج</button>
+      </form>
+      <div class="info-box">
+        <strong>⚠️ نکته:</strong> کد پیگیری در زمان نمونه‌گیری به شما داده شده است. در صورت فراموشی با شماره <strong>021-44480185</strong> داخلی <strong>250</strong> تماس بگیرید.
+      </div>
+    </div>
+
+    <div id="lab-loading" class="loading">
+      <div class="spinner"></div>
+      <p>در حال بارگذاری نتایج...</p>
+    </div>
+
+    <div id="lab-results" class="result-container">
+      <!-- نتایج اینجا نمایش داده می‌شود -->
+    </div>
+  </div>
+
+  <!-- Imaging Results Tab -->
+  <div id="imaging-tab" class="tab-content">
+    <div class="card">
+      <form id="imaging-form" onsubmit="event.preventDefault(); getImagingResults();">
+        <div class="form-group">
+          <label>کد ملی</label>
+          <input type="text" id="imaging-national-code" placeholder="0123456789" maxlength="10" required>
+        </div>
+        <div class="form-group">
+          <label>کد پیگیری تصویربرداری</label>
+          <input type="text" id="imaging-tracking-code" placeholder="IMG-12345" required>
+        </div>
+        <button type="submit" class="btn">🔍 مشاهده تصاویر</button>
+      </form>
+      <div class="info-box">
+        <strong>📸 راهنما:</strong> تصاویر شما شامل MRI، CT Scan، سونوگرافی و رادیولوژی می‌باشد. کد پیگیری در زمان تصویربرداری ارائه شده است.
+      </div>
+    </div>
+
+    <div id="imaging-loading" class="loading">
+      <div class="spinner"></div>
+      <p>در حال بارگذاری تصاویر...</p>
+    </div>
+
+    <div id="imaging-results" class="result-container">
+      <!-- نتایج اینجا نمایش داده می‌شود -->
+    </div>
+  </div>
+
+  <button class="back-btn" onclick="window.location.href='../index.html'">
+    ← بازگشت به صفحه اصلی
+  </button>
+</div>
+
+<script>
+function switchTab(tab) {
+  // Update tabs
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  event.target.classList.add('active');
+  
+  // Update content
+  document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+  document.getElementById(tab + '-tab').classList.add('active');
+  
+  // Reset results
+  document.getElementById('lab-results').classList.remove('show');
+  document.getElementById('imaging-results').classList.remove('show');
+}
+
+async function getLabResults() {
+  const nationalCode = document.getElementById('lab-national-code').value;
+  const trackingCode = document.getElementById('lab-tracking-code').value;
+  
+  // Show loading
+  document.getElementById('lab-loading').classList.add('show');
+  document.getElementById('lab-results').classList.remove('show');
+  
+  // Simulate API call
+  setTimeout(() => {
+    document.getElementById('lab-loading').classList.remove('show');
+    
+    // Sample results
+    const results = `
+      <div class="result-card">
+        <div class="result-header">
+          <div>
+            <div class="result-title">آزمایش خون کامل (CBC)</div>
+            <div class="result-date">📅 تاریخ: 23 تیر 1404</div>
+          </div>
+          <span class="result-status status-ready">✓ آماده</span>
+        </div>
+        <p style="color: #64748B; font-size: 0.85rem; margin-bottom: 16px;">
+          نتایج آزمایش خون کامل شما آماده مشاهده است.
+        </p>
+        <button class="download-btn" onclick="downloadPDF('cbc')">
+          📄 دانلود PDF
+        </button>
+      </div>
+      
+      <div class="result-card">
+        <div class="result-header">
+          <div>
+            <div class="result-title">آزمایش قند خون (FBS)</div>
+            <div class="result-date">📅 تاریخ: 23 تیر 1404</div>
+          </div>
+          <span class="result-status status-ready">✓ آماده</span>
+        </div>
+        <p style="color: #64748B; font-size: 0.85rem; margin-bottom: 16px;">
+          قند خون ناشتا: 95 mg/dL (طبیعی)
+        </p>
+        <button class="download-btn" onclick="downloadPDF('fbs')">
+          📄 دانلود PDF
+        </button>
+      </div>
+      
+      <button class="back-btn" onclick="resetForm('lab')" style="width: auto;">
+        🔄 جستجوی مجدد
+      </button>
+    `;
+    
+    document.getElementById('lab-results').innerHTML = results;
+    document.getElementById('lab-results').classList.add('show');
+  }, 1500);
+}
+
+async function getImagingResults() {
+  const nationalCode = document.getElementById('imaging-national-code').value;
+  const trackingCode = document.getElementById('imaging-tracking-code').value;
+  
+  // Show loading
+  document.getElementById('imaging-loading').classList.add('show');
+  document.getElementById('imaging-results').classList.remove('show');
+  
+  // Simulate API call
+  setTimeout(() => {
+    document.getElementById('imaging-loading').classList.remove('show');
+    
+    // Sample results
+    const results = `
+      <div class="result-card">
+        <div class="result-header">
+          <div>
+            <div class="result-title">MRI مغز با کنتراست</div>
+            <div class="result-date">📅 تاریخ: 22 تیر 1404</div>
+          </div>
+          <span class="result-status status-ready">✓ آماده</span>
+        </div>
+        <p style="color: #64748B; font-size: 0.85rem; margin-bottom: 16px;">
+          تصاویر MRI شما آماده مشاهده است. شامل 150 برش در 3 plane
+        </p>
+        <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+          <button class="download-btn" onclick="viewImages('mri')">
+            🖼️ مشاهده تصاویر
+          </button>
+          <button class="download-btn" onclick="downloadPDF('mri-report')">
+            📄 دانلود گزارش
+          </button>
+        </div>
+      </div>
+      
+      <div class="result-card">
+        <div class="result-header">
+          <div>
+            <div class="result-title">رادیوگرافی قفسه سینه</div>
+            <div class="result-date">📅 تاریخ: 20 تیر 1404</div>
+          </div>
+          <span class="result-status status-ready">✓ آماده</span>
+        </div>
+        <p style="color: #64748B; font-size: 0.85rem; margin-bottom: 16px;">
+          رادیوگرافی PA و Lateral
+        </p>
+        <div style="display: flex; gap: 10px;">
+          <button class="download-btn" onclick="viewImages('xray')">
+            🖼️ مشاهده تصاویر
+          </button>
+          <button class="download-btn" onclick="downloadPDF('xray-report')">
+            📄 دانلود گزارش
+          </button>
+        </div>
+      </div>
+      
+      <button class="back-btn" onclick="resetForm('imaging')" style="width: auto;">
+        🔄 جستجوی مجدد
+      </button>
+    `;
+    
+    document.getElementById('imaging-results').innerHTML = results;
+    document.getElementById('imaging-results').classList.add('show');
+  }, 1500);
+}
+
+function resetForm(type) {
+  document.getElementById(type + '-results').classList.remove('show');
+  document.getElementById(type + '-form').reset();
+}
+
+function downloadPDF(type) {
+  alert('دانلود فایل PDF...\n\nدر نسخه واقعی، فایل PDF دانلود می‌شود.');
+  // در نسخه واقعی:
+  // window.location.href = `/api/results/download/${type}`;
+}
+
+function viewImages(type) {
+  alert('مشاهده تصاویر...\n\nدر نسخه واقعی، viewer تصاویر پزشکی باز می‌شود.');
+  // در نسخه واقعی:
+  // window.open(`/viewer/${type}`, '_blank');
+}
+</script>
+</body>
+</html>

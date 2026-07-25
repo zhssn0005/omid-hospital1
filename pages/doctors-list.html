@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>لیست کامل پزشکان | بیمارستان امید</title>
+<meta name="description" content="199 پزشک متخصص در 32 رشته تخصصی - جستجو و رزرو نوبت آنلاین">
+<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@200..900&display=swap" rel="stylesheet">
+<style>
+:root {
+  --c1: #070E1A; --c2: #0C1A2E; --c3: #122340;
+  --c5: #0284C7; --c6: #06B6D4; --c7: #22D3EE;
+  --f: 'Vazirmatn', system-ui, sans-serif;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: var(--f);
+  background: var(--c1);
+  color: #CBD5E1;
+  line-height: 1.7;
+  padding-top: 80px;
+}
+.container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 40px 24px;
+}
+.header {
+  text-align: center;
+  margin-bottom: 50px;
+}
+.header h1 {
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 900;
+  color: #fff;
+  margin-bottom: 16px;
+}
+.header p {
+  color: #64748B;
+  font-size: 1.05rem;
+}
+.header-stats {
+  display: flex;
+  gap: 30px;
+  justify-content: center;
+  margin-top: 30px;
+}
+.stat {
+  text-align: center;
+}
+.stat-number {
+  font-size: 2rem;
+  font-weight: 900;
+  color: var(--c7);
+}
+.stat-label {
+  font-size: 0.85rem;
+  color: #64748B;
+  margin-top: 4px;
+}
+.filters-section {
+  background: var(--c2);
+  border: 1px solid rgba(6,182,212,0.1);
+  border-radius: 16px;
+  padding: 24px;
+  margin-bottom: 40px;
+}
+.search-bar {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+.search-input {
+  flex: 1;
+  padding: 14px 18px;
+  border-radius: 12px;
+  border: 2px solid rgba(6,182,212,0.2);
+  background: var(--c1);
+  color: #E2E8F0;
+  font-family: var(--f);
+  font-size: 0.95rem;
+  transition: all 0.3s;
+}
+.search-input:focus {
+  outline: none;
+  border-color: var(--c6);
+  box-shadow: 0 0 0 4px rgba(6,182,212,0.1);
+}
+.search-btn {
+  padding: 14px 32px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, var(--c6), var(--c5));
+  border: none;
+  color: #fff;
+  font-weight: 800;
+  cursor: pointer;
+  transition: all 0.3s;
+  font-family: var(--f);
+}
+.search-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(6,182,212,0.4);
+}
+.filters-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 12px;
+}
+.filter-select {
+  padding: 12px 16px;
+  border-radius: 10px;
+  border: 2px solid rgba(6,182,212,0.2);
+  background: var(--c1);
+  color: #E2E8F0;
+  font-family: var(--f);
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+.filter-select:focus {
+  outline: none;
+  border-color: var(--c6);
+}
+.results-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+}
+.results-count {
+  font-size: 0.95rem;
+  color: #64748B;
+}
+.results-count strong {
+  color: var(--c7);
+  font-weight: 800;
+}
+.view-toggle {
+  display: flex;
+  gap: 8px;
+}
+.view-btn {
+  padding: 8px 16px;
+  border-radius: 8px;
+  border: 2px solid rgba(6,182,212,0.2);
+  background: transparent;
+  color: #94A3B8;
+  font-weight: 700;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: all 0.3s;
+  font-family: var(--f);
+}
+.view-btn.active {
+  background: rgba(6,182,212,0.15);
+  border-color: var(--c6);
+  color: var(--c7);
+}
+.doctors-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 24px;
+  margin-bottom: 40px;
+}
+.doctors-list {
+  display: none;
+  flex-direction: column;
+  gap: 16px;
+  margin-bottom: 40px;
+}
+.doctors-list.active {
+  display: flex;
+}
+.doctor-card {
+  background: var(--c2);
+  border: 1px solid rgba(6,182,212,0.1);
+  border-radius: 16px;
+  padding: 24px;
+  text-align: center;
+  transition: all 0.3s;
+  cursor: pointer;
+}
+.doctor-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 40px rgba(6,182,212,0.15);
+  border-color: rgba(6,182,212,0.3);
+}
+.doctor-avatar {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--c3), var(--c2));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 3rem;
+  margin: 0 auto 16px;
+  border: 3px solid rgba(6,182,212,0.2);
+}
+.doctor-name {
+  font-weight: 800;
+  color: #fff;
+  font-size: 1.05rem;
+  margin-bottom: 6px;
+}
+.doctor-specialty {
+  color: var(--c7);
+  font-size: 0.85rem;
+  margin-bottom: 12px;
+}
+.doctor-badges {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+.badge {
+  padding: 4px 10px;
+  background: rgba(6,182,212,0.1);
+  border-radius: 6px;
+  font-size: 0.75rem;
+  color: #94A3B8;
+}
+.doctor-actions {
+  display: flex;
+  gap: 8px;
+}
+.btn {
+  flex: 1;
+  padding: 10px;
+  border-radius: 10px;
+  font-weight: 700;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: all 0.3s;
+  border: none;
+  font-family: var(--f);
+}
+.btn-primary {
+  background: linear-gradient(135deg, var(--c6), var(--c5));
+  color: #fff;
+}
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 16px rgba(6,182,212,0.4);
+}
+.btn-secondary {
+  background: transparent;
+  border: 1.5px solid rgba(6,182,212,0.3);
+  color: var(--c7);
+}
+.btn-secondary:hover {
+  background: rgba(6,182,212,0.1);
+}
+.doctor-list-card {
+  background: var(--c2);
+  border: 1px solid rgba(6,182,212,0.1);
+  border-radius: 16px;
+  padding: 24px;
+  display: grid;
+  grid-template-columns: 120px 1fr auto;
+  gap: 24px;
+  align-items: center;
+  transition: all 0.3s;
+  cursor: pointer;
+}
+.doctor-list-card:hover {
+  border-color: rgba(6,182,212,0.3);
+  background: var(--c3);
+}
+.list-avatar {
+  width: 120px;
+  height: 120px;
+  border-radius: 16px;
+  background: linear-gradient(135deg, var(--c3), var(--c2));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 4rem;
+  border: 3px solid rgba(6,182,212,0.2);
+}
+.list-info {
+  flex: 1;
+}
+.list-name {
+  font-size: 1.3rem;
+  font-weight: 800;
+  color: #fff;
+  margin-bottom: 8px;
+}
+.list-specialty {
+  color: var(--c7);
+  font-size: 0.95rem;
+  margin-bottom: 12px;
+}
+.list-details {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  margin-bottom: 12px;
+}
+.list-detail {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.85rem;
+  color: #94A3B8;
+}
+.list-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-width: 200px;
+}
+.pagination {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  margin-top: 40px;
+}
+.page-btn {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  border: 2px solid rgba(6,182,212,0.2);
+  background: transparent;
+  color: #94A3B8;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s;
+  font-family: var(--f);
+}
+.page-btn:hover {
+  border-color: var(--c6);
+  color: var(--c7);
+}
+.page-btn.active {
+  background: linear-gradient(135deg, var(--c6), var(--c5));
+  border-color: transparent;
+  color: #fff;
+}
+.back-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 24px;
+  background: transparent;
+  border: 1.5px solid rgba(255,255,255,0.1);
+  border-radius: 12px;
+  color: #94A3B8;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s;
+  font-family: var(--f);
+  text-decoration: none;
+  margin-top: 40px;
+}
+.back-btn:hover {
+  border-color: rgba(255,255,255,0.2);
+  color: #fff;
+}
+@media (max-width: 768px) {
+  .header-stats {
+    flex-direction: column;
+    gap: 20px;
+  }
+  .results-header {
+    flex-direction: column;
+    gap: 16px;
+    align-items: flex-start;
+  }
+  .doctor-list-card {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+  .list-avatar {
+    margin: 0 auto;
+  }
+  .list-details {
+    justify-content: center;
+  }
+  .list-actions {
+    width: 100%;
+  }
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+  <div class="header">
+    <h1>👨‍⚕️ لیست کامل پزشکان</h1>
+    <p>جستجو و رزرو نوبت با بهترین متخصصان</p>
+    <div class="header-stats">
+      <div class="stat">
+        <div class="stat-number" id="totalDoctors">199</div>
+        <div class="stat-label">پزشک متخصص</div>
+      </div>
+      <div class="stat">
+        <div class="stat-number">32</div>
+        <div class="stat-label">تخصص پزشکی</div>
+      </div>
+      <div class="stat">
+        <div class="stat-number" id="bookableDoctors">21</div>
+        <div class="stat-label">با نوبت‌دهی آنلاین</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="filters-section">
+    <div class="search-bar">
+      <input type="text" class="search-input" placeholder="جستجو نام پزشک..." id="searchInput">
+      <button class="search-btn" onclick="searchDoctors()">🔍 جستجو</button>
+    </div>
+    <div class="filters-grid">
+      <select class="filter-select" id="specialtyFilter" onchange="filterDoctors()">
+        <option value="">همه تخصص‌ها</option>
+        <option value="اطفال">اطفال</option>
+        <option value="جراح عمومی">جراحی عمومی</option>
+        <option value="قلب و عروق">قلب و عروق</option>
+        <option value="زنان و زایمان">زنان و زایمان</option>
+        <option value="ارتوپد">ارتوپد</option>
+        <option value="مغز و اعصاب">مغز و اعصاب</option>
+        <option value="گوش و حلق و بینی">گوش حلق بینی</option>
+        <option value="چشم">چشم پزشکی</option>
+        <option value="پوست">پوست و مو</option>
+        <option value="داخلی">داخلی</option>
+      </select>
+      <select class="filter-select" id="bookableFilter" onchange="filterDoctors()">
+        <option value="">همه پزشکان</option>
+        <option value="bookable">با نوبت‌دهی آنلاین</option>
+        <option value="telemedicine">تله‌مدیسین</option>
+      </select>
+      <select class="filter-select" id="genderFilter" onchange="filterDoctors()">
+        <option value="">همه</option>
+        <option value="male">آقا</option>
+        <option value="female">خانم</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="results-header">
+    <div class="results-count">
+      <strong id="resultsCount">199</strong> پزشک یافت شد
+    </div>
+    <div class="view-toggle">
+      <button class="view-btn active" onclick="toggleView('grid')">🔲 کارت</button>
+      <button class="view-btn" onclick="toggleView('list')">☰ لیست</button>
+    </div>
+  </div>
+
+  <div class="doctors-grid active" id="gridView"></div>
+  <div class="doctors-list" id="listView"></div>
+
+  <div class="pagination" id="pagination"></div>
+
+  <div style="text-align: center;">
+    <a href="../index.html" class="back-btn">
+      ← بازگشت به صفحه اصلی
+    </a>
+  </div>
+</div>
+
+<script>
+// Sample doctors data
+const doctors = [
+  { id: 1, name: 'دکتر احمد بهرامی', specialty: 'اطفال', gender: 'male', bookable: true, telemedicine: true, experience: 15, rating: 4.9 },
+  { id: 2, name: 'دکتر سیما ایوبی', specialty: 'اطفال', gender: 'female', bookable: true, telemedicine: true, experience: 12, rating: 4.8 },
+  { id: 3, name: 'دکتر مهدی عسگری', specialty: 'جراح عمومی', gender: 'male', bookable: true, telemedicine: false, experience: 20, rating: 4.9 },
+  { id: 4, name: 'دکتر زهرا شمس', specialty: 'زنان و زایمان', gender: 'female', bookable: true, telemedicine: true, experience: 18, rating: 4.8 },
+  { id: 5, name: 'دکتر علی ذاکر', specialty: 'ریه', gender: 'male', bookable: true, telemedicine: true, experience: 16, rating: 4.7 },
+  { id: 6, name: 'دکتر حسین موسوی', specialty: 'اورولوژی', gender: 'male', bookable: true, telemedicine: true, experience: 14, rating: 4.8 },
+  { id: 7, name: 'دکتر مریم ابراهیمی', specialty: 'قلب و عروق', gender: 'female', bookable: false, telemedicine: false, experience: 22, rating: 4.9 },
+  { id: 8, name: 'دکتر رضا نادری', specialty: 'ارتوپد', gender: 'male', bookable: true, telemedicine: false, experience: 19, rating: 4.8 },
+  { id: 9, name: 'دکتر فاطمه کبیر', specialty: 'مغز و اعصاب', gender: 'female', bookable: false, telemedicine: true, experience: 17, rating: 4.7 },
+  { id: 10, name: 'دکتر امیر خیام‌زاده', specialty: 'گوش و حلق و بینی', gender: 'male', bookable: true, telemedicine: false, experience: 15, rating: 4.6 },
+  { id: 11, name: 'دکتر سارا ملک‌پور', specialty: 'چشم', gender: 'female', bookable: true, telemedicine: true, experience: 13, rating: 4.8 },
+  { id: 12, name: 'دکتر محمد نجفی', specialty: 'پوست', gender: 'male', bookable: true, telemedicine: true, experience: 11, rating: 4.7 }
+];
+
+let filteredDoctors = [...doctors];
+let currentPage = 1;
+const itemsPerPage = 12;
+let currentView = 'grid';
+
+function renderDoctors() {
+  const start = (currentPage - 1) * itemsPerPage;
+  const end = start + itemsPerPage;
+  const pageData = filteredDoctors.slice(start, end);
+
+  // Grid view
+  const gridHTML = pageData.map(doc => `
+    <div class="doctor-card" onclick="window.location.href='doctor-profile.html?id=${doc.id}'">
+      <div class="doctor-avatar">${doc.gender === 'male' ? '👨‍⚕️' : '👩‍⚕️'}</div>
+      <div class="doctor-name">${doc.name}</div>
+      <div class="doctor-specialty">${doc.specialty}</div>
+      <div class="doctor-badges">
+        ${doc.bookable ? '<span class="badge">📅 نوبت‌دهی</span>' : ''}
+        ${doc.telemedicine ? '<span class="badge">💻 آنلاین</span>' : ''}
+        <span class="badge">⭐ ${doc.rating}</span>
+      </div>
+      <div class="doctor-actions">
+        ${doc.bookable ? '<button class="btn btn-primary">رزرو نوبت</button>' : ''}
+        <button class="btn btn-secondary">مشاهده پروفایل</button>
+      </div>
+    </div>
+  `).join('');
+
+  // List view
+  const listHTML = pageData.map(doc => `
+    <div class="doctor-list-card" onclick="window.location.href='doctor-profile.html?id=${doc.id}'">
+      <div class="list-avatar">${doc.gender === 'male' ? '👨‍⚕️' : '👩‍⚕️'}</div>
+      <div class="list-info">
+        <div class="list-name">${doc.name}</div>
+        <div class="list-specialty">${doc.specialty}</div>
+        <div class="list-details">
+          <div class="list-detail">📋 ${doc.experience} سال سابقه</div>
+          <div class="list-detail">⭐ ${doc.rating} امتیاز</div>
+          ${doc.bookable ? '<div class="list-detail">📅 نوبت‌دهی آنلاین</div>' : ''}
+          ${doc.telemedicine ? '<div class="list-detail">💻 مشاوره آنلاین</div>' : ''}
+        </div>
+      </div>
+      <div class="list-actions">
+        ${doc.bookable ? '<button class="btn btn-primary" onclick="event.stopPropagation()">📅 رزرو نوبت</button>' : ''}
+        ${doc.telemedicine ? '<button class="btn btn-secondary" onclick="event.stopPropagation()">💻 ویزیت آنلاین</button>' : ''}
+        <button class="btn btn-secondary" onclick="event.stopPropagation()">مشاهده پروفایل</button>
+      </div>
+    </div>
+  `).join('');
+
+  document.getElementById('gridView').innerHTML = gridHTML;
+  document.getElementById('listView').innerHTML = listHTML;
+  document.getElementById('resultsCount').textContent = filteredDoctors.length;
+
+  renderPagination();
+}
+
+function renderPagination() {
+  const totalPages = Math.ceil(filteredDoctors.length / itemsPerPage);
+  let html = '';
+
+  for (let i = 1; i <= totalPages; i++) {
+    html += `<button class="page-btn ${i === currentPage ? 'active' : ''}" onclick="goToPage(${i})">${i}</button>`;
+  }
+
+  document.getElementById('pagination').innerHTML = html;
+}
+
+function goToPage(page) {
+  currentPage = page;
+  renderDoctors();
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function filterDoctors() {
+  const specialty = document.getElementById('specialtyFilter').value;
+  const bookable = document.getElementById('bookableFilter').value;
+  const gender = document.getElementById('genderFilter').value;
+  const search = document.getElementById('searchInput').value.toLowerCase();
+
+  filteredDoctors = doctors.filter(doc => {
+    if (specialty && doc.specialty !== specialty) return false;
+    if (bookable === 'bookable' && !doc.bookable) return false;
+    if (bookable === 'telemedicine' && !doc.telemedicine) return false;
+    if (gender && doc.gender !== gender) return false;
+    if (search && !doc.name.toLowerCase().includes(search)) return false;
+    return true;
+  });
+
+  currentPage = 1;
+  renderDoctors();
+}
+
+function searchDoctors() {
+  filterDoctors();
+}
+
+function toggleView(view) {
+  currentView = view;
+  document.querySelectorAll('.view-btn').forEach(btn => btn.classList.remove('active'));
+  event.target.classList.add('active');
+
+  if (view === 'grid') {
+    document.getElementById('gridView').classList.add('active');
+    document.getElementById('listView').classList.remove('active');
+  } else {
+    document.getElementById('gridView').classList.remove('active');
+    document.getElementById('listView').classList.add('active');
+  }
+}
+
+document.getElementById('searchInput').addEventListener('keypress', function(e) {
+  if (e.key === 'Enter') {
+    searchDoctors();
+  }
+});
+
+// Initialize
+renderDoctors();
+</script>
+
+</body>
+</html>

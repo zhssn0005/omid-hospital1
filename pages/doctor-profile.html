@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>دکتر احمد بهرامی - متخصص اطفال | بیمارستان امید</title>
+<meta name="description" content="پروفایل کامل دکتر احمد بهرامی، متخصص اطفال با 15 سال سابقه. رزرو نوبت آنلاین، مشاوره تله‌مدیسین">
+<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@200..900&display=swap" rel="stylesheet">
+<style>
+:root {
+  --c1: #070E1A; --c2: #0C1A2E; --c3: #122340; --c4: #163A5C;
+  --c5: #0284C7; --c6: #06B6D4; --c7: #22D3EE;
+  --gold: #D4A843; --green: #10B981;
+  --f: 'Vazirmatn', system-ui, sans-serif;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: var(--f);
+  background: var(--c1);
+  color: #CBD5E1;
+  line-height: 1.7;
+}
+.hero {
+  background: linear-gradient(135deg, var(--c2) 0%, var(--c1) 100%);
+  padding: 80px 24px 40px;
+  position: relative;
+}
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(6,182,212,0.08), transparent);
+}
+.hero-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  gap: 40px;
+  position: relative;
+}
+.doctor-avatar {
+  width: 280px;
+  height: 280px;
+  border-radius: 20px;
+  background: linear-gradient(135deg, var(--c3), var(--c4));
+  overflow: hidden;
+  border: 4px solid rgba(6,182,212,0.3);
+  box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+}
+.doctor-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.doctor-main {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.status-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  background: rgba(16,185,129,0.15);
+  border: 1px solid rgba(16,185,129,0.3);
+  border-radius: 99px;
+  color: var(--green);
+  font-weight: 700;
+  font-size: 0.85rem;
+  width: fit-content;
+}
+.doctor-name {
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 900;
+  color: #fff;
+  line-height: 1.2;
+}
+.doctor-specialty {
+  font-size: 1.3rem;
+  color: var(--c7);
+  font-weight: 700;
+}
+.doctor-tags {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.tag {
+  padding: 6px 14px;
+  background: rgba(6,182,212,0.1);
+  border: 1px solid rgba(6,182,212,0.3);
+  border-radius: 8px;
+  font-size: 0.8rem;
+  color: #94A3B8;
+}
+.stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  margin-top: 20px;
+}
+.stat {
+  text-align: center;
+  padding: 16px;
+  background: rgba(6,182,212,0.05);
+  border: 1px solid rgba(6,182,212,0.1);
+  border-radius: 12px;
+}
+.stat-value {
+  font-size: 1.8rem;
+  font-weight: 900;
+  color: var(--c7);
+  display: block;
+}
+.stat-label {
+  font-size: 0.8rem;
+  color: #64748B;
+  margin-top: 4px;
+}
+.cta-buttons {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-top: 20px;
+}
+.btn {
+  padding: 14px 28px;
+  border-radius: 12px;
+  font-weight: 800;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: all 0.3s;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  border: none;
+  font-family: var(--f);
+}
+.btn-primary {
+  background: linear-gradient(135deg, var(--c6), var(--c5));
+  color: #fff;
+  box-shadow: 0 4px 20px rgba(6,182,212,0.3);
+}
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px rgba(6,182,212,0.5);
+}
+.btn-secondary {
+  background: transparent;
+  border: 2px solid rgba(6,182,212,0.3);
+  color: var(--c7);
+}
+.btn-secondary:hover {
+  background: rgba(6,182,212,0.1);
+}
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 60px 24px;
+}
+.content-grid {
+  display: grid;
+  grid-template-columns: 1fr 320px;
+  gap: 32px;
+}
+.section {
+  background: var(--c2);
+  border: 1px solid rgba(6,182,212,0.1);
+  border-radius: 16px;
+  padding: 32px;
+  margin-bottom: 24px;
+}
+.section-title {
+  font-size: 1.5rem;
+  font-weight: 900;
+  color: #fff;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.bio-text {
+  color: #94A3B8;
+  line-height: 1.9;
+  font-size: 1rem;
+}
+.education-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.education-item {
+  padding: 16px;
+  background: var(--c3);
+  border-radius: 12px;
+  border-right: 3px solid var(--c6);
+}
+.edu-degree {
+  font-weight: 800;
+  color: #fff;
+  margin-bottom: 6px;
+}
+.edu-university {
+  color: var(--c7);
+  font-size: 0.9rem;
+  margin-bottom: 4px;
+}
+.edu-year {
+  color: #64748B;
+  font-size: 0.85rem;
+}
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+}
+.skill-item {
+  padding: 12px 16px;
+  background: var(--c3);
+  border-radius: 10px;
+  color: #94A3B8;
+  font-size: 0.9rem;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.articles-list {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.article-item {
+  padding: 14px;
+  background: var(--c3);
+  border-radius: 10px;
+  transition: all 0.3s;
+  cursor: pointer;
+}
+.article-item:hover {
+  background: var(--c4);
+  transform: translateX(-4px);
+}
+.article-title {
+  color: #fff;
+  font-weight: 700;
+  margin-bottom: 4px;
+  font-size: 0.95rem;
+}
+.article-meta {
+  color: #64748B;
+  font-size: 0.8rem;
+}
+.reviews-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.review-item {
+  padding: 20px;
+  background: var(--c3);
+  border-radius: 12px;
+}
+.review-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+.reviewer-name {
+  font-weight: 700;
+  color: #fff;
+}
+.rating {
+  color: var(--gold);
+  font-size: 1.1rem;
+}
+.review-text {
+  color: #94A3B8;
+  line-height: 1.8;
+  font-size: 0.9rem;
+}
+.review-date {
+  color: #64748B;
+  font-size: 0.75rem;
+  margin-top: 8px;
+}
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+.info-card {
+  background: var(--c2);
+  border: 1px solid rgba(6,182,212,0.1);
+  border-radius: 16px;
+  padding: 24px;
+}
+.info-title {
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: #fff;
+  margin-bottom: 16px;
+}
+.info-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.info-item {
+  display: flex;
+  gap: 12px;
+  color: #94A3B8;
+  font-size: 0.9rem;
+}
+.info-icon {
+  color: var(--c7);
+  font-size: 1.1rem;
+}
+.schedule-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+.schedule-table td {
+  padding: 10px;
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+  font-size: 0.85rem;
+}
+.schedule-table td:first-child {
+  color: var(--c7);
+  font-weight: 700;
+}
+.schedule-table td:last-child {
+  text-align: left;
+  color: #94A3B8;
+}
+.back-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 24px;
+  background: transparent;
+  border: 1.5px solid rgba(255,255,255,0.1);
+  border-radius: 12px;
+  color: #94A3B8;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s;
+  font-family: var(--f);
+  text-decoration: none;
+  margin-top: 20px;
+}
+.back-btn:hover {
+  border-color: rgba(255,255,255,0.2);
+  color: #fff;
+}
+@media (max-width: 1100px) {
+  .content-grid {
+    grid-template-columns: 1fr;
+  }
+  .sidebar {
+    order: -1;
+  }
+}
+@media (max-width: 768px) {
+  .hero-content {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+  .doctor-avatar {
+    margin: 0 auto;
+  }
+  .status-badge, .cta-buttons {
+    justify-content: center;
+  }
+  .stats {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .skills-grid {
+    grid-template-columns: 1fr;
+  }
+}
+</style>
+</head>
+<body>
+
+<section class="hero">
+  <div class="hero-content">
+    <div class="doctor-avatar">
+      <img src="https://via.placeholder.com/280x280/0284C7/ffffff?text=Dr+Bahrami" alt="دکتر احمد بهرامی">
+    </div>
+    <div class="doctor-main">
+      <span class="status-badge">
+        <span>🟢</span>
+        <span>در دسترس برای رزرو نوبت</span>
+      </span>
+      <h1 class="doctor-name">دکتر احمد بهرامی</h1>
+      <p class="doctor-specialty">متخصص اطفال و نوزادان</p>
+      <div class="doctor-tags">
+        <span class="tag">🎓 فوق تخصص نوزادان</span>
+        <span class="tag">🏥 15 سال سابقه</span>
+        <span class="tag">📋 عضو نظام پزشکی</span>
+        <span class="tag">🌟 امتیاز 4.9</span>
+      </div>
+      <div class="stats">
+        <div class="stat">
+          <span class="stat-value">2,500+</span>
+          <span class="stat-label">بیمار راضی</span>
+        </div>
+        <div class="stat">
+          <span class="stat-value">15</span>
+          <span class="stat-label">سال تجربه</span>
+        </div>
+        <div class="stat">
+          <span class="stat-value">4.9</span>
+          <span class="stat-label">امتیاز</span>
+        </div>
+        <div class="stat">
+          <span class="stat-value">32</span>
+          <span class="stat-label">مقاله علمی</span>
+        </div>
+      </div>
+      <div class="cta-buttons">
+        <button class="btn btn-primary">📅 رزرو نوبت حضوری</button>
+        <button class="btn btn-secondary">💻 ویزیت آنلاین</button>
+        <button class="btn btn-secondary">💬 چت آنلاین</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="container">
+  <div class="content-grid">
+    <div class="main-content">
+      <div class="section">
+        <h2 class="section-title">📝 درباره دکتر</h2>
+        <p class="bio-text">
+          دکتر احمد بهرامی با بیش از 15 سال تجربه در زمینه طب اطفال و نوزادان، یکی از متخصصان برجسته در این حوزه است. ایشان پس از اتمام دوره پزشکی عمومی، تخصص اطفال و سپس فوق تخصص نوزادان را در دانشگاه علوم پزشکی تهران گذرانده‌اند.
+          <br><br>
+          دکتر بهرامی در زمینه مراقبت‌های ویژه نوزادان، درمان بیماری‌های عفونی کودکان، واکسیناسیون و تغذیه کودک تخصص دارد. ایشان همچنین عضو هیئت علمی دانشگاه و مدرس دوره‌های تخصصی نوزادان می‌باشد.
+        </p>
+      </div>
+
+      <div class="section">
+        <h2 class="section-title">🎓 تحصیلات</h2>
+        <div class="education-list">
+          <div class="education-item">
+            <div class="edu-degree">فوق تخصص نوزادان (Neonatology)</div>
+            <div class="edu-university">دانشگاه علوم پزشکی تهران</div>
+            <div class="edu-year">1392 - 1395</div>
+          </div>
+          <div class="education-item">
+            <div class="edu-degree">تخصص اطفال</div>
+            <div class="edu-university">دانشگاه علوم پزشکی شهید بهشتی</div>
+            <div class="edu-year">1388 - 1392</div>
+          </div>
+          <div class="education-item">
+            <div class="edu-degree">دکترای پزشکی عمومی</div>
+            <div class="edu-university">دانشگاه علوم پزشکی تهران</div>
+            <div class="edu-year">1381 - 1388</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="section">
+        <h2 class="section-title">💼 تخصص‌ها و مهارت‌ها</h2>
+        <div class="skills-grid">
+          <div class="skill-item">✓ مراقبت‌های ویژه نوزادان</div>
+          <div class="skill-item">✓ بیماری‌های عفونی کودکان</div>
+          <div class="skill-item">✓ واکسیناسیون و ایمن‌سازی</div>
+          <div class="skill-item">✓ تغذیه و رشد کودک</div>
+          <div class="skill-item">✓ آسم و آلرژی کودکان</div>
+          <div class="skill-item">✓ بیماری‌های خون کودکان</div>
+          <div class="skill-item">✓ اختلالات رشد و تکامل</div>
+          <div class="skill-item">✓ مشاوره دوران بارداری</div>
+        </div>
+      </div>
+
+      <div class="section">
+        <h2 class="section-title">📚 مقالات علمی</h2>
+        <div class="articles-list">
+          <div class="article-item">
+            <div class="article-title">بررسی عوامل خطر سندرم دیسترس تنفسی در نوزادان</div>
+            <div class="article-meta">مجله طب نوزادان ایران • 1402</div>
+          </div>
+          <div class="article-item">
+            <div class="article-title">تأثیر شیردهی مادر بر کاهش عفونت‌های تنفسی کودکان</div>
+            <div class="article-meta">کنگره بین‌المللی اطفال • 1401</div>
+          </div>
+          <div class="article-item">
+            <div class="article-title">پروتکل درمان زردی نوزادان: رهنمودهای جدید</div>
+            <div class="article-meta">فصلنامه پزشکی کودکان • 1400</div>
+          </div>
+          <div class="article-item">
+            <div class="article-title">نقش ویتامین D در پیشگیری از بیماری‌های کودکان</div>
+            <div class="article-meta">همایش ملی تغذیه کودک • 1399</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="section">
+        <h2 class="section-title">⭐ نظرات بیماران</h2>
+        <div class="reviews-list">
+          <div class="review-item">
+            <div class="review-header">
+              <span class="reviewer-name">خانم احمدی</span>
+              <span class="rating">★★★★★</span>
+            </div>
+            <p class="review-text">
+              دکتر بهرامی واقعاً یک پزشک فوق‌العاده است. با دقت و حوصله کامل فرزندم را معاینه کرد و توضیحات کاملی درباره وضعیت سلامتی‌اش داد. بسیار راضی هستم.
+            </p>
+            <div class="review-date">2 هفته پیش</div>
+          </div>
+          <div class="review-item">
+            <div class="review-header">
+              <span class="reviewer-name">آقای محمدی</span>
+              <span class="rating">★★★★★</span>
+            </div>
+            <p class="review-text">
+              تجربه بسیار خوبی با دکتر بهرامی داشتیم. ایشان علاوه بر تخصص بالا، اخلاق و رفتار بسیار مناسبی دارند. به کودکان علاقه واقعی دارند.
+            </p>
+            <div class="review-date">1 ماه پیش</div>
+          </div>
+          <div class="review-item">
+            <div class="review-header">
+              <span class="reviewer-name">خانم کریمی</span>
+              <span class="rating">★★★★★</span>
+            </div>
+            <p class="review-text">
+              از مشاوره دکتر در دوران بارداری و بعد از تولد بسیار بهره بردیم. پاسخگویی سریع در مواقع اضطراری یکی از نقاط قوت ایشان است.
+            </p>
+            <div class="review-date">2 ماه پیش</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="sidebar">
+      <div class="info-card">
+        <h3 class="info-title">📋 اطلاعات تماس</h3>
+        <div class="info-list">
+          <div class="info-item">
+            <span class="info-icon">📞</span>
+            <span>021-44480185 داخلی 350</span>
+          </div>
+          <div class="info-item">
+            <span class="info-icon">📧</span>
+            <span>a.bahrami@omid.hospital</span>
+          </div>
+          <div class="info-item">
+            <span class="info-icon">🏥</span>
+            <span>مطب: طبقه 3، اتاق 302</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="info-card">
+        <h3 class="info-title">🕐 ساعات حضور</h3>
+        <table class="schedule-table">
+          <tr>
+            <td>شنبه</td>
+            <td>9:00 - 13:00</td>
+          </tr>
+          <tr>
+            <td>یکشنبه</td>
+            <td>9:00 - 13:00</td>
+          </tr>
+          <tr>
+            <td>دوشنبه</td>
+            <td>15:00 - 19:00</td>
+          </tr>
+          <tr>
+            <td>سه‌شنبه</td>
+            <td>تعطیل</td>
+          </tr>
+          <tr>
+            <td>چهارشنبه</td>
+            <td>9:00 - 13:00</td>
+          </tr>
+          <tr>
+            <td>پنجشنبه</td>
+            <td>تعطیل</td>
+          </tr>
+          <tr>
+            <td>جمعه</td>
+            <td>تعطیل</td>
+          </tr>
+        </table>
+      </div>
+
+      <div class="info-card">
+        <h3 class="info-title">💰 هزینه ویزیت</h3>
+        <div class="info-list">
+          <div class="info-item">
+            <span class="info-icon">👨‍⚕️</span>
+            <span>حضوری: 500,000 تومان</span>
+          </div>
+          <div class="info-item">
+            <span class="info-icon">💻</span>
+            <span>آنلاین: 300,000 تومان</span>
+          </div>
+          <div class="info-item">
+            <span class="info-icon">💬</span>
+            <span>چت: 200,000 تومان</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="info-card">
+        <h3 class="info-title">🛡️ بیمه‌های طرف قرارداد</h3>
+        <div class="info-list">
+          <div class="info-item">✓ تأمین اجتماعی</div>
+          <div class="info-item">✓ خدمات درمانی</div>
+          <div class="info-item">✓ بیمه سلامت ایرانیان</div>
+          <div class="info-item">✓ بیمه‌های تکمیلی</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div style="text-align: center;">
+    <a href="../index.html" class="back-btn">
+      ← بازگشت به صفحه اصلی
+    </a>
+  </div>
+</div>
+
+</body>
+</html>

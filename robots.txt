@@ -1,0 +1,79 @@
+# robots.txt for Omid Hospital
+# بیمارستان تخصصی و فوق‌تخصصی امید
+
+User-agent: *
+Allow: /
+Allow: /pages/
+Allow: /assets/
+
+# منع دسترسی به فایل‌ها و پوشه‌های خاص
+Disallow: /admin/
+Disallow: /server/
+Disallow: /data/
+Disallow: /node_modules/
+Disallow: /*.json$
+Disallow: /*.sql$
+Disallow: /*.log$
+Disallow: /js/admin*.js
+
+# منع دسترسی به فایل‌های حساس
+Disallow: /.env
+Disallow: /.git/
+Disallow: /package.json
+Disallow: /package-lock.json
+
+# اجازه دسترسی به فایل‌های استاتیک
+Allow: /assets/*.jpg
+Allow: /assets/*.png
+Allow: /assets/*.webp
+Allow: /assets/*.svg
+Allow: /css/
+Allow: /js/api.js
+Allow: /js/booking.js
+
+# Sitemap
+Sitemap: https://omid.hospital/sitemap.xml
+
+# Crawl-delay (برای جلوگیری از بار زیاد سرور)
+Crawl-delay: 1
+
+# User-agent خاص گوگل
+User-agent: Googlebot
+Allow: /
+Disallow: /admin/
+Crawl-delay: 0
+
+# User-agent خاص Bing
+User-agent: Bingbot
+Allow: /
+Disallow: /admin/
+Crawl-delay: 1
+
+# User-agent خاص Yandex
+User-agent: Yandex
+Allow: /
+Disallow: /admin/
+Crawl-delay: 2
+
+# جلوگیری از ایندکس شدن صفحات جستجو (اگر وجود داشته باشد)
+Disallow: /search?
+Disallow: /*?q=
+Disallow: /*?search=
+
+# جلوگیری از ایندکس شدن صفحات فیلتر (اگر وجود داشته باشد)
+Disallow: /*?filter=
+Disallow: /*?sort=
+Disallow: /*?page=
+
+# Bot های مخرب
+User-agent: AhrefsBot
+Disallow: /
+
+User-agent: SemrushBot
+Disallow: /
+
+User-agent: DotBot
+Disallow: /
+
+User-agent: MJ12bot
+Disallow: /

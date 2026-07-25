@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>تله‌مدیسین - مشاوره آنلاین | بیمارستان امید</title>
+<meta name="description" content="ویزیت آنلاین با پزشکان متخصص از طریق ویدیو کال، چت و تلفن. بدون نیاز به مراجعه حضوری">
+<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@200..900&display=swap" rel="stylesheet">
+<style>
+:root {
+  --c1: #070E1A; --c2: #0C1A2E; --c3: #122340; --c4: #163A5C;
+  --c5: #0284C7; --c6: #06B6D4; --c7: #22D3EE;
+  --gold: #D4A843; --green: #10B981;
+  --f: 'Vazirmatn', system-ui, sans-serif;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: var(--f);
+  background: var(--c1);
+  color: #CBD5E1;
+  line-height: 1.7;
+}
+.hero {
+  min-height: 60vh;
+  background: linear-gradient(135deg, var(--c2) 0%, var(--c1) 100%);
+  display: flex;
+  align-items: center;
+  padding: 100px 24px 60px;
+  position: relative;
+  overflow: hidden;
+}
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(6,182,212,0.08), transparent);
+}
+.hero-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: center;
+  position: relative;
+}
+.hero-left h1 {
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 900;
+  color: #fff;
+  margin-bottom: 20px;
+  line-height: 1.2;
+}
+.hero-left h1 span {
+  background: linear-gradient(135deg, var(--c7), var(--c6));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.hero-left p {
+  font-size: 1.05rem;
+  color: #64748B;
+  margin-bottom: 30px;
+  line-height: 1.9;
+}
+.hero-features {
+  display: grid;
+  gap: 12px;
+  margin-bottom: 30px;
+}
+.hero-feature {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: #94A3B8;
+  font-size: 0.9rem;
+}
+.hero-feature .icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  background: rgba(6,182,212,0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  flex-shrink: 0;
+}
+.cta-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 16px 32px;
+  background: linear-gradient(135deg, var(--c6), var(--c5));
+  color: #fff;
+  font-weight: 800;
+  font-size: 1rem;
+  border-radius: 14px;
+  cursor: pointer;
+  border: none;
+  transition: all 0.3s;
+  text-decoration: none;
+}
+.cta-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 40px rgba(6,182,212,0.5);
+}
+.hero-circle {
+  width: 280px;
+  height: 280px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(6,182,212,0.15), rgba(6,182,212,0.03));
+  border: 3px dashed rgba(6,182,212,0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 8rem;
+  margin: 0 auto;
+  animation: float 6s ease-in-out infinite;
+}
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-20px); }
+}
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 80px 24px;
+}
+.section-title {
+  text-align: center;
+  margin-bottom: 50px;
+}
+.section-title h2 {
+  font-size: clamp(1.8rem, 3vw, 2.4rem);
+  font-weight: 900;
+  color: #fff;
+  margin-bottom: 12px;
+}
+.section-title p {
+  color: #64748B;
+  font-size: 1rem;
+}
+.service-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 24px;
+  margin-bottom: 80px;
+}
+.service-card {
+  background: var(--c2);
+  border: 1px solid rgba(6,182,212,0.1);
+  border-radius: 20px;
+  padding: 36px;
+  transition: all 0.4s;
+  position: relative;
+  overflow: hidden;
+}
+.service-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--c6), var(--c7));
+  transform: scaleX(0);
+  transition: transform 0.4s;
+}
+.service-card:hover::before {
+  transform: scaleX(1);
+}
+.service-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 60px rgba(6,182,212,0.15);
+  border-color: rgba(6,182,212,0.3);
+}
+.service-icon {
+  width: 70px;
+  height: 70px;
+  border-radius: 16px;
+  background: linear-gradient(135deg, var(--c6), var(--c5));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2.2rem;
+  margin-bottom: 20px;
+  box-shadow: 0 8px 24px rgba(6,182,212,0.3);
+}
+.service-card h3 {
+  font-size: 1.3rem;
+  font-weight: 800;
+  color: #fff;
+  margin-bottom: 12px;
+}
+.service-card p {
+  color: #64748B;
+  font-size: 0.95rem;
+  margin-bottom: 20px;
+  line-height: 1.8;
+}
+.service-features {
+  list-style: none;
+  margin-bottom: 24px;
+}
+.service-features li {
+  color: #94A3B8;
+  font-size: 0.85rem;
+  padding: 8px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.03);
+}
+.service-features li:last-child {
+  border-bottom: none;
+}
+.price {
+  font-size: 1.8rem;
+  font-weight: 900;
+  color: var(--c7);
+  margin-bottom: 20px;
+}
+.price span {
+  font-size: 0.85rem;
+  color: #64748B;
+  font-weight: 600;
+}
+.book-btn {
+  width: 100%;
+  padding: 14px;
+  background: rgba(6,182,212,0.1);
+  border: 2px solid rgba(6,182,212,0.3);
+  border-radius: 12px;
+  color: var(--c7);
+  font-weight: 800;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: all 0.3s;
+  font-family: var(--f);
+}
+.book-btn:hover {
+  background: rgba(6,182,212,0.2);
+  transform: translateY(-2px);
+}
+.doctor-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 20px;
+}
+.doctor-card {
+  background: var(--c2);
+  border: 1px solid rgba(255,255,255,0.05);
+  border-radius: 18px;
+  padding: 24px;
+  text-align: center;
+  transition: all 0.3s;
+}
+.doctor-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 40px rgba(0,0,0,0.3);
+  border-color: rgba(6,182,212,0.2);
+}
+.doctor-avatar {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--c3), var(--c2));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 3rem;
+  margin: 0 auto 16px;
+  border: 3px solid rgba(6,182,212,0.2);
+}
+.doctor-name {
+  font-weight: 800;
+  color: #fff;
+  font-size: 1.05rem;
+  margin-bottom: 6px;
+}
+.doctor-specialty {
+  color: var(--c7);
+  font-size: 0.85rem;
+  margin-bottom: 12px;
+}
+.doctor-status {
+  display: inline-block;
+  padding: 4px 12px;
+  background: rgba(16,185,129,0.15);
+  color: var(--green);
+  border-radius: 99px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  margin-bottom: 16px;
+}
+.doctor-btn {
+  width: 100%;
+  padding: 10px;
+  background: transparent;
+  border: 1.5px solid rgba(6,182,212,0.3);
+  border-radius: 10px;
+  color: var(--c7);
+  font-weight: 700;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: all 0.3s;
+  font-family: var(--f);
+}
+.doctor-btn:hover {
+  background: rgba(6,182,212,0.1);
+}
+@media (max-width: 768px) {
+  .hero-content {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+  .hero-circle {
+    width: 200px;
+    height: 200px;
+    font-size: 5rem;
+  }
+  .service-grid {
+    grid-template-columns: 1fr;
+  }
+}
+</style>
+</head>
+<body>
+
+<section class="hero">
+  <div class="hero-content">
+    <div class="hero-left">
+      <h1>
+        مشاوره پزشکی <span>آنلاین</span>
+      </h1>
+      <p>
+        با پزشکان متخصص بیمارستان امید از راه دور مشاوره بگیرید. بدون نیاز به مراجعه حضوری، در هر زمان و هر مکان.
+      </p>
+      <div class="hero-features">
+        <div class="hero-feature">
+          <div class="icon">✓</div>
+          <span>پاسخگویی سریع در کمتر از 30 دقیقه</span>
+        </div>
+        <div class="hero-feature">
+          <div class="icon">🔒</div>
+          <span>محرمانه و ایمن با رعایت حریم خصوصی</span>
+        </div>
+        <div class="hero-feature">
+          <div class="icon">💳</div>
+          <span>پرداخت آنلاین ساده و سریع</span>
+        </div>
+        <div class="hero-feature">
+          <div class="icon">📝</div>
+          <span>دریافت نسخه الکترونیک پس از ویزیت</span>
+        </div>
+      </div>
+      <a href="#services" class="cta-btn">
+        🚀 شروع مشاوره آنلاین
+      </a>
+    </div>
+    <div class="hero-right">
+      <div class="hero-circle">💻</div>
+    </div>
+  </div>
+</section>
+
+<div class="container" id="services">
+  <div class="section-title">
+    <h2>انواع خدمات تله‌مدیسین</h2>
+    <p>روش مشاوره دلخواه خود را انتخاب کنید</p>
+  </div>
+
+  <div class="service-grid">
+    <!-- Video Call -->
+    <div class="service-card">
+      <div class="service-icon">📹</div>
+      <h3>ویدیو کال زنده</h3>
+      <p>مشاوره تصویری در زمان واقعی با پزشک متخصص</p>
+      <ul class="service-features">
+        <li>✓ ارتباط تصویری Full HD</li>
+        <li>✓ امکان نمایش مدارک پزشکی</li>
+        <li>✓ ضبط جلسه (با رضایت)</li>
+        <li>✓ مدت: 15-30 دقیقه</li>
+      </ul>
+      <div class="price">
+        200,000 <span>تومان</span>
+      </div>
+      <button class="book-btn" onclick="bookService('video')">
+        📅 رزرو ویدیو کال
+      </button>
+    </div>
+
+    <!-- Phone Call -->
+    <div class="service-card">
+      <div class="service-icon">📞</div>
+      <h3>تماس تلفنی</h3>
+      <p>مشاوره صوتی با کیفیت بالا</p>
+      <ul class="service-features">
+        <li>✓ تماس مستقیم با پزشک</li>
+        <li>✓ بدون نیاز به اینترنت پرسرعت</li>
+        <li>✓ ضبط مکالمه برای مراجعه بعدی</li>
+        <li>✓ مدت: 10-20 دقیقه</li>
+      </ul>
+      <div class="price">
+        150,000 <span>تومان</span>
+      </div>
+      <button class="book-btn" onclick="bookService('phone')">
+        📅 رزرو تماس تلفنی
+      </button>
+    </div>
+
+    <!-- Chat -->
+    <div class="service-card">
+      <div class="service-icon">💬</div>
+      <h3>چت متنی</h3>
+      <p>پیام رسان امن با پاسخ سریع</p>
+      <ul class="service-features">
+        <li>✓ ارسال متن، عکس و فایل</li>
+        <li>✓ پاسخگویی در 1-3 ساعت</li>
+        <li>✓ ذخیره تاریخچه مکالمات</li>
+        <li>✓ دسترسی 24 ساعته</li>
+      </ul>
+      <div class="price">
+        100,000 <span>تومان</span>
+      </div>
+      <button class="book-btn" onclick="bookService('chat')">
+        📅 شروع چت
+      </button>
+    </div>
+  </div>
+
+  <div class="section-title">
+    <h2>پزشکان با ویزیت آنلاین</h2>
+    <p>متخصصانی که آماده مشاوره از راه دور هستند</p>
+  </div>
+
+  <div class="doctor-grid">
+    <div class="doctor-card">
+      <div class="doctor-avatar">👨‍⚕️</div>
+      <div class="doctor-name">دکتر احمد بهرامی</div>
+      <div class="doctor-specialty">متخصص اطفال</div>
+      <span class="doctor-status">🟢 آنلاین</span>
+      <button class="doctor-btn" onclick="selectDoctor(1)">
+        مشاوره آنلاین
+      </button>
+    </div>
+
+    <div class="doctor-card">
+      <div class="doctor-avatar">👩‍⚕️</div>
+      <div class="doctor-name">دکتر سیما ایوبی</div>
+      <div class="doctor-specialty">متخصص اطفال</div>
+      <span class="doctor-status">🟢 آنلاین</span>
+      <button class="doctor-btn" onclick="selectDoctor(2)">
+        مشاوره آنلاین
+      </button>
+    </div>
+
+    <div class="doctor-card">
+      <div class="doctor-avatar">👨‍⚕️</div>
+      <div class="doctor-name">دکتر مهدی عسگری</div>
+      <div class="doctor-specialty">جراح عمومی</div>
+      <span class="doctor-status">🟢 آنلاین</span>
+      <button class="doctor-btn" onclick="selectDoctor(3)">
+        مشاوره آنلاین
+      </button>
+    </div>
+
+    <div class="doctor-card">
+      <div class="doctor-avatar">👩‍⚕️</div>
+      <div class="doctor-name">دکتر زهرا شمس</div>
+      <div class="doctor-specialty">متخصص زنان</div>
+      <span class="doctor-status">🟢 آنلاین</span>
+      <button class="doctor-btn" onclick="selectDoctor(4)">
+        مشاوره آنلاین
+      </button>
+    </div>
+
+    <div class="doctor-card">
+      <div class="doctor-avatar">👨‍⚕️</div>
+      <div class="doctor-name">دکتر علی ذاکر</div>
+      <div class="doctor-specialty">متخصص ریه</div>
+      <span class="doctor-status">🟢 آنلاین</span>
+      <button class="doctor-btn" onclick="selectDoctor(5)">
+        مشاوره آنلاین
+      </button>
+    </div>
+
+    <div class="doctor-card">
+      <div class="doctor-avatar">👨‍⚕️</div>
+      <div class="doctor-name">دکتر حسین موسوی</div>
+      <div class="doctor-specialty">اورولوژیست</div>
+      <span class="doctor-status">🟢 آنلاین</span>
+      <button class="doctor-btn" onclick="selectDoctor(6)">
+        مشاوره آنلاین
+      </button>
+    </div>
+  </div>
+
+  <div style="text-align: center; margin-top: 60px;">
+    <a href="../index.html" style="display: inline-flex; align-items: center; gap: 10px; padding: 12px 24px; border: 1.5px solid rgba(255,255,255,0.1); border-radius: 12px; color: #94A3B8; text-decoration: none; transition: all 0.3s;">
+      ← بازگشت به صفحه اصلی
+    </a>
+  </div>
+</div>
+
+<script>
+function bookService(type) {
+  const services = {
+    video: 'ویدیو کال',
+    phone: 'تماس تلفنی',
+    chat: 'چت متنی'
+  };
+  
+  alert(`رزرو ${services[type]}...\n\nدر نسخه واقعی، به صفحه رزرو هدایت می‌شوید.`);
+  
+  // در نسخه واقعی:
+  // window.location.href = `../booking.html?service=${type}`;
+}
+
+function selectDoctor(id) {
+  alert(`انتخاب پزشک...\n\nدر نسخه واقعی، پروفایل پزشک و گزینه‌های رزرو نمایش داده می‌شود.`);
+  
+  // در نسخه واقعی:
+  // window.location.href = `doctor-profile.html?id=${id}&telemedicine=true`;
+}
+</script>
+
+</body>
+</html>

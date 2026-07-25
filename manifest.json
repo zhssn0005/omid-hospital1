@@ -1,0 +1,146 @@
+{
+  "name": "بیمارستان امید - نوبت‌دهی و خدمات آنلاین",
+  "short_name": "بیمارستان امید",
+  "description": "رزرو نوبت آنلاین، نتایج آزمایش، تله‌مدیسین و خدمات درمانی بیمارستان امید",
+  "start_url": "/index.html",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#070E1A",
+  "theme_color": "#06B6D4",
+  "orientation": "portrait-primary",
+  "dir": "rtl",
+  "lang": "fa-IR",
+  "categories": ["health", "medical", "lifestyle"],
+  "icons": [
+    {
+      "src": "assets/icons/icon-72x72.png",
+      "sizes": "72x72",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "assets/icons/icon-96x96.png",
+      "sizes": "96x96",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "assets/icons/icon-128x128.png",
+      "sizes": "128x128",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "assets/icons/icon-144x144.png",
+      "sizes": "144x144",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "assets/icons/icon-152x152.png",
+      "sizes": "152x152",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "assets/icons/icon-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "assets/icons/icon-384x384.png",
+      "sizes": "384x384",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "assets/icons/icon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "assets/screenshots/desktop-1.png",
+      "sizes": "1280x720",
+      "type": "image/png",
+      "form_factor": "wide",
+      "label": "صفحه اصلی بیمارستان امید"
+    },
+    {
+      "src": "assets/screenshots/mobile-1.png",
+      "sizes": "390x844",
+      "type": "image/png",
+      "form_factor": "narrow",
+      "label": "رزرو نوبت در موبایل"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "رزرو نوبت",
+      "short_name": "رزرو",
+      "description": "رزرو نوبت پزشک",
+      "url": "/booking.html",
+      "icons": [
+        {
+          "src": "assets/icons/shortcut-booking.png",
+          "sizes": "96x96",
+          "type": "image/png"
+        }
+      ]
+    },
+    {
+      "name": "نتایج آزمایش",
+      "short_name": "نتایج",
+      "description": "مشاهده نتایج آزمایشگاه",
+      "url": "/pages/online-results.html",
+      "icons": [
+        {
+          "src": "assets/icons/shortcut-results.png",
+          "sizes": "96x96",
+          "type": "image/png"
+        }
+      ]
+    },
+    {
+      "name": "تله‌مدیسین",
+      "short_name": "آنلاین",
+      "description": "ویزیت آنلاین",
+      "url": "/pages/telemedicine.html",
+      "icons": [
+        {
+          "src": "assets/icons/shortcut-telemedicine.png",
+          "sizes": "96x96",
+          "type": "image/png"
+        }
+      ]
+    },
+    {
+      "name": "لیست پزشکان",
+      "short_name": "پزشکان",
+      "description": "جستجوی پزشک",
+      "url": "/pages/doctors-list.html",
+      "icons": [
+        {
+          "src": "assets/icons/shortcut-doctors.png",
+          "sizes": "96x96",
+          "type": "image/png"
+        }
+      ]
+    }
+  ],
+  "related_applications": [],
+  "prefer_related_applications": false,
+  "share_target": {
+    "action": "/share",
+    "method": "POST",
+    "enctype": "multipart/form-data",
+    "params": {
+      "title": "title",
+      "text": "text",
+      "url": "url"
+    }
+  }
+}

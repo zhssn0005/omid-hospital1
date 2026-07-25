@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>اخبار و رویدادها | بیمارستان امید</title>
+<meta name="description" content="آخرین اخبار بیمارستان، سمینارهای آموزشی، رویدادهای پزشکی و مقالات تخصصی">
+<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@200..900&display=swap" rel="stylesheet">
+<style>
+:root {
+  --c1: #070E1A; --c2: #0C1A2E; --c3: #122340; --c4: #163A5C;
+  --c5: #0284C7; --c6: #06B6D4; --c7: #22D3EE;
+  --gold: #D4A843; --green: #10B981; --rose: #F43F5E;
+  --f: 'Vazirmatn', system-ui, sans-serif;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: var(--f);
+  background: var(--c1);
+  color: #CBD5E1;
+  line-height: 1.7;
+  padding-top: 80px;
+}
+.container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 40px 24px;
+}
+.header {
+  text-align: center;
+  margin-bottom: 50px;
+}
+.header h1 {
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 900;
+  color: #fff;
+  margin-bottom: 16px;
+}
+.header p {
+  color: #64748B;
+  font-size: 1.05rem;
+}
+.controls {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 40px;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+}
+.filters {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.filter-btn {
+  padding: 10px 20px;
+  border-radius: 10px;
+  border: 2px solid rgba(6,182,212,0.2);
+  background: transparent;
+  color: #94A3B8;
+  font-weight: 700;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: all 0.3s;
+  font-family: var(--f);
+}
+.filter-btn:hover {
+  border-color: var(--c6);
+  color: var(--c7);
+}
+.filter-btn.active {
+  background: linear-gradient(135deg, var(--c6), var(--c5));
+  border-color: transparent;
+  color: #fff;
+  box-shadow: 0 4px 20px rgba(6,182,212,0.4);
+}
+.search-box {
+  display: flex;
+  gap: 8px;
+  flex: 1;
+  max-width: 400px;
+}
+.search-input {
+  flex: 1;
+  padding: 12px 16px;
+  border-radius: 10px;
+  border: 2px solid rgba(6,182,212,0.2);
+  background: var(--c2);
+  color: #E2E8F0;
+  font-family: var(--f);
+  font-size: 0.9rem;
+  transition: all 0.3s;
+}
+.search-input:focus {
+  outline: none;
+  border-color: var(--c6);
+  box-shadow: 0 0 0 4px rgba(6,182,212,0.1);
+}
+.search-btn {
+  padding: 12px 24px;
+  border-radius: 10px;
+  background: linear-gradient(135deg, var(--c6), var(--c5));
+  border: none;
+  color: #fff;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s;
+  font-family: var(--f);
+}
+.search-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(6,182,212,0.4);
+}
+.content-wrapper {
+  display: grid;
+  grid-template-columns: 1fr 320px;
+  gap: 32px;
+}
+.news-grid {
+  display: grid;
+  gap: 24px;
+}
+.news-card {
+  background: var(--c2);
+  border: 1px solid rgba(6,182,212,0.1);
+  border-radius: 16px;
+  overflow: hidden;
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  transition: all 0.3s;
+  cursor: pointer;
+}
+.news-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 40px rgba(6,182,212,0.15);
+  border-color: rgba(6,182,212,0.3);
+}
+.news-image {
+  position: relative;
+  background: linear-gradient(135deg, var(--c3), var(--c2));
+  overflow: hidden;
+}
+.news-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.news-badge {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  padding: 6px 14px;
+  border-radius: 8px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  backdrop-filter: blur(10px);
+}
+.badge-news {
+  background: rgba(6,182,212,0.9);
+  color: #fff;
+}
+.badge-event {
+  background: rgba(212,168,67,0.9);
+  color: #000;
+}
+.badge-seminar {
+  background: rgba(16,185,129,0.9);
+  color: #fff;
+}
+.news-content {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+}
+.news-meta {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 12px;
+  font-size: 0.8rem;
+  color: #64748B;
+}
+.news-meta span {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.news-title {
+  font-size: 1.3rem;
+  font-weight: 800;
+  color: #fff;
+  margin-bottom: 12px;
+  line-height: 1.4;
+}
+.news-excerpt {
+  color: #94A3B8;
+  font-size: 0.95rem;
+  line-height: 1.7;
+  margin-bottom: 16px;
+  flex: 1;
+}
+.news-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 16px;
+  border-top: 1px solid rgba(255,255,255,0.05);
+}
+.news-author {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.85rem;
+  color: #64748B;
+}
+.read-more {
+  padding: 8px 16px;
+  border-radius: 8px;
+  background: rgba(6,182,212,0.1);
+  border: 1px solid rgba(6,182,212,0.3);
+  color: var(--c7);
+  font-weight: 700;
+  font-size: 0.85rem;
+  transition: all 0.3s;
+}
+.news-card:hover .read-more {
+  background: rgba(6,182,212,0.2);
+}
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+.sidebar-card {
+  background: var(--c2);
+  border: 1px solid rgba(6,182,212,0.1);
+  border-radius: 16px;
+  padding: 24px;
+}
+.sidebar-title {
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: #fff;
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.calendar {
+  background: var(--c3);
+  border-radius: 12px;
+  overflow: hidden;
+}
+.calendar-header {
+  background: linear-gradient(135deg, var(--c6), var(--c5));
+  padding: 16px;
+  text-align: center;
+  color: #fff;
+  font-weight: 800;
+}
+.calendar-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 1px;
+  background: rgba(6,182,212,0.1);
+}
+.calendar-day {
+  aspect-ratio: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--c3);
+  font-size: 0.85rem;
+  color: #64748B;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.calendar-day:hover {
+  background: rgba(6,182,212,0.1);
+  color: #fff;
+}
+.calendar-day.has-event {
+  color: var(--c7);
+  font-weight: 700;
+  position: relative;
+}
+.calendar-day.has-event::after {
+  content: '';
+  position: absolute;
+  bottom: 4px;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--c7);
+}
+.upcoming-events {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.event-item {
+  padding: 12px;
+  background: var(--c3);
+  border-radius: 10px;
+  border-right: 3px solid var(--gold);
+  transition: all 0.3s;
+  cursor: pointer;
+}
+.event-item:hover {
+  background: var(--c4);
+  transform: translateX(-4px);
+}
+.event-date {
+  font-size: 0.75rem;
+  color: var(--gold);
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+.event-title {
+  font-size: 0.9rem;
+  color: #fff;
+  font-weight: 700;
+}
+.popular-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.tag {
+  padding: 6px 14px;
+  background: var(--c3);
+  border: 1px solid rgba(6,182,212,0.2);
+  border-radius: 99px;
+  font-size: 0.8rem;
+  color: #94A3B8;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+.tag:hover {
+  background: rgba(6,182,212,0.1);
+  border-color: var(--c6);
+  color: var(--c7);
+}
+.back-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 24px;
+  background: transparent;
+  border: 1.5px solid rgba(255,255,255,0.1);
+  border-radius: 12px;
+  color: #94A3B8;
+  font-weight: 700;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.3s;
+  font-family: var(--f);
+  text-decoration: none;
+  margin-top: 40px;
+}
+.back-btn:hover {
+  border-color: rgba(255,255,255,0.2);
+  color: #fff;
+}
+@media (max-width: 1100px) {
+  .content-wrapper {
+    grid-template-columns: 1fr;
+  }
+  .sidebar {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (max-width: 768px) {
+  .news-card {
+    grid-template-columns: 1fr;
+  }
+  .news-image {
+    height: 200px;
+  }
+  .controls {
+    flex-direction: column;
+  }
+  .search-box {
+    max-width: 100%;
+  }
+  .sidebar {
+    grid-template-columns: 1fr;
+  }
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+  <div class="header">
+    <h1>📰 اخبار و رویدادها</h1>
+    <p>آخرین اخبار، سمینارها و رویدادهای بیمارستان امید</p>
+  </div>
+
+  <div class="controls">
+    <div class="filters">
+      <button class="filter-btn active" onclick="filterNews('all')">همه</button>
+      <button class="filter-btn" onclick="filterNews('news')">📰 اخبار</button>
+      <button class="filter-btn" onclick="filterNews('event')">🎉 رویدادها</button>
+      <button class="filter-btn" onclick="filterNews('seminar')">🎓 سمینارها</button>
+    </div>
+    <div class="search-box">
+      <input type="text" class="search-input" placeholder="جستجو در اخبار..." id="searchInput">
+      <button class="search-btn" onclick="searchNews()">🔍</button>
+    </div>
+  </div>
+
+  <div class="content-wrapper">
+    <div class="news-grid" id="newsGrid"></div>
+
+    <div class="sidebar">
+      <div class="sidebar-card">
+        <h3 class="sidebar-title">📅 تقویم رویدادها</h3>
+        <div class="calendar">
+          <div class="calendar-header">تیر 1404</div>
+          <div class="calendar-grid" id="calendarGrid"></div>
+        </div>
+      </div>
+
+      <div class="sidebar-card">
+        <h3 class="sidebar-title">🎯 رویدادهای پیش رو</h3>
+        <div class="upcoming-events" id="upcomingEvents"></div>
+      </div>
+
+      <div class="sidebar-card">
+        <h3 class="sidebar-title">🏷️ موضوعات محبوب</h3>
+        <div class="popular-tags">
+          <span class="tag">#کرونا</span>
+          <span class="tag">#واکسیناسیون</span>
+          <span class="tag">#تغذیه</span>
+          <span class="tag">#سلامت_کودک</span>
+          <span class="tag">#بارداری</span>
+          <span class="tag">#قلب</span>
+          <span class="tag">#دیابت</span>
+          <span class="tag">#ورزش</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div style="text-align: center;">
+    <a href="../index.html" class="back-btn">
+      ← بازگشت به صفحه اصلی
+    </a>
+  </div>
+</div>
+
+<script>
+const newsData = [
+  {
+    id: 1,
+    type: 'news',
+    title: 'راه‌اندازی بخش جدید تصویربرداری MRI 3 تسلا',
+    excerpt: 'بیمارستان امید با نصب دستگاه MRI 3 تسلا، جدیدترین تکنولوژی تصویربرداری را در اختیار بیماران قرار می‌دهد.',
+    image: 'https://via.placeholder.com/280x200/0284C7/ffffff?text=MRI+3T',
+    date: '1404/07/23',
+    author: 'مدیریت',
+    views: '2.5K'
+  },
+  {
+    id: 2,
+    type: 'seminar',
+    title: 'سمینار آموزشی پیشگیری از دیابت',
+    excerpt: 'سمینار رایگان با حضور متخصصین تغذیه و غدد، شنبه 27 تیر ساعت 10 صبح در سالن کنفرانس',
+    image: 'https://via.placeholder.com/280x200/10B981/ffffff?text=Diabetes',
+    date: '1404/07/27',
+    author: 'واحد آموزش',
+    views: '1.8K'
+  },
+  {
+    id: 3,
+    type: 'event',
+    title: 'جشنواره سالگرد افتتاح بیمارستان',
+    excerpt: 'نهمین سالگرد افتتاح بیمارستان امید با برگزاری مراسم ویژه و ارائه خدمات رایگان',
+    image: 'https://via.placeholder.com/280x200/D4A843/ffffff?text=Anniversary',
+    date: '1404/08/05',
+    author: 'روابط عمومی',
+    views: '3.2K'
+  },
+  {
+    id: 4,
+    type: 'news',
+    title: 'کاهش 40 درصدی زمان انتظار در اورژانس',
+    excerpt: 'با بازسازی بخش اورژانس و افزایش تیم پزشکی، زمان انتظار بیماران به شدت کاهش یافت',
+    image: 'https://via.placeholder.com/280x200/06B6D4/ffffff?text=Emergency',
+    date: '1404/07/20',
+    author: 'واحد اورژانس',
+    views: '4.1K'
+  },
+  {
+    id: 5,
+    type: 'seminar',
+    title: 'کارگاه CPR برای خانواده‌ها',
+    excerpt: 'آموزش عملی احیای قلبی ریوی برای والدین و اعضای خانواده، یکشنبه 28 تیر',
+    image: 'https://via.placeholder.com/280x200/F43F5E/ffffff?text=CPR',
+    date: '1404/07/28',
+    author: 'دکتر احمدی',
+    views: '2.9K'
+  },
+  {
+    id: 6,
+    type: 'news',
+    title: 'افتتاح کلینیک تخصصی کرونا',
+    excerpt: 'کلینیک ویژه مراقبت از بیماران کووید-19 با تیم متخصص عفونی و ریه افتتاح شد',
+    image: 'https://via.placeholder.com/280x200/22D3EE/ffffff?text=COVID',
+    date: '1404/07/18',
+    author: 'دکتر حسینی',
+    views: '5.5K'
+  },
+  {
+    id: 7,
+    type: 'event',
+    title: 'همایش سلامت مادر و کودک',
+    excerpt: 'برگزاری همایش دو روزه با حضور متخصصین زنان و اطفال کشور',
+    image: 'https://via.placeholder.com/280x200/D4A843/ffffff?text=Mother+Child',
+    date: '1404/08/10',
+    author: 'کمیته علمی',
+    views: '1.6K'
+  },
+  {
+    id: 8,
+    type: 'news',
+    title: 'عقد تفاهم‌نامه با 5 بیمه جدید',
+    excerpt: 'بیماران بیمه‌های دی، پارسیان، دانا، کوثر و میهن می‌توانند از خدمات بهره‌مند شوند',
+    image: 'https://via.placeholder.com/280x200/0284C7/ffffff?text=Insurance',
+    date: '1404/07/15',
+    author: 'مدیریت',
+    views: '3.7K'
+  }
+];
+
+const upcomingEventsData = [
+  { date: '27 تیر', title: 'سمینار پیشگیری دیابت' },
+  { date: '28 تیر', title: 'کارگاه CPR' },
+  { date: '5 مرداد', title: 'جشنواره سالگرد' },
+  { date: '10 مرداد', title: 'همایش مادر و کودک' },
+  { date: '15 مرداد', title: 'کنفرانس قلب و عروق' }
+];
+
+let currentFilter = 'all';
+let currentSearch = '';
+
+const typeConfig = {
+  news: { label: 'خبر', class: 'badge-news' },
+  event: { label: 'رویداد', class: 'badge-event' },
+  seminar: { label: 'سمینار', class: 'badge-seminar' }
+};
+
+function renderNews() {
+  const grid = document.getElementById('newsGrid');
+  let filtered = newsData;
+  
+  if (currentFilter !== 'all') {
+    filtered = filtered.filter(n => n.type === currentFilter);
+  }
+  
+  if (currentSearch) {
+    filtered = filtered.filter(n => 
+      n.title.includes(currentSearch) || n.excerpt.includes(currentSearch)
+    );
+  }
+  
+  grid.innerHTML = filtered.map(news => `
+    <div class="news-card">
+      <div class="news-image">
+        <img src="${news.image}" alt="${news.title}" loading="lazy">
+        <span class="news-badge ${typeConfig[news.type].class}">
+          ${typeConfig[news.type].label}
+        </span>
+      </div>
+      <div class="news-content">
+        <div class="news-meta">
+          <span>📅 ${news.date}</span>
+          <span>👁️ ${news.views}</span>
+        </div>
+        <h3 class="news-title">${news.title}</h3>
+        <p class="news-excerpt">${news.excerpt}</p>
+        <div class="news-footer">
+          <div class="news-author">
+            <span>✍️</span>
+            <span>${news.author}</span>
+          </div>
+          <button class="read-more">ادامه مطلب ←</button>
+        </div>
+      </div>
+    </div>
+  `).join('');
+}
+
+function filterNews(type) {
+  currentFilter = type;
+  document.querySelectorAll('.filter-btn').forEach(btn => {
+    btn.classList.remove('active');
+  });
+  event.target.classList.add('active');
+  renderNews();
+}
+
+function searchNews() {
+  currentSearch = document.getElementById('searchInput').value;
+  renderNews();
+}
+
+function renderCalendar() {
+  const grid = document.getElementById('calendarGrid');
+  const eventDays = [27, 28, 5, 10, 15];
+  let html = '';
+  
+  for (let i = 1; i <= 30; i++) {
+    const hasEvent = eventDays.includes(i);
+    html += `<div class="calendar-day ${hasEvent ? 'has-event' : ''}">${i}</div>`;
+  }
+  
+  grid.innerHTML = html;
+}
+
+function renderUpcomingEvents() {
+  const container = document.getElementById('upcomingEvents');
+  container.innerHTML = upcomingEventsData.map(event => `
+    <div class="event-item">
+      <div class="event-date">${event.date}</div>
+      <div class="event-title">${event.title}</div>
+    </div>
+  `).join('');
+}
+
+document.getElementById('searchInput').addEventListener('keypress', function(e) {
+  if (e.key === 'Enter') {
+    searchNews();
+  }
+});
+
+renderNews();
+renderCalendar();
+renderUpcomingEvents();
+</script>
+
+</body>
+</html>

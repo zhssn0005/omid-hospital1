@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>گالری ویدیو | بیمارستان امید</title>
+<meta name="description" content="ویدیوهای آموزشی، تور بخش‌های مختلف، مصاحبه با پزشکان و راهنمای خدمات بیمارستان امید">
+<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@200..900&display=swap" rel="stylesheet">
+<style>
+:root {
+  --c1: #070E1A; --c2: #0C1A2E; --c3: #122340; --c4: #163A5C;
+  --c5: #0284C7; --c6: #06B6D4; --c7: #22D3EE;
+  --f: 'Vazirmatn', system-ui, sans-serif;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: var(--f);
+  background: var(--c1);
+  color: #CBD5E1;
+  line-height: 1.7;
+  padding-top: 80px;
+}
+.container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 40px 24px;
+}
+.header {
+  text-align: center;
+  margin-bottom: 50px;
+}
+.header h1 {
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 900;
+  color: #fff;
+  margin-bottom: 16px;
+}
+.header p {
+  color: #64748B;
+  font-size: 1.05rem;
+}
+.filters {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 40px;
+}
+.filter-btn {
+  padding: 10px 24px;
+  border-radius: 12px;
+  border: 2px solid rgba(6,182,212,0.2);
+  background: transparent;
+  color: #94A3B8;
+  font-weight: 700;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.3s;
+  font-family: var(--f);
+}
+.filter-btn:hover {
+  border-color: var(--c6);
+  color: var(--c7);
+}
+.filter-btn.active {
+  background: linear-gradient(135deg, var(--c6), var(--c5));
+  border-color: transparent;
+  color: #fff;
+  box-shadow: 0 4px 20px rgba(6,182,212,0.4);
+}
+.video-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+  gap: 24px;
+  margin-bottom: 40px;
+}
+.video-card {
+  background: var(--c2);
+  border: 1px solid rgba(6,182,212,0.1);
+  border-radius: 16px;
+  overflow: hidden;
+  transition: all 0.3s;
+  cursor: pointer;
+}
+.video-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 40px rgba(6,182,212,0.2);
+  border-color: rgba(6,182,212,0.3);
+}
+.video-thumb {
+  position: relative;
+  padding-top: 56.25%;
+  background: linear-gradient(135deg, var(--c3), var(--c2));
+  overflow: hidden;
+}
+.video-thumb img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.play-btn {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: rgba(6,182,212,0.9);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  transition: all 0.3s;
+}
+.video-card:hover .play-btn {
+  background: var(--c6);
+  transform: translate(-50%, -50%) scale(1.1);
+}
+.video-duration {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  padding: 4px 10px;
+  background: rgba(0,0,0,0.8);
+  border-radius: 6px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #fff;
+}
+.video-info {
+  padding: 20px;
+}
+.video-category {
+  display: inline-block;
+  padding: 4px 12px;
+  background: rgba(6,182,212,0.15);
+  color: var(--c7);
+  border-radius: 99px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+.video-title {
+  font-size: 1.05rem;
+  font-weight: 800;
+  color: #fff;
+  margin-bottom: 8px;
+  line-height: 1.4;
+}
+.video-desc {
+  color: #64748B;
+  font-size: 0.85rem;
+  line-height: 1.6;
+  margin-bottom: 12px;
+}
+.video-meta {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  font-size: 0.8rem;
+  color: #475569;
+}
+.video-meta span {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.95);
+  z-index: 9999;
+  padding: 20px;
+  align-items: center;
+  justify-content: center;
+}
+.modal.show {
+  display: flex;
+  animation: fadeIn 0.3s ease;
+}
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+.modal-content {
+  max-width: 1200px;
+  width: 100%;
+  background: var(--c2);
+  border-radius: 20px;
+  overflow: hidden;
+  position: relative;
+  animation: slideUp 0.4s ease;
+}
+@keyframes slideUp {
+  from { transform: translateY(50px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+.modal-close {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: rgba(0,0,0,0.8);
+  color: #fff;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s;
+}
+.modal-close:hover {
+  background: var(--c6);
+  transform: rotate(90deg);
+}
+.video-player {
+  position: relative;
+  padding-top: 56.25%;
+  background: #000;
+}
+.video-player iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+.modal-info {
+  padding: 24px;
+}
+.modal-title {
+  font-size: 1.5rem;
+  font-weight: 900;
+  color: #fff;
+  margin-bottom: 12px;
+}
+.modal-desc {
+  color: #94A3B8;
+  line-height: 1.8;
+}
+.back-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 24px;
+  background: transparent;
+  border: 1.5px solid rgba(255,255,255,0.1);
+  border-radius: 12px;
+  color: #94A3B8;
+  font-weight: 700;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.3s;
+  font-family: var(--f);
+  text-decoration: none;
+}
+.back-btn:hover {
+  border-color: rgba(255,255,255,0.2);
+  color: #fff;
+  background: rgba(255,255,255,0.05);
+}
+@media (max-width: 768px) {
+  .video-grid {
+    grid-template-columns: 1fr;
+  }
+  .filters {
+    gap: 8px;
+  }
+  .filter-btn {
+    padding: 8px 16px;
+    font-size: 0.8rem;
+  }
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+  <div class="header">
+    <h1>📹 گالری ویدیو</h1>
+    <p>ویدیوهای آموزشی، تور مجازی و مصاحبه با پزشکان</p>
+  </div>
+
+  <div class="filters">
+    <button class="filter-btn active" onclick="filterVideos('all')">🎬 همه</button>
+    <button class="filter-btn" onclick="filterVideos('tour')">🏥 تور بیمارستان</button>
+    <button class="filter-btn" onclick="filterVideos('education')">📚 آموزشی</button>
+    <button class="filter-btn" onclick="filterVideos('interview')">🎤 مصاحبه</button>
+    <button class="filter-btn" onclick="filterVideos('guide')">📋 راهنما</button>
+  </div>
+
+  <div class="video-grid" id="videoGrid"></div>
+
+  <div style="text-align: center; margin-top: 40px;">
+    <a href="../index.html" class="back-btn">
+      ← بازگشت به صفحه اصلی
+    </a>
+  </div>
+</div>
+
+<div class="modal" id="videoModal">
+  <button class="modal-close" onclick="closeVideo()">✕</button>
+  <div class="modal-content">
+    <div class="video-player" id="videoPlayer"></div>
+    <div class="modal-info">
+      <h2 class="modal-title" id="modalTitle"></h2>
+      <p class="modal-desc" id="modalDesc"></p>
+    </div>
+  </div>
+</div>
+
+<script>
+const videos = [
+  {
+    id: 1,
+    title: 'تور کامل بخش NICU',
+    desc: 'بازدید از بخش مراقبت‌های ویژه نوزادان با آخرین تجهیزات پزشکی',
+    category: 'tour',
+    duration: '5:30',
+    views: '12.5K',
+    date: '1404/07/20',
+    thumb: 'https://via.placeholder.com/640x360/0284C7/ffffff?text=NICU+Tour',
+    videoUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ'
+  },
+  {
+    id: 2,
+    title: 'راهنمای رزرو نوبت آنلاین',
+    desc: 'آموزش گام به گام نحوه رزرو نوبت از طریق سایت',
+    category: 'guide',
+    duration: '3:45',
+    views: '25.3K',
+    date: '1404/07/18',
+    thumb: 'https://via.placeholder.com/640x360/06B6D4/ffffff?text=Booking+Guide',
+    videoUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ'
+  },
+  {
+    id: 3,
+    title: 'مصاحبه با دکتر بهرامی - متخصص اطفال',
+    desc: 'گفتگو در مورد مراقبت‌های دوران بارداری و نوزادی',
+    category: 'interview',
+    duration: '15:20',
+    views: '8.2K',
+    date: '1404/07/15',
+    thumb: 'https://via.placeholder.com/640x360/22D3EE/ffffff?text=Dr+Bahrami',
+    videoUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ'
+  },
+  {
+    id: 4,
+    title: 'تور اتاق‌های VIP بخش Royal',
+    desc: 'معرفی امکانات و خدمات اختصاصی اتاق‌های ویژه',
+    category: 'tour',
+    duration: '4:15',
+    views: '9.7K',
+    date: '1404/07/12',
+    thumb: 'https://via.placeholder.com/640x360/D4A843/ffffff?text=Royal+Rooms',
+    videoUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ'
+  },
+  {
+    id: 5,
+    title: 'آموزش مراقبت از بیمار در منزل',
+    desc: 'نکات کلیدی برای مراقبت صحیح از بیمار بستری در منزل',
+    category: 'education',
+    duration: '8:50',
+    views: '18.5K',
+    date: '1404/07/10',
+    thumb: 'https://via.placeholder.com/640x360/10B981/ffffff?text=Home+Care',
+    videoUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ'
+  },
+  {
+    id: 6,
+    title: 'راهنمای پذیرش و ترخیص',
+    desc: 'فرآیند کامل پذیرش تا ترخیص در بیمارستان امید',
+    category: 'guide',
+    duration: '6:30',
+    views: '22.1K',
+    date: '1404/07/08',
+    thumb: 'https://via.placeholder.com/640x360/0284C7/ffffff?text=Admission+Guide',
+    videoUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ'
+  },
+  {
+    id: 7,
+    title: 'معرفی خدمات بخش بین‌الملل IPD',
+    desc: 'ارائه خدمات به بیماران خارجی با مترجم و همراه',
+    category: 'tour',
+    duration: '7:10',
+    views: '5.8K',
+    date: '1404/07/05',
+    thumb: 'https://via.placeholder.com/640x360/06B6D4/ffffff?text=IPD+Services',
+    videoUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ'
+  },
+  {
+    id: 8,
+    title: 'آموزش CPR برای عموم',
+    desc: 'آموزش احیای قلبی ریوی برای افراد غیر پزشکی',
+    category: 'education',
+    duration: '12:40',
+    views: '42.3K',
+    date: '1404/07/01',
+    thumb: 'https://via.placeholder.com/640x360/F43F5E/ffffff?text=CPR+Training',
+    videoUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ'
+  },
+  {
+    id: 9,
+    title: 'مصاحبه با دکتر شمس - متخصص زنان',
+    desc: 'پاسخ به سوالات رایج دوران بارداری و زایمان',
+    category: 'interview',
+    duration: '18:55',
+    views: '14.2K',
+    date: '1404/06/28',
+    thumb: 'https://via.placeholder.com/640x360/22D3EE/ffffff?text=Dr+Shams',
+    videoUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ'
+  },
+  {
+    id: 10,
+    title: 'تور آزمایشگاه و تصویربرداری',
+    desc: 'بازدید از بخش آزمایشگاه، MRI و CT Scan',
+    category: 'tour',
+    duration: '5:45',
+    views: '11.4K',
+    date: '1404/06/25',
+    thumb: 'https://via.placeholder.com/640x360/D4A843/ffffff?text=Lab+Tour',
+    videoUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ'
+  },
+  {
+    id: 11,
+    title: 'آموزش تغذیه سالم برای کودکان',
+    desc: 'برنامه غذایی مناسب و نکات تغذیه‌ای کودکان',
+    category: 'education',
+    duration: '10:20',
+    views: '28.7K',
+    date: '1404/06/20',
+    thumb: 'https://via.placeholder.com/640x360/10B981/ffffff?text=Kids+Nutrition',
+    videoUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ'
+  },
+  {
+    id: 12,
+    title: 'راهنمای استفاده از تله‌مدیسین',
+    desc: 'نحوه دریافت مشاوره پزشکی آنلاین و ویدیو کال',
+    category: 'guide',
+    duration: '4:50',
+    views: '19.6K',
+    date: '1404/06/15',
+    thumb: 'https://via.placeholder.com/640x360/0284C7/ffffff?text=Telemedicine',
+    videoUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ'
+  }
+];
+
+const categoryNames = {
+  tour: '🏥 تور',
+  education: '📚 آموزشی',
+  interview: '🎤 مصاحبه',
+  guide: '📋 راهنما'
+};
+
+let currentFilter = 'all';
+
+function renderVideos() {
+  const grid = document.getElementById('videoGrid');
+  const filtered = currentFilter === 'all' 
+    ? videos 
+    : videos.filter(v => v.category === currentFilter);
+  
+  grid.innerHTML = filtered.map(video => `
+    <div class="video-card" onclick="playVideo(${video.id})">
+      <div class="video-thumb">
+        <img src="${video.thumb}" alt="${video.title}" loading="lazy">
+        <div class="play-btn">▶</div>
+        <div class="video-duration">${video.duration}</div>
+      </div>
+      <div class="video-info">
+        <span class="video-category">${categoryNames[video.category]}</span>
+        <h3 class="video-title">${video.title}</h3>
+        <p class="video-desc">${video.desc}</p>
+        <div class="video-meta">
+          <span>👁️ ${video.views}</span>
+          <span>📅 ${video.date}</span>
+        </div>
+      </div>
+    </div>
+  `).join('');
+}
+
+function filterVideos(category) {
+  currentFilter = category;
+  
+  document.querySelectorAll('.filter-btn').forEach(btn => {
+    btn.classList.remove('active');
+  });
+  event.target.classList.add('active');
+  
+  renderVideos();
+}
+
+function playVideo(id) {
+  const video = videos.find(v => v.id === id);
+  if (!video) return;
+  
+  document.getElementById('modalTitle').textContent = video.title;
+  document.getElementById('modalDesc').textContent = video.desc;
+  document.getElementById('videoPlayer').innerHTML = `
+    <iframe 
+      src="${video.videoUrl}" 
+      frameborder="0" 
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+      allowfullscreen
+    ></iframe>
+  `;
+  
+  document.getElementById('videoModal').classList.add('show');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeVideo() {
+  document.getElementById('videoModal').classList.remove('show');
+  document.getElementById('videoPlayer').innerHTML = '';
+  document.body.style.overflow = '';
+}
+
+document.getElementById('videoModal').addEventListener('click', function(e) {
+  if (e.target === this) {
+    closeVideo();
+  }
+});
+
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') {
+    closeVideo();
+  }
+});
+
+renderVideos();
+</script>
+
+</body>
+</html>

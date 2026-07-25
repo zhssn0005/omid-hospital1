@@ -1,0 +1,729 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>بخش IPD - خدمات بین‌المللی | بیمارستان امید</title>
+<meta name="description" content="بخش بین‌المللی IPD با خدمات ویزای درمانی، مترجم، پکیج‌های درمانی و پشتیبانی کامل برای بیماران خارجی">
+<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@200..900&display=swap" rel="stylesheet">
+<style>
+:root {
+  --c1: #070E1A; --c2: #0C1A2E; --c3: #122340;
+  --c5: #0284C7; --c6: #06B6D4; --c7: #22D3EE;
+  --green: #10B981;
+  --f: 'Vazirmatn', system-ui, sans-serif;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: var(--f);
+  background: var(--c1);
+  color: #CBD5E1;
+  line-height: 1.7;
+}
+.hero {
+  min-height: 70vh;
+  background: linear-gradient(135deg, var(--c2) 0%, var(--c1) 100%);
+  display: flex;
+  align-items: center;
+  padding: 120px 24px 60px;
+  position: relative;
+  overflow: hidden;
+}
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(16,185,129,0.08), transparent);
+}
+.hero-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  position: relative;
+  text-align: center;
+}
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 24px;
+  background: rgba(16,185,129,0.15);
+  border: 1px solid rgba(16,185,129,0.3);
+  border-radius: 99px;
+  color: var(--green);
+  font-weight: 700;
+  font-size: 0.9rem;
+  margin-bottom: 24px;
+}
+.hero-title {
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-weight: 900;
+  color: #fff;
+  margin-bottom: 20px;
+  line-height: 1.2;
+}
+.hero-subtitle {
+  font-size: 1.5rem;
+  color: var(--green);
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+.hero-desc {
+  font-size: 1.1rem;
+  color: #94A3B8;
+  max-width: 700px;
+  margin: 0 auto 40px;
+  line-height: 1.8;
+}
+.hero-flags {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  font-size: 3rem;
+}
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 80px 24px;
+}
+.section {
+  margin-bottom: 80px;
+}
+.section-header {
+  text-align: center;
+  margin-bottom: 50px;
+}
+.section-title {
+  font-size: 2.5rem;
+  font-weight: 900;
+  color: #fff;
+  margin-bottom: 16px;
+}
+.section-desc {
+  color: #64748B;
+  font-size: 1.1rem;
+}
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 24px;
+}
+.service-card {
+  background: var(--c2);
+  border: 1px solid rgba(16,185,129,0.1);
+  border-radius: 16px;
+  padding: 32px;
+  transition: all 0.3s;
+}
+.service-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 40px rgba(16,185,129,0.15);
+  border-color: rgba(16,185,129,0.3);
+}
+.service-icon {
+  width: 70px;
+  height: 70px;
+  border-radius: 16px;
+  background: linear-gradient(135deg, var(--green), #059669);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2.2rem;
+  margin-bottom: 20px;
+  box-shadow: 0 8px 24px rgba(16,185,129,0.3);
+}
+.service-title {
+  font-size: 1.3rem;
+  font-weight: 800;
+  color: #fff;
+  margin-bottom: 12px;
+}
+.service-desc {
+  color: #94A3B8;
+  line-height: 1.8;
+}
+.packages-grid {
+  display: grid;
+  gap: 32px;
+}
+.package-card {
+  background: var(--c2);
+  border: 1px solid rgba(16,185,129,0.1);
+  border-radius: 20px;
+  overflow: hidden;
+  display: grid;
+  grid-template-columns: 1fr 280px;
+}
+.package-content {
+  padding: 40px;
+}
+.package-badge {
+  display: inline-block;
+  padding: 6px 16px;
+  background: rgba(16,185,129,0.15);
+  color: var(--green);
+  border-radius: 8px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  margin-bottom: 16px;
+}
+.package-title {
+  font-size: 1.8rem;
+  font-weight: 900;
+  color: #fff;
+  margin-bottom: 16px;
+}
+.package-desc {
+  color: #94A3B8;
+  line-height: 1.8;
+  margin-bottom: 24px;
+}
+.package-includes {
+  display: grid;
+  gap: 10px;
+}
+.package-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #94A3B8;
+  font-size: 0.95rem;
+}
+.package-sidebar {
+  background: linear-gradient(135deg, rgba(16,185,129,0.1), rgba(16,185,129,0.05));
+  padding: 40px 32px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border-right: 2px solid rgba(16,185,129,0.2);
+}
+.package-price {
+  text-align: center;
+  margin-bottom: 24px;
+}
+.price-label {
+  color: #64748B;
+  font-size: 0.9rem;
+  margin-bottom: 8px;
+}
+.price-value {
+  font-size: 2.5rem;
+  font-weight: 900;
+  color: var(--green);
+}
+.price-note {
+  font-size: 0.8rem;
+  color: #64748B;
+  margin-top: 8px;
+}
+.btn {
+  width: 100%;
+  padding: 14px 24px;
+  border-radius: 12px;
+  font-weight: 800;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: all 0.3s;
+  border: none;
+  font-family: var(--f);
+  background: linear-gradient(135deg, var(--green), #059669);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+.btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(16,185,129,0.4);
+}
+.languages-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 20px;
+}
+.language-card {
+  background: var(--c2);
+  border: 1px solid rgba(16,185,129,0.1);
+  border-radius: 12px;
+  padding: 24px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+.language-flag {
+  font-size: 3rem;
+}
+.language-info {
+  flex: 1;
+}
+.language-name {
+  font-weight: 800;
+  color: #fff;
+  font-size: 1.1rem;
+  margin-bottom: 4px;
+}
+.language-status {
+  font-size: 0.85rem;
+  color: var(--green);
+}
+.process-timeline {
+  display: grid;
+  gap: 20px;
+  max-width: 800px;
+  margin: 0 auto;
+}
+.timeline-item {
+  display: grid;
+  grid-template-columns: 60px 1fr;
+  gap: 20px;
+  align-items: start;
+}
+.timeline-number {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--green), #059669);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  font-weight: 900;
+  color: #fff;
+  box-shadow: 0 4px 16px rgba(16,185,129,0.3);
+}
+.timeline-content {
+  background: var(--c2);
+  border: 1px solid rgba(16,185,129,0.1);
+  border-radius: 12px;
+  padding: 20px;
+}
+.timeline-title {
+  font-weight: 800;
+  color: #fff;
+  font-size: 1.1rem;
+  margin-bottom: 8px;
+}
+.timeline-desc {
+  color: #94A3B8;
+  font-size: 0.9rem;
+  line-height: 1.7;
+}
+.contact-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+}
+.contact-card {
+  background: var(--c2);
+  border: 1px solid rgba(16,185,129,0.1);
+  border-radius: 16px;
+  padding: 32px;
+}
+.contact-title {
+  font-size: 1.3rem;
+  font-weight: 800;
+  color: #fff;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.contact-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.contact-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: #94A3B8;
+}
+.contact-icon {
+  color: var(--green);
+  font-size: 1.2rem;
+}
+.cta-section {
+  background: linear-gradient(135deg, rgba(16,185,129,0.1), rgba(16,185,129,0.05));
+  border: 1px solid rgba(16,185,129,0.2);
+  border-radius: 24px;
+  padding: 60px 40px;
+  text-align: center;
+}
+.cta-title {
+  font-size: 2rem;
+  font-weight: 900;
+  color: #fff;
+  margin-bottom: 16px;
+}
+.cta-text {
+  color: #94A3B8;
+  font-size: 1.1rem;
+  margin-bottom: 30px;
+}
+.cta-buttons {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.btn-secondary {
+  background: transparent;
+  border: 2px solid rgba(16,185,129,0.3);
+  color: var(--green);
+}
+.btn-secondary:hover {
+  background: rgba(16,185,129,0.1);
+}
+@media (max-width: 1100px) {
+  .package-card {
+    grid-template-columns: 1fr;
+  }
+  .package-sidebar {
+    border-right: none;
+    border-top: 2px solid rgba(16,185,129,0.2);
+  }
+  .contact-grid {
+    grid-template-columns: 1fr;
+  }
+}
+@media (max-width: 768px) {
+  .hero-flags {
+    font-size: 2rem;
+  }
+  .timeline-item {
+    grid-template-columns: 1fr;
+  }
+  .timeline-number {
+    margin: 0 auto;
+  }
+}
+</style>
+</head>
+<body>
+
+<section class="hero">
+  <div class="hero-content">
+    <span class="hero-badge">
+      <span>🌍</span>
+      <span>International Patient Department</span>
+    </span>
+    <h1 class="hero-title">بخش بین‌المللی IPD</h1>
+    <p class="hero-subtitle">خدمات درمانی برای بیماران خارجی</p>
+    <p class="hero-desc">
+      تیم تخصصی IPD با تجربه گسترده در ارائه خدمات به بیماران بین‌المللی، آماده پشتیبانی کامل از ابتدا تا پایان درمان شماست
+    </p>
+    <div class="hero-flags">
+      <span>🇮🇷</span>
+      <span>🇦🇫</span>
+      <span>🇮🇶</span>
+      <span>🇸🇾</span>
+      <span>🇦🇿</span>
+      <span>🇹🇷</span>
+    </div>
+  </div>
+</section>
+
+<div class="container">
+  <section class="section">
+    <div class="section-header">
+      <h2 class="section-title">خدمات ویژه IPD</h2>
+      <p class="section-desc">تمام نیازهای درمانی شما در یک مکان</p>
+    </div>
+    <div class="services-grid">
+      <div class="service-card">
+        <div class="service-icon">✈️</div>
+        <h3 class="service-title">ویزای درمانی</h3>
+        <p class="service-desc">
+          پیگیری و اخذ ویزای درمانی از سفارت، همراه با نامه دعوت و مدارک پزشکی
+        </p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">🗣️</div>
+        <h3 class="service-title">مترجم همراه</h3>
+        <p class="service-desc">
+          مترجم تخصصی پزشکی به زبان‌های انگلیسی، عربی، ترکی و آذری
+        </p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">🚗</div>
+        <h3 class="service-title">خدمات ترانسفر</h3>
+        <p class="service-desc">
+          انتقال از فرودگاه به بیمارستان و بازگشت با خودرو اختصاصی
+        </p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">🏨</div>
+        <h3 class="service-title">هماهنگی اقامت</h3>
+        <p class="service-desc">
+          رزرو هتل یا آپارتمان مبله نزدیک بیمارستان برای همراهان
+        </p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">💊</div>
+        <h3 class="service-title">پیگیری درمان</h3>
+        <p class="service-desc">
+          مشاوره و پیگیری بعد از ترخیص از طریق تلفن، ایمیل یا ویدیو کال
+        </p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">📄</div>
+        <h3 class="service-title">مدارک پزشکی</h3>
+        <p class="service-desc">
+          ترجمه رسمی تمام مدارک، نتایج و گزارشات پزشکی
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="section-header">
+      <h2 class="section-title">پکیج‌های درمانی</h2>
+      <p class="section-desc">برنامه‌های جامع با قیمت‌گذاری شفاف</p>
+    </div>
+    <div class="packages-grid">
+      <div class="package-card">
+        <div class="package-content">
+          <span class="package-badge">⭐ محبوب</span>
+          <h3 class="package-title">پکیج چک‌آپ کامل</h3>
+          <p class="package-desc">
+            بررسی جامع سلامت با آزمایشات کامل، تصویربرداری و ویزیت متخصصین
+          </p>
+          <div class="package-includes">
+            <div class="package-item">✓ آزمایش خون کامل (CBC, Biochemistry)</div>
+            <div class="package-item">✓ سونوگرافی شکم و لگن</div>
+            <div class="package-item">✓ نوار قلب و اکوکاردیوگرافی</div>
+            <div class="package-item">✓ رادیوگرافی قفسه سینه</div>
+            <div class="package-item">✓ ویزیت پزشک عمومی و متخصص</div>
+            <div class="package-item">✓ مترجم و ترانسفر</div>
+          </div>
+        </div>
+        <div class="package-sidebar">
+          <div class="package-price">
+            <div class="price-label">از</div>
+            <div class="price-value">$500</div>
+            <div class="price-note">2 روز کاری</div>
+          </div>
+          <button class="btn">📩 درخواست پکیج</button>
+        </div>
+      </div>
+
+      <div class="package-card">
+        <div class="package-content">
+          <span class="package-badge">🏥 تخصصی</span>
+          <h3 class="package-title">پکیج جراحی</h3>
+          <p class="package-desc">
+            جراحی‌های عمومی و تخصصی با تیم جراحان مجرب و امکانات پیشرفته
+          </p>
+          <div class="package-includes">
+            <div class="package-item">✓ مشاوره قبل از عمل</div>
+            <div class="package-item">✓ آزمایشات و تصویربرداری</div>
+            <div class="package-item">✓ عمل جراحی</div>
+            <div class="package-item">✓ بستری 3-5 روز</div>
+            <div class="package-item">✓ داروها و مراقبت بعد عمل</div>
+            <div class="package-item">✓ پیگیری 30 روزه</div>
+          </div>
+        </div>
+        <div class="package-sidebar">
+          <div class="package-price">
+            <div class="price-label">از</div>
+            <div class="price-value">$3,000</div>
+            <div class="price-note">بسته به نوع جراحی</div>
+          </div>
+          <button class="btn">📩 درخواست پکیج</button>
+        </div>
+      </div>
+
+      <div class="package-card">
+        <div class="package-content">
+          <span class="package-badge">❤️ تخصصی قلب</span>
+          <h3 class="package-title">پکیج آنژیوگرافی</h3>
+          <p class="package-desc">
+            تشخیص و درمان بیماری‌های قلبی و عروقی با تجهیزات روز دنیا
+          </p>
+          <div class="package-includes">
+            <div class="package-item">✓ ویزیت متخصص قلب</div>
+            <div class="package-item">✓ اکوکاردیوگرافی</div>
+            <div class="package-item">✓ آنژیوگرافی تشخیصی یا درمانی</div>
+            <div class="package-item">✓ بستری 1-2 روز</div>
+            <div class="package-item">✓ داروها</div>
+            <div class="package-item">✓ پیگیری 60 روزه</div>
+          </div>
+        </div>
+        <div class="package-sidebar">
+          <div class="package-price">
+            <div class="price-label">از</div>
+            <div class="price-value">$2,500</div>
+            <div class="price-note">3-5 روز</div>
+          </div>
+          <button class="btn">📩 درخواست پکیج</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="section-header">
+      <h2 class="section-title">مترجمین ما</h2>
+      <p class="section-desc">ارتباط بدون مرز با زبان مادری شما</p>
+    </div>
+    <div class="languages-grid">
+      <div class="language-card">
+        <span class="language-flag">🇬🇧</span>
+        <div class="language-info">
+          <div class="language-name">English</div>
+          <div class="language-status">✓ در دسترس</div>
+        </div>
+      </div>
+      <div class="language-card">
+        <span class="language-flag">🇸🇦</span>
+        <div class="language-info">
+          <div class="language-name">العربية</div>
+          <div class="language-status">✓ در دسترس</div>
+        </div>
+      </div>
+      <div class="language-card">
+        <span class="language-flag">🇹🇷</span>
+        <div class="language-info">
+          <div class="language-name">Türkçe</div>
+          <div class="language-status">✓ در دسترس</div>
+        </div>
+      </div>
+      <div class="language-card">
+        <span class="language-flag">🇦🇿</span>
+        <div class="language-info">
+          <div class="language-name">Azərbaycan</div>
+          <div class="language-status">✓ در دسترس</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="section-header">
+      <h2 class="section-title">فرآیند درمان</h2>
+      <p class="section-desc">مراحل ساده از درخواست تا بازگشت به کشور</p>
+    </div>
+    <div class="process-timeline">
+      <div class="timeline-item">
+        <div class="timeline-number">1</div>
+        <div class="timeline-content">
+          <div class="timeline-title">درخواست اولیه</div>
+          <div class="timeline-desc">
+            ارسال پرونده پزشکی از طریق ایمیل، واتس‌اپ یا فرم آنلاین
+          </div>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-number">2</div>
+        <div class="timeline-content">
+          <div class="timeline-title">بررسی و مشاوره</div>
+          <div class="timeline-desc">
+            بررسی پرونده توسط پزشک متخصص و ارائه پیشنهاد درمانی با قیمت
+          </div>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-number">3</div>
+        <div class="timeline-content">
+          <div class="timeline-title">اخذ ویزا</div>
+          <div class="timeline-desc">
+            ارسال نامه دعوت و مدارک لازم برای اخذ ویزای درمانی
+          </div>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-number">4</div>
+        <div class="timeline-content">
+          <div class="timeline-title">استقبال و انتقال</div>
+          <div class="timeline-desc">
+            استقبال در فرودگاه و انتقال به بیمارستان یا محل اقامت
+          </div>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-number">5</div>
+        <div class="timeline-content">
+          <div class="timeline-title">درمان</div>
+          <div class="timeline-desc">
+            انجام معاینات، آزمایشات، تصویربرداری و درمان با حضور مترجم
+          </div>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-number">6</div>
+        <div class="timeline-content">
+          <div class="timeline-title">پیگیری</div>
+          <div class="timeline-desc">
+            پیگیری وضعیت بیمار بعد از بازگشت و پاسخگویی به سوالات
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="contact-grid">
+      <div class="contact-card">
+        <h3 class="contact-title">
+          <span>📞</span>
+          <span>تماس با IPD</span>
+        </h3>
+        <div class="contact-list">
+          <div class="contact-item">
+            <span class="contact-icon">☎️</span>
+            <span>+98-21-44480185 (ext. 400)</span>
+          </div>
+          <div class="contact-item">
+            <span class="contact-icon">📱</span>
+            <span>+98-912-345-6789 (WhatsApp)</span>
+          </div>
+          <div class="contact-item">
+            <span class="contact-icon">📧</span>
+            <span>ipd@omid.hospital</span>
+          </div>
+          <div class="contact-item">
+            <span class="contact-icon">🏢</span>
+            <span>طبقه همکف، بخش بین‌الملل</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="contact-card">
+        <h3 class="contact-title">
+          <span>👨‍⚕️</span>
+          <span>مدیر بخش</span>
+        </h3>
+        <div class="contact-list">
+          <div class="contact-item">
+            <span class="contact-icon">🩺</span>
+            <span>دکتر مصطفی حسینی</span>
+          </div>
+          <div class="contact-item">
+            <span class="contact-icon">🕐</span>
+            <span>شنبه تا چهارشنبه: 8:00 - 16:00</span>
+          </div>
+          <div class="contact-item">
+            <span class="contact-icon">📧</span>
+            <span>m.hosseini@omid.hospital</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="cta-section">
+      <h2 class="cta-title">آماده شروع سفر درمانی خود هستید؟</h2>
+      <p class="cta-text">تیم IPD ما 24 ساعته آماده پاسخگویی به سوالات شماست</p>
+      <div class="cta-buttons">
+        <button class="btn">📩 ارسال پرونده پزشکی</button>
+        <button class="btn">💬 چت با مشاور</button>
+        <a href="../../index.html" class="btn btn-secondary">← بازگشت به صفحه اصلی</a>
+      </div>
+    </div>
+  </section>
+</div>
+
+</body>
+</html>
