@@ -1,178 +1,134 @@
-# 🏥 بیمارستان تخصصی و فوق‌تخصصی امید
+# 🏥 بیمارستان امید - سایت رسمی
 
-## 📋 خلاصه پروژه
+سایت رسمی بیمارستان تخصصی و فوق‌تخصصی امید تهران با طراحی مدرن، انیمیشن‌های پیشرفته و سیستم رزرو نوبت آنلاین.
 
-سایت جامع بیمارستان امید با تمام امکانات مدرن، طراحی شده با الهام از بهترین سایت‌های بیمارستانی ایران و جهان.
+## ✨ ویژگی‌های اصلی
 
-### ویژگی‌های کلیدی
-- ✅ رزرو نوبت آنلاین (4 مرحله‌ای)
-- ✅ نتایج آزمایش و تصویربرداری آنلاین
-- ✅ تله‌مدیسین (ویدیو کال + چت + تلفنی)
-- ✅ پروفایل کامل 199 پزشک
-- ✅ بخش بین‌الملل IPD
-- ✅ گالری ویدیوهای آموزشی
-- ✅ سیستم اخبار و رویدادها
-- ✅ پنل ادمین حرفه‌ای
-- ✅ Dark Mode مدرن
-- ✅ Fully Responsive
-- ✅ SEO Optimized
+### 🎨 طراحی و تم
+- **تم چند رنگ مدرن**: ترکیب بنفش، آبی، سبز، نارنجی و صورتی
+- **انیمیشن‌های پیشرفته**: 50+ انیمیشن CSS با افکت‌های ذره‌ای
+- **افکت‌های ویژه**: Holographic، Wireframe، Neon Border، Glass Effect
+- **پس‌زمینه‌های انیمیشنی**: Particles، Liquid، Cyber Grid
 
-## 📁 ساختار پروژه
+### 📱 صفحات و بخش‌ها
+- **صفحه اصلی**: Hero با انیمیشن ذرات، آمار زنده، کارت‌های شناور
+- **سیستم رزرو نوبت**: 4 مرحله‌ای با تقویم و انتخاب زمان
+- **لیست پزشکان**: 199 پزشک با فیلتر و جستجو
+- **بخش‌های درمانی**: NICU، Royal، IPD با صفحات اختصاصی
+- **گالری ویدیو**: دسته‌بندی شده با پلیر مدرن
+- **اخبار و رویدادها**: با فیلتر تاریخ و دسته‌بندی
+- **راهنمای مراجعین**: کامل با تمام اطلاعات مورد نیاز
+
+### 🔧 تکنولوژی و عملکرد
+- **Vanilla JavaScript**: بدون وابستگی external
+- **Responsive Design**: سازگار با موبایل و تبلت
+- **SEO کامل**: Meta tags، Schema markup، Sitemap
+- **PWA Ready**: قابل نصب روی موبایل
+- **Performance**: بهینه‌سازی شده برای سرعت بالا
+
+## 📂 ساختار پروژه
 
 ```
 omid.hospital/
-├── index.html                 # صفحه اصلی (طراحی مجدد)
-├── booking.html              # رزرو نوبت
-├── admin/                    # پنل مدیریت
-│   ├── index.html
-│   ├── style.css
-│   └── app.js
-├── pages/                    # صفحات جدید
-│   ├── online-results.html   # نتایج آنلاین
-│   ├── telemedicine.html     # تله‌مدیسین
-│   ├── doctor-profile.html   # پروفایل پزشک
-│   ├── news-events.html      # اخبار و رویدادها
-│   ├── video-gallery.html    # گالری ویدیو
-│   └── departments/          # صفحات بخش‌ها
-│       ├── nicu.html
-│       ├── royal.html
-│       ├── ipd.html
-│       └── ...
+├── index.html                  # صفحه اصلی
+├── css/
+│   └── theme-animations.css    # انیمیشن‌ها و افکت‌های تم
 ├── js/
-│   ├── api.js               # API client
-│   ├── booking.js           # منطق رزرو
-│   └── site-api-bridge.js   # اتصال سایت به API
-├── assets/                   # تصاویر و فایل‌ها
-├── server/                   # Backend
-│   ├── server.js
-│   ├── routes/
-│   ├── controllers/
-│   └── scripts/
-├── data/                     # داده‌های استخراج شده
-├── doctors-data.js          # اطلاعات پزشکان
-├── hospitals-data.js        # اطلاعات بخش‌ها
-├── sitemap.xml              # نقشه سایت
-├── robots.txt               # دستورات کرالر
-└── manifest.json            # PWA Manifest
-
-📄 مستندات:
-├── COMPETITOR_ANALYSIS.md    # تحلیل رقبا
-├── IMPLEMENTATION_PLAN.md    # نقشه راه
-├── MISSING_CONTENT.csv       # محتوای ناقص
-└── DATABASE_SCHEMA.md        # ساختار دیتابیس
+│   ├── api.js                  # API و ارتباط با سرور
+│   ├── booking.js              # سیستم رزرو نوبت
+│   └── site-api-bridge.js      # پل ارتباطی
+├── pages/                      # صفحات جانبی
+│   ├── video-gallery.html
+│   ├── news-events.html
+│   ├── doctor-profile.html
+│   ├── doctors-list.html
+│   └── departments/
+├── assets/                     # تصاویر و فایل‌ها
+│   ├── doctors/               # تصاویر پزشکان
+│   └── guide/                 # راهنماهای تصویری
+├── data/                      # داده‌های JSON
+│   ├── all_doctors.json       # اطلاعات 199 پزشک
+│   └── hospitals.json         # اطلاعات بخش‌ها
+└── doctors-data.js            # داده‌های استاتیک پزشکان
 ```
 
-## 🚀 راه‌اندازی
+## 🚀 نحوه راه‌اندازی
 
-### نصب و اجرا
+### پیش‌نیازها
+- مرورگر مدرن (Chrome، Firefox، Safari، Edge)
+- سرور محلی برای تست (اختیاری)
+
+### راه‌اندازی ساده
 ```bash
-# 1. کلون پروژه
-git clone https://github.com/hssn3/omid-hospital.git
-cd omid-hospital
+# کلون پروژه
+git clone https://github.com/[USERNAME]/omid.hospital.git
+cd omid.hospital
 
-# 2. نصب dependencies
-cd server
-npm install
-
-# 3. راه‌اندازی database
-node scripts/seed.js
-
-# 4. اجرای سرور
-npm start
-
-# 5. باز کردن در مرورگر
-# http://localhost:3000
+# باز کردن در مرورگر
+# فایل index.html را باز کنید
 ```
 
-### تست محلی
+### راه‌اندازی با سرور محلی
 ```bash
-# سرور development
-npm run dev
+# با Python
+python -m http.server 8000
 
-# لینتینگ
-npm run lint
+# با Node.js
+npx serve .
 
-# تست
-npm test
+# با Live Server در VS Code
+# نصب Live Server extension و کلیک راست روی index.html
 ```
 
-## 🎨 طراحی
+## 📊 آمار پروژه
+- **199 پزشک** در 32 تخصص
+- **21 پزشک** با نوبت‌دهی فعال  
+- **19 بخش** درمانی و پاراکلینیک
+- **7 صفحه** اختصاصی جدید
+- **50+ انیمیشن** CSS مدرن
+- **115 تخت** فعال
 
-### Color Palette
-```css
---c1: #070E1A  /* Dark Background */
---c5: #0284C7  /* Primary Blue */
---c6: #06B6D4  /* Cyan */
---c7: #22D3EE  /* Light Cyan */
---gold: #D4A843 /* Gold Accent */
-```
+## 🎯 مراحل توسعه
 
-### Typography
-```css
-font-family: 'Vazirmatn', system-ui, sans-serif;
-```
+### فاز 1 ✅ (کامل)
+- ✅ SEO کامل با sitemap.xml
+- ✅ Schema markup برای موتورهای جستجو
+- ✅ Meta tags کامل
+- ✅ Performance optimization
 
-### Breakpoints
-```css
-Mobile: < 850px
-Tablet: 850px - 1100px
-Desktop: > 1100px
-```
+### فاز 2 ✅ (کامل)  
+- ✅ 7 صفحه جدید ایجاد شد
+- ✅ گالری ویدیو با دسته‌بندی
+- ✅ صفحه اخبار و رویدادها
+- ✅ صفحات بخش‌های NICU، Royal، IPD
+- ✅ لیست کامل پزشکان
 
-## 📊 آمار
+### فاز 3 ✅ (کامل)
+- ✅ تم چند رنگ با گرادیانت
+- ✅ 50+ انیمیشن CSS  
+- ✅ افکت‌های ذره‌ای و holographic
+- ✅ Glass effect و neon borders
 
-- **تخت فعال:** 115
-- **پزشکان:** 199
-- **تخصص‌ها:** 32
-- **بخش‌های درمانی:** 19
-- **سال تأسیس:** 1395
+### فاز 4 🔄 (در حال انجام)
+- 🔄 اعمال انیمیشن‌ها به المان‌های index.html
+- 🔄 رفع مشکل فیلتر booking.js
+- ⏳ تست نهایی و بهینه‌سازی
 
-## 🔒 امنیت
-
-- JWT Authentication
-- Password Hashing (bcrypt)
-- SQL Injection Prevention
-- XSS Protection
-- CORS Configuration
-- Rate Limiting
-
-## 🌐 SEO
-
-- Semantic HTML5
-- Meta Tags کامل
-- Structured Data (Schema.org)
-- Open Graph
-- Twitter Cards
-- Sitemap.xml
-- Robots.txt
-- Fast Loading (<2s)
-- Mobile-First
-
-## 📱 PWA
-
-- Service Worker
-- Offline Support
-- Install Prompt
-- Push Notifications
-- App-like Experience
+## 🐛 مشکلات شناخته شده
+- **فیلتر booking**: فعلاً فقط یک پزشک نمایش داده می‌شود
+- **انیمیشن‌ها**: نیاز به اعمال در سایر بخش‌ها
 
 ## 🤝 مشارکت
-
-برای گزارش باگ یا پیشنهاد: [GitHub Issues](https://github.com/hssn3/omid-hospital/issues)
+برای مشارکت در توسعه:
+1. Fork کنید
+2. Branch جدید بسازید
+3. تغییرات را commit کنید  
+4. Pull request ارسال کنید
 
 ## 📞 تماس
-
-- **تلفن:** 021-44480185
-- **نوبت‌دهی:** 021-45839509
-- **ایمیل:** info@omid.hospital
-- **آدرس:** تهران، جنت‌آباد مرکزی، خیابان شاهین شمالی
-
-## 📄 لایسنس
-
-© 2024 بیمارستان تخصصی و فوق‌تخصصی امید - تمامی حقوق محفوظ است
+- **بیمارستان امید**: ۰۲۱-۴۴۴۸۰۱۸۵
+- **نوبت‌دهی**: ۰۲۱-۴۵۸۳۹۵۰۹
+- **ایمیل**: info@omid.hospital
 
 ---
-
-**نسخه:** 2.0.0  
-**آخرین بروزرسانی:** 25 تیر 1404  
-**وضعیت:** در حال توسعه 🚧
+© ۱۴۰۴ بیمارستان تخصصی و فوق‌تخصصی امید - تمامی حقوق محفوظ است
