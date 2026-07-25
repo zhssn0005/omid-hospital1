@@ -1,0 +1,2482 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>بیمارستان تخصصی و فوق‌تخصصی امید</title>
+<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@200..900&display=swap" rel="stylesheet">
+<style>
+/* ===== DESIGN TOKENS ===== */
+:root {
+  --c1: #070E1A;
+  --c2: #0C1A2E;
+  --c3: #122340;
+  --c4: #163A5C;
+  --c5: #0284C7;
+  --c6: #06B6D4;
+  --c7: #22D3EE;
+  --c8: #A5F3FC;
+  --gold: #D4A843;
+  --gold2: #F0D78C;
+  --gold3: #C8922A;
+  --green: #10B981;
+  --rose: #F43F5E;
+  --wb: hsla(210,100%,100%,.05);
+  --wh: hsla(210,100%,100%,.12);
+  --gm: hsla(210,100%,100%,.08);
+  --gm2: hsla(210,100%,100%,.14);
+  --rd: 10px;
+  --rx: 16px;
+  --rr: 24px;
+  --f: 'Vazirmatn', system-ui, sans-serif;
+  --e: cubic-bezier(.16,1,.3,1);
+  --b: cubic-bezier(.34,1.56,.64,1);
+  --sh1: 0 4px 20px rgba(0,0,0,.3);
+  --sh2: 0 20px 60px rgba(0,0,0,.4);
+  --sh3: 0 0 0 1px rgba(6,182,212,.3), 0 8px 32px rgba(6,182,212,.15);
+  --th: 68px;
+  --mh: 64px;
+}
+
+/* ===== RESET & BASE ===== */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--f);
+  background: var(--c1);
+  color: #CBD5E1;
+  overflow-x: hidden;
+  line-height: 1.7;
+}
+body.has-mnav { padding-bottom: var(--mh); }
+::-webkit-scrollbar { width: 3px; }
+::-webkit-scrollbar-track { background: var(--c1); }
+::-webkit-scrollbar-thumb { background: var(--c4); border-radius: 2px; }
+img { max-width: 100%; }
+a { color: inherit; text-decoration: none; }
+button { font-family: inherit; border: none; cursor: pointer; background: none; color: inherit; }
+</style>
+</head>
+<style>
+/* ===== BUTTONS ===== */
+.btn {
+  padding: 11px 22px;
+  border-radius: var(--rd);
+  font-weight: 700;
+  font-size: .88rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: all .3s var(--e);
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+}
+.btn::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, transparent 40%, hsla(0,0%,100%,.12) 50%, transparent 60%);
+  transform: translateX(-100%) skewX(-15deg);
+  transition: transform .5s;
+}
+.btn:hover::after { transform: translateX(100%) skewX(-15deg); }
+.btn-p { background: linear-gradient(135deg, var(--c6), var(--c5)); color: #fff; box-shadow: 0 4px 16px rgba(6,182,212,.25); }
+.btn-p:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(6,182,212,.4); }
+.btn-g { background: linear-gradient(135deg, var(--gold2), var(--gold3)); color: #0A1628; font-weight: 800; }
+.btn-g:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(212,168,67,.35); }
+.btn-o { border: 1.5px solid var(--c6); color: var(--c7); background: transparent; }
+.btn-o:hover { background: rgba(6,182,212,.1); border-color: var(--c7); }
+.btn-ghost { border: 1.5px solid var(--gm2); color: #94A3B8; }
+.btn-ghost:hover { background: var(--wh); color: #fff; border-color: var(--gm2); }
+.btn-xl { padding: 15px 32px; font-size: 1rem; border-radius: var(--rx); }
+.btn-sm { padding: 6px 14px; font-size: .78rem; }
+.btn-r { border-radius: var(--rx); }
+
+/* ===== TOPBAR ===== */
+.topbar {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 1000;
+  height: var(--th);
+  background: rgba(7,14,26,.7);
+  backdrop-filter: blur(24px) saturate(1.8);
+  border-bottom: 1px solid var(--gm);
+  transition: background .3s, box-shadow .3s;
+}
+.topbar.sc {
+  background: rgba(7,14,26,.95);
+  box-shadow: 0 1px 0 var(--gm), 0 4px 24px rgba(0,0,0,.3);
+}
+.tbi {
+  max-width: 1360px;
+  margin: 0 auto;
+  padding: 0 24px;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+.logo img {
+  width: 38px;
+  height: 38px;
+  border-radius: 10px;
+  object-fit: contain;
+  filter: drop-shadow(0 2px 8px rgba(6,182,212,.4));
+}
+.logo-text { display: flex; flex-direction: column; }
+.logo-title {
+  font-weight: 900;
+  font-size: 1rem;
+  line-height: 1.2;
+  background: linear-gradient(135deg, #fff 40%, var(--c8));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.logo-sub { font-size: .65rem; color: #64748B; font-weight: 500; }
+.nm {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  flex: 1;
+  justify-content: center;
+}
+.nm a {
+  padding: 7px 13px;
+  border-radius: var(--rd);
+  font-size: .82rem;
+  font-weight: 600;
+  color: #64748B;
+  transition: all .2s;
+  cursor: pointer;
+  white-space: nowrap;
+  position: relative;
+}
+.nm a:hover, .nm a.ac { color: #fff; background: var(--wb); }
+.nm a.ac { color: var(--c7); }
+.na { display: flex; align-items: center; gap: 8px; flex-shrink: 0; }
+.nav-phone {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 14px;
+  border-radius: var(--rd);
+  border: 1.5px solid var(--gm2);
+  color: #94A3B8;
+  font-size: .78rem;
+  font-weight: 600;
+  transition: .2s;
+}
+.nav-phone:hover { border-color: var(--c6); color: var(--c7); }
+.ham {
+  display: none;
+  width: 36px;
+  height: 36px;
+  border-radius: var(--rd);
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+  color: #fff;
+  background: var(--wb);
+  border: 1px solid var(--gm);
+  cursor: pointer;
+  transition: .2s;
+}
+.ham:hover { background: var(--wh); }
+</style>
+<style>
+/* ===== MOBILE NAV ===== */
+.mnav {
+  display: none;
+  position: fixed;
+  bottom: 0; left: 0; right: 0;
+  height: var(--mh);
+  background: rgba(7,14,26,.97);
+  backdrop-filter: blur(24px);
+  border-top: 1px solid var(--gm);
+  z-index: 1000;
+  padding: 6px 8px max(6px, env(safe-area-inset-bottom));
+}
+.mnav-inner {
+  max-width: 480px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  height: 100%;
+}
+.mnav a {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+  color: #475569;
+  font-size: .6rem;
+  font-weight: 700;
+  transition: .2s;
+  padding: 4px 10px;
+  border-radius: var(--rd);
+  cursor: pointer;
+}
+.mnav a.ac { color: var(--c7); }
+.mnav a .mi { font-size: 1.2rem; transition: transform .3s var(--b); }
+.mnav a.ac .mi { transform: scale(1.2); }
+.mnav a.mh {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--c6), var(--c5));
+  color: #fff;
+  margin-top: -18px;
+  box-shadow: 0 4px 16px rgba(6,182,212,.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+}
+
+/* ===== GUIDE FAB ===== */
+.guide-fab {
+  position: fixed;
+  bottom: 24px;
+  right: 20px;
+  z-index: 998;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--c6), var(--c5));
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.4rem;
+  box-shadow: 0 6px 28px rgba(6,182,212,.5);
+  cursor: pointer;
+  transition: transform .3s var(--b);
+  animation: pulse-fab 3s ease infinite;
+}
+body.has-mnav .guide-fab { bottom: calc(var(--mh) + 14px); }
+.guide-fab:hover { transform: scale(1.1); }
+@keyframes pulse-fab {
+  0%,100% { box-shadow: 0 6px 28px rgba(6,182,212,.5); }
+  50% { box-shadow: 0 6px 40px rgba(6,182,212,.8), 0 0 0 8px rgba(6,182,212,.08); }
+}
+.guide-panel {
+  position: fixed;
+  bottom: 94px;
+  right: 20px;
+  z-index: 997;
+  width: 320px;
+  max-height: 56vh;
+  background: var(--c2);
+  border: 1px solid var(--gm2);
+  border-radius: var(--rr);
+  box-shadow: var(--sh2);
+  overflow: hidden;
+  display: none;
+}
+body.has-mnav .guide-panel { bottom: calc(var(--mh) + 86px); }
+.guide-panel.o { display: block; animation: gpIn .25s var(--e); }
+@keyframes gpIn {
+  from { opacity: 0; transform: translateY(12px) scale(.96); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+.guide-panel-head {
+  padding: 14px 16px;
+  background: linear-gradient(135deg, var(--c4), var(--c3));
+  color: #fff;
+  font-weight: 800;
+  font-size: .9rem;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.guide-panel-body { overflow-y: auto; max-height: calc(56vh - 50px); }
+.guide-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--gm);
+  cursor: pointer;
+  transition: .15s;
+  font-size: .84rem;
+  color: #94A3B8;
+}
+.guide-item:hover { background: var(--wb); color: #fff; }
+.guide-item .gi { font-size: 1.1rem; width: 28px; text-align: center; flex-shrink: 0; }
+.guide-item:last-child { border-bottom: none; }
+
+/* ===== PAGES ===== */
+.pg { display: none; }
+.pg.ac { display: block; animation: pageIn .35s var(--e); }
+@keyframes pageIn {
+  from { opacity: 0; transform: translateY(18px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.pgh {
+  background: linear-gradient(180deg, var(--c2) 0%, var(--c1) 100%);
+  padding: calc(var(--th) + 48px) 24px 48px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.pgh::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(6,182,212,.06), transparent);
+}
+.pgh h1 {
+  font-size: clamp(1.7rem, 3vw, 2.2rem);
+  font-weight: 900;
+  color: #fff;
+  position: relative;
+}
+.pgh p { color: #64748B; margin-top: 10px; font-size: .9rem; position: relative; }
+.pb { max-width: 1360px; margin: 0 auto; padding: 32px 24px 56px; }
+.sec { padding: 88px 0; }
+.sw { max-width: 1360px; margin: 0 auto; padding: 0 24px; }
+.sh { text-align: center; max-width: 560px; margin: 0 auto 52px; }
+.sh .tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 14px;
+  border-radius: 99px;
+  background: rgba(6,182,212,.08);
+  border: 1px solid rgba(6,182,212,.18);
+  color: var(--c7);
+  font-size: .74rem;
+  font-weight: 800;
+  letter-spacing: .04em;
+  margin-bottom: 14px;
+  text-transform: uppercase;
+}
+.sh h2 { font-size: clamp(1.6rem, 3vw, 2.2rem); font-weight: 900; color: #fff; margin-bottom: 12px; }
+.sh p { color: #64748B; font-size: .9rem; line-height: 1.8; }
+</style>
+<style>
+/* ===== HERO ===== */
+.hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+}
+.hero-bg { position: absolute; inset: 0; z-index: 0; }
+.hero-bg img { width: 100%; height: 100%; object-fit: cover; }
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(110deg, var(--c1) 0%, rgba(7,14,26,.9) 50%, rgba(7,14,26,.35) 100%);
+  z-index: 1;
+}
+.hero canvas { position: absolute; inset: 0; z-index: 2; pointer-events: none; }
+.hero-content {
+  position: relative;
+  z-index: 3;
+  max-width: 1360px;
+  margin: 0 auto;
+  padding: calc(var(--th) + 32px) 24px 80px;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  gap: 48px;
+}
+.hero-left { max-width: 580px; }
+.hbadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 5px 14px 5px 10px;
+  border-radius: 99px;
+  background: rgba(6,182,212,.1);
+  border: 1px solid rgba(6,182,212,.22);
+  color: var(--c7);
+  font-size: .74rem;
+  font-weight: 800;
+  margin-bottom: 24px;
+  animation: pageIn .8s var(--e) both;
+}
+.hbadge .pulse {
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--c7);
+  animation: pls 2s ease infinite;
+  flex-shrink: 0;
+}
+@keyframes pls {
+  0%,100% { opacity: 1; transform: scale(1); }
+  50% { opacity: .3; transform: scale(.6); }
+}
+.hero h1 {
+  font-size: clamp(2.4rem, 5vw, 3.8rem);
+  font-weight: 900;
+  line-height: 1.12;
+  margin-bottom: 18px;
+  animation: pageIn .8s var(--e) .1s both;
+  color: #fff;
+}
+.hero h1 .ht1 {
+  display: block;
+  background: linear-gradient(135deg, #fff 30%, var(--c8) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.hero h1 em {
+  display: block;
+  background: linear-gradient(135deg, var(--gold2) 20%, var(--gold) 60%, var(--gold3));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-style: normal;
+}
+.hero .hd {
+  font-size: 1rem;
+  color: #64748B;
+  line-height: 1.95;
+  margin-bottom: 32px;
+  animation: pageIn .8s var(--e) .2s both;
+}
+.hbtn {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  animation: pageIn .8s var(--e) .3s both;
+}
+/* Hero stats as a card strip */
+.hero-stats {
+  display: flex;
+  gap: 0;
+  margin-top: 44px;
+  animation: pageIn .8s var(--e) .4s both;
+  background: rgba(6,182,212,.04);
+  border: 1px solid rgba(6,182,212,.1);
+  border-radius: var(--rx);
+  overflow: hidden;
+}
+.hero-stat {
+  flex: 1;
+  text-align: center;
+  padding: 18px 12px;
+  border-left: 1px solid rgba(6,182,212,.1);
+  position: relative;
+}
+.hero-stat:first-child { border-left: none; }
+.hero-stat::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--c6), var(--c7));
+  opacity: 0;
+  transition: opacity .3s;
+}
+.hero-stat:hover::before { opacity: 1; }
+.hero-stat .hsn {
+  font-size: 1.8rem;
+  font-weight: 900;
+  background: linear-gradient(135deg, var(--c7), var(--c6));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  display: block;
+}
+.hero-stat .hsl { font-size: .72rem; color: #475569; font-weight: 600; margin-top: 2px; display: block; }
+/* Hero right: decorative floating cards */
+.hero-right {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  animation: pageIn .8s var(--e) .25s both;
+}
+.hero-card-wrap {
+  position: relative;
+  width: 340px;
+  height: 380px;
+}
+.hcard {
+  position: absolute;
+  background: var(--c2);
+  border: 1px solid var(--gm2);
+  border-radius: var(--rr);
+  padding: 20px 22px;
+  box-shadow: var(--sh2);
+}
+.hcard-main {
+  top: 0; right: 0;
+  width: 260px;
+  animation: float1 6s ease-in-out infinite;
+}
+.hcard-sec {
+  bottom: 30px; left: 0;
+  width: 200px;
+  animation: float2 7s ease-in-out infinite;
+}
+.hcard-mini {
+  top: 50%; right: -20px;
+  transform: translateY(-50%);
+  width: 150px;
+  animation: float1 5s ease-in-out infinite .5s;
+}
+@keyframes float1 {
+  0%,100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+@keyframes float2 {
+  0%,100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+.hcard-label { font-size: .68rem; color: #475569; font-weight: 700; margin-bottom: 8px; text-transform: uppercase; letter-spacing: .05em; }
+.hcard-val { font-size: 1.4rem; font-weight: 900; color: var(--c7); }
+.hcard-desc { font-size: .75rem; color: #64748B; margin-top: 4px; }
+.hcard-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 3px 10px;
+  background: rgba(16,185,129,.12);
+  border-radius: 99px;
+  color: var(--green);
+  font-size: .68rem;
+  font-weight: 700;
+  margin-top: 8px;
+}
+</style>
+<style>
+/* ===== DOCTOR CARDS ===== */
+.dg { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 16px; }
+.dc {
+  background: var(--c2);
+  border: 1px solid var(--gm);
+  border-radius: var(--rr);
+  overflow: hidden;
+  transition: all .35s var(--e);
+  cursor: pointer;
+}
+.dc:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--sh3);
+  border-color: rgba(6,182,212,.25);
+}
+.dci {
+  height: 190px;
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(135deg, var(--c3), var(--c2));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.dci img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  padding: 8px;
+  transition: transform .5s var(--e);
+}
+.dc:hover .dci img { transform: scale(1.06); }
+.dci .ph { font-size: 3.6rem; }
+.dcb {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  padding: 3px 10px;
+  background: rgba(16,185,129,.9);
+  backdrop-filter: blur(8px);
+  border-radius: 99px;
+  font-size: .68rem;
+  font-weight: 800;
+  color: #fff;
+  z-index: 1;
+  letter-spacing: .03em;
+}
+.dc-body { padding: 16px; }
+.dcn { font-weight: 800; font-size: .95rem; color: #F1F5F9; margin-bottom: 3px; }
+.dcs { color: #64748B; font-size: .78rem; margin-bottom: 8px; font-weight: 500; }
+.dc-stars { color: var(--gold); font-size: .72rem; margin-bottom: 10px; }
+
+/* ===== BENTO GRID ===== */
+.bento {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-auto-rows: 120px;
+  gap: 10px;
+}
+.bc {
+  position: relative;
+  border-radius: var(--rx);
+  padding: 20px;
+  background: var(--c2);
+  border: 1px solid var(--gm);
+  transition: all .35s var(--e);
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  overflow: hidden;
+}
+.bc:hover { transform: translateY(-3px); border-color: rgba(6,182,212,.2); box-shadow: 0 8px 32px rgba(6,182,212,.08); }
+.bc::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at center, rgba(6,182,212,.12), transparent 70%);
+  opacity: 0;
+  transition: opacity .4s;
+}
+.bc:hover::after { opacity: 1; }
+.bc.ft {
+  grid-column: span 2;
+  grid-row: span 2;
+  background: linear-gradient(135deg, var(--c4) 0%, var(--c5) 100%);
+  border: none;
+  box-shadow: 0 8px 32px rgba(2,132,199,.25);
+}
+.bc.ft:hover { transform: translateY(-4px); box-shadow: 0 16px 48px rgba(2,132,199,.35); }
+.bci { font-size: 1.8rem; margin-bottom: 8px; position: relative; z-index: 1; }
+.bc.ft .bci { font-size: 2.8rem; margin-bottom: 12px; }
+.bcn { font-weight: 700; font-size: .85rem; color: #CBD5E1; position: relative; z-index: 1; }
+.bc.ft .bcn { font-size: 1.15rem; color: #fff; font-weight: 800; }
+.bcs { font-size: .7rem; color: #475569; position: relative; z-index: 1; margin-top: 3px; }
+.bc.ft .bcs { color: rgba(255,255,255,.6); font-size: .8rem; }
+
+/* ===== SERVICES ===== */
+.srv-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+.sc2 {
+  background: var(--c2);
+  border: 1px solid var(--gm);
+  border-radius: var(--rr);
+  padding: 32px 24px;
+  transition: all .3s var(--e);
+  position: relative;
+  overflow: hidden;
+}
+.sc2::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--c6), var(--c7));
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform .4s var(--e);
+}
+.sc2:hover::before { transform: scaleX(1); transform-origin: left; }
+.sc2:hover { transform: translateY(-3px); box-shadow: var(--sh1); border-color: rgba(6,182,212,.15); }
+.sc2.ft2 { background: linear-gradient(135deg, var(--c4), var(--c3)); border: none; }
+.sc2 .svi {
+  width: 42px;
+  height: 42px;
+  border-radius: var(--rd);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+  margin-bottom: 14px;
+  background: rgba(6,182,212,.08);
+  color: var(--c7);
+  border: 1px solid rgba(6,182,212,.12);
+}
+.sc2.ft2 .svi { background: rgba(255,255,255,.1); color: #fff; border-color: rgba(255,255,255,.1); }
+.sc2 h3 { font-weight: 700; font-size: .95rem; color: #F1F5F9; margin-bottom: 6px; }
+.sc2 p { color: #64748B; font-size: .8rem; line-height: 1.7; }
+</style>
+<style>
+/* ===== CTA SECTION ===== */
+.cta-section {
+  background: linear-gradient(135deg, var(--c4), var(--c5));
+  border-radius: var(--rr);
+  padding: 56px 40px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  max-width: 860px;
+  margin: 0 auto;
+}
+.cta-section::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 30% 50%, rgba(255,255,255,.08), transparent 60%);
+  pointer-events: none;
+}
+.cta-section::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  pointer-events: none;
+}
+.cta-section h2 { font-size: 1.9rem; font-weight: 900; color: #fff; position: relative; z-index: 1; }
+.cta-section p { color: rgba(255,255,255,.75); margin: 14px 0 28px; position: relative; z-index: 1; font-size: .95rem; }
+.cta-btns { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; position: relative; z-index: 1; }
+
+/* ===== SEARCH & FILTERS ===== */
+.dtb {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+  margin-bottom: 24px;
+  padding: 16px;
+  background: var(--c2);
+  border: 1px solid var(--gm);
+  border-radius: var(--rx);
+}
+.sb { flex: 1; min-width: 220px; position: relative; }
+.sb input {
+  width: 100%;
+  padding: 10px 42px 10px 16px;
+  border-radius: var(--rd);
+  border: 1.5px solid var(--gm2);
+  background: var(--c1);
+  font-size: .88rem;
+  color: #E2E8F0;
+  transition: .2s;
+  font-family: var(--f);
+}
+.sb input:focus { outline: none; border-color: var(--c6); box-shadow: 0 0 0 3px rgba(6,182,212,.1); }
+.sb input::placeholder { color: #475569; }
+.sb .si2 { position: absolute; right: 14px; top: 50%; transform: translateY(-50%); color: #475569; font-size: .9rem; }
+.fp2 {
+  padding: 8px 16px;
+  border-radius: 99px;
+  border: 1.5px solid var(--gm2);
+  background: transparent;
+  font-size: .78rem;
+  color: #64748B;
+  cursor: pointer;
+  font-weight: 700;
+  transition: .2s;
+  white-space: nowrap;
+  font-family: var(--f);
+}
+.fp2:hover { border-color: var(--c6); color: var(--c7); }
+.fp2.ac2 { background: rgba(6,182,212,.12); color: var(--c7); border-color: rgba(6,182,212,.3); }
+.pg-bar { display: flex; justify-content: center; gap: 6px; margin-top: 32px; flex-wrap: wrap; }
+.pb-btn {
+  padding: 7px 13px;
+  border-radius: 99px;
+  font-size: .78rem;
+  font-weight: 700;
+  cursor: pointer;
+  background: var(--c2);
+  border: 1.5px solid var(--gm2);
+  color: #64748B;
+  transition: .2s;
+  font-family: var(--f);
+}
+.pb-btn:hover { border-color: var(--c6); color: var(--c7); }
+.pb-btn.ac2 { background: rgba(6,182,212,.12); color: var(--c7); border-color: rgba(6,182,212,.3); }
+
+/* ===== FAQ ===== */
+.faq { max-width: 680px; margin: 0 auto; }
+.fq {
+  background: var(--c2);
+  border: 1px solid var(--gm);
+  border-radius: var(--rx);
+  margin-bottom: 8px;
+  overflow: hidden;
+  transition: border-color .2s;
+}
+.fq.o { border-color: rgba(6,182,212,.25); }
+.fqb {
+  width: 100%;
+  padding: 16px 18px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-weight: 700;
+  font-size: .88rem;
+  color: #CBD5E1;
+  text-align: right;
+  gap: 12px;
+  cursor: pointer;
+  transition: color .2s;
+}
+.fq.o .fqb { color: #fff; }
+.fqt {
+  width: 24px; height: 24px;
+  border-radius: 50%;
+  background: var(--wb);
+  border: 1px solid var(--gm2);
+  color: var(--c7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: .85rem;
+  transition: transform .3s var(--b), background .2s;
+  flex-shrink: 0;
+}
+.fq.o .fqt { transform: rotate(45deg); background: rgba(6,182,212,.12); }
+.fqa { max-height: 0; overflow: hidden; transition: max-height .4s var(--e); }
+.fq.o .fqa { max-height: 400px; }
+.fqac { padding: 4px 18px 18px; color: #64748B; line-height: 1.9; font-size: .84rem; }
+
+/* ===== BLOG ===== */
+.blg { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+.blc {
+  background: var(--c2);
+  border: 1px solid var(--gm);
+  border-radius: var(--rr);
+  overflow: hidden;
+  transition: .3s var(--e);
+  cursor: pointer;
+}
+.blc:hover { transform: translateY(-4px); box-shadow: var(--sh2); border-color: rgba(6,182,212,.15); }
+.blci {
+  height: 140px;
+  background: linear-gradient(135deg, var(--c3), var(--c2));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2.4rem;
+}
+.blcc { padding: 16px; }
+.blcc h3 { font-weight: 700; font-size: .9rem; color: #F1F5F9; margin-bottom: 5px; }
+.blcc .date { font-size: .72rem; color: #475569; }
+.blcc .cat {
+  display: inline-block;
+  padding: 2px 10px;
+  background: rgba(6,182,212,.08);
+  color: var(--c7);
+  border-radius: 99px;
+  font-size: .68rem;
+  font-weight: 700;
+  margin-bottom: 6px;
+  border: 1px solid rgba(6,182,212,.12);
+}
+.blcc p { color: #64748B; font-size: .78rem; line-height: 1.7; margin-top: 4px; }
+</style>
+<style>
+/* ===== WIZARD ===== */
+.wizard {
+  max-width: 700px;
+  margin: 0 auto;
+  background: var(--c2);
+  border: 1px solid var(--gm2);
+  border-radius: var(--rr);
+  padding: 36px;
+  box-shadow: var(--sh1);
+}
+.ws {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0;
+  margin-bottom: 36px;
+}
+.ws2 { display: flex; flex-direction: column; align-items: center; gap: 6px; }
+.wd {
+  width: 36px; height: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: .78rem;
+  font-weight: 800;
+  background: var(--c3);
+  color: #475569;
+  border: 2px solid var(--gm2);
+  transition: all .3s;
+}
+.ws2.a .wd { background: linear-gradient(135deg, var(--c6), var(--c5)); color: #fff; border-color: transparent; box-shadow: 0 0 0 4px rgba(6,182,212,.15); }
+.ws2.d .wd { background: rgba(6,182,212,.1); color: var(--c7); border-color: rgba(6,182,212,.2); }
+.ws2.d .wd::after { content: '✓'; font-size: .7rem; }
+.ws2.d .wd span { display: none; }
+.wlz { font-size: .68rem; color: #475569; font-weight: 700; white-space: nowrap; }
+.ws2.a .wlz { color: var(--c7); }
+.ws2.d .wlz { color: #64748B; }
+.wl2 { width: 40px; height: 2px; background: var(--gm2); margin: 0 4px; margin-bottom: 20px; border-radius: 2px; }
+.ws2.d + .wl2 { background: rgba(6,182,212,.3); }
+.wp { display: none; }
+.wp.a { display: block; animation: pageIn .3s var(--e); }
+.wcg { display: grid; grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); gap: 8px; }
+.wc2 {
+  padding: 14px 10px;
+  border-radius: var(--rd);
+  border: 1.5px solid var(--gm2);
+  text-align: center;
+  cursor: pointer;
+  background: var(--c1);
+  transition: .2s;
+  font-weight: 700;
+  font-size: .82rem;
+  color: #94A3B8;
+}
+.wc2:hover { border-color: rgba(6,182,212,.3); color: var(--c7); background: rgba(6,182,212,.04); }
+.wc2.s { border-color: var(--c6); background: rgba(6,182,212,.1); color: var(--c7); }
+.wc2 .ic { font-size: 1.3rem; margin-bottom: 5px; display: block; }
+.wflex { display: flex; justify-content: space-between; margin-top: 24px; }
+.doc-profile {
+  display: flex;
+  gap: 14px;
+  align-items: center;
+  background: var(--c1);
+  border: 1px solid var(--gm2);
+  border-radius: var(--rx);
+  padding: 14px;
+  margin-bottom: 16px;
+}
+.doc-profile-img {
+  width: 72px; height: 72px;
+  border-radius: var(--rx);
+  overflow: hidden;
+  flex-shrink: 0;
+  background: linear-gradient(135deg, var(--c3), var(--c2));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2.2rem;
+}
+.doc-profile-img img { width: 100%; height: 100%; object-fit: contain; padding: 4px; }
+.doc-profile-info h4 { font-weight: 800; color: #fff; font-size: .95rem; margin-bottom: 2px; }
+.doc-profile-info .sp { color: var(--c7); font-weight: 600; font-size: .8rem; }
+.doc-profile-info .st { color: var(--gold); font-size: .75rem; margin-top: 2px; }
+.calg { display: grid; grid-template-columns: repeat(7, 1fr); gap: 4px; }
+.chd { text-align: center; font-size: .68rem; font-weight: 800; color: #475569; padding: 6px 2px; }
+.cd {
+  aspect-ratio: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--rd);
+  font-size: .78rem;
+  font-weight: 600;
+  cursor: pointer;
+  background: var(--c1);
+  border: 1.5px solid transparent;
+  transition: .15s;
+  color: #CBD5E1;
+}
+.cd:hover:not(.dx):not(.em) { border-color: rgba(6,182,212,.4); color: var(--c7); }
+.cd.s { background: linear-gradient(135deg, var(--c6), var(--c5)); color: #fff; border-color: transparent; }
+.cd.dx { opacity: .2; cursor: not-allowed; }
+.cd.em { background: transparent; cursor: default; }
+.tg2 { display: grid; grid-template-columns: repeat(auto-fill, minmax(72px, 1fr)); gap: 6px; }
+.tb2 {
+  padding: 9px 6px;
+  border-radius: var(--rd);
+  text-align: center;
+  font-size: .78rem;
+  font-weight: 600;
+  cursor: pointer;
+  border: 1.5px solid var(--gm2);
+  background: var(--c1);
+  color: #94A3B8;
+  transition: .15s;
+  font-family: var(--f);
+}
+.tb2:hover:not(.dx) { border-color: rgba(6,182,212,.3); color: var(--c7); }
+.tb2.s { background: rgba(6,182,212,.12); color: var(--c7); border-color: rgba(6,182,212,.3); }
+.tb2.dx { opacity: .25; cursor: not-allowed; text-decoration: line-through; }
+.fg2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.fg { margin-bottom: 14px; }
+.fg label { display: block; font-weight: 700; font-size: .8rem; margin-bottom: 6px; color: #94A3B8; }
+.fg input, .fg select, .fg textarea {
+  width: 100%;
+  padding: 11px 14px;
+  border-radius: var(--rd);
+  border: 1.5px solid var(--gm2);
+  background: var(--c1);
+  font-size: .88rem;
+  color: #E2E8F0;
+  transition: .2s;
+  font-family: var(--f);
+}
+.fg input:focus, .fg select:focus, .fg textarea:focus {
+  outline: none;
+  border-color: var(--c6);
+  box-shadow: 0 0 0 3px rgba(6,182,212,.1);
+}
+.fg select option { background: var(--c2); }
+.sbox { text-align: center; padding: 48px 24px; display: none; }
+.sbox .code { font-size: 1.8rem; font-weight: 900; color: var(--c7); margin: 14px 0; letter-spacing: .05em; font-family: monospace; }
+</style>
+<style>
+/* ===== ABOUT PAGE ===== */
+.about-hero {
+  background: linear-gradient(180deg, var(--c2), var(--c1));
+  padding: calc(var(--th) + 48px) 24px 0;
+  position: relative;
+  overflow: hidden;
+}
+.about-hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 70% 50% at 50% 0%, rgba(6,182,212,.05), transparent);
+}
+.about-hero h1 {
+  text-align: center;
+  font-size: clamp(1.6rem, 3vw, 2.2rem);
+  font-weight: 900;
+  color: #fff;
+  margin-bottom: 24px;
+  position: relative;
+}
+.about-intro {
+  max-width: 860px;
+  margin: 0 auto 40px;
+  text-align: center;
+  position: relative;
+}
+.about-intro p { color: #64748B; line-height: 2; font-size: .92rem; margin-bottom: 10px; }
+.about-intro .hl { color: #CBD5E1; font-weight: 700; }
+.about-stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 14px;
+  max-width: 780px;
+  margin: 32px auto;
+}
+.about-stat {
+  background: rgba(6,182,212,.05);
+  border: 1px solid rgba(6,182,212,.12);
+  border-radius: var(--rr);
+  padding: 24px 16px;
+  text-align: center;
+  transition: .3s;
+}
+.about-stat:hover { background: rgba(6,182,212,.08); transform: translateY(-2px); }
+.about-stat .val {
+  font-size: 1.9rem;
+  font-weight: 900;
+  background: linear-gradient(135deg, var(--c7), var(--c6));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.about-stat .lbl { font-size: .74rem; color: #475569; margin-top: 4px; font-weight: 600; }
+.gallery-title {
+  text-align: center;
+  color: #fff;
+  font-weight: 800;
+  font-size: 1.15rem;
+  margin: 40px 0 16px;
+}
+.gallery-title span { display: block; font-size: .78rem; color: #64748B; margin-top: 4px; font-weight: 500; }
+.licenses { display: grid; grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); gap: 12px; margin: 16px 0; }
+.license-card {
+  background: var(--c2);
+  border: 1px solid var(--gm);
+  border-radius: var(--rr);
+  overflow: hidden;
+  transition: .3s;
+  cursor: pointer;
+}
+.license-card:hover { transform: translateY(-3px); box-shadow: var(--sh2); border-color: rgba(6,182,212,.2); }
+.license-card img { width: 100%; height: 260px; object-fit: contain; padding: 12px; background: var(--c1); }
+.license-label { text-align: center; padding: 10px 12px; color: #94A3B8; font-size: .78rem; font-weight: 600; }
+.mem-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); gap: 12px; }
+.mc {
+  background: rgba(255,255,255,.02);
+  border: 1px solid rgba(255,255,255,.05);
+  border-radius: var(--rr);
+  padding: 20px 16px;
+  text-align: center;
+  transition: .3s;
+}
+.mc:hover { background: rgba(255,255,255,.04); transform: translateY(-2px); }
+.mci {
+  width: 60px; height: 60px;
+  border-radius: 50%;
+  overflow: hidden;
+  margin: 0 auto 10px;
+  background: rgba(255,255,255,.05);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.6rem;
+  border: 1px solid rgba(255,255,255,.06);
+}
+.mci img { width: 100%; height: 100%; object-fit: cover; }
+.mcn { font-weight: 700; color: #94A3B8; font-size: .82rem; }
+.mcs { color: rgba(255,255,255,.3); font-size: .72rem; margin-top: 3px; }
+
+/* ===== NICU PAGE ===== */
+.nicu-hero {
+  min-height: 60vh;
+  display: flex;
+  align-items: center;
+  background: linear-gradient(135deg, #0A1422, var(--c1), var(--c2));
+  position: relative;
+  overflow: hidden;
+}
+.nicu-hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 60% 50% at 30% 50%, rgba(6,182,212,.06), transparent);
+}
+.nicu-wrap {
+  position: relative;
+  z-index: 2;
+  max-width: 1360px;
+  margin: 0 auto;
+  padding: calc(var(--th) + 40px) 24px 40px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 48px;
+  align-items: center;
+  width: 100%;
+}
+.nicu-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 5px 14px;
+  border-radius: 99px;
+  background: rgba(6,182,212,.1);
+  border: 1px solid rgba(6,182,212,.22);
+  color: var(--c7);
+  font-size: .74rem;
+  font-weight: 800;
+  margin-bottom: 18px;
+}
+.nicu-hero h1 { font-size: clamp(1.8rem, 4vw, 2.6rem); font-weight: 900; color: #fff; margin-bottom: 14px; line-height: 1.2; }
+.nicu-hero h1 em { color: var(--c7); font-style: normal; }
+.nicu-subtitle { color: #64748B; font-size: 1rem; line-height: 1.85; margin-bottom: 24px; }
+.nicu-circle {
+  width: 200px; height: 200px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(6,182,212,.1), rgba(6,182,212,.02));
+  border: 2px dashed rgba(6,182,212,.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 5rem;
+  animation: sp 25s linear infinite;
+  margin: 0 auto;
+}
+@keyframes sp { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+.nicu-content { max-width: 960px; margin: 0 auto; padding: 40px 24px 60px; }
+.nicu-section { margin-bottom: 32px; }
+.nicu-section h2 { font-size: 1.1rem; font-weight: 800; color: #fff; margin-bottom: 10px; }
+.nicu-section p { color: #64748B; line-height: 2; font-size: .88rem; }
+.nicu-features { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 14px; margin: 20px 0; }
+.nf-card {
+  background: var(--c2);
+  border: 1px solid var(--gm);
+  border-radius: var(--rr);
+  padding: 24px;
+  text-align: center;
+  transition: .3s;
+}
+.nf-card:hover { transform: translateY(-2px); box-shadow: var(--sh1); border-color: rgba(6,182,212,.15); }
+.nf-card .nf-icon { font-size: 2rem; margin-bottom: 8px; }
+.nf-card .nf-val { font-size: 1.5rem; font-weight: 900; color: var(--c7); }
+.nf-card .nf-label { color: #64748B; font-size: .8rem; margin-top: 3px; }
+.nicu-info-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.nicu-info-card { background: var(--c2); border: 1px solid var(--gm); border-radius: var(--rx); padding: 22px; }
+.nicu-info-card h3 { color: #fff; font-weight: 700; font-size: .9rem; margin-bottom: 8px; }
+.nicu-info-card ul { padding-right: 18px; color: #64748B; font-size: .82rem; line-height: 1.9; }
+.nicu-doctors { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 12px; margin-top: 14px; }
+.nd-card {
+  background: var(--c2);
+  border: 1px solid var(--gm);
+  border-radius: var(--rx);
+  padding: 18px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  transition: .3s;
+}
+.nd-card:hover { transform: translateY(-2px); border-color: rgba(6,182,212,.2); }
+.nd-avatar {
+  width: 52px; height: 52px;
+  border-radius: var(--rd);
+  background: linear-gradient(135deg, var(--c3), var(--c2));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  flex-shrink: 0;
+}
+.nd-name { font-weight: 700; color: #F1F5F9; font-size: .85rem; }
+.nd-spec { color: var(--c7); font-size: .74rem; }
+.nd-nb { display: inline-block; padding: 2px 8px; border-radius: 99px; font-size: .65rem; font-weight: 800; margin-top: 4px; }
+.nd-yes { background: rgba(16,185,129,.12); color: var(--green); border: 1px solid rgba(16,185,129,.2); }
+.nd-no { background: rgba(71,85,105,.15); color: #64748B; }
+</style>
+<style>
+/* ===== FOOTER ===== */
+.ft {
+  background: var(--c2);
+  border-top: 1px solid var(--gm);
+  padding: 56px 0 0;
+}
+.fg3 {
+  max-width: 1360px;
+  margin: 0 auto;
+  padding: 0 24px 40px;
+  display: grid;
+  grid-template-columns: 1.6fr 1fr 1fr 1fr;
+  gap: 40px;
+}
+.ft-brand .logo { margin-bottom: 12px; }
+.ft-desc { color: #475569; font-size: .82rem; line-height: 1.9; margin-bottom: 16px; }
+.ft-social { display: flex; gap: 8px; }
+.ft-social a {
+  width: 34px; height: 34px;
+  border-radius: var(--rd);
+  background: var(--wb);
+  border: 1px solid var(--gm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: .9rem;
+  transition: .3s;
+  cursor: pointer;
+  color: #64748B;
+}
+.ft-social a:hover { background: rgba(6,182,212,.12); border-color: rgba(6,182,212,.2); color: var(--c7); transform: translateY(-2px); }
+.ft-col h4 {
+  font-weight: 800;
+  font-size: .88rem;
+  color: #94A3B8;
+  margin-bottom: 16px;
+  padding-bottom: 10px;
+  position: relative;
+  text-transform: uppercase;
+  letter-spacing: .04em;
+  font-size: .74rem;
+}
+.ft-col h4::after {
+  content: '';
+  position: absolute;
+  bottom: 0; right: 0;
+  width: 18px; height: 2px;
+  background: var(--c6);
+  border-radius: 2px;
+}
+.ft-col a {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: #475569;
+  font-size: .82rem;
+  padding: 5px 0;
+  transition: .2s;
+  cursor: pointer;
+}
+.ft-col a:hover { color: #CBD5E1; padding-right: 4px; }
+.ft-col a::before { content: '←'; font-size: .6rem; opacity: 0; transition: opacity .2s; }
+.ft-col a:hover::before { opacity: .6; }
+.fci { display: flex; align-items: center; gap: 8px; margin-bottom: 10px; color: #475569; font-size: .82rem; }
+.fci strong { color: #94A3B8; }
+.ft-bottom {
+  max-width: 1360px;
+  margin: 0 auto;
+  padding: 18px 24px;
+  border-top: 1px solid var(--gm);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #334155;
+  font-size: .75rem;
+}
+.ft-bottom a { color: #475569; transition: color .2s; cursor: pointer; }
+.ft-bottom a:hover { color: var(--c7); }
+
+/* ===== MODAL ===== */
+.mo {
+  position: fixed;
+  inset: 0;
+  z-index: 2000;
+  background: rgba(0,0,0,.65);
+  backdrop-filter: blur(8px);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+.mo.o { display: flex; }
+.mc2 {
+  background: var(--c2);
+  border: 1px solid var(--gm2);
+  border-radius: var(--rr);
+  max-width: 580px;
+  width: 100%;
+  max-height: 85vh;
+  overflow-y: auto;
+  padding: 32px;
+  box-shadow: var(--sh2);
+  position: relative;
+  animation: modalIn .35s var(--b);
+}
+@keyframes modalIn {
+  from { transform: translateY(24px) scale(.95); opacity: 0; }
+  to   { transform: translateY(0) scale(1); opacity: 1; }
+}
+.mc-close {
+  position: absolute;
+  top: 14px; left: 14px;
+  width: 30px; height: 30px;
+  border-radius: 50%;
+  background: var(--wb);
+  border: 1px solid var(--gm2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: .9rem;
+  color: #64748B;
+  cursor: pointer;
+  transition: .2s;
+}
+.mc-close:hover { background: rgba(244,63,94,.12); color: var(--rose); border-color: rgba(244,63,94,.2); }
+
+/* ===== LIGHTBOX ===== */
+.lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 3000;
+  background: rgba(0,0,0,.94);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: 24px;
+}
+.lightbox.o { display: flex; }
+.lightbox img { max-width: 88vw; max-height: 72vh; object-fit: contain; border-radius: var(--rx); }
+.lightbox .lb-cap { color: #94A3B8; font-size: .85rem; margin-top: 14px; font-weight: 600; }
+.lb-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 2rem;
+  color: rgba(255,255,255,.5);
+  cursor: pointer;
+  padding: 20px;
+  transition: color .2s;
+  z-index: 3001;
+}
+.lb-nav:hover { color: var(--c7); }
+.lb-prev { left: 4px; }
+.lb-next { right: 4px; }
+.lb-close {
+  position: absolute;
+  top: 16px; left: 16px;
+  font-size: 1.5rem;
+  color: rgba(255,255,255,.5);
+  cursor: pointer;
+  z-index: 3001;
+  width: 40px; height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: rgba(255,255,255,.06);
+  border: 1px solid rgba(255,255,255,.1);
+  transition: .2s;
+}
+.lb-close:hover { background: rgba(244,63,94,.15); color: var(--rose); }
+
+/* ===== INFO TAGS ===== */
+.info-row { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 14px; }
+.info-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 12px;
+  background: var(--wb);
+  border: 1px solid var(--gm2);
+  border-radius: 99px;
+  font-size: .78rem;
+  color: #94A3B8;
+}
+
+/* ===== SCROLL REVEAL ===== */
+.rv { opacity: 0; transform: translateY(28px); transition: all .65s var(--e); }
+.rv.vs { opacity: 1; transform: translateY(0); }
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 1100px) {
+  .bento { grid-template-columns: repeat(3, 1fr); }
+  .srv-grid, .blg { grid-template-columns: repeat(2, 1fr); }
+  .fg3 { grid-template-columns: 1fr 1fr; }
+  .hero-content { grid-template-columns: 1fr; }
+  .hero-right { display: none; }
+}
+@media (max-width: 850px) {
+  .hero-overlay { background: linear-gradient(to bottom, rgba(7,14,26,.96), rgba(7,14,26,.75) 80%, rgba(7,14,26,.3)); }
+  .hero h1 { font-size: clamp(1.9rem, 7vw, 2.4rem); }
+  .hero-stats { flex-wrap: wrap; }
+  .hero-stat { min-width: 45%; border-left: none; border-top: 1px solid rgba(6,182,212,.1); }
+  .hero-stat:nth-child(1), .hero-stat:nth-child(2) { border-top: none; }
+  .nm { display: none; }
+  .ham { display: flex; }
+  .nm.o {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    position: fixed;
+    top: var(--th); left: 0; right: 0;
+    background: rgba(7,14,26,.98);
+    backdrop-filter: blur(24px);
+    padding: 16px 20px;
+    border-bottom: 1px solid var(--gm);
+    z-index: 999;
+  }
+  .nm.o a { padding: 12px 14px; border-radius: var(--rx); font-size: .9rem; }
+  .mnav { display: block; }
+  body.has-mnav { padding-bottom: var(--mh); }
+  .guide-fab { bottom: calc(var(--mh) + 14px); right: 14px; width: 50px; height: 50px; font-size: 1.3rem; }
+  .bento { grid-template-columns: repeat(2, 1fr); }
+  .bc.ft { grid-column: span 2; grid-row: span 1; }
+  .srv-grid, .blg { grid-template-columns: 1fr; }
+  .nicu-wrap { grid-template-columns: 1fr; text-align: center; }
+  .nav-phone { display: none; }
+}
+@media (max-width: 560px) {
+  .bento { grid-template-columns: 1fr; }
+  .bc.ft { grid-column: span 1; }
+  .fg2 { grid-template-columns: 1fr; }
+  .fg3 { grid-template-columns: 1fr; text-align: center; }
+  .ft-bottom { flex-direction: column; gap: 6px; text-align: center; }
+  .wizard { padding: 20px 16px; }
+  .dci { height: 160px; }
+  .about-stats { grid-template-columns: repeat(2, 1fr); }
+  .licenses { grid-template-columns: repeat(2, 1fr); }
+  .nicu-info-grid { grid-template-columns: 1fr; }
+  .hero-stats { flex-direction: column; }
+  .hero-stat { border: none; border-bottom: 1px solid rgba(6,182,212,.08); }
+  .hero-stat:last-child { border-bottom: none; }
+}
+</style>
+
+<!-- ===== TOPBAR ===== -->
+<nav class="topbar" id="tb">
+  <div class="tbi">
+    <a class="logo" onclick="go('home')">
+      <img src="assets/logo-main.png" alt="بیمارستان امید">
+      <div class="logo-text">
+        <span class="logo-title">بیمارستان امید</span>
+        <span class="logo-sub">تخصصی و فوق‌تخصصی</span>
+      </div>
+    </a>
+    <div class="nm" id="nm">
+      <a class="ac" onclick="go('home')">خانه</a>
+      <a onclick="go('doctors')">پزشکان</a>
+      <a onclick="go('hospitals')">بخش‌ها</a>
+      <a onclick="go('booking')">رزرو نوبت</a>
+      <a onclick="go('blog')">مجله سلامت</a>
+      <a onclick="go('patient_guide')">راهنما</a>
+      <a onclick="go('about')">درباره ما</a>
+      <a onclick="go('contact')">تماس</a>
+    </div>
+    <div class="na">
+      <a class="nav-phone">
+        <span>📞</span>
+        <span>۰۲۱-۴۴۴۸۰۱۸۵</span>
+      </a>
+      <button class="btn btn-p btn-sm" onclick="go('booking')">رزرو نوبت</button>
+      <button class="ham" id="hamBtn" onclick="document.getElementById('nm').classList.toggle('o')" aria-label="منو">☰</button>
+    </div>
+  </div>
+</nav>
+
+<!-- ===== GUIDE FAB ===== -->
+<button class="guide-fab" id="guideFab" onclick="toggleGuide()" aria-label="راهنمای مراجعین">📋</button>
+<div class="guide-panel" id="guidePanel">
+  <div class="guide-panel-head">📋 راهنمای مراجعین</div>
+  <div class="guide-panel-body">
+    <a class="guide-item" onclick="go('booking')"><span class="gi">📅</span> رزرو نوبت آنلاین</a>
+    <a class="guide-item" onclick="go('insurances')"><span class="gi">🛡️</span> بیمه‌های طرف قرارداد</a>
+    <a class="guide-item" onclick="go('calendar')"><span class="gi">📆</span> برنامه کلینیک‌ها</a>
+    <a class="guide-item" onclick="go('visitor')"><span class="gi">🤝</span> راهنمای ملاقات</a>
+    <a class="guide-item" onclick="go('floor')"><span class="gi">🏢</span> راهنمای طبقات</a>
+    <a class="guide-item" onclick="go('patient_guide')"><span class="gi">🔬</span> نتایج آزمایشگاه</a>
+    <a class="guide-item" onclick="go('hospitals')"><span class="gi">🏥</span> بخش‌های درمانی</a>
+    <a class="guide-item" onclick="go('doctors')"><span class="gi">👨‍⚕️</span> جستجوی پزشک</a>
+    <a class="guide-item" onclick="go('patient_y')"><span class="gi">📋</span> راهنمای پذیرش</a>
+    <a class="guide-item" onclick="go('patient_affairs')"><span class="gi">📝</span> پیگیری امور بیماران</a>
+  </div>
+</div>
+
+<!-- ===== MOBILE NAV ===== -->
+<nav class="mnav" aria-label="ناوبری موبایل">
+  <div class="mnav-inner">
+    <a class="ac" onclick="go('home')"><span class="mi">🏠</span>خانه</a>
+    <a onclick="go('doctors')"><span class="mi">👨‍⚕️</span>پزشکان</a>
+    <a class="mh" onclick="go('booking')" aria-label="رزرو نوبت"><span class="mi">📅</span></a>
+    <a onclick="go('hospitals')"><span class="mi">🏥</span>بخش‌ها</a>
+    <a onclick="go('about')"><span class="mi">ℹ️</span>درباره ما</a>
+  </div>
+</nav>
+  </div>
+</div>
+
+<body>
+<!-- ===== HOME PAGE ===== -->
+<div class="pg ac" id="pg-home">
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="hero-bg"><img src="assets/hero-bg.webp" alt="بیمارستان امید" loading="eager"></div>
+    <div class="hero-overlay"></div>
+    <canvas id="particles"></canvas>
+    <div class="hero-content">
+      <div class="hero-left">
+        <div class="hbadge"><span class="pulse"></span> برترین بیمارستان غرب تهران</div>
+        <h1>
+          <span class="ht1">سلامتی شما،</span>
+          <em>رسالت ماست</em>
+        </h1>
+        <p class="hd">با ۱۹۹ پزشک متخصص، ۳۲ رشته تخصصی و ۱۹ بخش درمانی — همیشه در کنار شما هستیم.</p>
+        <div class="hbtn">
+          <button class="btn btn-p btn-xl" onclick="go('booking')">📅 رزرو نوبت آنلاین</button>
+          <button class="btn btn-g btn-xl" onclick="go('doctors')">👨‍⚕️ جستجوی پزشک</button>
+        </div>
+        <div class="hero-stats">
+          <div class="hero-stat">
+            <span class="hsn" data-to="199">۰</span>
+            <span class="hsl">پزشک متخصص</span>
+          </div>
+          <div class="hero-stat">
+            <span class="hsn" data-to="32">۰</span>
+            <span class="hsl">تخصص پزشکی</span>
+          </div>
+          <div class="hero-stat">
+            <span class="hsn" data-to="115">۰</span>
+            <span class="hsl">تخت فعال</span>
+          </div>
+          <div class="hero-stat">
+            <span class="hsn" data-to="9">۰</span>
+            <span class="hsl">سال سابقه</span>
+          </div>
+        </div>
+      </div>
+      <div class="hero-right">
+        <div class="hero-card-wrap">
+          <div class="hcard hcard-main">
+            <div class="hcard-label">نوبت‌دهی آنلاین</div>
+            <div class="hcard-val">۲۱ پزشک</div>
+            <div class="hcard-desc">با نوبت‌دهی اینترنتی فعال</div>
+            <span class="hcard-badge">🟢 آنلاین</span>
+          </div>
+          <div class="hcard hcard-sec">
+            <div class="hcard-label">اورژانس</div>
+            <div class="hcard-val">۲۴/۷</div>
+            <div class="hcard-desc">شبانه‌روزی</div>
+          </div>
+          <div class="hcard hcard-mini">
+            <div class="hcard-label">تخت فعال</div>
+            <div class="hcard-val">۱۱۵</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Specialties Bento -->
+  <section class="sec">
+    <div class="sw">
+      <div class="sh rv">
+        <span class="tag">🏥 تخصص‌ها</span>
+        <h2>دنبال چه تخصصی هستید؟</h2>
+        <p>از بین ۳۲ رشته تخصصی پزشک مناسب خود را پیدا کنید</p>
+      </div>
+      <div class="bento rv" id="bentoGrid"></div>
+    </div>
+  </section>
+
+  <!-- Services -->
+  <section class="sec" style="background:rgba(12,26,46,.5)">
+    <div class="sw">
+      <div class="sh rv">
+        <span class="tag">🩺 خدمات</span>
+        <h2>خدمات جامع درمانی</h2>
+        <p>از تشخیص تا درمان، همه چیز در یک مکان</p>
+      </div>
+      <div class="srv-grid rv" id="srvGrid"></div>
+    </div>
+  </section>
+
+  <!-- Doctors Preview -->
+  <section class="sec">
+    <div class="sw">
+      <div class="sh rv">
+        <span class="tag">👨‍⚕️ پزشکان</span>
+        <h2>پزشکان با نوبت‌دهی فعال</h2>
+        <p>همین الان نوبت بگیرید</p>
+      </div>
+      <div class="dg rv" id="doctorPreview"></div>
+      <div style="text-align:center;margin-top:28px" class="rv">
+        <button class="btn btn-o btn-r" onclick="go('doctors')" style="padding:12px 28px;font-size:.9rem">مشاهده همه ۱۹۹ پزشک ←</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="sec" style="background:rgba(12,26,46,.5)">
+    <div class="sw">
+      <div class="cta-section rv">
+        <h2>آماده دریافت نوبت هستید؟</h2>
+        <p>در کمتر از ۲ دقیقه نوبت پزشک خود را رزرو کنید</p>
+        <div class="cta-btns">
+          <button class="btn btn-xl" onclick="go('booking')" style="background:#fff;color:#0C1A2E;font-weight:800;border-radius:16px">📅 شروع رزرو نوبت</button>
+          <button class="btn btn-ghost btn-xl btn-r" onclick="go('contact')">📞 تماس با ما</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="sec">
+    <div class="sw">
+      <div class="sh rv">
+        <span class="tag">❓ سوالات</span>
+        <h2>سوالات متداول</h2>
+      </div>
+      <div class="faq rv" id="faqBlock"></div>
+    </div>
+  </section>
+
+</div><!-- /pg-home -->
+
+<!-- ===== DOCTORS PAGE ===== -->
+<div class="pg" id="pg-doctors">
+  <div class="pgh">
+    <h1>👨‍⚕️ پزشکان بیمارستان امید</h1>
+    <p id="doctorCountLbl">در حال بارگذاری...</p>
+  </div>
+  <div class="pb">
+    <div class="dtb">
+      <div class="sb">
+        <span class="si2">🔍</span>
+        <input type="text" placeholder="جستجوی نام یا تخصص..." id="ds2" oninput="filterDocs()">
+      </div>
+      <button class="fp2" id="fbBtn" onclick="this.classList.toggle('ac2');filterDocs()">📅 فقط نوبت‌دهی فعال</button>
+    </div>
+    <div class="dg" id="docG"></div>
+    <div class="pg-bar" id="pgB"></div>
+  </div>
+</div>
+
+<!-- ===== HOSPITALS PAGE ===== -->
+<div class="pg" id="pg-hospitals">
+  <div class="pgh">
+    <h1>🏥 بخش‌های درمانی</h1>
+    <p>۱۹ بخش تخصصی، پاراکلینیک و کلینیک</p>
+  </div>
+  <div class="pb">
+    <div class="dtb">
+      <button class="fp2 ac2" onclick="filterHosp('all',event)">همه</button>
+      <button class="fp2" onclick="filterHosp('wards',event)">🏥 بخش درمانی</button>
+      <button class="fp2" onclick="filterHosp('specialized-clinic',event)">🩺 کلینیک تخصصی</button>
+      <button class="fp2" onclick="filterHosp('paraclinical',event)">🔬 پاراکلینیک</button>
+    </div>
+    <div class="dg" id="hGrid"></div>
+  </div>
+</div>
+
+<!-- ===== NICU PAGE ===== -->
+<div class="pg" id="pg-nicu">
+  <section class="nicu-hero">
+    <div class="nicu-wrap">
+      <div>
+        <div class="nicu-badge">🏥 بخش درمانی</div>
+        <h1>بخش <em>NICU</em><br>مراقبت‌های ویژه نوزادان</h1>
+        <p class="nicu-subtitle">تحت مدیریت <strong style="color:#fff">جناب آقای دکتر اسدالله فغانی</strong> — ارائه خدمات پیشرفته و تخصصی برای نوزادان با شرایط خاص</p>
+        <div style="display:flex;gap:10px;flex-wrap:wrap">
+          <button class="btn btn-p btn-r" onclick="go('booking')">📅 رزرو نوبت پزشک</button>
+        </div>
+      </div>
+      <div class="nicu-circle">👶</div>
+    </div>
+  </section>
+  <div class="nicu-content">
+    <div class="nicu-features">
+      <div class="nf-card"><div class="nf-icon">🛏️</div><div class="nf-val">۸ تخت</div><div class="nf-label">مجموع تخت‌های فعال</div></div>
+      <div class="nf-card"><div class="nf-icon">🫁</div><div class="nf-val">۲ تخت</div><div class="nf-label">مجهز به ونتیلاتور</div></div>
+      <div class="nf-card"><div class="nf-icon">💛</div><div class="nf-val">۴ تخت</div><div class="nf-label">مخصوص ایکتر (زردی)</div></div>
+      <div class="nf-card"><div class="nf-icon">🐣</div><div class="nf-val">۲ تخت</div><div class="nf-label">مخصوص نوزادان نارس</div></div>
+    </div>
+    <div class="nicu-section"><h2>📋 معرفی بخش</h2><p>بخش مراقبت‌های ویژه نوزادان (NICU) با طراحی علمی و امکانات مدرن، بستری ایمن و استاندارد برای رسیدگی به نوزادان با شرایط خاص فراهم می‌کند.</p></div>
+    <div class="nicu-info-grid">
+      <div class="nicu-info-card"><h3>🫁 حمایت تنفسی</h3><ul><li>۲ تخت مجهز به ونتیلاتور</li><li>مانیتورینگ تنفسی پیشرفته</li></ul></div>
+      <div class="nicu-info-card"><h3>💛 درمان ایکتر</h3><ul><li>۴ تخت فتوتراپی</li><li>کنترل بیلیروبین</li></ul></div>
+      <div class="nicu-info-card"><h3>🐣 نوزادان نارس</h3><ul><li>۲ تخت مخصوص</li><li>انکوباتورهای پیشرفته</li></ul></div>
+      <div class="nicu-info-card"><h3>🛡️ کنترل عفونت</h3><ul><li>محیط ایزوله</li><li>سیستم HEPA</li></ul></div>
+    </div>
+    <div class="nicu-section"><h2>👨‍⚕️ متخصصان</h2>
+      <div class="nicu-doctors">
+        <div class="nd-card"><div class="nd-avatar">👨‍⚕️</div><div><div class="nd-name">دکتر احمد بهرامی</div><div class="nd-spec">متخصص اطفال</div><span class="nd-nb nd-yes">📅 نوبت‌دهی فعال</span></div></div>
+        <div class="nd-card"><div class="nd-avatar">👩‍⚕️</div><div><div class="nd-name">دکتر سیما ایوبی</div><div class="nd-spec">متخصص اطفال</div><span class="nd-nb nd-yes">📅 نوبت‌دهی فعال</span></div></div>
+        <div class="nd-card"><div class="nd-avatar">👨‍⚕️</div><div><div class="nd-name">دکتر اسدالله فغانی</div><div class="nd-spec">مدیر بخش</div><span class="nd-nb nd-no">⏸️ فعلاً نوبت ندارد</span></div></div>
+      </div>
+    </div>
+    <div class="nicu-section" style="background:var(--c2);padding:20px 24px;border-radius:var(--rr);border:1px solid var(--gm)">
+      <h2>📍 موقعیت</h2>
+      <div class="info-row" style="margin-top:10px">
+        <span class="info-tag">📍 طبقه دوم</span>
+        <span class="info-tag">📞 ۰۲۱-۴۴۴۸۰۱۸۵</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== BOOKING PAGE ===== -->
+<div class="pg" id="pg-booking">
+  <div class="pgh">
+    <h1>📅 رزرو نوبت آنلاین</h1>
+    <p>در ۴ مرحله ساده نوبت خود را دریافت کنید</p>
+  </div>
+  <div class="pb">
+    <div class="wizard">
+      <div class="ws" id="wzSteps">
+        <div class="ws2 a"><div class="wd"><span>1</span></div><div class="wlz">تخصص</div></div>
+        <div class="wl2"></div>
+        <div class="ws2"><div class="wd"><span>2</span></div><div class="wlz">پزشک</div></div>
+        <div class="wl2"></div>
+        <div class="ws2"><div class="wd"><span>3</span></div><div class="wlz">زمان</div></div>
+        <div class="wl2"></div>
+        <div class="ws2"><div class="wd"><span>4</span></div><div class="wlz">نهایی</div></div>
+      </div>
+      <div class="wp a" id="wp1">
+        <h3 style="color:#fff;margin-bottom:16px;font-size:1rem">انتخاب تخصص:</h3>
+        <div class="wcg" id="wzSp"></div>
+        <div style="display:flex;justify-content:flex-end;margin-top:24px">
+          <button class="btn btn-p btn-r" id="wn1" disabled onclick="wzNext()">مرحله بعد ←</button>
+        </div>
+      </div>
+      <div class="wp" id="wp2">
+        <div id="wzDp"></div>
+        <h3 style="color:#fff;margin-bottom:14px;font-size:1rem">انتخاب پزشک:</h3>
+        <div class="wcg" id="wzDc"></div>
+        <div class="wflex">
+          <button class="btn btn-ghost btn-r" onclick="wzPrev()">→ قبل</button>
+          <button class="btn btn-p btn-r" id="wn2" disabled onclick="wzNext()">بعد ←</button>
+        </div>
+      </div>
+      <div class="wp" id="wp3">
+        <div id="wzDp2"></div>
+        <h3 style="color:#fff;margin-bottom:14px;font-size:1rem">انتخاب تاریخ:</h3>
+        <div id="wzCal"></div>
+        <h4 style="color:#64748B;margin:16px 0 10px;font-size:.85rem;font-weight:700">ساعت‌های در دسترس:</h4>
+        <div class="tg2" id="wzTS"></div>
+        <div class="wflex">
+          <button class="btn btn-ghost btn-r" onclick="wzPrev()">→ قبل</button>
+          <button class="btn btn-p btn-r" id="wn3" disabled onclick="wzNext()">بعد ←</button>
+        </div>
+      </div>
+      <div class="wp" id="wp4">
+        <h3 style="color:#fff;margin-bottom:18px;font-size:1rem">اطلاعات شما:</h3>
+        <div class="fg2">
+          <div class="fg"><label>نام و نام خانوادگی *</label><input type="text" id="pn" placeholder="مثال: علی محمدی"></div>
+          <div class="fg"><label>شماره همراه *</label><input type="tel" id="pp" placeholder="۰۹۱۲..."></div>
+        </div>
+        <div class="fg2">
+          <div class="fg"><label>کد ملی</label><input type="text" id="pc" placeholder="۱۰ رقم"></div>
+          <div class="fg"><label>بیمه</label>
+            <select id="pi">
+              <option value="">آزاد</option>
+              <option>تأمین اجتماعی</option>
+              <option>خدمات درمانی</option>
+              <option>ایران</option>
+              <option>آسیا</option>
+              <option>سامان</option>
+            </select>
+          </div>
+        </div>
+        <div class="wflex">
+          <button class="btn btn-ghost btn-r" onclick="wzPrev()">→ قبل</button>
+          <button class="btn btn-p btn-r" onclick="submitBooking()">✅ ثبت نهایی نوبت</button>
+        </div>
+      </div>
+      <div class="sbox" id="wzOK">
+        <div style="font-size:3rem;margin-bottom:12px">✅</div>
+        <h2 style="color:#fff;font-size:1.3rem;margin-bottom:8px">نوبت شما ثبت شد!</h2>
+        <p style="color:#64748B;font-size:.88rem">کد پیگیری:</p>
+        <div class="code" id="tc">---</div>
+        <p style="color:#64748B;font-size:.8rem;margin-bottom:20px">این کد را جهت پیگیری نزد خود نگه دارید</p>
+        <button class="btn btn-p btn-r" onclick="go('home')">🏠 بازگشت به خانه</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== BLOG PAGE ===== -->
+<div class="pg" id="pg-blog">
+  <div class="pgh">
+    <h1>📰 مجله سلامت امید</h1>
+    <p>آخرین مقالات پزشکی و بهداشتی</p>
+  </div>
+  <div class="pb"><div class="blg" id="blogGrid"></div></div>
+</div>
+
+<!-- ===== CONTACT PAGE ===== -->
+<div class="pg" id="pg-contact">
+  <div class="pgh">
+    <h1>📞 تماس با ما</h1>
+    <p>پاسخگویی ۷ روز هفته، ۲۴ ساعته</p>
+  </div>
+  <div class="pb">
+    <div style="display:grid;gap:14px;max-width:600px;margin:0 auto">
+      <div class="sc2" style="text-align:center;cursor:default">
+        <div class="svi" style="margin:0 auto 12px;width:52px;height:52px;font-size:1.4rem">📞</div>
+        <h3>تلفن پذیرش</h3>
+        <p style="font-size:1.2rem;color:#fff;font-weight:800;margin-top:8px">۰۲۱-۴۴۴۸۰۱۸۵</p>
+        <p style="font-size:.78rem;color:#475569;margin-top:4px">شبانه‌روزی — ۲۴ ساعته</p>
+      </div>
+      <div class="sc2" style="text-align:center;cursor:default">
+        <div class="svi" style="margin:0 auto 12px;width:52px;height:52px;font-size:1.4rem">📅</div>
+        <h3>نوبت‌دهی کلینیک</h3>
+        <p style="font-size:1.1rem;color:#fff;font-weight:800;margin-top:8px">۰۲۱-۴۵۸۳۹۵۰۹</p>
+        <p style="font-size:.78rem;color:#475569;margin-top:4px">شنبه تا چهارشنبه ۸ الی ۲۰</p>
+      </div>
+      <div class="sc2" style="cursor:default">
+        <div class="svi" style="margin:0 0 12px;font-size:1.4rem">📍</div>
+        <h3>آدرس</h3>
+        <p style="font-size:.88rem;line-height:1.9;margin-top:8px">تهران، جنت‌آباد مرکزی، خیابان شاهین شمالی،<br>خیابان کبیری طامه، خیابان بهار — بیمارستان امید</p>
+      </div>
+      <div class="sc2" style="text-align:center;cursor:default">
+        <div class="svi" style="margin:0 auto 12px;font-size:1.4rem">✉️</div>
+        <h3>ایمیل</h3>
+        <p style="color:#94A3B8;margin-top:8px">info@omid.hospital</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== ABOUT PAGE ===== -->
+<div class="pg" id="pg-about">
+  <div class="about-hero">
+    <h1>بیمارستان تخصصی و فوق‌تخصصی امید</h1>
+    <div class="about-intro">
+      <p>بیمارستان <span class="hl">امید تهران</span> در <span class="hl">پاییز ۱۳۹۵</span> با مدرن‌ترین تجهیزات پزشکی و استانداردهای بین‌المللی در <span class="hl">غرب تهران</span> افتتاح شد. شامل بخش‌های <span class="hl">کلینیکی، پاراکلینیکی، بستری و سرپایی</span> با ۱۱۵ تخت فعال و ۱۹۹ پزشک متخصص.</p>
+    </div>
+    <div class="about-stats">
+      <div class="about-stat"><div class="val">۱۱۵</div><div class="lbl">تخت فعال</div></div>
+      <div class="about-stat"><div class="val">۱۹۹</div><div class="lbl">پزشک متخصص</div></div>
+      <div class="about-stat"><div class="val">۳۲+</div><div class="lbl">رشته تخصصی</div></div>
+      <div class="about-stat"><div class="val">۱۳۹۵</div><div class="lbl">سال تأسیس</div></div>
+    </div>
+  </div>
+  <div class="pb">
+    <div class="gallery-title">🏆 تقدیرنامه‌ها<span>افتخارات بیمارستان امید</span></div>
+    <div class="licenses" id="licenses"></div>
+    <div class="gallery-title" style="margin-top:48px">🕊️ یادبود پزشکان فقید</div>
+    <div class="mem-grid" id="memGridAbout"></div>
+  </div>
+</div>
+
+<!-- ===== GUIDE PAGES (fixed nesting) ===== -->
+<div class="pg" id="pg-patient_guide">
+  <div class="pgh"><h1>📋 راهنمای مراجعین</h1><p>تمام اطلاعات مورد نیاز بیماران و همراهان گرامی</p></div>
+  <div class="pb"><div class="dg" id="guideLinks"></div></div>
+</div>
+
+<div class="pg" id="pg-insurances">
+  <div class="pgh"><h1>🛡️ بیمه‌های طرف قرارداد</h1><p>۳۰ بیمه پایه و تکمیلی</p></div>
+  <div class="pb">
+    <div class="dtb">
+      <div class="sb"><span class="si2">🔍</span><input type="text" placeholder="جستجوی بیمه..." id="insSearch" oninput="filterIns()"></div>
+    </div>
+    <div style="overflow-x:auto;border-radius:var(--rx);border:1px solid var(--gm)">
+      <table id="insTable" style="width:100%;border-collapse:collapse">
+        <thead>
+          <tr style="background:var(--c3)">
+            <th style="padding:12px;text-align:center;color:#fff;border-bottom:1px solid var(--gm);font-size:.8rem">#</th>
+            <th style="padding:12px;text-align:right;color:#fff;border-bottom:1px solid var(--gm);font-size:.8rem">نام بیمه</th>
+            <th style="padding:12px;text-align:center;color:#fff;border-bottom:1px solid var(--gm);font-size:.8rem">روش دریافت</th>
+            <th style="padding:12px;text-align:center;color:#fff;border-bottom:1px solid var(--gm);font-size:.8rem">نوع پوشش</th>
+          </tr>
+        </thead>
+        <tbody id="insBody"></tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<div class="pg" id="pg-patient_y">
+  <div class="pgh"><h1>🏥 راهنمای پذیرش تا ترخیص</h1><p>راهنمای جامع فرآیند پذیرش، بستری و ترخیص</p></div>
+  <div class="pb" id="patientYContent"></div>
+</div>
+
+<div class="pg" id="pg-calendar">
+  <div class="pgh"><h1>📆 برنامه کلینیک فوق تخصصی</h1><p>نوبت‌دهی سیستمی | تلفن: ۰۲۱-۴۵۸۳۹۵۰۹</p></div>
+  <div class="pb"><div style="overflow-x:auto" id="calContainer"></div></div>
+</div>
+
+<div class="pg" id="pg-employee_dress">
+  <div class="pgh"><h1>👔 راهنمای پوشش کارکنان</h1><p>استانداردهای پوشش پرسنل بیمارستان</p></div>
+  <div class="pb" id="empDressContent"></div>
+</div>
+
+<div class="pg" id="pg-visitor">
+  <div class="pgh"><h1>🤝 راهنمای ملاقات‌کنندگان</h1><p>ساعت ملاقات: ۱۴ الی ۱۶</p></div>
+  <div class="pb" id="visitorContent"></div>
+</div>
+
+<div class="pg" id="pg-floor">
+  <div class="pgh"><h1>🏢 راهنمای طبقات</h1><p>نقشه طبقات بیمارستان</p></div>
+  <div class="pb" id="floorContent"></div>
+</div>
+
+<div class="pg" id="pg-patient_affairs">
+  <div class="pgh"><h1>📝 پیگیری امور بیماران</h1><p>راهنمای پیگیری امور درمانی و اداری</p></div>
+  <div class="pb" id="patAffairsContent"></div>
+</div>
+
+<!-- ===== FOOTER ===== -->
+<footer class="ft">
+  <div class="fg3">
+    <div class="ft-brand">
+      <a class="logo" onclick="go('home')">
+        <img src="assets/logo-main.png" alt="Omid">
+        <div class="logo-text">
+          <span class="logo-title">بیمارستان امید</span>
+          <span class="logo-sub">تخصصی و فوق‌تخصصی</span>
+        </div>
+      </a>
+      <p class="ft-desc">بیمارستان امید با ۱۱۵ تخت فعال و ۱۹۹ پزشک متخصص از سال ۱۳۹۵ در خدمت سلامت مردم غرب تهران می‌باشد.</p>
+      <div class="ft-social">
+        <a title="اینستاگرام">📷</a>
+        <a title="تلگرام">✈️</a>
+        <a title="واتساپ">💬</a>
+      </div>
+    </div>
+    <div class="ft-col">
+      <h4>دسترسی سریع</h4>
+      <a onclick="go('doctors')">👨‍⚕️ پزشکان</a>
+      <a onclick="go('booking')">📅 رزرو نوبت</a>
+      <a onclick="go('hospitals')">🏥 بخش‌ها</a>
+      <a onclick="go('about')">ℹ️ درباره ما</a>
+    </div>
+    <div class="ft-col">
+      <h4>بخش‌های درمانی</h4>
+      <a onclick="go('nicu')">👶 NICU نوزادان</a>
+      <a onclick="go('hospitals')">🏥 سایر بخش‌ها</a>
+      <a onclick="go('patient_guide')">📋 راهنمای مراجعین</a>
+      <a onclick="go('insurances')">🛡️ بیمه‌ها</a>
+    </div>
+    <div class="ft-col">
+      <h4>ارتباط با ما</h4>
+      <div class="fci"><span>📞</span><span><strong>۰۲۱-۴۴۴۸۰۱۸۵</strong></span></div>
+      <div class="fci"><span>📅</span><span>۰۲۱-۴۵۸۳۹۵۰۹</span></div>
+      <div class="fci"><span>✉️</span><span>info@omid.hospital</span></div>
+      <div class="fci" style="margin-top:8px"><span>📍</span><span style="font-size:.75rem;line-height:1.7">جنت‌آباد مرکزی، تهران</span></div>
+    </div>
+  </div>
+  <div class="ft-bottom">
+    <span>© ۱۴۰۴ بیمارستان تخصصی و فوق‌تخصصی امید — تمامی حقوق محفوظ است</span>
+    <div style="display:flex;gap:16px">
+      <a onclick="go('contact')">تماس</a>
+      <a onclick="go('about')">درباره ما</a>
+    </div>
+  </div>
+</footer>
+
+<!-- ===== MODAL ===== -->
+<div class="mo" id="modal" onclick="this.classList.remove('o')">
+  <div class="mc2" onclick="event.stopPropagation()" id="modalContent"></div>
+</div>
+
+<!-- ===== LIGHTBOX ===== -->
+<div id="lightbox" class="lightbox" onclick="closeLb()">
+  <button class="lb-close" onclick="closeLb()">✕</button>
+  <span class="lb-nav lb-prev" onclick="event.stopPropagation();lbPrev()">◀</span>
+  <span class="lb-nav lb-next" onclick="event.stopPropagation();lbNext()">▶</span>
+  <img src="" alt="" id="lbImg" onclick="event.stopPropagation()">
+  <div class="lb-cap" id="lbCap"></div>
+</div>
+
+<script src="doctors-data.js"></script>
+<script src="hospitals-data.js"></script>
+<script>
+// ========== STATIC DATA ==========
+var GUIDE_PAGES = {
+  patient_guide: { title:'راهنمای مراجعین', icon:'📋', links:[
+    {t:'دریافت اینترنتی نوبت',icon:'📅',page:'booking'},
+    {t:'مشاهده نتایج آزمایشگاه',icon:'🔬',ext:true},
+    {t:'مشاهده نتایج تصویربرداری',icon:'🩻',ext:true},
+    {t:'بیمه‌های طرف قرارداد',icon:'🛡️',page:'insurances'},
+    {t:'راهنمای پذیرش تا ترخیص',icon:'🏥',page:'patient_y'},
+    {t:'برنامه کلینیک فوق تخصصی',icon:'📆',page:'calendar'},
+    {t:'راهنمای پوشش کارکنان',icon:'👔',page:'employee_dress'},
+    {t:'راهنمای ملاقات مراجعین',icon:'🤝',page:'visitor'},
+    {t:'راهنمای طبقات بیمارستان',icon:'🏢',page:'floor'},
+    {t:'راهنمای پیگیری امور بیماران',icon:'📝',page:'patient_affairs'}
+  ]},
+  insurances: { insurers:[
+    {no:1,name:'آتیه سازان حافظ',method:'آنلاین',type:'بستری'},
+    {no:2,name:'بیمه ملت (شاغلین)',method:'آنلاین',type:'بستری - سرپایی'},
+    {no:3,name:'آرمان',method:'آنلاین',type:'بستری'},
+    {no:4,name:'رازی',method:'آنلاین',type:'بستری - سرپایی'},
+    {no:5,name:'سامان (درمانت)',method:'آنلاین',type:'بستری - سرپایی'},
+    {no:6,name:'سینا',method:'آنلاین',type:'بستری - سرپایی'},
+    {no:7,name:'کارآفرین',method:'آنلاین',type:'بستری - سرپایی'},
+    {no:8,name:'ما',method:'آنلاین',type:'بستری - سرپایی'},
+    {no:9,name:'معلم',method:'آنلاین',type:'بستری - سرپایی'},
+    {no:10,name:'کوثر',method:'آنلاین',type:'بستری - سرپایی'},
+    {no:11,name:'نوین (بجز بانک ملی)',method:'آنلاین',type:'بستری - سرپایی'},
+    {no:12,name:'آسیا',method:'آنلاین',type:'بستری - سرپایی'},
+    {no:13,name:'تجارت نو',method:'آنلاین',type:'بستری - سرپایی'},
+    {no:14,name:'سرمد',method:'آنلاین',type:'بستری - سرپایی'},
+    {no:15,name:'دی (بجز بنیاد شهید)',method:'آنلاین',type:'بستری'},
+    {no:16,name:'ایران',method:'آنلاین',type:'بستری - سرپایی'},
+    {no:17,name:'فولاد',method:'آنلاین',type:'بستری'},
+    {no:18,name:'بانک مرکزی',method:'آنلاین',type:'بستری - سرپایی'},
+    {no:19,name:'پارسیان',method:'آنلاین',type:'بستری - سرپایی'},
+    {no:20,name:'بازنشستگان فولاد',method:'دستی',type:'بستری'},
+    {no:21,name:'کمک رسان SOS',method:'آنلاین',type:'بستری - سرپایی'},
+    {no:22,name:'بانک مسکن',method:'دستی',type:'بستری - سرپایی'},
+    {no:23,name:'بانک ملت',method:'دستی',type:'بستری - سرپایی'},
+    {no:24,name:'شهرداری (بجز تاکسیرانی)',method:'دستی',type:'بستری - سرپایی'},
+    {no:25,name:'صدا و سیما',method:'آنلاین',type:'بستری - سرپایی'},
+    {no:26,name:'ریاست جمهوری',method:'دستی',type:'بستری'},
+    {no:27,name:'بانک تجارت',method:'دستی',type:'بستری - سرپایی'},
+    {no:28,name:'بانک توسعه صادرات',method:'دستی',type:'بستری - سرپایی'},
+    {no:29,name:'بانک سپه',method:'دستی',type:'بستری'},
+    {no:30,name:'بانک صنعت و معدن',method:'دستی',type:'بستری - سرپایی'}
+  ]},
+  patient_y: { sections:[
+    {t:'فرآیند پذیرش',items:['پذیرش بیمارستان امید به‌صورت شبانه‌روزی آماده‌ی ارائه خدمات می‌باشد.','دریافت دستور بستری از پزشک معالج توسط بیمار','ارتباط بیمار با منشی پزشک جهت تعیین وقت','تعیین نوبت بستری توسط منشی پزشک','ارائه آمادگی‌های لازم پیش از جراحی','حضور بیمار در بیمارستان و مراجعه به واحد پذیرش','ارائه دستور پزشک و مدارک مورد نیاز','ثبت اطلاعات بیمار در سیستم HIS','چاپ برگه‌های پذیرش و رضایت‌نامه','پرداخت علی‌الحساب','اخذ رضایت‌نامه و اثر انگشت','بستن دستبند هویت بیمار','هدایت بیمار به بخش مربوطه']},
+    {t:'نحوه استفاده از بیمه',items:['پیش از بستری، دستور بستری را از پزشک دریافت نمایید.','در صورت نیاز، یک روز قبل از بستری جهت دریافت معرفی‌نامه به سازمان بیمه مراجعه نمایید.','در روز بستری هزینه‌ها بر اساس فرانشیز پرداخت می‌شود.']},
+    {t:'مدارک مورد نیاز',items:['دستور بستری از پزشک معالج','کارت ملی بیمار','معرفی‌نامه بیمه تکمیلی (در صورت داشتن)','مدارک بیمه پایه']}
+  ]},
+  calendar: { clinics:[
+    {name:'ارتوپدی',days:{0:[{d:'دکتر ملکپور',t:'۱۳-۱۶'}],1:[{d:'دکتر ملکپور',t:'۱۳-۱۶'}],2:[{d:'دکتر ملکپور',t:'۱۳-۱۶'}],3:[{d:'دکتر ملکپور',t:'۱۳-۱۶'}],4:[{d:'دکتر ملکپور',t:'۱۳-۱۶'}],5:[{d:'دکتر ملکپور',t:'۱۳-۱۶'}]}},
+    {name:'اطفال',days:{0:[{d:'دکتر ایوبی',t:'۱۲-۱۴'},{d:'دکتر بهرامی',t:'۸-۱۰'}],1:[{d:'دکتر رحیمی',t:'۱۶-۱۸'}],2:[{d:'دکتر ایوبی',t:'۱۲-۱۴'}],3:[{d:'دکتر بهرامی',t:'۹-۱۱'}],4:[{d:'دکتر ایوبی',t:'۹-۱۱'}],5:[{d:'دکتر بهرامی',t:'۹-۱۳'}]}},
+    {name:'اورولوژی',days:{1:[{d:'دکتر نجفی',t:'۱۱-۱۶'}],2:[{d:'دکتر موسوی',t:'۱۲-۱۴'}],3:[{d:'دکتر نجفی',t:'۱۱-۱۶'}],5:[{d:'دکتر نجفی',t:'۱۴-۱۶'}]}},
+    {name:'جراحی',days:{1:[{d:'دکتر عسگری',t:'۱۰-۱۲'}],3:[{d:'دکتر شمس',t:'۹-۱۲'}],5:[{d:'دکتر شمس',t:'۱۰-۱۲'}]}},
+    {name:'ریه',days:{1:[{d:'دکتر ذاکر',t:'۱۱-۱۳'}],5:[{d:'دکتر ذاکر',t:'۱۳-۱۵'}]}},
+    {name:'غدد',days:{2:[{d:'دکتر خیامزاده',t:'۱۰-۱۲'}]}},
+    {name:'داخلی',days:{2:[{d:'دکتر صادقی',t:'۱۲-۱۳'}]}},
+    {name:'چشم',days:{2:[{d:'دکتر نوروزی',t:'۱۰-۱۲'}]}},
+    {name:'روانشناسی',days:{2:[{d:'دکتر میرزازاده',t:'۱۴-۱۹'}],3:[{d:'دکتر میرزازاده',t:'۱۴-۱۹'}],5:[{d:'دکتر فغانی',t:'۱۳-۱۵'}]}},
+    {name:'مشاوره تغذیه',days:{4:[{d:'خانم صفایی',t:'۱۰-۱۴'}]}},
+    {name:'آنکولوژی',days:{1:[{d:'دکتر هاشمی‌فرد',t:'۸-۱۱'}]}},
+    {name:'زنان',days:{0:[{d:'دکتر امیرجانی',t:'۱۴-۱۷'}],2:[{d:'دکتر کبیر',t:'۹-۱۲'},{d:'دکتر امیرجانی',t:'۱۲-۱۶'}],4:[{d:'دکتر امیرجانی',t:'۱۴-۱۷'}]}},
+    {name:'نورولوژی',days:{0:[{d:'دکتر محسن‌زاده',t:'۱۴-۱۶'}],4:[{d:'دکتر محسن‌زاده',t:'۱۰-۱۲'}]}},
+    {name:'ENT',days:{3:[{d:'دکتر کوشا',t:'۱۰-۱۲'}]}}
+  ]},
+  employee_dress:{img:'assets/guide/employee-dress.png',title:'راهنمای پوشش کارکنان'},
+  visitor:{visitTime:'۱۴ الی ۱۶',internalPhone:'۵۸۵',
+    rules:['از همراه داشتن وجه نقدی زیاد و اشیای قیمتی خودداری فرمایید.','سیگار کشیدن در کلیه قسمت‌های بیمارستان ممنوع می‌باشد.','از نشستن بر روی تخت بیماران خودداری فرمایید.','از حمل مواد غذایی خام و پخته و گل خودداری نمایید.','برای ترخیص بیماران، اطلاع کتبی از سوی بخش الزامی است.'],
+    meals:[{meal:'صبحانه',serve:'۶-۸:۳۰',collect:'۷-۷:۳۰'},{meal:'میان وعده',serve:'۹:۳۰-۱۰:۳۰',collect:'–'},{meal:'ناهار',serve:'۱۲-۱۳:۳۰',collect:'۱۴-۱۴:۳۰'},{meal:'شام',serve:'۱۸-۱۹',collect:'۲۰-۲۰:۳۰'}]
+  },
+  floor:{img:'assets/guide/floor-guide.png',title:'راهنمای طبقات'},
+  patient_affairs:{img:'assets/guide/patient-affairs.jpg',title:'پیگیری امور بیماران'}
+};
+
+var SPECS = [
+  {k:'heart',n:'قلب و عروق',icon:'🫀',cnt:28},{k:'neuro',n:'مغز و اعصاب',icon:'🧠',cnt:18},
+  {k:'eye',n:'چشم پزشکی',icon:'👁️',cnt:15},{k:'bone',n:'ارتوپدی',icon:'🦴',cnt:22},
+  {k:'obgyn',n:'زنان و زایمان',icon:'👶',cnt:20},{k:'child',n:'اطفال',icon:'🧒',cnt:16},
+  {k:'surgery',n:'جراحی عمومی',icon:'🏥',cnt:19},{k:'ent',n:'گوش و حلق و بینی',icon:'👂',cnt:14},
+  {k:'psych',n:'روانپزشکی',icon:'🧘',cnt:10},{k:'gastro',n:'گوارش',icon:'🔬',cnt:11},
+  {k:'lung',n:'ریه',icon:'🫁',cnt:8},{k:'uro',n:'اورولوژی',icon:'💧',cnt:9},
+  {k:'endo',n:'غدد',icon:'⚡',cnt:7},{k:'dental',n:'دندانپزشکی',icon:'🦷',cnt:13},
+  {k:'nutri',n:'تغذیه',icon:'🥗',cnt:5},{k:'skin',n:'پوست و مو',icon:'✨',cnt:12}
+];
+var SP_WORDS = {heart:'قلب',neuro:'مغز',eye:'چشم',bone:'ارتو',obgyn:'زنان',child:'اطفال',surgery:'جراحی',ent:'گوش',psych:'روان',gastro:'گوارش',lung:'ریه',uro:'اورولوژی',endo:'غدد',dental:'دندان',nutri:'تغذیه',skin:'پوست'};
+var FAQ = [
+  {q:'چطور نوبت رزرو کنم؟',a:'با دکمه «رزرو نوبت» در سایت یا تماس با ۰۲۱-۴۴۴۸۰۱۸۵.'},
+  {q:'چطور جواب آزمایش ببینم؟',a:'از بخش راهنمای مراجعین با کد ملی و کد پیگیری.'},
+  {q:'کدام بیمه‌ها طرف قرارداد هستید؟',a:'۳۰ بیمه پایه و تکمیلی از جمله تأمین اجتماعی، خدمات درمانی، ایران، آسیا و سامان.'},
+  {q:'ویزیت آنلاین دارید؟',a:'بله، از طریق تماس تصویری، تلفنی و چت متنی.'},
+  {q:'ساعت کاری کلینیک‌ها چیست؟',a:'اورژانس ۲۴ ساعته. کلینیک‌ها ۸ صبح تا ۸ شب.'},
+  {q:'آدرس بیمارستان کجاست؟',a:'تهران، جنت‌آباد مرکزی، خیابان شاهین شمالی، خیابان کبیری طامه.'}
+];
+var BLOG = [
+  {icon:'🫀',t:'۵ راهکار طلایی برای سلامت قلب',d:'۲۵ تیر ۱۴۰۴',c:'قلب و عروق',s:'بیماری‌های قلبی شایع‌ترین علت مرگ در ایران است.'},
+  {icon:'🧠',t:'تأثیر خواب بر عملکرد مغز',d:'۲۰ تیر ۱۴۰۴',c:'مغز و اعصاب',s:'کیفیت خواب ارتباط مستقیم با سلامت مغز دارد.'},
+  {icon:'👶',t:'راهنمای واکسیناسیون کودکان',d:'۱۵ تیر ۱۴۰۴',c:'اطفال',s:'برنامه واکسیناسیون از بدو تولد تا ۶ سالگی.'},
+  {icon:'🥗',t:'تغذیه سالم در تابستان',d:'۱۰ تیر ۱۴۰۴',c:'تغذیه',s:'انتخاب‌های غذایی مناسب در گرمای تابستان.'},
+  {icon:'🦴',t:'پوکی استخوان',d:'۵ تیر ۱۴۰۴',c:'ارتوپدی',s:'بیماری خاموش. با غربالگری پیشگیری کنید.'},
+  {icon:'✨',t:'مراقبت پوست در برابر آفتاب',d:'۱ تیر ۱۴۰۴',c:'پوست و مو',s:'محافظت از پوست در برابر اشعه UV.'}
+];
+var LICENSE_DATA = [
+  {src:'https://omid.hospital/wp-content/uploads/2025/09/اعتبار-بخشي-1-scaled-1-1024x726.jpeg',cap:'🏅 اعتباربخشی ملی'},
+  {src:'https://omid.hospital/wp-content/uploads/2025/09/8-min-745x1024.jpg',cap:'🎗️ تقدیرنامه'},
+  {src:'https://omid.hospital/wp-content/uploads/2025/09/9-min-745x1024.jpg',cap:'🎗️ تقدیرنامه'},
+  {src:'https://omid.hospital/wp-content/uploads/2025/09/7-min-745x1024.jpg',cap:'🎗️ تقدیرنامه'},
+  {src:'https://omid.hospital/wp-content/uploads/2025/09/6-min-745x1024.jpg',cap:'🏆 تقدیرنامه کرونا'},
+  {src:'https://omid.hospital/wp-content/uploads/2025/09/3-min-745x1024.jpg',cap:'🎗️ تقدیرنامه'},
+  {src:'https://omid.hospital/wp-content/uploads/2025/09/4-min-745x1024.jpg',cap:'🎗️ تقدیرنامه'},
+  {src:'https://omid.hospital/wp-content/uploads/2025/09/30002-min-scaled-1-622x1024.jpg',cap:'🎗️ هفته سلامت'},
+  {src:'https://omid.hospital/wp-content/uploads/2025/09/30001-min-scaled-1-622x1024.jpg',cap:'🎗️ روز پزشک'}
+];
+var HOSP_ICONS = {wards:'🏥','specialized-clinic':'🩺',paraclinical:'🔬'};
+var HOSP_CATS = {wards:'بخش درمانی','specialized-clinic':'کلینیک تخصصی',paraclinical:'پاراکلینیک'};
+</script>
+<script>
+// ========== HELPERS ==========
+var SORTED = DOCTORS.slice().sort(function(a,b){if(a.b&&!b.b)return -1;if(!a.b&&b.b)return 1;return a.n.localeCompare(b.n,'fa');});
+function dImg(d){
+  if(d.img) return '<img src="'+d.img+'" alt="'+d.n+'" onerror="this.parentElement.innerHTML=\''+(d.g==='خانم'?'👩‍⚕️':'👨‍⚕️')+'\'" style="width:100%;height:100%;object-fit:contain;padding:8px">';
+  return '<span class="ph">'+(d.g==='خانم'?'👩‍⚕️':'👨‍⚕️')+'</span>';
+}
+
+// ========== NAVIGATION ==========
+var ALL_PAGES = ['home','doctors','hospitals','nicu','booking','blog','contact','about','patient_guide','insurances','patient_y','calendar','employee_dress','visitor','floor','patient_affairs'];
+function go(p){
+  ALL_PAGES.forEach(function(id){var el=document.getElementById('pg-'+id);if(el)el.classList.remove('ac');});
+  var t=document.getElementById('pg-'+p);if(t)t.classList.add('ac');
+  window.scrollTo({top:0,behavior:'smooth'});
+  document.getElementById('nm').classList.remove('o');
+  var links=document.querySelectorAll('#nm a'),mlinks=document.querySelectorAll('.mnav a');
+  links.forEach(function(l){l.classList.remove('ac');});
+  mlinks.forEach(function(l){l.classList.remove('ac');});
+  var map={home:0,doctors:1,hospitals:2,booking:3,blog:4,patient_guide:6,about:7};
+  if(map[p]!==undefined&&links[map[p]])links[map[p]].classList.add('ac');
+  if(p==='booking'&&mlinks[2])mlinks[2].classList.add('ac');
+  if(p==='home'&&mlinks[0])mlinks[0].classList.add('ac');
+  if(p==='doctors'&&mlinks[1])mlinks[1].classList.add('ac');
+  if(p==='hospitals'&&mlinks[3])mlinks[3].classList.add('ac');
+  if(p==='about'&&mlinks[4])mlinks[4].classList.add('ac');
+  if(p==='doctors'){docFiltered=SORTED;docPage=0;renderDocs();}
+  if(p==='hospitals')initHosp();
+  if(p==='booking')initWiz();
+  if(p==='blog')initBlog();
+  if(p==='about')initAbout();
+  if(p==='patient_guide')initPatientGuide();
+  if(p==='insurances')initInsurances();
+  if(p==='patient_y')initPatientY();
+  if(p==='calendar')initCalendar();
+  if(p==='employee_dress')initEmployeeDress();
+  if(p==='visitor')initVisitor();
+  if(p==='floor')initFloor();
+  if(p==='patient_affairs')initPatientAffairs();
+}
+function toggleGuide(){document.getElementById('guidePanel').classList.toggle('o');}
+
+// ========== DOCTORS ==========
+var docFiltered=SORTED,docPage=0,docPP=20;
+function filterDocs(){
+  var s=(document.getElementById('ds2').value||'').trim();
+  docFiltered=SORTED;
+  if(s)docFiltered=docFiltered.filter(function(d){return d.n.indexOf(s)>=0||d.sp.indexOf(s)>=0;});
+  if(document.getElementById('fbBtn').classList.contains('ac2'))docFiltered=docFiltered.filter(function(d){return d.b;});
+  docPage=0;renderDocs();
+}
+function renderDocs(){
+  var total=docFiltered.length,bc=docFiltered.filter(function(d){return d.b;}).length;
+  document.getElementById('doctorCountLbl').textContent=total+' پزشک ('+bc+' با نوبت‌دهی فعال)';
+  var start=docPage*docPP,page=docFiltered.slice(start,start+docPP),html='';
+  page.forEach(function(d){
+    var didx=DOCTORS.indexOf(d);
+    html+='<div class="dc" onclick="showDocModal('+didx+')">'
+      +'<div class="dci">'+dImg(d)+(d.b?'<div class="dcb">📅 رزرو</div>':'')+'</div>'
+      +'<div class="dc-body"><div class="dcn">'+d.n+'</div><div class="dcs">'+d.sp+'</div>'
+      +'<button class="btn '+(d.b?'btn-p':'btn-ghost')+' btn-sm btn-r" onclick="event.stopPropagation();goToBook('+didx+')" style="width:100%;justify-content:center;margin-top:8px">'+(d.b?'📅 رزرو نوبت':'👁️ مشاهده')+'</button></div></div>';
+  });
+  document.getElementById('docG').innerHTML=html||'<p style="color:#64748B;text-align:center;grid-column:1/-1;padding:40px">پزشکی یافت نشد</p>';
+  var tp=Math.ceil(total/docPP),pager='';
+  for(var j=0;j<tp;j++)pager+='<button class="pb-btn'+(j===docPage?' ac2':'')+'" onclick="docPage='+j+';renderDocs();window.scrollTo(0,300)">'+(j+1)+'</button>';
+  document.getElementById('pgB').innerHTML=pager;
+}
+function showDocModal(idx){
+  var d=DOCTORS[idx];if(!d)return;
+  document.getElementById('modalContent').innerHTML=
+    '<button class="mc-close" onclick="document.getElementById(\'modal\').classList.remove(\'o\')">✕</button>'
+    +'<div style="display:flex;gap:16px;flex-wrap:wrap;align-items:flex-start">'
+    +'<div style="width:110px;height:120px;border-radius:var(--rx);overflow:hidden;flex-shrink:0;background:var(--c3);display:flex;align-items:center;justify-content:center;font-size:2.8rem">'+dImg(d)+'</div>'
+    +'<div><h2 style="font-weight:900;font-size:1.05rem;color:#fff;margin-bottom:4px">'+d.n+'</h2>'
+    +'<p style="color:var(--c7);font-weight:600;font-size:.85rem;margin-bottom:12px">'+d.sp+'</p>'
+    +'<button class="btn '+(d.b?'btn-p':'btn-ghost')+' btn-r" onclick="goToBook('+idx+');document.getElementById(\'modal\').classList.remove(\'o\')">'+(d.b?'📅 رزرو نوبت':'⏸️ نوبت‌دهی فعال نیست')+'</button>'
+    +'</div></div>';
+  document.getElementById('modal').classList.add('o');
+}
+function goToBook(idx){
+  var d=DOCTORS[idx];if(!d||!d.b)return;
+  var spKey='heart';
+  for(var k in SP_WORDS){if(d.sp.indexOf(SP_WORDS[k])>=0){spKey=k;break;}}
+  _bpf={sp:spKey,dr:idx};go('booking');
+}
+
+// ========== HOSPITALS ==========
+function filterHosp(cat,e){
+  if(e){document.querySelectorAll('#pg-hospitals .fp2').forEach(function(b){b.classList.remove('ac2');});e.target.classList.add('ac2');}
+  var filtered=cat==='all'?HOSPITAL_DEPTS:HOSPITAL_DEPTS.filter(function(h){return h.cat===cat;});
+  var html='';
+  filtered.forEach(function(h,j){
+    var isNicu=h.slug==='nicu';
+    html+='<div class="dc" onclick="showHospModal('+HOSPITAL_DEPTS.indexOf(h)+')">'
+      +'<div class="dci" style="font-size:2.5rem">'+(h.img?'<img src="'+h.img+'" alt="'+h.t+'" onerror="this.parentElement.innerHTML=\''+HOSP_ICONS[h.cat]+'\'" style="width:100%;height:100%;object-fit:cover">':HOSP_ICONS[h.cat])
+      +'<div style="position:absolute;top:10px;right:10px;padding:3px 10px;background:rgba(7,14,26,.85);border-radius:99px;font-size:.68rem;font-weight:800;color:var(--c7)">'+HOSP_CATS[h.cat]+'</div></div>'
+      +'<div class="dc-body"><div class="dcn">'+h.t+'</div>'+(h.s?'<div class="dcs">'+h.s+'</div>':'')
+      +'<button class="btn btn-o btn-sm btn-r" style="width:100%;justify-content:center;margin-top:8px">'+(isNicu?'🏥 صفحه اختصاصی':'🔗 اطلاعات بیشتر')+'</button></div></div>';
+  });
+  document.getElementById('hGrid').innerHTML=html;
+}
+function initHosp(){filterHosp('all');}
+function showHospModal(idx){
+  var h=HOSPITAL_DEPTS[idx];if(!h)return;
+  if(h.slug==='nicu'){go('nicu');return;}
+  var html='<button class="mc-close" onclick="document.getElementById(\'modal\').classList.remove(\'o\')">✕</button>';
+  html+='<h2 style="font-weight:800;color:#fff;font-size:1.1rem;margin-bottom:8px">'+HOSP_ICONS[h.cat]+' '+h.t+'</h2>';
+  html+='<span style="display:inline-block;padding:3px 10px;background:rgba(6,182,212,.1);color:var(--c7);border-radius:99px;font-size:.72rem;font-weight:700;margin-bottom:14px">'+HOSP_CATS[h.cat]+'</span>';
+  if(h.s)html+='<p style="color:#64748B;line-height:1.9;font-size:.88rem;margin-bottom:14px">'+h.s+'</p>';
+  html+='<a href="https://omid.hospital/hospital/'+h.slug+'/" target="_blank" class="btn btn-o btn-sm btn-r">🔗 مشاهده در سایت اصلی</a>';
+  document.getElementById('modalContent').innerHTML=html;
+  document.getElementById('modal').classList.add('o');
+}
+</script>
+<script>
+// ========== BOOKING WIZARD ==========
+var _bpf=null,wz={st:1,sp:null,dr:null,dt:null,tm:null};
+function initWiz(){
+  wz={st:1,sp:null,dr:null,dt:null,tm:null};
+  renderWzSpecs();updateWzSteps();
+  document.getElementById('wzOK').style.display='none';
+  document.querySelectorAll('.wp').forEach(function(p){p.classList.remove('a');});
+  document.getElementById('wp1').classList.add('a');
+  if(_bpf){var pf=_bpf;_bpf=null;if(pf.dr!==null&&DOCTORS[pf.dr]&&DOCTORS[pf.dr].b){wz.sp=pf.sp;wz.dr=pf.dr;wz.st=3;renderWzCal();updateWzSteps();}}
+}
+function updateWzSteps(){
+  var steps=document.querySelectorAll('#wzSteps .ws2');
+  steps.forEach(function(s,i){s.classList.remove('a','d');if(i+1<wz.st)s.classList.add('d');if(i+1===wz.st)s.classList.add('a');});
+  document.querySelectorAll('.wp').forEach(function(p){p.classList.remove('a');});
+  var p=document.getElementById('wp'+wz.st);if(p)p.classList.add('a');
+}
+function wzNext(){
+  if(wz.st===1&&wz.sp){wz.st=2;renderWzDocs();updateWzSteps();}
+  else if(wz.st===2&&wz.dr!==null){wz.st=3;renderWzCal();updateWzSteps();}
+  else if(wz.st===3&&wz.tm!==null){wz.st=4;updateWzSteps();}
+}
+function wzPrev(){if(wz.st>1){wz.st--;updateWzSteps();}}
+function buildBookableSpecs(){
+  var map={};
+  DOCTORS.forEach(function(d){if(!d.b)return;if(!map[d.sp])map[d.sp]={cnt:0,icon:'🏥',k:'heart'};map[d.sp].cnt++;});
+  for(var k in SP_WORDS){for(var sp in map){if(sp.indexOf(SP_WORDS[k])>=0){var s=SPECS.find(function(x){return x.k===k;});if(s){map[sp].icon=s.icon;map[sp].k=k;}}}}
+  return Object.keys(map).map(function(n){return{n:n,icon:map[n].icon,k:map[n].k,cnt:map[n].cnt};}).sort(function(a,b){return b.cnt-a.cnt;});
+}
+function renderWzSpecs(){
+  var html='';buildBookableSpecs().forEach(function(s){
+    html+='<div class="wc2'+(wz.sp===s.k?' s':'')+'" onclick="selWzSpec(\''+s.k+'\')">'
+      +'<span class="ic">'+s.icon+'</span>'+s.n+'<div style="font-size:.68rem;color:#475569;margin-top:2px">'+s.cnt+' پزشک</div></div>';
+  });
+  document.getElementById('wzSp').innerHTML=html;
+}
+function selWzSpec(k){wz.sp=k;wz.dr=null;renderWzSpecs();document.getElementById('wn1').disabled=false;}
+function renderWzDocs(){
+  var word=SP_WORDS[wz.sp]||'',av=DOCTORS.filter(function(d){return d.b&&d.sp.indexOf(word)>=0;});
+  if(av.length&&wz.dr===null){wz.dr=DOCTORS.indexOf(av[0]);document.getElementById('wn2').disabled=false;}
+  var sd=wz.dr!==null?DOCTORS[wz.dr]:null;
+  document.getElementById('wzDp').innerHTML=sd?'<div class="doc-profile"><div class="doc-profile-img">'+dImg(sd)+'</div><div class="doc-profile-info"><h4>'+sd.n+'</h4><div class="sp">'+sd.sp+'</div></div></div>':'';
+  var lh='';
+  if(av.length){av.forEach(function(d){var i=DOCTORS.indexOf(d);lh+='<div class="wc2'+(wz.dr===i?' s':'')+'" onclick="selWzDoc('+i+')">'+(d.g==='خانم'?'👩‍⚕️':'👨‍⚕️')+' '+d.n+'</div>';});}
+  else lh='<p style="color:#64748B;grid-column:1/-1;text-align:center;padding:20px">پزشکی در این تخصص یافت نشد</p>';
+  document.getElementById('wzDc').innerHTML=lh;
+}
+function selWzDoc(idx){wz.dr=idx;renderWzDocs();document.getElementById('wn2').disabled=false;}
+function renderWzCal(){
+  var sd=wz.dr!==null?DOCTORS[wz.dr]:null;
+  document.getElementById('wzDp2').innerHTML=sd?'<div class="doc-profile"><div class="doc-profile-img">'+dImg(sd)+'</div><div class="doc-profile-info"><h4>'+sd.n+'</h4><div class="sp">'+sd.sp+'</div></div></div>':'';
+  var days=['ش','ی','د','س','چ','پ','ج'],today=new Date().getDate()+2;
+  var h='<div style="text-align:center;font-weight:800;color:#fff;margin-bottom:10px;font-size:.88rem">تیر ۱۴۰۴</div><div class="calg">';
+  days.forEach(function(d){h+='<div class="chd">'+d+'</div>';});
+  for(var j=0;j<2;j++)h+='<div class="cd em"></div>';
+  for(var d=1;d<=31;d++)h+='<div class="cd'+(d<=today?' dx':'')+(wz.dt===d?' s':'')+'" onclick="'+(d<=today?'':'selWzDate('+d+')')+'">'+d+'</div>';
+  h+='</div>';
+  document.getElementById('wzCal').innerHTML=h;renderWzTimes();
+}
+function selWzDate(d){wz.dt=d;wz.tm=null;renderWzCal();}
+function renderWzTimes(){
+  var times=['۸:۰۰','۸:۳۰','۹:۰۰','۹:۳۰','۱۰:۰۰','۱۰:۳۰','۱۱:۰۰','۱۱:۳۰','۱۲:۰۰','۱۵:۰۰','۱۵:۳۰','۱۶:۰۰','۱۶:۳۰','۱۷:۰۰','۱۷:۳۰','۱۸:۰۰'];
+  var blocked=new Set();while(blocked.size<4)blocked.add(Math.floor(Math.random()*times.length));
+  var html='';times.forEach(function(t,j){html+='<div class="tb2'+(blocked.has(j)?' dx':'')+(wz.tm===j?' s':'')+'" onclick="'+(blocked.has(j)?'':'selWzTime('+j+')')+'">'+t+'</div>';});
+  document.getElementById('wzTS').innerHTML=html;document.getElementById('wn3').disabled=wz.tm===null;
+}
+function selWzTime(t){wz.tm=t;renderWzTimes();document.getElementById('wn3').disabled=false;}
+function submitBooking(){
+  var name=document.getElementById('pn').value.trim(),phone=document.getElementById('pp').value.trim();
+  if(!name||!phone){alert('نام و شماره همراه الزامی است');return;}
+  var code='OMD-'+Math.floor(Math.random()*900000+100000);
+  document.getElementById('tc').textContent=code;
+  document.querySelectorAll('.wp').forEach(function(p){p.classList.remove('a');});
+  document.getElementById('wzOK').style.display='block';
+  document.querySelectorAll('#wzSteps .ws2').forEach(function(e){e.classList.add('d');});
+  try{var apps=JSON.parse(localStorage.getItem('omid_apps')||'[]');apps.push({name:name,phone:phone,doctor:wz.dr!==null?DOCTORS[wz.dr].n:'',date:wz.dt,code:code,created:new Date().toISOString()});localStorage.setItem('omid_apps',JSON.stringify(apps));}catch(e){}
+}
+
+// ========== BLOG ==========
+function initBlog(){
+  var html='';BLOG.forEach(function(b){html+='<div class="blc"><div class="blci">'+b.icon+'</div><div class="blcc"><span class="cat">'+b.c+'</span><h3>'+b.t+'</h3><p>'+b.s+'</p><div class="date">📅 '+b.d+'</div></div></div>';});
+  document.getElementById('blogGrid').innerHTML=html;
+}
+
+// ========== ABOUT ==========
+function initAbout(){
+  var lh='';LICENSE_DATA.forEach(function(l,i){lh+='<div class="license-card" onclick="openLb('+i+')"><img src="'+l.src+'" alt="'+l.cap+'" loading="lazy"><div class="license-label">'+l.cap+'</div></div>';});
+  document.getElementById('licenses').innerHTML=lh;
+  var mh='';DECEASED.forEach(function(d){mh+='<div class="mc"><div class="mci">'+(d.img?'<img src="'+d.img+'" alt="'+d.n+'" onerror="this.parentElement.innerHTML=\'🕊️\'">':'🕊️')+'</div><div class="mcn">زنده‌یاد '+d.n.replace(/مرحوم /g,'')+'</div><div class="mcs">'+d.sp+'</div></div>';});
+  document.getElementById('memGridAbout').innerHTML=mh;
+}
+
+// ========== LIGHTBOX ==========
+var lbIdx=0;
+function openLb(i){lbIdx=i;showLb();}
+function showLb(){var it=LICENSE_DATA[lbIdx];document.getElementById('lbImg').src=it.src;document.getElementById('lbCap').textContent=it.cap;document.getElementById('lightbox').classList.add('o');}
+function lbNext(){lbIdx=(lbIdx+1)%LICENSE_DATA.length;showLb();}
+function lbPrev(){lbIdx=(lbIdx-1+LICENSE_DATA.length)%LICENSE_DATA.length;showLb();}
+function closeLb(){document.getElementById('lightbox').classList.remove('o');}
+document.addEventListener('keydown',function(e){if(!document.getElementById('lightbox').classList.contains('o'))return;if(e.key==='Escape')closeLb();if(e.key==='ArrowLeft')lbNext();if(e.key==='ArrowRight')lbPrev();});
+
+// ========== GUIDE PAGES ==========
+function initPatientGuide(){
+  var html='',links=GUIDE_PAGES.patient_guide.links;
+  links.forEach(function(l){var oc=l.page?'onclick="go(\''+l.page+'\')"':'';html+='<div class="sc2" '+oc+' style="cursor:pointer;display:flex;align-items:center;gap:14px;padding:20px"><div class="svi" style="margin:0;flex-shrink:0;font-size:1.2rem">'+l.icon+'</div><div><h3 style="margin:0;font-size:.9rem">'+l.t+'</h3></div></div>';});
+  document.getElementById('guideLinks').innerHTML=html;
+}
+function initInsurances(){renderInsTable(GUIDE_PAGES.insurances.insurers);}
+function renderInsTable(list){
+  var html='';list.forEach(function(ins){
+    html+='<tr style="border-bottom:1px solid var(--gm)">'
+      +'<td style="padding:10px;text-align:center;color:var(--c7);font-weight:800;font-size:.82rem">'+ins.no+'</td>'
+      +'<td style="padding:10px;text-align:right;color:#E2E8F0;font-size:.85rem">'+ins.name+'</td>'
+      +'<td style="padding:10px;text-align:center"><span style="padding:2px 10px;border-radius:99px;font-size:.72rem;font-weight:700;'+(ins.method==='آنلاین'?'background:rgba(16,185,129,.12);color:#10B981;':'background:rgba(212,168,67,.12);color:#D4A843;')+'">'+ins.method+'</span></td>'
+      +'<td style="padding:10px;text-align:center;color:#94A3B8;font-size:.82rem">'+ins.type+'</td></tr>';
+  });
+  document.getElementById('insBody').innerHTML=html;
+}
+function filterIns(){var s=(document.getElementById('insSearch').value||'').trim();renderInsTable(s?GUIDE_PAGES.insurances.insurers.filter(function(x){return x.name.indexOf(s)>=0;}):GUIDE_PAGES.insurances.insurers);}
+function initPatientY(){
+  var html='';GUIDE_PAGES.patient_y.sections.forEach(function(sec){
+    html+='<div style="background:var(--c2);border:1px solid var(--gm);border-radius:var(--rr);padding:24px;margin-bottom:14px"><h2 style="font-weight:800;color:#fff;margin-bottom:14px;font-size:1rem">'+sec.t+'</h2><ul style="padding-right:18px;color:#64748B;line-height:2.2;font-size:.88rem">';
+    sec.items.forEach(function(it){html+='<li>'+it+'</li>';});
+    html+='</ul></div>';
+  });
+  document.getElementById('patientYContent').innerHTML=html;
+}
+function initCalendar(){
+  var days=['شنبه','یکشنبه','دوشنبه','سه‌شنبه','چهارشنبه','پنجشنبه'];
+  var html='<table style="width:100%;border-collapse:collapse;font-size:.8rem"><thead><tr style="background:var(--c3)"><th style="padding:10px;color:#fff;border:1px solid var(--gm);min-width:90px;text-align:center">کلینیک</th>';
+  days.forEach(function(d){html+='<th style="padding:10px;color:#fff;border:1px solid var(--gm);min-width:120px;text-align:center">'+d+'</th>';});
+  html+='</tr></thead><tbody>';
+  GUIDE_PAGES.calendar.clinics.forEach(function(c){
+    html+='<tr><td style="padding:10px;font-weight:800;color:var(--c7);border:1px solid var(--gm);background:var(--c2);text-align:center">'+c.name+'</td>';
+    for(var d=0;d<6;d++){var slots=c.days[d];html+='<td style="padding:8px;text-align:center;border:1px solid var(--gm);color:#CBD5E1;font-size:.75rem">'+(slots?slots.map(function(s){return'<span style="font-weight:700;color:#fff">'+s.d+'</span><br><span style="color:var(--c7)">'+s.t+'</span>';}).join('<br>'):'<span style="color:#334155">—</span>')+'</td>';}
+    html+='</tr>';
+  });
+  html+='</tbody></table>';
+  document.getElementById('calContainer').innerHTML=html;
+}
+function initEmployeeDress(){document.getElementById('empDressContent').innerHTML='<div style="max-width:800px;margin:0 auto;text-align:center"><img src="'+GUIDE_PAGES.employee_dress.img+'" alt="راهنمای پوشش" style="max-width:100%;border-radius:var(--rr);box-shadow:var(--sh2)" onerror="this.style.display=\'none\'"></div>';}
+function initVisitor(){
+  var v=GUIDE_PAGES.visitor,html='<div style="max-width:800px;margin:0 auto">';
+  html+='<div style="background:linear-gradient(135deg,var(--c4),var(--c3));border-radius:var(--rr);padding:28px;text-align:center;margin-bottom:20px;color:#fff"><div style="font-size:2.5rem;margin-bottom:8px">⏰</div><h2 style="font-weight:900;font-size:1.3rem">ساعت ملاقات: '+v.visitTime+'</h2><p style="opacity:.7;margin-top:4px;font-size:.85rem">همه‌روزه</p></div>';
+  html+='<div style="background:var(--c2);border:1px solid var(--gm);border-radius:var(--rr);padding:24px;margin-bottom:14px"><h3 style="color:#fff;font-weight:800;margin-bottom:14px;font-size:.95rem">📋 قوانین ملاقات</h3><ul style="padding-right:18px;color:#64748B;line-height:2.2;font-size:.85rem">';
+  v.rules.forEach(function(r){html+='<li>'+r+'</li>';});
+  html+='</ul></div>';
+  html+='<div style="background:var(--c2);border:1px solid var(--gm);border-radius:var(--rr);padding:24px"><h3 style="color:#fff;font-weight:800;margin-bottom:14px;font-size:.95rem">🍽️ برنامه توزیع غذا</h3>';
+  html+='<table style="width:100%;border-collapse:collapse;font-size:.83rem"><thead><tr style="background:var(--c3)"><th style="padding:10px;color:#fff;border:1px solid var(--gm)">وعده</th><th style="padding:10px;color:#fff;border:1px solid var(--gm)">زمان توزیع</th><th style="padding:10px;color:#fff;border:1px solid var(--gm)">جمع‌آوری</th></tr></thead><tbody>';
+  v.meals.forEach(function(m){html+='<tr><td style="padding:10px;font-weight:700;color:#fff;border:1px solid var(--gm)">'+m.meal+'</td><td style="padding:10px;text-align:center;color:#94A3B8;border:1px solid var(--gm)">'+m.serve+'</td><td style="padding:10px;text-align:center;color:#94A3B8;border:1px solid var(--gm)">'+m.collect+'</td></tr>';});
+  html+='</tbody></table><p style="color:#475569;font-size:.75rem;margin-top:10px;text-align:center">📞 شماره داخلی مهماندار: '+v.internalPhone+'</p></div></div>';
+  document.getElementById('visitorContent').innerHTML=html;
+}
+function initFloor(){document.getElementById('floorContent').innerHTML='<div style="max-width:900px;margin:0 auto;text-align:center"><img src="'+GUIDE_PAGES.floor.img+'" alt="راهنمای طبقات" style="max-width:100%;border-radius:var(--rr);box-shadow:var(--sh2)" onerror="this.style.display=\'none\'"></div>';}
+function initPatientAffairs(){document.getElementById('patAffairsContent').innerHTML='<div style="max-width:600px;margin:0 auto;text-align:center"><img src="'+GUIDE_PAGES.patient_affairs.img+'" alt="پیگیری امور بیماران" style="max-width:100%;border-radius:var(--rr);box-shadow:var(--sh2)" onerror="this.style.display=\'none\'"></div>';}
+</script>
+<script>
+// ========== INIT ==========
+document.addEventListener('DOMContentLoaded', function(){
+  // Mobile detection
+  function checkMobile(){document.body.classList.toggle('has-mnav', window.innerWidth<=850);}
+  checkMobile();window.addEventListener('resize',checkMobile);
+
+  // Topbar scroll effect
+  window.addEventListener('scroll',function(){document.getElementById('tb').classList.toggle('sc',window.scrollY>50);});
+
+  // Guide panel close outside
+  document.addEventListener('click',function(e){
+    var gp=document.getElementById('guidePanel'),gf=document.getElementById('guideFab');
+    if(gp&&gf&&!gp.contains(e.target)&&e.target!==gf&&!gf.contains(e.target))gp.classList.remove('o');
+  });
+
+  // Scroll reveal
+  var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting)e.target.classList.add('vs');});},{threshold:0.12});
+  document.querySelectorAll('.rv').forEach(function(el){io.observe(el);});
+
+  // Counter animation
+  document.querySelectorAll('.hsn[data-to]').forEach(function(el){
+    var target=parseInt(el.dataset.to),count=0,inc=target/40;
+    var timer=setInterval(function(){count+=inc;if(count>=target){count=target;clearInterval(timer);}el.textContent=Math.floor(count)+'+';},20);
+  });
+
+  // Bento grid
+  var bh='';
+  SPECS.forEach(function(s,i){
+    bh+='<div class="bc'+(i===0?' ft':'')+'" onclick="go(\'doctors\')">'
+      +'<div class="bci">'+s.icon+'</div>'
+      +'<div class="bcn">'+s.n+'</div>'
+      +'<div class="bcs">'+s.cnt+' پزشک</div></div>';
+  });
+  document.getElementById('bentoGrid').innerHTML=bh;
+
+  // Services
+  var services=[
+    {i:'📅',n:'رزرو نوبت آنلاین',p:'در هر ساعت شبانه‌روز نوبت پزشک خود را رزرو کنید.',f:1},
+    {i:'🔬',n:'آزمایشگاه',p:'مجهزترین آزمایشگاه با مشاهده آنلاین جواب.'},
+    {i:'🩻',n:'تصویربرداری',p:'MRI، CT اسکن، رادیولوژی و سونوگرافی.'},
+    {i:'🏥',n:'بخش‌های بستری',p:'CCU، ICU، NICU و ۱۶ بخش تخصصی دیگر.'},
+    {i:'🛡️',n:'بیمه‌های طرف قرارداد',p:'پذیرش با ۳۰ بیمه پایه و تکمیلی.'},
+    {i:'🚑',n:'اورژانس ۲۴ ساعته',p:'واحد اورژانس مجهز با تیم آماده شبانه‌روز.'}
+  ];
+  var sh='';services.forEach(function(s,i){sh+='<div class="sc2'+(i===0?' ft2':'')+'">'+'<div class="svi">'+s.i+'</div><h3>'+s.n+'</h3><p>'+s.p+'</p></div>';});
+  document.getElementById('srvGrid').innerHTML=sh;
+
+  // Doctor preview (bookable only)
+  var bookable=SORTED.filter(function(d){return d.b;});
+  var ph='';bookable.forEach(function(d){
+    var idx=DOCTORS.indexOf(d);
+    ph+='<div class="dc" onclick="showDocModal('+idx+')">'
+      +'<div class="dci">'+dImg(d)+'<div class="dcb">📅 رزرو</div></div>'
+      +'<div class="dc-body"><div class="dcn">'+d.n+'</div><div class="dcs">'+d.sp+'</div>'
+      +'<button class="btn btn-p btn-sm btn-r" onclick="event.stopPropagation();goToBook('+idx+')" style="width:100%;justify-content:center;margin-top:8px">📅 رزرو نوبت</button></div></div>';
+  });
+  document.getElementById('doctorPreview').innerHTML=ph;
+
+  // FAQ
+  var fh='';FAQ.forEach(function(f){fh+='<div class="fq"><button class="fqb" onclick="this.parentElement.classList.toggle(\'o\')"><span>'+f.q+'</span><span class="fqt">+</span></button><div class="fqa"><div class="fqac">'+f.a+'</div></div></div>';});
+  document.getElementById('faqBlock').innerHTML=fh;
+
+  // Init wizard specs
+  renderWzSpecs();
+  docFiltered=SORTED;
+});
+
+// ========== PARTICLES ==========
+(function(){
+  var c=document.getElementById('particles');if(!c)return;
+  var ctx=c.getContext('2d'),w,h,ps=[];
+  function resize(){w=c.width=window.innerWidth;h=c.height=window.innerHeight;}
+  resize();window.addEventListener('resize',resize);
+  for(var i=0;i<50;i++)ps.push({x:Math.random()*w,y:Math.random()*h,r:Math.random()*1.8+0.3,s:Math.random()*0.25+0.05,o:Math.random()*0.3+0.04,a:Math.random()*Math.PI*2});
+  function anim(){
+    ctx.clearRect(0,0,w,h);
+    ps.forEach(function(p){
+      p.a+=0.002;p.x+=Math.cos(p.a)*0.15;p.y+=p.s;
+      if(p.y>h+8)p.y=-8;if(p.x>w+8)p.x=-8;if(p.x<-8)p.x=w+8;
+      ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
+      ctx.fillStyle='rgba(34,211,238,'+p.o+')';ctx.fill();
+    });
+    requestAnimationFrame(anim);
+  }
+  anim();
+})();
+</script>
+<!-- API + Auth + Booking Integration -->
+<link rel="stylesheet" href="js/booking.css">
+<script src="js/api.js"></script>
+<script src="js/auth.js"></script>
+<script src="js/site-api-bridge.js"></script>
+</body>
+</html>

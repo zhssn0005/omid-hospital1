@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>پنل مدیریت - بیمارستان امید</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div id="app" class="app-container">
+    <!-- Login Page -->
+    <div id="login-page" class="login-page">
+      <div class="login-card">
+        <div class="login-header">
+          <h1>پنل مدیریت بیمارستان امید</h1>
+          <p>لطفاً وارد حساب کاربری خود شوید</p>
+        </div>
+        <form id="login-form" class="login-form">
+          <div class="form-group">
+            <label>نام کاربری</label>
+            <input type="text" id="login-username" required autocomplete="username">
+          </div>
+          <div class="form-group">
+            <label>رمز عبور</label>
+            <input type="password" id="login-password" required autocomplete="current-password">
+          </div>
+          <div class="form-actions">
+            <button type="submit" class="btn btn-primary">ورود</button>
+          </div>
+          <div id="login-error" class="error-message"></div>
+        </form>
+      </div>
+    </div>
+
+    <!-- Main Dashboard -->
+    <div id="dashboard" class="dashboard" style="display: none;">
+      <!-- Sidebar -->
+      <aside class="sidebar">
+        <div class="sidebar-header">
+          <h2>بیمارستان امید</h2>
+          <p id="user-name"></p>
+        </div>
+        <nav class="sidebar-nav">
+          <a href="#" class="nav-item active" data-page="dashboard">
+            <span class="icon">📊</span>
+            داشبورد
+          </a>
+          <a href="#" class="nav-item" data-page="doctors">
+            <span class="icon">👨‍⚕️</span>
+            مدیریت پزشکان
+          </a>
+          <a href="#" class="nav-item" data-page="specialties">
+            <span class="icon">🏥</span>
+            تخصص‌ها
+          </a>
+          <a href="#" class="nav-item" data-page="appointments">
+            <span class="icon">📅</span>
+            نوبت‌ها
+          </a>
+          <a href="#" class="nav-item" data-page="departments">
+            <span class="icon">🏨</span>
+            بخش‌ها
+          </a>
+          <a href="#" class="nav-item" data-page="reviews">
+            <span class="icon">⭐</span>
+            نظرات
+          </a>
+          <a href="#" class="nav-item" data-page="users">
+            <span class="icon">👥</span>
+            کاربران
+          </a>
+          <a href="#" class="nav-item" data-page="settings">
+            <span class="icon">⚙️</span>
+            تنظیمات
+          </a>
+        </nav>
+        <div class="sidebar-footer">
+          <button id="logout-btn" class="btn btn-secondary">خروج</button>
+        </div>
+      </aside>
+
+      <!-- Main Content -->
+      <main class="main-content">
+        <div id="page-container"></div>
+      </main>
+    </div>
+  </div>
+
+  <!-- Loading Spinner -->
+  <div id="loading-overlay" class="loading-overlay" style="display: none;">
+    <div class="spinner"></div>
+  </div>
+
+  <!-- Toast Notifications -->
+  <div id="toast-container" class="toast-container"></div>
+
+  <script src="app.js"></script>
+</body>
+</html>

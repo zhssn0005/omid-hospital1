@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>رزرو نوبت - بیمارستان امید</title>
+  <link rel="stylesheet" href="js/booking.css">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Segoe UI', Tahoma, sans-serif; background: #f0f9ff; min-height: 100vh; }
+
+    header {
+      background: #0c4a6e;
+      color: #fff;
+      padding: 1rem 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    header a { color: #fff; text-decoration: none; font-size: 0.95rem; }
+    header h1 { font-size: 1.4rem; }
+
+    .page-container {
+      max-width: 1000px;
+      margin: 2rem auto;
+      padding: 0 1rem;
+    }
+
+    .page-intro {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+    .page-intro h2 { font-size: 2rem; color: #0c4a6e; margin-bottom: 0.5rem; }
+    .page-intro p { color: #64748b; font-size: 1rem; }
+  </style>
+</head>
+<body>
+  <header>
+    <a href="/">← بازگشت به سایت</a>
+    <h1>🏥 بیمارستان امید — رزرو نوبت آنلاین</h1>
+    <button id="auth-btn" onclick="Auth.showAuthModal()" 
+      style="background:#0ea5e9;color:#fff;border:none;padding:.5rem 1rem;border-radius:8px;cursor:pointer;">
+      ورود / ثبت‌نام
+    </button>
+  </header>
+
+  <div class="page-container">
+    <div class="page-intro">
+      <h2>رزرو نوبت آنلاین</h2>
+      <p>در ۴ مرحله ساده نوبت خود را رزرو کنید</p>
+    </div>
+
+    <div id="booking-wizard"></div>
+  </div>
+
+  <script src="js/api.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/booking.js"></script>
+</body>
+</html>

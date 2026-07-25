@@ -1,0 +1,182 @@
+[
+  {
+    "postId": "1489",
+    "title": "بخش NICU(نوزادان)",
+    "subtitle": "آی سی یو نوزادان",
+    "slug": "nicu",
+    "img": "https://omid.hospital/wp-content/uploads/2025/09/Untitled-design-23.png",
+    "cat": "wards",
+    "page": 1
+  },
+  {
+    "postId": "1477",
+    "title": "کلینیک تخصصی داخلی",
+    "subtitle": "کلنیک فوق تخصصی بیمارستان امید",
+    "slug": "%da%a9%d9%84%db%8c%d9%86%db%8c%da%a9-%d8%aa%d8%ae%d8%b5%d8%b5%db%8c-%d8%af%d8%a7%d8%ae%d9%84%db%8c",
+    "img": "",
+    "cat": "paraclinical",
+    "page": 1
+  },
+  {
+    "postId": "1468",
+    "title": "کلینیک تخصصی و فوق تخصصی ENT",
+    "subtitle": "کلنیک فوق تخصصی بیمارست��ن امید",
+    "slug": "%da%a9%d9%84%db%8c%d9%86%db%8c%da%a9-%d8%aa%d8%ae%d8%b5%d8%b5%db%8c-%d9%88-%d9%81%d9%88%d9%82-%d8%aa%d8%ae%d8%b5%d8%b5%db%8c-ent",
+    "img": "",
+    "cat": "specialized-clinic",
+    "page": 1
+  },
+  {
+    "postId": "1462",
+    "title": "کلینیک تخصصی جراحی ستون فقرات",
+    "subtitle": "",
+    "slug": "%da%a9%d9%84%db%8c%d9%86%db%8c%da%a9-%d8%aa%d8%ae%d8%b5%d8%b5%db%8c-%d8%ac%d8%b1%d8%a7%d8%ad%db%8c-%d8%b3%d8%aa%d9%88%d9%86-%d9%81%d9%82%d8%b1%d8%a7%d8%aa",
+    "img": "https://omid.hospital/wp-content/uploads/2025/09/IMG_0849-scaled.jpg",
+    "cat": "specialized-clinic",
+    "page": 1
+  },
+  {
+    "postId": "1457",
+    "title": "کلینیک تخصصی نورولوژی",
+    "subtitle": "نورولوژی",
+    "slug": "%da%a9%d9%84%db%8c%d9%86%db%8c%da%a9-%d8%aa%d8%ae%d8%b5%d8%b5%db%8c-%d9%86%d9%88%d8%b1%d9%88%d9%84%d9%88%da%98%db%8c",
+    "img": "https://omid.hospital/wp-content/uploads/2025/09/IMG_0849-scaled.jpg",
+    "cat": "specialized-clinic",
+    "page": 1
+  },
+  {
+    "postId": "1451",
+    "title": "کلنیک تخصصی زنان",
+    "subtitle": "زنان",
+    "slug": "%da%a9%d9%84%d9%86%db%8c%da%a9-%d8%aa%d8%ae%d8%b5%d8%b5%db%8c-%d8%b2%d9%86%d8%a7%d9%86",
+    "img": "https://omid.hospital/wp-content/uploads/2025/09/IMG_0885-scaled.jpg",
+    "cat": "specialized-clinic",
+    "page": 1
+  },
+  {
+    "postId": "1448",
+    "title": "کلینیک تخصصی آنکولوژی",
+    "subtitle": "آنکولوژی",
+    "slug": "%da%a9%d9%84%db%8c%d9%86%db%8c%da%a9-%d8%aa%d8%ae%d8%b5%d8%b5%db%8c-%d8%a2%d9%86%da%a9%d9%88%d9%84%d9%88%da%98%db%8c",
+    "img": "https://omid.hospital/wp-content/uploads/2025/09/IMG_0849-scaled.jpg",
+    "cat": "specialized-clinic",
+    "page": 1
+  },
+  {
+    "postId": "1443",
+    "title": "کلینیک تخصصی تغذیه",
+    "subtitle": "تغذیه",
+    "slug": "%da%a9%d9%84%db%8c%d9%86%db%8c%da%a9-%d8%aa%d8%ae%d8%b5%d8%b5%db%8c-%d8%aa%d8%ba%d8%b0%db%8c%d9%87",
+    "img": "https://omid.hospital/wp-content/uploads/2025/09/IMG_0849-scaled.jpg",
+    "cat": "specialized-clinic",
+    "page": 1
+  },
+  {
+    "postId": "1442",
+    "title": "کلینیک تخصصی روان پزشکی",
+    "subtitle": "روانشناسی",
+    "slug": "%da%a9%d9%84%db%8c%d9%86%db%8c%da%a9-%d8%aa%d8%ae%d8%b5%d8%b5%db%8c-%d8%b1%d9%88%d8%a7%d9%86-%d9%be%d8%b2%d8%b4%da%a9%db%8c",
+    "img": "https://omid.hospital/wp-content/uploads/2025/09/IMG_0849-scaled.jpg",
+    "cat": "paraclinical",
+    "page": 1
+  },
+  {
+    "postId": "1352",
+    "title": "کلنیک تخصصی شنوایی سنجی",
+    "subtitle": "کلنیک فوق تخصصی بیمارستان امید",
+    "slug": "%da%a9%d9%84%d9%86%db%8c%da%a9-%d8%aa%d8%ae%d8%b5%d8%b5%db%8c-%d8%b4%d9%86%d9%88%d8%a7%db%8c%db%8c-%d8%b3%d9%86%d8%ac%db%8c",
+    "img": "",
+    "cat": "specialized-clinic",
+    "page": 1
+  },
+  {
+    "postId": "1347",
+    "title": "کلنیک تخصصی چشم پزشکی",
+    "subtitle": "کلنیک فوق تخصصی بیمارستان امید",
+    "slug": "specialized_ophthalmology_clinic",
+    "img": "https://omid.hospital/wp-content/uploads/2025/09/F587A1EF-8A0D-45D9-A6EB-F10A4ABDB9DB.png",
+    "cat": "specialized-clinic",
+    "page": 1
+  },
+  {
+    "postId": "1343",
+    "title": "کلنیک تحصصی غدد",
+    "subtitle": "کلنیک فوق تخصصی بیمارستان امید",
+    "slug": "specialized_endocrinology_clinic",
+    "img": "https://omid.hospital/wp-content/uploads/2025/09/molaqat-min.jpg-1.webp",
+    "cat": "specialized-clinic",
+    "page": 1
+  },
+  {
+    "postId": "1342",
+    "title": "کلنیک تخصصی ریه",
+    "subtitle": "کلنیک فوق تخصصی بیمارستان امید",
+    "slug": "specialized_pulmonary_clinic",
+    "img": "https://omid.hospital/wp-content/uploads/2025/09/IMG_0889-scaled.jpg",
+    "cat": "specialized-clinic",
+    "page": 2
+  },
+  {
+    "postId": "1331",
+    "title": "کلینیک تخصصی جراحی",
+    "subtitle": "کلنیک فوق تخصصی بیمارستان امید",
+    "slug": "%da%a9%d9%84%db%8c%d9%86%db%8c%da%a9-%d8%aa%d8%ae%d8%b5%d8%b5%db%8c-%d8%ac%d8%b1%d8%a7%d8%ad%db%8c",
+    "img": "https://omid.hospital/wp-content/uploads/2025/09/molaqat-min.jpg.webp",
+    "cat": "specialized-clinic",
+    "page": 2
+  },
+  {
+    "postId": "1325",
+    "title": "کلینیک تخصصی اورولوژی",
+    "subtitle": "",
+    "slug": "%da%a9%d9%84%db%8c%d9%86%db%8c%da%a9-%d8%aa%d8%ae%d8%b5%d8%b5%db%8c-%d8%a7%d9%88%d8%b1%d9%88%d9%84%d9%88%da%98%db%8c",
+    "img": "https://omid.hospital/wp-content/uploads/2025/09/molaqat-min.jpg-1.webp",
+    "cat": "specialized-clinic",
+    "page": 2
+  },
+  {
+    "postId": "1309",
+    "title": "کلینیک تخصصی ارتوپدی",
+    "subtitle": "",
+    "slug": "%da%a9%d9%84%db%8c%d9%86%db%8c%da%a9-%d8%aa%d8%ae%d8%b5%d8%b5%db%8c-%d8%a7%d8%b1%d8%aa%d9%88%d9%be%d8%af%db%8c",
+    "img": "https://omid.hospital/wp-content/uploads/2025/09/molaqat-min.jpg-1.webp",
+    "cat": "specialized-clinic",
+    "page": 2
+  },
+  {
+    "postId": "1306",
+    "title": "کلینیک تخصصی اطفال",
+    "subtitle": "",
+    "slug": "pediatric_clinic",
+    "img": "https://omid.hospital/wp-content/uploads/2025/09/molaqat-min.jpg-1.webp",
+    "cat": "specialized-clinic",
+    "page": 2
+  },
+  {
+    "postId": "614",
+    "title": "بخش IPD",
+    "subtitle": "",
+    "slug": "ipd",
+    "img": "https://omid.hospital/wp-content/uploads/2025/04/Untitled-design-12.png",
+    "cat": "wards",
+    "page": 2
+  },
+  {
+    "postId": "610",
+    "title": "بخش رویال",
+    "subtitle": "خدمات تخصصی و فوق‌تخصصی پزشکی",
+    "slug": "royal",
+    "img": "https://omid.hospital/wp-content/uploads/2025/04/hotel-min.jpg",
+    "cat": "wards",
+    "page": 2
+  },
+  {
+    "postId": "592",
+    "title": "کلنیک فوق تخصصی بیمارستان امید",
+    "subtitle": "کلنیک فوق تخصصی بیمارستان امید",
+    "slug": "clinic",
+    "img": "https://omid.hospital/wp-content/uploads/2025/09/molaqat-min.jpg-1.webp",
+    "cat": "specialized-clinic",
+    "page": 2
+  }
+]

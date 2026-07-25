@@ -1,0 +1,18 @@
+{
+  "name": "omid-hospital",
+  "version": "1.0.0",
+  "description": "Omid Hospital Management System - Full Stack",
+  "main": "server/server.js",
+  "scripts": {
+    "start": "node server/server.js",
+    "dev": "cd server && nodemon server.js",
+    "seed": "cd server && node scripts/seed.js",
+    "build": "echo 'No build step required'"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "keywords": ["hospital", "medical", "appointment"],
+  "author": "Omid Hospital",
+  "license": "MIT"
+}

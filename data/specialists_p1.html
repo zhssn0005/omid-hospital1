@@ -1,0 +1,1167 @@
+<!DOCTYPE html>
+<html dir="rtl" lang="fa-IR" data-theme-mode="light" data-theme-auto="system" data-theme-user-switch="1" data-theme-storage="drplus-color-mode" class="drplus-theme-mode-light">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />				<script id="drplus-color-mode" data-key="drplus-color-mode">
+		(function() {
+			var cfg = {"mode":"light","auto":"system","allow_switch":true,"initial":"light","storage_key":"drplus-color-mode"};
+			var doc = document.documentElement;
+			var bodyClassList = null;
+			var prefersDark = window.matchMedia ? window.matchMedia('(prefers-color-scheme: dark)') : null;
+	
+			function setBodyClassList() {
+				if( bodyClassList || !document.body ) return;
+				bodyClassList = document.body.classList;
+			}
+	
+			function applyMode(mode, persist) {
+				var isDark = mode === 'dark';
+				var add = isDark ? 'is-dark' : 'is-light';
+				var remove = isDark ? 'is-light' : 'is-dark';
+				doc.classList.remove(remove);
+				doc.classList.add(add);
+				doc.setAttribute('data-theme', mode);
+	
+				setBodyClassList();
+				if( bodyClassList ) {
+					bodyClassList.remove(remove);
+					bodyClassList.add(add);
+				}
+	
+				if( persist && cfg.allow_switch ) {
+					try {
+						localStorage.setItem(cfg.storage_key, mode);
+					} catch(e) {}
+				}
+			}
+	
+			function getStoredChoice() {
+				if( !cfg.allow_switch ) return null;
+				try {
+					var stored = localStorage.getItem(cfg.storage_key);
+					if( stored === 'light' || stored === 'dark' ) {
+						return stored;
+					}
+				} catch(e) {}
+				return null;
+			}
+	
+			function resolveMode() {
+				if( cfg.mode === 'light' || cfg.mode === 'dark' ) return cfg.mode;
+	
+				var stored = getStoredChoice();
+				if( stored ) return stored;
+	
+				if( cfg.auto === 'system' && prefersDark ) {
+					return prefersDark.matches ? 'dark' : 'light';
+				}
+				if( cfg.auto === 'prefer_dark' ) return 'dark';
+				if( cfg.auto === 'prefer_light' ) return 'light';
+				return 'light';
+			}
+	
+			var mode = resolveMode();
+			applyMode(mode, false);
+
+			if( cfg.mode === 'both' && cfg.auto === 'system' && prefersDark ) {
+				var listener = function(event) {
+					if( getStoredChoice() ) return;
+					applyMode(event.matches ? 'dark' : 'light', false);
+				};
+				if( prefersDark.addEventListener ) {
+					prefersDark.addEventListener('change', listener);
+				} else if( prefersDark.addListener ) {
+					prefersDark.addListener(listener);
+				}
+			}
+	
+			window.drplusTheme = {
+				set: function(mode) {
+					if( mode !== 'light' && mode !== 'dark' ) return;
+					applyMode(mode, true);
+				},
+				get: function() {
+					return doc.classList.contains('is-dark') ? 'dark' : 'light';
+				},
+				config: cfg
+			};
+	
+			if( document.readyState === 'loading' ) {
+				document.addEventListener('DOMContentLoaded', function() {
+					applyMode(doc.classList.contains('is-dark') ? 'dark' : 'light', false);
+				});
+			}
+		})();
+		</script>
+		<title>متخصص‌ها &#8211; بیمارستان تخصصی و فوق تخصصی امید</title>
+<meta name='robots' content='max-image-preview:large' />
+<link rel="alternate" type="application/rss+xml" title="بیمارستان تخصصی و فوق تخصصی امید &raquo; خوراک" href="https://omid.hospital/feed/" />
+<link rel="alternate" type="application/rss+xml" title="بیمارستان تخصصی و فوق تخصصی امید &raquo; خوراک دیدگاه‌ها" href="https://omid.hospital/comments/feed/" />
+<link rel="alternate" type="application/rss+xml" title="بیمارستان تخصصی و فوق تخصصی امید &raquo; متخصص‌ها خوراک" href="https://omid.hospital/specialists/feed/" />
+<style id="wp-img-auto-sizes-contain-inline-css">
+img:is([sizes=auto i],[sizes^="auto," i]){contain-intrinsic-size:3000px 1500px}
+/*# sourceURL=wp-img-auto-sizes-contain-inline-css */
+</style>
+<style id="wp-emoji-styles-inline-css">
+
+	img.wp-smiley, img.emoji {
+		display: inline !important;
+		border: none !important;
+		box-shadow: none !important;
+		height: 1em !important;
+		width: 1em !important;
+		margin: 0 0.07em !important;
+		vertical-align: -0.1em !important;
+		background: none !important;
+		padding: 0 !important;
+	}
+/*# sourceURL=wp-emoji-styles-inline-css */
+</style>
+<style id="wp-block-library-inline-css">
+:root{--wp-block-synced-color:#7a00df;--wp-block-synced-color--rgb:122,0,223;--wp-bound-block-color:var(--wp-block-synced-color);--wp-editor-canvas-background:#ddd;--wp-admin-theme-color:#007cba;--wp-admin-theme-color--rgb:0,124,186;--wp-admin-theme-color-darker-10:#006ba1;--wp-admin-theme-color-darker-10--rgb:0,107,160.5;--wp-admin-theme-color-darker-20:#005a87;--wp-admin-theme-color-darker-20--rgb:0,90,135;--wp-admin-border-width-focus:2px}@media (min-resolution:192dpi){:root{--wp-admin-border-width-focus:1.5px}}.wp-element-button{cursor:pointer}:root .has-very-light-gray-background-color{background-color:#eee}:root .has-very-dark-gray-background-color{background-color:#313131}:root .has-very-light-gray-color{color:#eee}:root .has-very-dark-gray-color{color:#313131}:root .has-vivid-green-cyan-to-vivid-cyan-blue-gradient-background{background:linear-gradient(135deg,#00d084,#0693e3)}:root .has-purple-crush-gradient-background{background:linear-gradient(135deg,#34e2e4,#4721fb 50%,#ab1dfe)}:root .has-hazy-dawn-gradient-background{background:linear-gradient(135deg,#faaca8,#dad0ec)}:root .has-subdued-olive-gradient-background{background:linear-gradient(135deg,#fafae1,#67a671)}:root .has-atomic-cream-gradient-background{background:linear-gradient(135deg,#fdd79a,#004a59)}:root .has-nightshade-gradient-background{background:linear-gradient(135deg,#330968,#31cdcf)}:root .has-midnight-gradient-background{background:linear-gradient(135deg,#020381,#2874fc)}:root{--wp--preset--font-size--normal:16px;--wp--preset--font-size--huge:42px}.has-regular-font-size{font-size:1em}.has-larger-font-size{font-size:2.625em}.has-normal-font-size{font-size:var(--wp--preset--font-size--normal)}.has-huge-font-size{font-size:var(--wp--preset--font-size--huge)}:root .has-text-align-center{text-align:center}:root .has-text-align-left{text-align:left}:root .has-text-align-right{text-align:right}.has-fit-text{white-space:nowrap!important}#end-resizable-editor-section{display:none}.aligncenter{clear:both}.items-justified-left{justify-content:flex-start}.items-justified-center{justify-content:center}.items-justified-right{justify-content:flex-end}.items-justified-space-between{justify-content:space-between}.screen-reader-text{word-wrap:normal!important;border:0;clip-path:inset(50%);height:1px;margin:-1px;overflow:hidden;padding:0;position:absolute;width:1px}.screen-reader-text:focus{background-color:#ddd;clip-path:none;color:#444;display:block;font-size:1em;height:auto;left:5px;line-height:normal;padding:15px 23px 14px;text-decoration:none;top:5px;width:auto;z-index:100000}html :where(.has-border-color){border-style:solid}html :where([style*=border-color]){border-style:solid}html :where([style*=border-top-color]){border-top-style:solid}html :where([style*=border-right-color]){border-right-style:solid}html :where([style*=border-bottom-color]){border-bottom-style:solid}html :where([style*=border-left-color]){border-left-style:solid}html :where([style*=border-width]){border-style:solid}html :where([style*=border-top-width]){border-top-style:solid}html :where([style*=border-right-width]){border-right-style:solid}html :where([style*=border-bottom-width]){border-bottom-style:solid}html :where([style*=border-left-width]){border-left-style:solid}html :where(img[class*=wp-image-]){height:auto;max-width:100%}:where(figure){margin:0 0 1em}html :where(.is-position-sticky){--wp-admin--admin-bar--position-offset:var(--wp-admin--admin-bar--height,0px)}@media screen and (max-width:600px){html :where(.is-position-sticky){--wp-admin--admin-bar--position-offset:0px}}
+
+/*# sourceURL=/wp-includes/css/dist/block-library/common.min.css */
+</style>
+
+
+<link rel='stylesheet' id='contact-form-7-css' href='https://omid.hospital/wp-content/plugins/contact-form-7/includes/css/styles.css?ver=6.1.1' media='all' />
+<link rel='stylesheet' id='contact-form-7-rtl-css' href='https://omid.hospital/wp-content/plugins/contact-form-7/includes/css/styles-rtl.css?ver=6.1.1' media='all' />
+<style id="woocommerce-inline-inline-css">
+.woocommerce form .form-row .required { visibility: visible; }
+/*# sourceURL=woocommerce-inline-inline-css */
+</style>
+<link rel='stylesheet' id='brands-styles-css' href='https://omid.hospital/wp-content/plugins/woocommerce/assets/css/brands.css?ver=10.1.3' media='all' />
+<link rel='stylesheet' id='drplus-font-IRANYekanXFANum-css' href='https://omid.hospital/wp-content/themes/dr-plus/assets/css/fonts/IRANYekanXFANum.min.css?ver=2.2.5.0' media='all' />
+<link rel='stylesheet' id='drplus-font-AnjomanFANum-css' href='https://omid.hospital/wp-content/themes/dr-plus/assets/css/fonts/AnjomanFANum.min.css?ver=2.2.5.0' media='all' />
+<link rel='stylesheet' id='drplus-select2-css' href='https://omid.hospital/wp-content/themes/dr-plus/assets/libs/select2/select2.min.css?ver=2.2.5.0' media='all' />
+<link rel='stylesheet' id='drplus-swiper-css' href='https://omid.hospital/wp-content/themes/dr-plus/assets/libs/swiper/swiper-bundle.min.css?ver=2.2.5.0' media='all' />
+<link rel='stylesheet' id='drplus-bootstrap-css' href='https://omid.hospital/wp-content/themes/dr-plus/assets/libs/bootstrap-grid.min.css?ver=2.2.5.0' media='all' />
+<link rel='stylesheet' id='drplus-bootstrap-rtl-css' href='https://omid.hospital/wp-content/themes/dr-plus/assets/libs/bootstrap-grid.rtl.min.css?ver=2.2.5.0' media='all' />
+<link rel='stylesheet' id='drplus-font-awesome-css' href='https://omid.hospital/wp-content/themes/dr-plus/assets/libs/fontawesome/css/fa.min.css?ver=2.2.5.0' media='all' />
+<link rel='stylesheet' id='drplus-icons-css' href='https://omid.hospital/wp-content/themes/dr-plus/assets/css/iconly.min.css?ver=2.2.5.0' media='all' />
+<link rel='stylesheet' id='drplus-css' href='https://omid.hospital/wp-content/themes/dr-plus/assets/css/style.min.css?ver=2.2.5.0' media='all' />
+<link rel='stylesheet' id='drplus-wc-css' href='https://omid.hospital/wp-content/themes/dr-plus/assets/css/wc/wc.min.css?ver=2.2.5.0' media='all' />
+<link rel='stylesheet' id='drplus-wishlist-css' href='https://omid.hospital/wp-content/themes/dr-plus/assets/css/wc/wishlist.min.css?ver=2.2.5.0' media='all' />
+<link rel='stylesheet' id='drplus-wishlist-rtl-css' href='https://omid.hospital/wp-content/themes/dr-plus/assets/css/wc/wishlist.rtl.min.css?ver=2.2.5.0' media='all' />
+<link rel='stylesheet' id='drplus-pdp-css' href='https://omid.hospital/wp-content/themes/dr-plus/assets/libs/pdp/persian-datepicker.min.css?ver=2.2.5.0' media='all' />
+<link rel='stylesheet' id='drplus-custom-css' href='https://omid.hospital/wp-content/uploads/drplus.css?ver=1765014613' media='all' />
+<link rel='stylesheet' id='elementor-frontend-css' href='https://omid.hospital/wp-content/plugins/elementor/assets/css/frontend-rtl.min.css?ver=3.32.5' media='all' />
+<link rel='stylesheet' id='widget-image-css' href='https://omid.hospital/wp-content/plugins/elementor/assets/css/widget-image-rtl.min.css?ver=3.32.5' media='all' />
+<link rel='stylesheet' id='e-sticky-css' href='https://omid.hospital/wp-content/plugins/elementor-pro/assets/css/modules/sticky.min.css?ver=3.32.2' media='all' />
+<link rel='stylesheet' id='e-animation-fadeInRight-css' href='https://omid.hospital/wp-content/plugins/elementor/assets/lib/animations/styles/fadeInRight.min.css?ver=3.32.5' media='all' />
+<link rel='stylesheet' id='widget-off-canvas-css' href='https://omid.hospital/wp-content/plugins/elementor-pro/assets/css/widget-off-canvas-rtl.min.css?ver=3.32.2' media='all' />
+<link rel='stylesheet' id='widget-heading-css' href='https://omid.hospital/wp-content/plugins/elementor/assets/css/widget-heading-rtl.min.css?ver=3.32.5' media='all' />
+<link rel='stylesheet' id='widget-icon-box-css' href='https://omid.hospital/wp-content/plugins/elementor/assets/css/widget-icon-box-rtl.min.css?ver=3.32.5' media='all' />
+<link rel='stylesheet' id='widget-google_maps-css' href='https://omid.hospital/wp-content/plugins/elementor/assets/css/widget-google_maps-rtl.min.css?ver=3.32.5' media='all' />
+<link rel='stylesheet' id='elementor-post-15-css' href='https://omid.hospital/wp-content/uploads/elementor/css/post-15.css?ver=1784315449' media='all' />
+<link rel='stylesheet' id='elementor-post-508-css' href='https://omid.hospital/wp-content/uploads/elementor/css/post-508.css?ver=1784315451' media='all' />
+<link rel='stylesheet' id='elementor-post-482-css' href='https://omid.hospital/wp-content/uploads/elementor/css/post-482.css?ver=1784315451' media='all' />
+<link rel='stylesheet' id='abzarwp-fonts-all-css' href='https://omid.hospital/wp-content/plugins/elementor-pro/abzarwp/fonts/all/css/fonts.css?ver=123456' media='all' />
+<link rel='stylesheet' id='elementor-icons-drplus-css' href='https://omid.hospital/wp-content/uploads/elementor/custom-icons/drplus/style.css?ver=1.0.0' media='all' />
+<script id="jquery-core-js" src="https://omid.hospital/wp-includes/js/jquery/jquery.min.js?ver=3.7.1"></script>
+<script id="jquery-migrate-js" src="https://omid.hospital/wp-includes/js/jquery/jquery-migrate.min.js?ver=3.4.1"></script>
+<script data-wp-strategy="defer" defer id="jquery-blockui-js" src="https://omid.hospital/wp-content/plugins/woocommerce/assets/js/jquery-blockui/jquery.blockUI.min.js?ver=2.7.0-wc.10.1.3"></script>
+<script id="wc-add-to-cart-js-extra">
+var wc_add_to_cart_params = {"ajax_url":"/wp-admin/admin-ajax.php","wc_ajax_url":"/?wc-ajax=%%endpoint%%","i18n_view_cart":"\u0645\u0634\u0627\u0647\u062f\u0647 \u0633\u0628\u062f \u062e\u0631\u06cc\u062f","cart_url":"https://omid.hospital","is_cart":"","cart_redirect_after_add":"no"};
+//# sourceURL=wc-add-to-cart-js-extra
+</script>
+<script data-wp-strategy="defer" defer id="wc-add-to-cart-js" src="https://omid.hospital/wp-content/plugins/woocommerce/assets/js/frontend/add-to-cart.min.js?ver=10.1.3"></script>
+<script data-wp-strategy="defer" defer id="js-cookie-js" src="https://omid.hospital/wp-content/plugins/woocommerce/assets/js/js-cookie/js.cookie.min.js?ver=2.1.4-wc.10.1.3"></script>
+<script id="woocommerce-js-extra">
+var woocommerce_params = {"ajax_url":"/wp-admin/admin-ajax.php","wc_ajax_url":"/?wc-ajax=%%endpoint%%","i18n_password_show":"Show password","i18n_password_hide":"Hide password"};
+//# sourceURL=woocommerce-js-extra
+</script>
+<script data-wp-strategy="defer" defer id="woocommerce-js" src="https://omid.hospital/wp-content/plugins/woocommerce/assets/js/frontend/woocommerce.min.js?ver=10.1.3"></script>
+<link rel="https://api.w.org/" href="https://omid.hospital/wp-json/" /><link rel="EditURI" type="application/rsd+xml" title="RSD" href="https://omid.hospital/xmlrpc.php?rsd" />
+<link rel="stylesheet" href="https://omid.hospital/wp-content/themes/dr-plus/rtl.css" media="screen" /><meta name="generator" content="WordPress 7.0.2" />
+<meta name="generator" content="WooCommerce 10.1.3" />
+<meta name="generator" content="Redux 4.5.7" />	<noscript><style>.woocommerce-product-gallery{ opacity: 1 !important; }</style></noscript>
+	<meta name="generator" content="Elementor 3.32.5; features: e_font_icon_svg, additional_custom_breakpoints; settings: css_print_method-external, google_font-disabled, font_display-swap">
+			<style>
+				.e-con.e-parent:nth-of-type(n+4):not(.e-lazyloaded):not(.e-no-lazyload),
+				.e-con.e-parent:nth-of-type(n+4):not(.e-lazyloaded):not(.e-no-lazyload) * {
+					background-image: none !important;
+				}
+				@media screen and (max-height: 1024px) {
+					.e-con.e-parent:nth-of-type(n+3):not(.e-lazyloaded):not(.e-no-lazyload),
+					.e-con.e-parent:nth-of-type(n+3):not(.e-lazyloaded):not(.e-no-lazyload) * {
+						background-image: none !important;
+					}
+				}
+				@media screen and (max-height: 640px) {
+					.e-con.e-parent:nth-of-type(n+2):not(.e-lazyloaded):not(.e-no-lazyload),
+					.e-con.e-parent:nth-of-type(n+2):not(.e-lazyloaded):not(.e-no-lazyload) * {
+						background-image: none !important;
+					}
+				}
+			</style>
+			<link rel="icon" href="https://omid.hospital/wp-content/uploads/2025/09/Logo-scaled-e1754348924179-100x100.png" sizes="32x32" />
+<link rel="icon" href="https://omid.hospital/wp-content/uploads/2025/09/Logo-scaled-e1754348924179.png" sizes="192x192" />
+<link rel="apple-touch-icon" href="https://omid.hospital/wp-content/uploads/2025/09/Logo-scaled-e1754348924179.png" />
+<meta name="msapplication-TileImage" content="https://omid.hospital/wp-content/uploads/2025/09/Logo-scaled-e1754348924179.png" />
+</head>
+<body class="rtl archive post-type-archive post-type-archive-specialist wp-custom-logo wp-theme-dr-plus theme-dr-plus woocommerce-no-js is-light drplus-theme-initial-light elementor-default elementor-kit-15">
+		<header data-elementor-type="header" data-elementor-id="508" class="elementor elementor-508 elementor-location-header" data-elementor-post-type="elementor_library">
+			<div class="elementor-element elementor-element-5a760c0 e-con-full e-flex e-con e-parent" data-id="5a760c0" data-element_type="container">
+		<div class="elementor-element elementor-element-ba7f9a3 e-con-full e-flex e-con e-child" data-id="ba7f9a3" data-element_type="container" data-settings="{&quot;background_background&quot;:&quot;classic&quot;}">
+		<div class="elementor-element elementor-element-dd36ff6 e-con-full e-grid e-con e-child" data-id="dd36ff6" data-element_type="container" data-settings="{&quot;background_background&quot;:&quot;classic&quot;,&quot;sticky&quot;:&quot;top&quot;,&quot;sticky_anchor_link_offset&quot;:150,&quot;sticky_on&quot;:[&quot;desktop&quot;,&quot;tablet&quot;,&quot;mobile&quot;],&quot;sticky_offset&quot;:0,&quot;sticky_effects_offset&quot;:0}">
+		<div class="elementor-element elementor-element-254ba74 e-con-full e-flex e-con e-child" data-id="254ba74" data-element_type="container">
+				<div class="elementor-element elementor-element-63ae4c1 elementor-hidden-desktop elementor-view-default elementor-widget elementor-widget-icon" data-id="63ae4c1" data-element_type="widget" data-widget_type="icon.default">
+				<div class="elementor-widget-container">
+							<div class="elementor-icon-wrapper">
+			<a class="elementor-icon" href="#elementor-action%3Aaction%3Doff_canvas%3Aopen%26settings%3DeyJpZCI6ImVjZGVjMTAiLCJkaXNwbGF5TW9kZSI6Im9wZW4ifQ%3D%3D">
+			<i aria-hidden="true" class="drplusicon- drplus-icon-grid-fill"></i>			</a>
+		</div>
+						</div>
+				</div>
+				<div class="elementor-element elementor-element-73be87d elementor-widget elementor-widget-theme-site-logo elementor-widget-image" data-id="73be87d" data-element_type="widget" data-widget_type="theme-site-logo.default">
+				<div class="elementor-widget-container">
+											<a href="https://omid.hospital">
+			<img width="160" height="113" src="https://omid.hospital/wp-content/uploads/2025/09/Logo-scaled-e1754348924179.png" class="attachment-full size-full wp-image-1229" alt="" />				</a>
+											</div>
+				</div>
+				</div>
+				<div class="elementor-element elementor-element-9b3a721 elementor-hidden-tablet elementor-hidden-mobile elementor-widget elementor-widget-drplus_menu" data-id="9b3a721" data-element_type="widget" data-widget_type="drplus_menu.default">
+				<div class="elementor-widget-container">
+							<nav class="drplus-menu-wrap right row-direction menu-style-1">
+			<div class="header"><ul id="menu-header" class="menu"><li id="menu-item-25" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-home menu-item-25"><a href="https://omid.hospital/"><span class="drplus-simple-icon-wrap icon-has-bg"><i class="menu-item-icon drplus-icon-home-fill" aria-hidden="true"></i></span><span class="menu-item-title">صفحه اصلی</span></a></li>
+<li id="menu-item-1019" class="menu-item menu-item-type-custom menu-item-object-custom current-menu-ancestor current-menu-parent menu-item-has-children menu-item-1019"><a href="#"><span class="drplus-simple-icon-wrap icon-has-bg"><i class="menu-item-icon drplus-icon-users-fill" aria-hidden="true"></i></span><span class="menu-item-title">متخصصان</span></a>
+<ul class="sub-menu">
+	<li id="menu-item-1020" class="menu-item menu-item-type-custom menu-item-object-custom current-menu-item menu-item-1020"><a href="https://omid.hospital/specialists/" aria-current="page"><span class="drplus-simple-icon-wrap icon-has-bg"><i class="menu-item-icon drplus-icon-stethoscope" aria-hidden="true"></i></span><span class="menu-item-subtitle">اطلاعات و جزئیات متخصص</span><span class="menu-item-title">لیست همه متخصصان</span></a></li>
+	<li id="menu-item-1021" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-1021"><a href="https://omid.hospital/booking/"><span class="drplus-simple-icon-wrap icon-has-bg"><i class="menu-item-icon drplus-icon-clock-fill" aria-hidden="true"></i></span><span class="menu-item-subtitle">سیستم رزرو نوبت اختصاصی</span><span class="menu-item-title">رزرو نوبت</span></a></li>
+</ul>
+</li>
+<li id="menu-item-1016" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-1016"><a href="https://omid.hospital/hospitals/"><span class="drplus-simple-icon-wrap icon-has-bg"><i class="menu-item-icon drplus-icon-heart-smile" aria-hidden="true"></i></span><span class="menu-item-title">بخش های درمانی</span></a></li>
+<li id="menu-item-1011" class="menu-item menu-item-type-post_type menu-item-object-page current_page_parent menu-item-has-children menu-item-1011"><a href="https://omid.hospital/?page_id=42"><span class="drplus-simple-icon-wrap icon-has-bg"><i class="menu-item-icon drplus-icon-archive-book-bold" aria-hidden="true"></i></span><span class="menu-item-title">بلاگ</span></a>
+<ul class="sub-menu">
+	<li id="menu-item-1013" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-1013"><a href="https://omid.hospital/category/%d8%a7%d8%ae%d8%a8%d8%a7%d8%b1-%d9%be%d8%b2%d8%b4%da%a9%db%8c/"><span class="drplus-simple-icon-wrap icon-has-bg"><i class="menu-item-icon drplus-icon-grid-fill" aria-hidden="true"></i></span><span class="menu-item-subtitle">دسته بندی وبلاگ</span><span class="menu-item-title">آرشیو مطالب</span></a></li>
+</ul>
+</li>
+<li id="menu-item-1014" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-1014"><a href="https://omid.hospital/about-us/"><span class="drplus-simple-icon-wrap icon-has-bg"><i class="menu-item-icon drplus-icon-doctor-plus" aria-hidden="true"></i></span><span class="menu-item-title">درباره ما</span></a>
+<ul class="sub-menu">
+	<li id="menu-item-34" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-34"><a href="https://omid.hospital/contact-us/"><span class="drplus-simple-icon-wrap icon-has-bg"><i class="menu-item-icon drplus-icon-calling-fill" aria-hidden="true"></i></span><span class="menu-item-subtitle">ارتباط با بیمارستان امید</span><span class="menu-item-title">تماس با ما</span></a></li>
+</ul>
+</li>
+</ul></div>		</nav>
+						</div>
+				</div>
+		<div class="elementor-element elementor-element-4e938c6 e-flex e-con-boxed e-con e-child" data-id="4e938c6" data-element_type="container">
+					<div class="e-con-inner">
+				<div class="elementor-element elementor-element-1d5bfc3 elementor-widget elementor-widget-shortcode" data-id="1d5bfc3" data-element_type="widget" data-widget_type="shortcode.default">
+				<div class="elementor-widget-container">
+							<div class="elementor-shortcode"><div class="gtranslate_wrapper" id="gt-wrapper-21836260"></div></div>
+						</div>
+				</div>
+				<div class="elementor-element elementor-element-e9af710 elementor-hidden-tablet elementor-hidden-mobile elementor-widget elementor-widget-drplus_account_button" data-id="e9af710" data-element_type="widget" data-widget_type="drplus_account_button.default">
+				<div class="elementor-widget-container">
+					<div class="header-action header-account-wrap guest-user-wrap">
+	
+	<a class="header-action-btn header-account guest-user" href="https://omid.hospital/?login=true">
+								<i class="drplus-icon-user header-account-btn-icon" aria-hidden="true"></i>								</a>
+
+			<ul class="account-items header-account-items header-popover end">
+										<li class="account-item account-login">
+					<a href="https://omid.hospital/?login=true" class="account-item-link">
+													<i class="account-item-icon drplus-icon-login" aria-hidden="true"></i>
+												<span class="account-item-label">
+							ورود													</span>
+						<i class="account-item-hover-icon drplus-icon-square-arrow-right"></i>
+					</a>
+				</li>
+							<li class="account-item account-signup">
+					<a href="https://omid.hospital/?login=true&section=signup" class="account-item-link">
+													<i class="account-item-icon drplus-icon-user-add" aria-hidden="true"></i>
+												<span class="account-item-label">
+							عضویت													</span>
+						<i class="account-item-hover-icon drplus-icon-square-arrow-right"></i>
+					</a>
+				</li>
+								</ul>
+	</div>				</div>
+				</div>
+				<div class="elementor-element elementor-element-ba3c732 elementor-hidden-mobile elementor-widget elementor-widget-drplus_button" data-id="ba3c732" data-element_type="widget" data-widget_type="drplus_button.default">
+				<div class="elementor-widget-container">
+					<a href="https://omid.hospital/patient_guide/" class="button button-start rounded button-primary">
+		<span class="button-text">راهنمای مراجعین</span>
+<i class="drplusicon- drplus-icon-arrow-up-left-square button-icon" aria-hidden="true"></i></a>				</div>
+				</div>
+					</div>
+				</div>
+				</div>
+		<div class="elementor-element elementor-element-9bded0e e-con-full e-flex e-con e-child" data-id="9bded0e" data-element_type="container">
+				</div>
+				</div>
+				</div>
+		<div class="elementor-element elementor-element-731b15c e-flex e-con-boxed e-con e-parent" data-id="731b15c" data-element_type="container">
+					<div class="e-con-inner">
+				<div class="elementor-element elementor-element-ecdec10 elementor-widget elementor-widget-off-canvas" data-id="ecdec10" data-element_type="widget" data-settings="{&quot;entrance_animation&quot;:&quot;fadeInRight&quot;,&quot;exit_animation&quot;:&quot;fadeInRight&quot;,&quot;prevent_scroll&quot;:&quot;yes&quot;}" data-widget_type="off-canvas.default">
+				<div class="elementor-widget-container">
+							<div id="off-canvas-ecdec10" class="e-off-canvas" role="dialog" aria-hidden="true" aria-label="mobile-header-menu" aria-modal="true" inert="" data-delay-child-handlers="true">
+			<div class="e-off-canvas__overlay"></div>
+			<div class="e-off-canvas__main">
+				<div class="e-off-canvas__content">
+					<div class="elementor-element elementor-element-c45550b e-con-full e-flex e-con e-child" data-id="c45550b" data-element_type="container">
+		<div class="elementor-element elementor-element-4a966ae e-grid e-con-boxed e-con e-child" data-id="4a966ae" data-element_type="container">
+					<div class="e-con-inner">
+				<div class="elementor-element elementor-element-aca6e23 elementor-view-default elementor-widget elementor-widget-icon" data-id="aca6e23" data-element_type="widget" data-widget_type="icon.default">
+				<div class="elementor-widget-container">
+							<div class="elementor-icon-wrapper">
+			<a class="elementor-icon" href="#elementor-action%3Aaction%3Doff_canvas%3Aclose%26settings%3DeyJpZCI6ImVjZGVjMTAiLCJkaXNwbGF5TW9kZSI6ImNsb3NlIn0%3D">
+			<i aria-hidden="true" class="drplusicon- drplus-icon-cross"></i>			</a>
+		</div>
+						</div>
+				</div>
+				<div class="elementor-element elementor-element-18b71f1 elementor-widget elementor-widget-theme-site-logo elementor-widget-image" data-id="18b71f1" data-element_type="widget" data-widget_type="theme-site-logo.default">
+				<div class="elementor-widget-container">
+											<a href="https://omid.hospital">
+			<img width="160" height="113" src="https://omid.hospital/wp-content/uploads/2025/09/Logo-scaled-e1754348924179.png" class="attachment-full size-full wp-image-1229" alt="" />				</a>
+											</div>
+				</div>
+		<div class="elementor-element elementor-element-223d95b e-con-full e-flex e-con e-child" data-id="223d95b" data-element_type="container">
+				<div class="elementor-element elementor-element-627d8fa elementor-widget elementor-widget-drplus_button" data-id="627d8fa" data-element_type="widget" data-widget_type="drplus_button.default">
+				<div class="elementor-widget-container">
+					<a href="https://omid.hospital/booking/" class="button button-start rounded button-primary">
+		<span class="button-text">درخواست نوبت</span>
+<i class="drplusicon- drplus-icon-arrow-up-left-square button-icon" aria-hidden="true"></i></a>				</div>
+				</div>
+				</div>
+					</div>
+				</div>
+		<div class="elementor-element elementor-element-fb379fe e-grid e-con-boxed e-con e-child" data-id="fb379fe" data-element_type="container">
+					<div class="e-con-inner">
+				<div class="elementor-element elementor-element-6369bae elementor-widget__width-inherit elementor-widget-mobile__width-auto elementor-widget elementor-widget-drplus_account_button" data-id="6369bae" data-element_type="widget" data-widget_type="drplus_account_button.default">
+				<div class="elementor-widget-container">
+					<div class="header-action header-account-wrap guest-user-wrap">
+	
+	<a class="header-action-btn header-account guest-user" href="https://omid.hospital/?login=true">
+								<i class="drplus-icon-user header-account-btn-icon" aria-hidden="true"></i>								</a>
+
+			<ul class="account-items header-account-items header-popover end">
+										<li class="account-item account-login">
+					<a href="https://omid.hospital/?login=true" class="account-item-link">
+													<i class="account-item-icon drplus-icon-login" aria-hidden="true"></i>
+												<span class="account-item-label">
+							ورود													</span>
+						<i class="account-item-hover-icon drplus-icon-square-arrow-right"></i>
+					</a>
+				</li>
+							<li class="account-item account-signup">
+					<a href="https://omid.hospital/?login=true&section=signup" class="account-item-link">
+													<i class="account-item-icon drplus-icon-user-add" aria-hidden="true"></i>
+												<span class="account-item-label">
+							عضویت													</span>
+						<i class="account-item-hover-icon drplus-icon-square-arrow-right"></i>
+					</a>
+				</li>
+								</ul>
+	</div>				</div>
+				</div>
+				<div class="elementor-element elementor-element-6b50ee6 elementor-widget elementor-widget-drplus_minicart" data-id="6b50ee6" data-element_type="widget" data-widget_type="drplus_minicart.default">
+				<div class="elementor-widget-container">
+					<div class="header-cart-wrap header-action header-action-cart mobile-mode mini-cart-latest_view">
+	<a href="https://omid.hospital" class="header-action-btn header-cart-btn">
+					<div class="header-cart-count-wrap">
+				<span class="cart-count"></span>
+			</div>
+				<i class="drplus-icon-shopping-cart header-action-icon header-cart-icon" aria-hidden="true"></i>	</a>
+	
+			<div class="header-mini-cart-wrap header-popover p-end">
+						<div class="header-mini-cart-content">
+				
+		<p class="woocommerce-mini-cart__empty-message">سبد خرید خالی است.</p>
+
+
+			</div>
+		</div>
+	</div>				</div>
+				</div>
+					</div>
+				</div>
+		<div class="elementor-element elementor-element-c2c5ccc e-flex e-con-boxed e-con e-child" data-id="c2c5ccc" data-element_type="container">
+					<div class="e-con-inner">
+				<div class="elementor-element elementor-element-6c3c4b5 elementor-widget elementor-widget-drplus_menu" data-id="6c3c4b5" data-element_type="widget" data-widget_type="drplus_menu.default">
+				<div class="elementor-widget-container">
+							<nav class="drplus-menu-wrap left col-direction menu-style-1">
+			<div class="header"><ul id="menu-header-1" class="menu"><li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-home menu-item-25"><a href="https://omid.hospital/"><span class="drplus-simple-icon-wrap icon-has-bg"><i class="menu-item-icon drplus-icon-home-fill" aria-hidden="true"></i></span><span class="menu-item-title">صفحه اصلی</span></a></li>
+<li class="menu-item menu-item-type-custom menu-item-object-custom current-menu-ancestor current-menu-parent menu-item-has-children menu-item-1019"><a href="#"><span class="drplus-simple-icon-wrap icon-has-bg"><i class="menu-item-icon drplus-icon-users-fill" aria-hidden="true"></i></span><span class="menu-item-title">متخصصان</span></a>
+<ul class="sub-menu">
+	<li class="menu-item menu-item-type-custom menu-item-object-custom current-menu-item menu-item-1020"><a href="https://omid.hospital/specialists/" aria-current="page"><span class="drplus-simple-icon-wrap icon-has-bg"><i class="menu-item-icon drplus-icon-stethoscope" aria-hidden="true"></i></span><span class="menu-item-subtitle">اطلاعات و جزئیات متخصص</span><span class="menu-item-title">لیست همه متخصصان</span></a></li>
+	<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-1021"><a href="https://omid.hospital/booking/"><span class="drplus-simple-icon-wrap icon-has-bg"><i class="menu-item-icon drplus-icon-clock-fill" aria-hidden="true"></i></span><span class="menu-item-subtitle">سیستم رزرو نوبت اختصاصی</span><span class="menu-item-title">رزرو نوبت</span></a></li>
+</ul>
+</li>
+<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-1016"><a href="https://omid.hospital/hospitals/"><span class="drplus-simple-icon-wrap icon-has-bg"><i class="menu-item-icon drplus-icon-heart-smile" aria-hidden="true"></i></span><span class="menu-item-title">بخش های درمانی</span></a></li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page current_page_parent menu-item-has-children menu-item-1011"><a href="https://omid.hospital/?page_id=42"><span class="drplus-simple-icon-wrap icon-has-bg"><i class="menu-item-icon drplus-icon-archive-book-bold" aria-hidden="true"></i></span><span class="menu-item-title">بلاگ</span></a>
+<ul class="sub-menu">
+	<li class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-1013"><a href="https://omid.hospital/category/%d8%a7%d8%ae%d8%a8%d8%a7%d8%b1-%d9%be%d8%b2%d8%b4%da%a9%db%8c/"><span class="drplus-simple-icon-wrap icon-has-bg"><i class="menu-item-icon drplus-icon-grid-fill" aria-hidden="true"></i></span><span class="menu-item-subtitle">دسته بندی وبلاگ</span><span class="menu-item-title">آرشیو مطالب</span></a></li>
+</ul>
+</li>
+<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-1014"><a href="https://omid.hospital/about-us/"><span class="drplus-simple-icon-wrap icon-has-bg"><i class="menu-item-icon drplus-icon-doctor-plus" aria-hidden="true"></i></span><span class="menu-item-title">درباره ما</span></a>
+<ul class="sub-menu">
+	<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-34"><a href="https://omid.hospital/contact-us/"><span class="drplus-simple-icon-wrap icon-has-bg"><i class="menu-item-icon drplus-icon-calling-fill" aria-hidden="true"></i></span><span class="menu-item-subtitle">ارتباط با بیمارستان امید</span><span class="menu-item-title">تماس با ما</span></a></li>
+</ul>
+</li>
+</ul></div>		</nav>
+						</div>
+				</div>
+					</div>
+				</div>
+				</div>
+						</div>
+			</div>
+		</div>
+						</div>
+				</div>
+					</div>
+				</div>
+				</header>
+		<div id="page-body" class="page-width">
+	<main id="page-main">
+		<header id="page-header">
+	<div id="page-title-wrap" class="section-title">
+		<h1 class="section-title-inner">
+				<span class="drplus-simple-icon-wrap icon-has-bg page-title-icon">
+<i class="drplus-icon-stethoscope drplus-simple-icon" aria-hidden="true"></i>	</span>	
+			<span id="page-title" class="section-title-title">آرشیو متخصصان</span>
+		</h1>
+	</div>
+	<form action="" method="get" class="sort-form">
+	<div class="drplus-select sort-wrap">
+	<div class="drplus-select-head">
+		<div class="drplus-select-label">ترتیب:</div>
+		<div class="drplus-select-value">جدیدترین‌ها</div>
+		<i class="drplus-icon-bottom drplus-select-head-icon"></i>
+	</div>
+
+	<div class="drplus-select-options">
+								<div class="drplus-select-option selected" data-value="newest">جدیدترین‌ها</div>
+								<div class="drplus-select-option" data-value="oldest">قدیمی‌ترین‌ها</div>
+								<div class="drplus-select-option" data-value="most-view">بیشترین بازدیدها</div>
+								<div class="drplus-select-option" data-value="title-asc">نام صعودی</div>
+								<div class="drplus-select-option" data-value="title-desc">نام نزولی</div>
+			</div>
+</div>	<select name="orderby" class="orderby">
+					<option value="newest"  selected='selected'>جدیدترین‌ها</option>
+					<option value="oldest" >قدیمی‌ترین‌ها</option>
+					<option value="most-view" >بیشترین بازدیدها</option>
+					<option value="title-asc" >نام صعودی</option>
+					<option value="title-desc" >نام نزولی</option>
+			</select>
+	</form></header>
+		<div id="primary" class="content-area archive row content-area-with-sidebar">
+			<aside id="sidebar" class="sidebar sidebar-archive_specialist col-lg-3 col-md-12" aria-label="سایدبار">
+	<section id="widget-area" class="widget-area" role="complementary" aria-label="ویجت‌ها">
+		<div id="drplus_search_specialists-2" class="widget widget_drplus_search_specialists"><form role="search" method="get" class="searchform" action="https://omid.hospital">
+	<label class="screen-reader-text">جستجو برای:</label>
+	<div class="input-group input-group-row">
+		<input
+			type="search"
+			name="s"
+			class="search-field"
+			placeholder="جستجو"
+			value=""
+			title="جستجو برای:"
+		/>
+					<input type="hidden" name="section" value="specialist">
+						<button type="submit" class="search-field-icon" title="جستجو"><i class="drplus-icon-search"></i></button>
+	</div>
+	</form>
+</div><div id="drplus_specialities-2" class="widget widget_drplus_specialities"><h3 class="widgettitle">دسته‌بندی متخصصین</h3>		<form method="get" action="" class="drplus-specialities-filter">
+										<label class="drplus-specialities-filter-item">
+					<input type="checkbox" name="specialities[]" class="drplus-specialities-filter-item-checkbox" value="1294">
+					<div class="drplus-specialities-filter-item-text">ENT</div>
+											<div class="drplus-specialities-filter-item-count">1</div>
+									</label>
+							<label class="drplus-specialities-filter-item">
+					<input type="checkbox" name="specialities[]" class="drplus-specialities-filter-item-checkbox" value="1293">
+					<div class="drplus-specialities-filter-item-text">جراح ستون فقرات</div>
+											<div class="drplus-specialities-filter-item-count">1</div>
+									</label>
+							<label class="drplus-specialities-filter-item">
+					<input type="checkbox" name="specialities[]" class="drplus-specialities-filter-item-checkbox" value="1292">
+					<div class="drplus-specialities-filter-item-text">نورولوژی</div>
+											<div class="drplus-specialities-filter-item-count">1</div>
+									</label>
+							<label class="drplus-specialities-filter-item">
+					<input type="checkbox" name="specialities[]" class="drplus-specialities-filter-item-checkbox" value="1291">
+					<div class="drplus-specialities-filter-item-text">زنان</div>
+											<div class="drplus-specialities-filter-item-count">4</div>
+									</label>
+							<label class="drplus-specialities-filter-item">
+					<input type="checkbox" name="specialities[]" class="drplus-specialities-filter-item-checkbox" value="1290">
+					<div class="drplus-specialities-filter-item-text">آنکولوژی</div>
+											<div class="drplus-specialities-filter-item-count">1</div>
+									</label>
+							<label class="drplus-specialities-filter-item">
+					<input type="checkbox" name="specialities[]" class="drplus-specialities-filter-item-checkbox" value="1289">
+					<div class="drplus-specialities-filter-item-text">مشاور تغذیه</div>
+											<div class="drplus-specialities-filter-item-count">1</div>
+									</label>
+							<label class="drplus-specialities-filter-item">
+					<input type="checkbox" name="specialities[]" class="drplus-specialities-filter-item-checkbox" value="1288">
+					<div class="drplus-specialities-filter-item-text">روانشناس</div>
+											<div class="drplus-specialities-filter-item-count">2</div>
+									</label>
+							<label class="drplus-specialities-filter-item">
+					<input type="checkbox" name="specialities[]" class="drplus-specialities-filter-item-checkbox" value="1284">
+					<div class="drplus-specialities-filter-item-text">اورولوژی</div>
+											<div class="drplus-specialities-filter-item-count">2</div>
+									</label>
+							<label class="drplus-specialities-filter-item">
+					<input type="checkbox" name="specialities[]" class="drplus-specialities-filter-item-checkbox" value="1286">
+					<div class="drplus-specialities-filter-item-text">اودیومتری</div>
+											<div class="drplus-specialities-filter-item-count">1</div>
+									</label>
+							<label class="drplus-specialities-filter-item">
+					<input type="checkbox" name="specialities[]" class="drplus-specialities-filter-item-checkbox" value="1285">
+					<div class="drplus-specialities-filter-item-text">داخلی</div>
+											<div class="drplus-specialities-filter-item-count">1</div>
+									</label>
+							<label class="drplus-specialities-filter-item">
+					<input type="checkbox" name="specialities[]" class="drplus-specialities-filter-item-checkbox" value="572">
+					<div class="drplus-specialities-filter-item-text">غدد</div>
+											<div class="drplus-specialities-filter-item-count">1</div>
+									</label>
+							<label class="drplus-specialities-filter-item">
+					<input type="checkbox" name="specialities[]" class="drplus-specialities-filter-item-checkbox" value="569">
+					<div class="drplus-specialities-filter-item-text">چشم پزشکی</div>
+											<div class="drplus-specialities-filter-item-count">1</div>
+									</label>
+							<label class="drplus-specialities-filter-item">
+					<input type="checkbox" name="specialities[]" class="drplus-specialities-filter-item-checkbox" value="567">
+					<div class="drplus-specialities-filter-item-text">اطفال</div>
+											<div class="drplus-specialities-filter-item-count">3</div>
+									</label>
+							<label class="drplus-specialities-filter-item">
+					<input type="checkbox" name="specialities[]" class="drplus-specialities-filter-item-checkbox" value="566">
+					<div class="drplus-specialities-filter-item-text">ارتوپدی</div>
+											<div class="drplus-specialities-filter-item-count">1</div>
+									</label>
+							<label class="drplus-specialities-filter-item">
+					<input type="checkbox" name="specialities[]" class="drplus-specialities-filter-item-checkbox" value="564">
+					<div class="drplus-specialities-filter-item-text">ریه</div>
+											<div class="drplus-specialities-filter-item-count">1</div>
+									</label>
+							<label class="drplus-specialities-filter-item">
+					<input type="checkbox" name="specialities[]" class="drplus-specialities-filter-item-checkbox" value="563">
+					<div class="drplus-specialities-filter-item-text">جراحی</div>
+											<div class="drplus-specialities-filter-item-count">3</div>
+									</label>
+								</form>
+		</div><div id="drplus_specialists_type-2" class="widget widget_drplus_specialists_type"><h3 class="widgettitle">نوع ویزیت</h3>		<div class="specialists-type-filter">
+							<a href="/specialists/?specialist-type=all" class="checkbox-wrap checkbox-secondary specialists-type-filter-item">
+					<input type="checkbox" class="specialists-type-filter-item-checkbox" value="true"  checked='checked'>
+					<span class="specialists-type-filter-item-text">همه</span>
+				</a>
+							<a href="/specialists/?specialist-type=in-person" class="checkbox-wrap checkbox-secondary specialists-type-filter-item">
+					<input type="checkbox" class="specialists-type-filter-item-checkbox" value="true" >
+					<span class="specialists-type-filter-item-text">ویزیت حضوری</span>
+				</a>
+							<a href="/specialists/?specialist-type=online" class="checkbox-wrap checkbox-secondary specialists-type-filter-item">
+					<input type="checkbox" class="specialists-type-filter-item-checkbox" value="true" >
+					<span class="specialists-type-filter-item-text">ویزیت آنلاین</span>
+				</a>
+					</div>
+		</div><div id="drplus_specialists-2" class="widget widget_drplus_specialists"><h3 class="widgettitle">متخصصان جدید</h3><div class="specialists specialists-style-list"><div class="specialist specialist-213 specialist-user-281 slider-slide offline-visit verified" data-id="281">
+<a href="https://omid.hospital/specialist/dr_tizmaghz/" class="specialist-link" title="آقای دکتر عدنان تیزمغز">
+	<div class="specialist-avatar-wrap">
+		<img width="80" height="80" src="https://omid.hospital/wp-content/uploads/2026/01/c4add98d2db9c6afa57567c2209944c3-100x100.webp" class="" alt="" size="80" default="mm" force_default="" rating="g" scheme="" processed_args="" extra_attr="" force_display="" loading="" fetchpriority="" decoding="async" found_avatar="1" url="https://omid.hospital/wp-content/uploads/2026/01/c4add98d2db9c6afa57567c2209944c3-100x100.webp" srcset="https://omid.hospital/wp-content/uploads/2026/01/c4add98d2db9c6afa57567c2209944c3-100x100.webp 100w, https://omid.hospital/wp-content/uploads/2026/01/c4add98d2db9c6afa57567c2209944c3.webp 150w" sizes="(max-width: 80px) 100vw, 80px" />	</div>
+	<div class="specialist-item-texts">
+		<h2 class="specialist-name line-clamp line-clamp-1">آقای دکتر عدنان تیزمغز</h2>
+		<div class="specialist-short_bio line-clamp line-clamp-1">فوق تخصص جراحی و  زیبایی پستان</div>
+	</div>
+</a></div><div class="specialist specialist-212 specialist-user-232 slider-slide verified" data-id="232">
+<a href="https://omid.hospital/specialist/amiri/" class="specialist-link" title="جناب آقای مهرزاد امیری">
+	<div class="specialist-avatar-wrap">
+		<img src="https://omid.hospital/wp-content/themes/dr-plus/assets/images/user.svg" alt="">	</div>
+	<div class="specialist-item-texts">
+		<h2 class="specialist-name line-clamp line-clamp-1">جناب آقای مهرزاد امیری</h2>
+		<div class="specialist-short_bio line-clamp line-clamp-1">ژنتیک</div>
+	</div>
+</a></div><div class="specialist specialist-211 specialist-user-231 slider-slide verified" data-id="231">
+<a href="https://omid.hospital/specialist/ahmadinezhad/" class="specialist-link" title="آقای سید محمد احمدی نژاد">
+	<div class="specialist-avatar-wrap">
+		<img src="https://omid.hospital/wp-content/themes/dr-plus/assets/images/user.svg" alt="">	</div>
+	<div class="specialist-item-texts">
+		<h2 class="specialist-name line-clamp line-clamp-1">آقای سید محمد احمدی نژاد</h2>
+		<div class="specialist-short_bio line-clamp line-clamp-1">طب اورژانس</div>
+	</div>
+</a></div><div class="specialist specialist-210 specialist-user-230 slider-slide verified" data-id="230">
+<a href="https://omid.hospital/specialist/dr_eshraghi/" class="specialist-link" title="خانم دکتر طاهره اشراقی">
+	<div class="specialist-avatar-wrap">
+		<img src="https://omid.hospital/wp-content/themes/dr-plus/assets/images/user.svg" alt="">	</div>
+	<div class="specialist-item-texts">
+		<h2 class="specialist-name line-clamp line-clamp-1">خانم دکتر طاهره اشراقی</h2>
+		<div class="specialist-short_bio line-clamp line-clamp-1">بیهوشی</div>
+	</div>
+</a></div><div class="specialist specialist-209 specialist-user-229 slider-slide verified" data-id="229">
+<a href="https://omid.hospital/specialist/dr_salehalavi/" class="specialist-link" title="مرحوم آقای دکتر سیاوش صالح علوی">
+	<div class="specialist-avatar-wrap">
+		<img width="80" height="80" src="https://omid.hospital/wp-content/uploads/2025/10/c21761b79f5736e3329009ce3e8f02d0-100x100.webp" class="" alt="" size="80" default="mm" force_default="" rating="g" scheme="" processed_args="" extra_attr="" force_display="" loading="" fetchpriority="" decoding="async" found_avatar="1" url="https://omid.hospital/wp-content/uploads/2025/10/c21761b79f5736e3329009ce3e8f02d0-100x100.webp" srcset="https://omid.hospital/wp-content/uploads/2025/10/c21761b79f5736e3329009ce3e8f02d0-100x100.webp 100w, https://omid.hospital/wp-content/uploads/2025/10/c21761b79f5736e3329009ce3e8f02d0.webp 150w" sizes="(max-width: 80px) 100vw, 80px" />	</div>
+	<div class="specialist-item-texts">
+		<h2 class="specialist-name line-clamp line-clamp-1">مرحوم آقای دکتر سیاوش صالح علوی</h2>
+		<div class="specialist-short_bio line-clamp line-clamp-1">زنان</div>
+	</div>
+</a></div></div></div>	</section>
+</aside>			<div class="site-content specialists specialists-style-card-2 list-specialists desktop-columns tablet-columns mobile-columns desktop-columns-3 tablet-columns-2 mobile-columns-1 specialists-style-card col-md-9 col-sm-12" role="main" style="--desktop-cols:3;--tablet-cols:2;--mobile-cols:1;--desktop-gap:16px;--tablet-gap:16px;--mobile-gap:16px">
+				<div class="specialist specialist-213 specialist-user-281 slider-slide specialist-card offline-visit verified" data-id="281">
+
+<div class="specialist-avatar-wrap">
+	<a href="https://omid.hospital/specialist/dr_tizmaghz/" title="آقای دکتر عدنان تیزمغز"><img loading="lazy" width="96" height="96" src="https://omid.hospital/wp-content/uploads/2026/01/c4add98d2db9c6afa57567c2209944c3-100x100.webp" class="" alt="" size="96" default="mm" force_default="" rating="g" scheme="" processed_args="" extra_attr="" force_display="" loading="" fetchpriority="" decoding="async" found_avatar="1" url="https://omid.hospital/wp-content/uploads/2026/01/c4add98d2db9c6afa57567c2209944c3-100x100.webp" srcset="https://omid.hospital/wp-content/uploads/2026/01/c4add98d2db9c6afa57567c2209944c3-100x100.webp 100w, https://omid.hospital/wp-content/uploads/2026/01/c4add98d2db9c6afa57567c2209944c3.webp 150w" sizes="(max-width: 96px) 100vw, 96px" /></a>
+</div>
+<div class="specialist-name-wrap">
+	<h2 class="specialist-name line-clamp line-clamp-1">
+		<a href="https://omid.hospital/specialist/dr_tizmaghz/" title="آقای دکتر عدنان تیزمغز">آقای دکتر عدنان تیزمغز</a>
+	</h2>
+
+			<div class="specialist-short_bio line-clamp line-clamp-1">
+			<a href="https://omid.hospital/specialist/dr_tizmaghz/" title="آقای دکتر عدنان تیزمغز">فوق تخصص جراحی و  زیبایی پستان</a>
+		</div>
+		
+	</div>
+<div class="specialist-meta-wrap">
+		<div class="specialist-meta specialist-meta-inline specialist-meta-address">
+		<i class="drplus-icon-location"></i>
+		<div class="specialist-meta-value line-clamp line-clamp-1">تهران جنت آباد مرکزی، خ شاهین شمالی، خ کبیری طامه، خ بهار-بیمارستان امید طبقه همکف کلینیک جنرال</div>
+	</div>
+</div>
+<a href="https://omid.hospital/booking/time?sid=213&#038;drplus_save_recent=213" class="button button-center rounded button-primary small fullwidth specialist-btn">
+		<span class="button-text">رزرو وقت</span>
+<i class="drplus-icon-arrow-up-left-square button-icon" aria-hidden="true"></i></a></div><div class="specialist specialist-212 specialist-user-232 slider-slide specialist-card verified" data-id="232">
+
+<div class="specialist-avatar-wrap">
+	<a href="https://omid.hospital/specialist/amiri/" title="جناب آقای مهرزاد امیری"><img src="https://omid.hospital/wp-content/themes/dr-plus/assets/images/user.svg" alt=""></a>
+</div>
+<div class="specialist-name-wrap">
+	<h2 class="specialist-name line-clamp line-clamp-1">
+		<a href="https://omid.hospital/specialist/amiri/" title="جناب آقای مهرزاد امیری">جناب آقای مهرزاد امیری</a>
+	</h2>
+
+			<div class="specialist-short_bio line-clamp line-clamp-1">
+			<a href="https://omid.hospital/specialist/amiri/" title="جناب آقای مهرزاد امیری">ژنتیک</a>
+		</div>
+		
+	</div>
+<div class="specialist-meta-wrap">
+	<div class="specialist-meta specialist-meta-inline specialist-meta-not-available-reserve">
+	<span class="specialist-meta-title">
+		در حال حاضر نوبت دهی آنلاین برای جناب آقای مهرزاد امیری فعال نیست.	</span>
+</div></div>
+<a href="https://omid.hospital/specialist/amiri/" class="button button-center rounded button-primary small fullwidth specialist-btn">
+		<span class="button-text">نمایش متخصص</span>
+<i class="drplus-icon-arrow-up-left-square button-icon" aria-hidden="true"></i></a></div><div class="specialist specialist-211 specialist-user-231 slider-slide specialist-card verified" data-id="231">
+
+<div class="specialist-avatar-wrap">
+	<a href="https://omid.hospital/specialist/ahmadinezhad/" title="آقای سید محمد احمدی نژاد"><img src="https://omid.hospital/wp-content/themes/dr-plus/assets/images/user.svg" alt=""></a>
+</div>
+<div class="specialist-name-wrap">
+	<h2 class="specialist-name line-clamp line-clamp-1">
+		<a href="https://omid.hospital/specialist/ahmadinezhad/" title="آقای سید محمد احمدی نژاد">آقای سید محمد احمدی نژاد</a>
+	</h2>
+
+			<div class="specialist-short_bio line-clamp line-clamp-1">
+			<a href="https://omid.hospital/specialist/ahmadinezhad/" title="آقای سید محمد احمدی نژاد">طب اورژانس</a>
+		</div>
+		
+	</div>
+<div class="specialist-meta-wrap">
+	<div class="specialist-meta specialist-meta-inline specialist-meta-not-available-reserve">
+	<span class="specialist-meta-title">
+		در حال حاضر نوبت دهی آنلاین برای آقای سید محمد احمدی نژاد فعال نیست.	</span>
+</div></div>
+<a href="https://omid.hospital/specialist/ahmadinezhad/" class="button button-center rounded button-primary small fullwidth specialist-btn">
+		<span class="button-text">نمایش متخصص</span>
+<i class="drplus-icon-arrow-up-left-square button-icon" aria-hidden="true"></i></a></div><div class="specialist specialist-210 specialist-user-230 slider-slide specialist-card verified" data-id="230">
+
+<div class="specialist-avatar-wrap">
+	<a href="https://omid.hospital/specialist/dr_eshraghi/" title="خانم دکتر طاهره اشراقی"><img src="https://omid.hospital/wp-content/themes/dr-plus/assets/images/user.svg" alt=""></a>
+</div>
+<div class="specialist-name-wrap">
+	<h2 class="specialist-name line-clamp line-clamp-1">
+		<a href="https://omid.hospital/specialist/dr_eshraghi/" title="خانم دکتر طاهره اشراقی">خانم دکتر طاهره اشراقی</a>
+	</h2>
+
+			<div class="specialist-short_bio line-clamp line-clamp-1">
+			<a href="https://omid.hospital/specialist/dr_eshraghi/" title="خانم دکتر طاهره اشراقی">بیهوشی</a>
+		</div>
+		
+	</div>
+<div class="specialist-meta-wrap">
+	<div class="specialist-meta specialist-meta-inline specialist-meta-not-available-reserve">
+	<span class="specialist-meta-title">
+		در حال حاضر نوبت دهی آنلاین برای خانم دکتر طاهره اشراقی فعال نیست.	</span>
+</div></div>
+<a href="https://omid.hospital/specialist/dr_eshraghi/" class="button button-center rounded button-primary small fullwidth specialist-btn">
+		<span class="button-text">نمایش متخصص</span>
+<i class="drplus-icon-arrow-up-left-square button-icon" aria-hidden="true"></i></a></div><div class="specialist specialist-209 specialist-user-229 slider-slide specialist-card verified" data-id="229">
+
+<div class="specialist-avatar-wrap">
+	<a href="https://omid.hospital/specialist/dr_salehalavi/" title="مرحوم آقای دکتر سیاوش صالح علوی"><img loading="lazy" width="96" height="96" src="https://omid.hospital/wp-content/uploads/2025/10/c21761b79f5736e3329009ce3e8f02d0-100x100.webp" class="" alt="" size="96" default="mm" force_default="" rating="g" scheme="" processed_args="" extra_attr="" force_display="" loading="" fetchpriority="" decoding="async" found_avatar="1" url="https://omid.hospital/wp-content/uploads/2025/10/c21761b79f5736e3329009ce3e8f02d0-100x100.webp" srcset="https://omid.hospital/wp-content/uploads/2025/10/c21761b79f5736e3329009ce3e8f02d0-100x100.webp 100w, https://omid.hospital/wp-content/uploads/2025/10/c21761b79f5736e3329009ce3e8f02d0.webp 150w" sizes="(max-width: 96px) 100vw, 96px" /></a>
+</div>
+<div class="specialist-name-wrap">
+	<h2 class="specialist-name line-clamp line-clamp-1">
+		<a href="https://omid.hospital/specialist/dr_salehalavi/" title="مرحوم آقای دکتر سیاوش صالح علوی">مرحوم آقای دکتر سیاوش صالح علوی</a>
+	</h2>
+
+			<div class="specialist-short_bio line-clamp line-clamp-1">
+			<a href="https://omid.hospital/specialist/dr_salehalavi/" title="مرحوم آقای دکتر سیاوش صالح علوی">زنان</a>
+		</div>
+		
+	</div>
+<div class="specialist-meta-wrap">
+	<div class="specialist-meta specialist-meta-inline specialist-meta-not-available-reserve">
+	<span class="specialist-meta-title">
+		در حال حاضر نوبت دهی آنلاین برای مرحوم آقای دکتر سیاوش صالح علوی فعال نیست.	</span>
+</div></div>
+<a href="https://omid.hospital/specialist/dr_salehalavi/" class="button button-center rounded button-primary small fullwidth specialist-btn">
+		<span class="button-text">نمایش متخصص</span>
+<i class="drplus-icon-arrow-up-left-square button-icon" aria-hidden="true"></i></a></div><div class="specialist specialist-208 specialist-user-228 slider-slide specialist-card verified" data-id="228">
+
+<div class="specialist-avatar-wrap">
+	<a href="https://omid.hospital/specialist/dr_bfarahani/" title="مرحوم آقای دکتر بهزاد فراهانی"><img loading="lazy" width="96" height="96" src="https://omid.hospital/wp-content/uploads/2025/10/d57ff15b64db2aa957bde414fdc69706-100x100.webp" class="" alt="" size="96" default="mm" force_default="" rating="g" scheme="" processed_args="" extra_attr="" force_display="" loading="" fetchpriority="" decoding="async" found_avatar="1" url="https://omid.hospital/wp-content/uploads/2025/10/d57ff15b64db2aa957bde414fdc69706-100x100.webp" srcset="https://omid.hospital/wp-content/uploads/2025/10/d57ff15b64db2aa957bde414fdc69706-100x100.webp 100w, https://omid.hospital/wp-content/uploads/2025/10/d57ff15b64db2aa957bde414fdc69706.webp 150w" sizes="(max-width: 96px) 100vw, 96px" /></a>
+</div>
+<div class="specialist-name-wrap">
+	<h2 class="specialist-name line-clamp line-clamp-1">
+		<a href="https://omid.hospital/specialist/dr_bfarahani/" title="مرحوم آقای دکتر بهزاد فراهانی">مرحوم آقای دکتر بهزاد فراهانی</a>
+	</h2>
+
+			<div class="specialist-short_bio line-clamp line-clamp-1">
+			<a href="https://omid.hospital/specialist/dr_bfarahani/" title="مرحوم آقای دکتر بهزاد فراهانی">قلب و عروق</a>
+		</div>
+		
+	</div>
+<div class="specialist-meta-wrap">
+	<div class="specialist-meta specialist-meta-inline specialist-meta-not-available-reserve">
+	<span class="specialist-meta-title">
+		در حال حاضر نوبت دهی آنلاین برای مرحوم آقای دکتر بهزاد فراهانی فعال نیست.	</span>
+</div></div>
+<a href="https://omid.hospital/specialist/dr_bfarahani/" class="button button-center rounded button-primary small fullwidth specialist-btn">
+		<span class="button-text">نمایش متخصص</span>
+<i class="drplus-icon-arrow-up-left-square button-icon" aria-hidden="true"></i></a></div><div class="specialist specialist-207 specialist-user-227 slider-slide specialist-card verified" data-id="227">
+
+<div class="specialist-avatar-wrap">
+	<a href="https://omid.hospital/specialist/dr_akazemi/" title="مرحوم آقای دکتر سید علی کاظمی"><img loading="lazy" width="96" height="96" src="https://omid.hospital/wp-content/uploads/2025/10/4c22aa7042cb3f1f499f9dfebef21fee-100x100.webp" class="" alt="" size="96" default="mm" force_default="" rating="g" scheme="" processed_args="" extra_attr="" force_display="" loading="" fetchpriority="" decoding="async" found_avatar="1" url="https://omid.hospital/wp-content/uploads/2025/10/4c22aa7042cb3f1f499f9dfebef21fee-100x100.webp" srcset="https://omid.hospital/wp-content/uploads/2025/10/4c22aa7042cb3f1f499f9dfebef21fee-100x100.webp 100w, https://omid.hospital/wp-content/uploads/2025/10/4c22aa7042cb3f1f499f9dfebef21fee.webp 150w" sizes="(max-width: 96px) 100vw, 96px" /></a>
+</div>
+<div class="specialist-name-wrap">
+	<h2 class="specialist-name line-clamp line-clamp-1">
+		<a href="https://omid.hospital/specialist/dr_akazemi/" title="مرحوم آقای دکتر سید علی کاظمی">مرحوم آقای دکتر سید علی کاظمی</a>
+	</h2>
+
+			<div class="specialist-short_bio line-clamp line-clamp-1">
+			<a href="https://omid.hospital/specialist/dr_akazemi/" title="مرحوم آقای دکتر سید علی کاظمی">قلب و عروق</a>
+		</div>
+		
+	</div>
+<div class="specialist-meta-wrap">
+	<div class="specialist-meta specialist-meta-inline specialist-meta-not-available-reserve">
+	<span class="specialist-meta-title">
+		در حال حاضر نوبت دهی آنلاین برای مرحوم آقای دکتر سید علی کاظمی فعال نیست.	</span>
+</div></div>
+<a href="https://omid.hospital/specialist/dr_akazemi/" class="button button-center rounded button-primary small fullwidth specialist-btn">
+		<span class="button-text">نمایش متخصص</span>
+<i class="drplus-icon-arrow-up-left-square button-icon" aria-hidden="true"></i></a></div><div class="specialist specialist-206 specialist-user-226 slider-slide specialist-card verified" data-id="226">
+
+<div class="specialist-avatar-wrap">
+	<a href="https://omid.hospital/specialist/dr_azahedi/" title="مرحوم آقای دکتر احمد زاهدی"><img loading="lazy" width="96" height="96" src="https://omid.hospital/wp-content/uploads/2025/10/ahmad-zahedi-profile20231222105507-100x100.webp" class="" alt="" size="96" default="mm" force_default="" rating="g" scheme="" processed_args="" extra_attr="" force_display="" loading="" fetchpriority="" decoding="async" found_avatar="1" url="https://omid.hospital/wp-content/uploads/2025/10/ahmad-zahedi-profile20231222105507-100x100.webp" srcset="https://omid.hospital/wp-content/uploads/2025/10/ahmad-zahedi-profile20231222105507-100x100.webp 100w, https://omid.hospital/wp-content/uploads/2025/10/ahmad-zahedi-profile20231222105507.webp 128w" sizes="(max-width: 96px) 100vw, 96px" /></a>
+</div>
+<div class="specialist-name-wrap">
+	<h2 class="specialist-name line-clamp line-clamp-1">
+		<a href="https://omid.hospital/specialist/dr_azahedi/" title="مرحوم آقای دکتر احمد زاهدی">مرحوم آقای دکتر احمد زاهدی</a>
+	</h2>
+
+			<div class="specialist-short_bio line-clamp line-clamp-1">
+			<a href="https://omid.hospital/specialist/dr_azahedi/" title="مرحوم آقای دکتر احمد زاهدی">گوش و حلق و بینی</a>
+		</div>
+		
+	</div>
+<div class="specialist-meta-wrap">
+	<div class="specialist-meta specialist-meta-inline specialist-meta-not-available-reserve">
+	<span class="specialist-meta-title">
+		در حال حاضر نوبت دهی آنلاین برای مرحوم آقای دکتر احمد زاهدی فعال نیست.	</span>
+</div></div>
+<a href="https://omid.hospital/specialist/dr_azahedi/" class="button button-center rounded button-primary small fullwidth specialist-btn">
+		<span class="button-text">نمایش متخصص</span>
+<i class="drplus-icon-arrow-up-left-square button-icon" aria-hidden="true"></i></a></div><div class="specialist specialist-205 specialist-user-225 slider-slide specialist-card verified" data-id="225">
+
+<div class="specialist-avatar-wrap">
+	<a href="https://omid.hospital/specialist/dr_bagheri/" title="مرحوم آقای دکتر جعفر باقری"><img src="https://omid.hospital/wp-content/themes/dr-plus/assets/images/user.svg" alt=""></a>
+</div>
+<div class="specialist-name-wrap">
+	<h2 class="specialist-name line-clamp line-clamp-1">
+		<a href="https://omid.hospital/specialist/dr_bagheri/" title="مرحوم آقای دکتر جعفر باقری">مرحوم آقای دکتر جعفر باقری</a>
+	</h2>
+
+			<div class="specialist-short_bio line-clamp line-clamp-1">
+			<a href="https://omid.hospital/specialist/dr_bagheri/" title="مرحوم آقای دکتر جعفر باقری">جراح عمومی</a>
+		</div>
+		
+	</div>
+<div class="specialist-meta-wrap">
+	<div class="specialist-meta specialist-meta-inline specialist-meta-not-available-reserve">
+	<span class="specialist-meta-title">
+		در حال حاضر نوبت دهی آنلاین برای مر��وم آقای دکتر جعفر باقری فعال نیست.	</span>
+</div></div>
+<a href="https://omid.hospital/specialist/dr_bagheri/" class="button button-center rounded button-primary small fullwidth specialist-btn">
+		<span class="button-text">نمایش متخصص</span>
+<i class="drplus-icon-arrow-up-left-square button-icon" aria-hidden="true"></i></a></div><div class="specialist specialist-204 specialist-user-224 slider-slide specialist-card verified" data-id="224">
+
+<div class="specialist-avatar-wrap">
+	<a href="https://omid.hospital/specialist/dr_farakhani/" title="آقای دکتر جمشید فرخانی"><img loading="lazy" width="96" height="96" src="https://omid.hospital/wp-content/uploads/2025/10/a1554d147820043ab58bcb90556374c1-100x100.webp" class="" alt="" size="96" default="mm" force_default="" rating="g" scheme="" processed_args="" extra_attr="" force_display="" loading="" fetchpriority="" decoding="async" found_avatar="1" url="https://omid.hospital/wp-content/uploads/2025/10/a1554d147820043ab58bcb90556374c1-100x100.webp" srcset="https://omid.hospital/wp-content/uploads/2025/10/a1554d147820043ab58bcb90556374c1-100x100.webp 100w, https://omid.hospital/wp-content/uploads/2025/10/a1554d147820043ab58bcb90556374c1.webp 150w" sizes="(max-width: 96px) 100vw, 96px" /></a>
+</div>
+<div class="specialist-name-wrap">
+	<h2 class="specialist-name line-clamp line-clamp-1">
+		<a href="https://omid.hospital/specialist/dr_farakhani/" title="آقای دکتر جمشید فرخانی">آقای دکتر جمشید فرخانی</a>
+	</h2>
+
+			<div class="specialist-short_bio line-clamp line-clamp-1">
+			<a href="https://omid.hospital/specialist/dr_farakhani/" title="آقای دکتر جمشید فرخانی">جراح مغز و اعصاب</a>
+		</div>
+		
+	</div>
+<div class="specialist-meta-wrap">
+	<div class="specialist-meta specialist-meta-inline specialist-meta-not-available-reserve">
+	<span class="specialist-meta-title">
+		در حال حاضر نوبت دهی آنلاین برای آقای دکتر جمشید فرخانی فعال نیست.	</span>
+</div></div>
+<a href="https://omid.hospital/specialist/dr_farakhani/" class="button button-center rounded button-primary small fullwidth specialist-btn">
+		<span class="button-text">نمایش متخصص</span>
+<i class="drplus-icon-arrow-up-left-square button-icon" aria-hidden="true"></i></a></div><div class="specialist specialist-203 specialist-user-223 slider-slide specialist-card verified" data-id="223">
+
+<div class="specialist-avatar-wrap">
+	<a href="https://omid.hospital/specialist/dr_mirkhani/" title="مرحوم آقای دکتر حمید میرخانی"><img loading="lazy" width="96" height="96" src="https://omid.hospital/wp-content/uploads/2025/10/میرخانی-100x100.jpg" class="" alt="" size="96" default="mm" force_default="" rating="g" scheme="" processed_args="" extra_attr="" force_display="" loading="" fetchpriority="" decoding="async" found_avatar="1" url="https://omid.hospital/wp-content/uploads/2025/10/میرخانی-100x100.jpg" /></a>
+</div>
+<div class="specialist-name-wrap">
+	<h2 class="specialist-name line-clamp line-clamp-1">
+		<a href="https://omid.hospital/specialist/dr_mirkhani/" title="مرحوم آقای دکتر حمید میرخانی">مرحوم آقای دکتر حمید میرخانی</a>
+	</h2>
+
+			<div class="specialist-short_bio line-clamp line-clamp-1">
+			<a href="https://omid.hospital/specialist/dr_mirkhani/" title="مرحوم آقای دکتر حمید میرخانی">جراحی قلب</a>
+		</div>
+		
+	</div>
+<div class="specialist-meta-wrap">
+	<div class="specialist-meta specialist-meta-inline specialist-meta-not-available-reserve">
+	<span class="specialist-meta-title">
+		در حال حاضر نوبت دهی آنلاین برای مرحوم آقای دکتر حمید میرخانی فعال نیست.	</span>
+</div></div>
+<a href="https://omid.hospital/specialist/dr_mirkhani/" class="button button-center rounded button-primary small fullwidth specialist-btn">
+		<span class="button-text">نمایش متخصص</span>
+<i class="drplus-icon-arrow-up-left-square button-icon" aria-hidden="true"></i></a></div><div class="specialist specialist-202 specialist-user-221 slider-slide specialist-card verified" data-id="221">
+
+<div class="specialist-avatar-wrap">
+	<a href="https://omid.hospital/specialist/dr_alizadehmizani/" title="مرحوم آقای دکتر قاسم علیزاده میزانی"><img loading="lazy" width="96" height="96" src="https://omid.hospital/wp-content/uploads/2025/10/قاسم-علیزاده-میزانی-6143-100x100.jpg" class="" alt="" size="96" default="mm" force_default="" rating="g" scheme="" processed_args="" extra_attr="" force_display="" loading="" fetchpriority="" decoding="async" found_avatar="1" url="https://omid.hospital/wp-content/uploads/2025/10/قاسم-علیزاده-میزانی-6143-100x100.jpg" srcset="https://omid.hospital/wp-content/uploads/2025/10/قاسم-علیزاده-میزانی-6143-100x100.jpg 100w, https://omid.hospital/wp-content/uploads/2025/10/قاسم-علیزاده-میزانی-6143-150x150.jpg 150w" sizes="(max-width: 96px) 100vw, 96px" /></a>
+</div>
+<div class="specialist-name-wrap">
+	<h2 class="specialist-name line-clamp line-clamp-1">
+		<a href="https://omid.hospital/specialist/dr_alizadehmizani/" title="مرحوم آقای دکتر قاسم علیزاده میزانی">مرحوم آقای دکتر قاسم علیزاده میزانی</a>
+	</h2>
+
+			<div class="specialist-short_bio line-clamp line-clamp-1">
+			<a href="https://omid.hospital/specialist/dr_alizadehmizani/" title="مرحوم آقای دکتر قاسم علیزاده میزانی">چشم</a>
+		</div>
+		
+	</div>
+<div class="specialist-meta-wrap">
+	<div class="specialist-meta specialist-meta-inline specialist-meta-not-available-reserve">
+	<span class="specialist-meta-title">
+		در حال حاضر نوبت دهی آنلاین برای مرحوم آقای دکتر قاسم علیزاده میزانی فعال نیست.	</span>
+</div></div>
+<a href="https://omid.hospital/specialist/dr_alizadehmizani/" class="button button-center rounded button-primary small fullwidth specialist-btn">
+		<span class="button-text">نمایش متخصص</span>
+<i class="drplus-icon-arrow-up-left-square button-icon" aria-hidden="true"></i></a></div><div class="pagination">
+	
+	<nav class="navigation " aria-label="صفحه‌بندی نوشته‌ها">
+		<h2 class="screen-reader-text">صفحه‌بندی نوشته‌ها</h2>
+		<div class="nav-links"><span aria-label="Page 1" aria-current="page" class="page-numbers current"><span class="meta-nav screen-reader-text">صفحه </span>1</span>
+<a aria-label="Page 2" class="page-numbers" href="https://omid.hospital/specialists/page/2/"><span class="meta-nav screen-reader-text">صفحه </span>2</a>
+<a aria-label="Page 3" class="page-numbers" href="https://omid.hospital/specialists/page/3/"><span class="meta-nav screen-reader-text">صفحه </span>3</a>
+<a aria-label="Page 4" class="page-numbers" href="https://omid.hospital/specialists/page/4/"><span class="meta-nav screen-reader-text">صفحه </span>4</a>
+<span class="page-numbers dots">&hellip;</span>
+<a aria-label="Page 17" class="page-numbers" href="https://omid.hospital/specialists/page/17/"><span class="meta-nav screen-reader-text">صفحه </span>17</a>
+<a class="next page-numbers" href="https://omid.hospital/specialists/page/2/">صفحه بعد<i class='drplus-icon-chevron-left-dot'></i></a></div>
+	</nav></div>			</div>
+		</div>
+	</main>
+</div>
+		<footer data-elementor-type="footer" data-elementor-id="482" class="elementor elementor-482 elementor-location-footer" data-elementor-post-type="elementor_library">
+			<footer class="elementor-element elementor-element-5a6c88a e-con-full e-flex e-con e-parent" data-id="5a6c88a" data-element_type="container" data-settings="{&quot;background_background&quot;:&quot;classic&quot;}">
+		<div class="elementor-element elementor-element-de1ff2c e-con-full e-flex e-con e-child" data-id="de1ff2c" data-element_type="container" data-settings="{&quot;background_background&quot;:&quot;classic&quot;}">
+		<div class="elementor-element elementor-element-fe3e276 e-con-full e-flex e-con e-child" data-id="fe3e276" data-element_type="container">
+				<div class="elementor-element elementor-element-e03e378 elementor-view-stacked elementor-absolute elementor-shape-circle elementor-widget elementor-widget-icon" data-id="e03e378" data-element_type="widget" data-settings="{&quot;_position&quot;:&quot;absolute&quot;}" data-widget_type="icon.default">
+				<div class="elementor-widget-container">
+							<div class="elementor-icon-wrapper">
+			<a class="elementor-icon" href="#">
+			<i aria-hidden="true" class="drplusicon- drplus-icon-arrow-up"></i>			</a>
+		</div>
+						</div>
+				</div>
+				</div>
+				</div>
+		<div class="elementor-element elementor-element-6ef907e e-con-full e-flex e-con e-child" data-id="6ef907e" data-element_type="container" data-settings="{&quot;background_background&quot;:&quot;classic&quot;}">
+		<div class="elementor-element elementor-element-ea3bdf0 e-con-full e-grid e-con e-child" data-id="ea3bdf0" data-element_type="container">
+		<div class="elementor-element elementor-element-6f35afd e-con-full e-flex e-con e-child" data-id="6f35afd" data-element_type="container">
+				<div class="elementor-element elementor-element-0091310 elementor-widget elementor-widget-heading" data-id="0091310" data-element_type="widget" data-widget_type="heading.default">
+				<div class="elementor-widget-container">
+					<h5 class="elementor-heading-title elementor-size-default">درباره ما</h5>				</div>
+				</div>
+				<div class="elementor-element elementor-element-3c2fbaa elementor-widget elementor-widget-text-editor" data-id="3c2fbaa" data-element_type="widget" data-widget_type="text-editor.default">
+				<div class="elementor-widget-container">
+									<p>بیمارستان تخصصی و فوق تخصصی امید تهران ، در پاییز سال 1395 با بهره گیری از مدرن ترین تجهیزات پزشکی و مطابق با بالاترین سطح استانداردهای درمانی و بهداشتی ملی و بین المللی در منطقه غرب تهران افتتاح شد . بیمارستان تخصصی و فوق تخصصی امید شامل بخش های کلینیکی، پاراکلینیکی، بستری و سرپایی بوده وبا بهره گیری از نیروی انسانی متخصص و متعهد و تجهیزات پزشکی مدرن و پیشرفته روز دنیا ، آماده ارائه خدمات درمانی و بهداشتی مطلوب در سطح بین الملل می باشد . درحال حاضر ، 115 تخت خواب فعال دارد .</p>								</div>
+				</div>
+				</div>
+		<div class="elementor-element elementor-element-96ad4d5 e-con-full e-flex e-con e-child" data-id="96ad4d5" data-element_type="container">
+		<div class="elementor-element elementor-element-4da8e5c e-con-full e-grid e-con e-child" data-id="4da8e5c" data-element_type="container">
+		<div class="elementor-element elementor-element-8585c4b e-con-full e-flex e-con e-child" data-id="8585c4b" data-element_type="container">
+				<div class="elementor-element elementor-element-c4ef6a1 elementor-widget elementor-widget-heading" data-id="c4ef6a1" data-element_type="widget" data-widget_type="heading.default">
+				<div class="elementor-widget-container">
+					<h5 class="elementor-heading-title elementor-size-default">لینک‌های مفید</h5>				</div>
+				</div>
+				<div class="elementor-element elementor-element-bdb945e elementor-widget elementor-widget-drplus_menu" data-id="bdb945e" data-element_type="widget" data-widget_type="drplus_menu.default">
+				<div class="elementor-widget-container">
+							<nav class="drplus-menu-wrap left col-direction menu-style-1">
+			<div class="footer"><ul id="menu-footer" class="menu"><li id="menu-item-704" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-home menu-item-704"><a href="https://omid.hospital/"><span class="menu-item-title">صفحه اصلی</span></a></li>
+<li id="menu-item-712" class="menu-item menu-item-type-custom menu-item-object-custom current-menu-item menu-item-712"><a href="https://omid.hospital/specialists" aria-current="page"><span class="menu-item-title">پزشکان</span></a></li>
+<li id="menu-item-705" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-705"><a href="https://omid.hospital/contact-us/"><span class="menu-item-title">تماس با ما</span></a></li>
+<li id="menu-item-706" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-706"><a href="https://omid.hospital/about-us/"><span class="menu-item-title">درباره ما</span></a></li>
+</ul></div>		</nav>
+						</div>
+				</div>
+				</div>
+		<div class="elementor-element elementor-element-a876b08 e-con-full e-flex e-con e-child" data-id="a876b08" data-element_type="container">
+				<div class="elementor-element elementor-element-f1ba63e elementor-widget elementor-widget-heading" data-id="f1ba63e" data-element_type="widget" data-widget_type="heading.default">
+				<div class="elementor-widget-container">
+					<h5 class="elementor-heading-title elementor-size-default">راه‌های ارتباطی</h5>				</div>
+				</div>
+				<div class="elementor-element elementor-element-ee592d6 elementor-widget elementor-widget-text-editor" data-id="ee592d6" data-element_type="widget" data-widget_type="text-editor.default">
+				<div class="elementor-widget-container">
+									<p>پاسخگویی هفت روز هفته از ساعت 9 تا 12</p>								</div>
+				</div>
+				<div class="elementor-element elementor-element-e03f2df elementor-position-right elementor-view-default elementor-mobile-position-top elementor-widget elementor-widget-icon-box" data-id="e03f2df" data-element_type="widget" data-widget_type="icon-box.default">
+				<div class="elementor-widget-container">
+							<div class="elementor-icon-box-wrapper">
+
+						<div class="elementor-icon-box-icon">
+				<a href="tel:0212581456" class="elementor-icon" tabindex="-1" aria-label="021-44426690">
+				<i aria-hidden="true" class="drplusicon- drplus-icon-calling"></i>				</a>
+			</div>
+			
+						<div class="elementor-icon-box-content">
+
+									<div class="elementor-icon-box-title">
+						<a href="tel:0212581456" >
+							021-44426690						</a>
+					</div>
+				
+				
+			</div>
+			
+		</div>
+						</div>
+				</div>
+				<div class="elementor-element elementor-element-5d8f3aa elementor-widget elementor-widget-text-editor" data-id="5d8f3aa" data-element_type="widget" data-widget_type="text-editor.default">
+				<div class="elementor-widget-container">
+									<p>آدرس:</p>								</div>
+				</div>
+				<div class="elementor-element elementor-element-fa0bda8 elementor-position-right elementor-view-default elementor-mobile-position-top elementor-widget elementor-widget-icon-box" data-id="fa0bda8" data-element_type="widget" data-widget_type="icon-box.default">
+				<div class="elementor-widget-container">
+							<div class="elementor-icon-box-wrapper">
+
+						<div class="elementor-icon-box-icon">
+				<a href="#" class="elementor-icon" tabindex="-1" aria-label="تهران جنت آباد مرکزی، خ شاهین شمالی، خ کبیری طامه، خ بهار">
+				<i aria-hidden="true" class="drplusicon- drplus-icon-discovery"></i>				</a>
+			</div>
+			
+						<div class="elementor-icon-box-content">
+
+									<div class="elementor-icon-box-title">
+						<a href="#" >
+							تهران جنت آباد مرکزی، خ شاهین شمالی، خ کبیری طامه، خ بهار						</a>
+					</div>
+				
+				
+			</div>
+			
+		</div>
+						</div>
+				</div>
+				</div>
+				</div>
+				</div>
+		<div class="elementor-element elementor-element-788f13b e-con-full e-grid e-con e-child" data-id="788f13b" data-element_type="container">
+		<div class="elementor-element elementor-element-07e12e2 e-con-full e-flex e-con e-child" data-id="07e12e2" data-element_type="container" data-settings="{&quot;background_background&quot;:&quot;classic&quot;}">
+		<div class="elementor-element elementor-element-0587cdd e-con-full e-flex e-con e-child" data-id="0587cdd" data-element_type="container">
+				<div class="elementor-element elementor-element-a7b0226 elementor-view-stacked elementor-shape-rounded elementor-widget elementor-widget-icon" data-id="a7b0226" data-element_type="widget" data-widget_type="icon.default">
+				<div class="elementor-widget-container">
+							<div class="elementor-icon-wrapper">
+			<a class="elementor-icon" href="https://www.instagram.com/omidhospitaltehran/">
+			<i aria-hidden="true" class="drplusicon- drplus-icon-instagram"></i>			</a>
+		</div>
+						</div>
+				</div>
+				</div>
+				</div>
+				<div class="elementor-element elementor-element-6109a9d elementor-widget elementor-widget-google_maps" data-id="6109a9d" data-element_type="widget" data-widget_type="google_maps.default">
+				<div class="elementor-widget-container">
+							<div class="elementor-custom-embed">
+			<iframe loading="lazy"
+					src="https://maps.google.com/maps?q=%D8%A8%DB%8C%D9%85%D8%A7%D8%B1%D8%B3%D8%AA%D8%A7%D9%86%20%D8%A7%D9%85%DB%8C%D8%AF&#038;t=m&#038;z=17&#038;output=embed&#038;iwloc=near"
+					title="بیمارستان امید"
+					aria-label="بیمارستان امید"
+			></iframe>
+		</div>
+						</div>
+				</div>
+				</div>
+				</div>
+		<div class="elementor-element elementor-element-960d422 e-con-full e-flex e-con e-child" data-id="960d422" data-element_type="container" data-settings="{&quot;background_background&quot;:&quot;classic&quot;}">
+				</div>
+				</div>
+		<div class="elementor-element elementor-element-a03a946 e-con-full e-flex e-con e-child" data-id="a03a946" data-element_type="container" data-settings="{&quot;background_background&quot;:&quot;classic&quot;}">
+		<div class="elementor-element elementor-element-550a9f1 e-con-full e-flex e-con e-child" data-id="550a9f1" data-element_type="container">
+				<div class="elementor-element elementor-element-1ec781d elementor-widget elementor-widget-text-editor" data-id="1ec781d" data-element_type="widget" data-widget_type="text-editor.default">
+				<div class="elementor-widget-container">
+									<p>تمامی حقوق این وبسایت متعلق به بیمارستان تخصصی و فوق تخصصی امید میباشد.</p>								</div>
+				</div>
+				</div>
+				</div>
+				</footer>
+				</footer>
+		
+<script type="speculationrules">
+{"prefetch":[{"source":"document","where":{"and":[{"href_matches":"/*"},{"not":{"href_matches":["/wp-*.php","/wp-admin/*","/wp-content/uploads/*","/wp-content/*","/wp-content/plugins/*","/wp-content/themes/dr-plus/*","/*\\?(.+)"]}},{"not":{"selector_matches":"a[rel~=\"nofollow\"]"}},{"not":{"selector_matches":".no-prefetch, .no-prefetch a"}}]},"eagerness":"conservative"}]}
+</script>
+		<div id="drplus-overlay" class="drplus-overlay"></div>
+					<script>
+				const lazyloadRunObserver = () => {
+					const lazyloadBackgrounds = document.querySelectorAll( `.e-con.e-parent:not(.e-lazyloaded)` );
+					const lazyloadBackgroundObserver = new IntersectionObserver( ( entries ) => {
+						entries.forEach( ( entry ) => {
+							if ( entry.isIntersecting ) {
+								let lazyloadBackground = entry.target;
+								if( lazyloadBackground ) {
+									lazyloadBackground.classList.add( 'e-lazyloaded' );
+								}
+								lazyloadBackgroundObserver.unobserve( entry.target );
+							}
+						});
+					}, { rootMargin: '200px 0px 200px 0px' } );
+					lazyloadBackgrounds.forEach( ( lazyloadBackground ) => {
+						lazyloadBackgroundObserver.observe( lazyloadBackground );
+					} );
+				};
+				const events = [
+					'DOMContentLoaded',
+					'elementor/lazyload/observe',
+				];
+				events.forEach( ( event ) => {
+					document.addEventListener( event, lazyloadRunObserver );
+				} );
+			</script>
+				<script type='text/javascript'>
+		(function () {
+			var c = document.body.className;
+			c = c.replace(/woocommerce-no-js/, 'woocommerce-js');
+			document.body.className = c;
+		})();
+	</script>
+	<script id="wp-hooks-js" src="https://omid.hospital/wp-includes/js/dist/hooks.min.js?ver=7496969728ca0f95732d"></script>
+<script id="wp-i18n-js" src="https://omid.hospital/wp-includes/js/dist/i18n.min.js?ver=781d11515ad3d91786ec"></script>
+<script id="wp-i18n-js-after">
+wp.i18n.setLocaleData( { 'text direction\u0004ltr': [ 'rtl' ] } );
+//# sourceURL=wp-i18n-js-after
+</script>
+<script id="swv-js" src="https://omid.hospital/wp-content/plugins/contact-form-7/includes/swv/js/index.js?ver=6.1.1"></script>
+<script id="contact-form-7-js-translations">
+( function( domain, translations ) {
+	var localeData = translations.locale_data[ domain ] || translations.locale_data.messages;
+	localeData[""].domain = domain;
+	wp.i18n.setLocaleData( localeData, domain );
+} )( "contact-form-7", {"translation-revision-date":"2025-04-05 08:14:51+0000","generator":"GlotPress\/4.0.1","domain":"messages","locale_data":{"messages":{"":{"domain":"messages","plural-forms":"nplurals=1; plural=0;","lang":"fa"},"This contact form is placed in the wrong place.":["\u0627\u06cc\u0646 \u0641\u0631\u0645 \u062a\u0645\u0627\u0633 \u062f\u0631 \u062c\u0627\u06cc \u0627\u0634\u062a\u0628\u0627\u0647\u06cc \u0642\u0631\u0627\u0631 \u062f\u0627\u062f\u0647 \u0634\u062f\u0647 \u0627\u0633\u062a."],"Error:":["\u062e\u0637\u0627:"]}},"comment":{"reference":"includes\/js\/index.js"}} );
+//# sourceURL=contact-form-7-js-translations
+</script>
+<script id="contact-form-7-js-before">
+var wpcf7 = {
+    "api": {
+        "root": "https:\/\/omid.hospital\/wp-json\/",
+        "namespace": "contact-form-7\/v1"
+    }
+};
+//# sourceURL=contact-form-7-js-before
+</script>
+<script id="contact-form-7-js" src="https://omid.hospital/wp-content/plugins/contact-form-7/includes/js/index.js?ver=6.1.1"></script>
+<script id="drplus-utils-js" src="https://omid.hospital/wp-content/themes/dr-plus/assets/js/utils.min.js?ver=2.2.5.0"></script>
+<script id="drplus-js-extra">
+var drplusVars = {"ajaxUrl":"https://omid.hospital/wp-admin/admin-ajax.php","isRtl":"1","i18n":{"today":"\u0627\u0645\u0631\u0648\u0632","submit":"\u062a\u0627\u06cc\u06cc\u062f","dropzone":{"dictDefaultMessage":"\u0628\u0631\u0627\u06cc \u0628\u0627\u0631\u06af\u0630\u0627\u0631\u06cc \u0641\u0627\u06cc\u0644 \u0631\u0627 \u0627\u06cc\u0646\u062c\u0627 \u0631\u0647\u0627 \u06a9\u0646\u06cc\u062f \u06cc\u0627 \u06a9\u0644\u06cc\u06a9 \u06a9\u0646\u06cc\u062f."},"wrongIDCode":"\u0644\u0637\u0641\u0627 \u06cc\u06a9 \u06a9\u062f \u0645\u0644\u06cc \u0645\u0639\u062a\u0628\u0631 \u0648\u0627\u0631\u062f \u06a9\u0646\u06cc\u062f","wrongMobile":"\u0644\u0637\u0641\u0627 \u06cc\u06a9 \u0634\u0645\u0627\u0631\u0647 \u0645\u0648\u0628\u0627\u06cc\u0644 \u0645\u0639\u062a\u0628\u0631 \u0648\u0627\u0631\u062f \u06a9\u0646\u06cc\u062f"},"nonces":{"dropzone":"eb1be30f45"},"defaults":{"avatar":"https://omid.hospital/wp-content/themes/dr-plus/assets/images/user.svg"}};
+//# sourceURL=drplus-js-extra
+</script>
+<script id="drplus-js" src="https://omid.hospital/wp-content/themes/dr-plus/assets/js/drplus.min.js?ver=2.2.5.0"></script>
+<script id="drplus-front-js-extra">
+var drplusFront = {"i18n":{"allCities":"\u0647\u0645\u0647 \u0634\u0647\u0631\u0647\u0627"}};
+//# sourceURL=drplus-front-js-extra
+</script>
+<script id="drplus-front-js" src="https://omid.hospital/wp-content/themes/dr-plus/assets/js/script.min.js?ver=2.2.5.0"></script>
+<script id="drplus-custom_select-js" src="https://omid.hospital/wp-content/themes/dr-plus/assets/js/custom_select.min.js?ver=2.2.5.0"></script>
+<script id="drplus-search_input-js" src="https://omid.hospital/wp-content/themes/dr-plus/assets/js/search_input.min.js?ver=2.2.5.0"></script>
+<script id="drplus-elementor-js" src="https://omid.hospital/wp-content/themes/dr-plus/assets/js/elementor.min.js?ver=2.2.5.0"></script>
+<script id="drplus-select2-js" src="https://omid.hospital/wp-content/themes/dr-plus/assets/libs/select2/select2.min.js?ver=2.2.5.0"></script>
+<script id="drplus-swiper-js" src="https://omid.hospital/wp-content/themes/dr-plus/assets/libs/swiper/swiper-bundle.min.js?ver=2.2.5.0"></script>
+<script id="drplus-slider-js" src="https://omid.hospital/wp-content/themes/dr-plus/assets/js/slider.min.js?ver=2.2.5.0"></script>
+<script id="drplus-wc-js" src="https://omid.hospital/wp-content/themes/dr-plus/assets/js/wc/wc.min.js?ver=2.2.5.0"></script>
+<script id="drplus-wishlist-js" src="https://omid.hospital/wp-content/themes/dr-plus/assets/js/wc/wishlist.min.js?ver=2.2.5.0"></script>
+<script id="drplus-pd-js" src="https://omid.hospital/wp-content/themes/dr-plus/assets/libs/pdp/persian-date.min.js?ver=2.2.5.0"></script>
+<script id="drplus-pdp-js" src="https://omid.hospital/wp-content/themes/dr-plus/assets/libs/pdp/persian-datepicker.min.js?ver=2.2.5.0"></script>
+<script id="elementor-webpack-runtime-js" src="https://omid.hospital/wp-content/plugins/elementor/assets/js/webpack.runtime.min.js?ver=3.32.5"></script>
+<script id="elementor-frontend-modules-js" src="https://omid.hospital/wp-content/plugins/elementor/assets/js/frontend-modules.min.js?ver=3.32.5"></script>
+<script id="jquery-ui-core-js" src="https://omid.hospital/wp-includes/js/jquery/ui/core.min.js?ver=1.13.3"></script>
+<script id="elementor-frontend-js-before">
+var elementorFrontendConfig = {"environmentMode":{"edit":false,"wpPreview":false,"isScriptDebug":false},"i18n":{"shareOnFacebook":"\u0627\u0634\u062a\u0631\u0627\u06a9 \u06af\u0630\u0627\u0631\u06cc \u062f\u0631 Facebook","shareOnTwitter":"\u0627\u0634\u062a\u0631\u0627\u06a9 \u06af\u0630\u0627\u0631\u06cc \u062f\u0631 Twitter","pinIt":"\u067e\u06cc\u0646 \u06a9\u0646\u06cc\u062f","download":"\u062f\u0627\u0646\u0644\u0648\u062f","downloadImage":"\u062f\u0627\u0646\u0644\u0648\u062f \u062a\u0635\u0648\u06cc\u0631","fullscreen":"\u062a\u0645\u0627\u0645\u200c\u0635\u0641\u062d\u0647","zoom":"\u0628\u0632\u0631\u06af\u0646\u0645\u0627\u06cc\u06cc","share":"\u0627\u0634\u062a\u0631\u0627\u06a9 \u06af\u0630\u0627\u0631\u06cc","playVideo":"\u067e\u062e\u0634 \u0648\u06cc\u062f\u06cc\u0648","previous":"\u0642\u0628\u0644\u06cc","next":"\u0628\u0639\u062f\u06cc","close":"\u0628\u0633\u062a\u0646","a11yCarouselPrevSlideMessage":"\u0627\u0633\u0644\u0627\u06cc\u062f \u0642\u0628\u0644\u06cc","a11yCarouselNextSlideMessage":"\u0627\u0633\u0644\u0627\u06cc\u062f \u0628\u0639\u062f\u06cc","a11yCarouselFirstSlideMessage":"\u0627\u06cc\u0646 \u0627\u0648\u0644\u06cc\u0646 \u0627\u0633\u0644\u0627\u06cc\u062f \u0627\u0633\u062a","a11yCarouselLastSlideMessage":"\u0627\u06cc\u0646 \u0622\u062e\u0631\u06cc\u0646 \u0627\u0633\u0644\u0627\u06cc\u062f \u0627\u0633\u062a","a11yCarouselPaginationBulletMessage":"\u0631\u0641\u062a\u0646 \u0628\u0647 \u0627\u0633\u0644\u0627\u06cc\u062f"},"is_rtl":true,"breakpoints":{"xs":0,"sm":480,"md":768,"lg":1025,"xl":1440,"xxl":1600},"responsive":{"breakpoints":{"mobile":{"label":"\u062d\u0627\u0644\u062a \u0639\u0645\u0648\u062f\u06cc \u0645\u0648\u0628\u0627\u06cc\u0644","value":767,"default_value":767,"direction":"max","is_enabled":true},"mobile_extra":{"label":"\u062d\u0627\u0644\u062a \u0627\u0641\u0642\u06cc \u0645\u0648\u0628\u0627\u06cc\u0644","value":880,"default_value":880,"direction":"max","is_enabled":false},"tablet":{"label":"\u062d\u0627\u0644\u062a \u0639\u0645\u0648\u062f\u06cc \u062a\u0628\u0644\u062a","value":1024,"default_value":1024,"direction":"max","is_enabled":true},"tablet_extra":{"label":"\u062d\u0627\u0644\u062a \u0627\u0641\u0642\u06cc \u062a\u0628\u0644\u062a","value":1200,"default_value":1200,"direction":"max","is_enabled":false},"laptop":{"label":"\u0644\u067e \u062a\u0627\u067e","value":1366,"default_value":1366,"direction":"max","is_enabled":false},"widescreen":{"label":"\u0635\u0641\u062d\u0647 \u0639\u0631\u06cc\u0636 (Widescreen)","value":2400,"default_value":2400,"direction":"min","is_enabled":false}},"hasCustomBreakpoints":false},"version":"3.32.5","is_static":false,"experimentalFeatures":{"e_font_icon_svg":true,"additional_custom_breakpoints":true,"container":true,"theme_builder_v2":true,"nested-elements":true,"home_screen":true,"global_classes_should_enforce_capabilities":true,"e_variables":true,"cloud-library":true,"e_opt_in_v4_page":true,"import-export-customization":true,"e_pro_variables":true},"urls":{"assets":"https:\/\/omid.hospital\/wp-content\/plugins\/elementor\/assets\/","ajaxurl":"https:\/\/omid.hospital\/wp-admin\/admin-ajax.php","uploadUrl":"https:\/\/omid.hospital\/wp-content\/uploads"},"nonces":{"floatingButtonsClickTracking":"030df132e7"},"swiperClass":"swiper","settings":{"editorPreferences":[]},"kit":{"active_breakpoints":["viewport_mobile","viewport_tablet"],"global_image_lightbox":"yes","lightbox_enable_counter":"yes","lightbox_enable_fullscreen":"yes","lightbox_enable_zoom":"yes","lightbox_enable_share":"yes","lightbox_title_src":"title","lightbox_description_src":"description","woocommerce_notices_elements":[]},"post":{"id":0,"title":"\u0645\u062a\u062e\u0635\u0635\u200c\u0647\u0627 &#8211; \u0628\u06cc\u0645\u0627\u0631\u0633\u062a\u0627\u0646 \u062a\u062e\u0635\u0635\u06cc \u0648 \u0641\u0648\u0642 \u062a\u062e\u0635\u0635\u06cc \u0627\u0645\u06cc\u062f","excerpt":""}};
+//# sourceURL=elementor-frontend-js-before
+</script>
+<script id="elementor-frontend-js" src="https://omid.hospital/wp-content/plugins/elementor/assets/js/frontend.min.js?ver=3.32.5"></script>
+<script id="e-sticky-js" src="https://omid.hospital/wp-content/plugins/elementor-pro/assets/lib/sticky/jquery.sticky.min.js?ver=3.32.2"></script>
+<script id="sourcebuster-js-js" src="https://omid.hospital/wp-content/plugins/woocommerce/assets/js/sourcebuster/sourcebuster.min.js?ver=10.1.3"></script>
+<script id="wc-order-attribution-js-extra">
+var wc_order_attribution = {"params":{"lifetime":1.0e-5,"session":30,"base64":false,"ajaxurl":"https://omid.hospital/wp-admin/admin-ajax.php","prefix":"wc_order_attribution_","allowTracking":true},"fields":{"source_type":"current.typ","referrer":"current_add.rf","utm_campaign":"current.cmp","utm_source":"current.src","utm_medium":"current.mdm","utm_content":"current.cnt","utm_id":"current.id","utm_term":"current.trm","utm_source_platform":"current.plt","utm_creative_format":"current.fmt","utm_marketing_tactic":"current.tct","session_entry":"current_add.ep","session_start_time":"current_add.fd","session_pages":"session.pgs","session_count":"udata.vst","user_agent":"udata.uag"}};
+//# sourceURL=wc-order-attribution-js-extra
+</script>
+<script id="wc-order-attribution-js" src="https://omid.hospital/wp-content/plugins/woocommerce/assets/js/frontend/order-attribution.min.js?ver=10.1.3"></script>
+<script id="drplus-cache-js" src="https://omid.hospital/wp-content/themes/dr-plus/assets/js/cache.min.js?ver=2.2.5.0"></script>
+<script id="gt_widget_script_21836260-js-before">
+window.gtranslateSettings = /* document.write */ window.gtranslateSettings || {};window.gtranslateSettings['21836260'] = {"default_language":"fa","languages":["en","fa"],"url_structure":"none","native_language_names":1,"flag_style":"3d","flag_size":32,"wrapper_selector":"#gt-wrapper-21836260","alt_flags":[],"horizontal_position":"inline","flags_location":"\/wp-content\/plugins\/gtranslate\/flags\/"};
+//# sourceURL=gt_widget_script_21836260-js-before
+</script><script src="https://omid.hospital/wp-content/plugins/gtranslate/js/fn.js?ver=7.0.2" data-no-optimize="1" data-no-minify="1" data-gt-orig-url="/specialists/" data-gt-orig-domain="omid.hospital" data-gt-widget-id="21836260" defer></script><script id="elementor-pro-webpack-runtime-js" src="https://omid.hospital/wp-content/plugins/elementor-pro/assets/js/webpack-pro.runtime.min.js?ver=3.32.2"></script>
+<script id="elementor-pro-frontend-js-before">
+var ElementorProFrontendConfig = {"ajaxurl":"https:\/\/omid.hospital\/wp-admin\/admin-ajax.php","nonce":"ef285fdf41","urls":{"assets":"https:\/\/omid.hospital\/wp-content\/plugins\/elementor-pro\/assets\/","rest":"https:\/\/omid.hospital\/wp-json\/"},"settings":{"lazy_load_background_images":true},"popup":{"hasPopUps":false},"shareButtonsNetworks":{"facebook":{"title":"Facebook","has_counter":true},"twitter":{"title":"Twitter"},"linkedin":{"title":"LinkedIn","has_counter":true},"pinterest":{"title":"Pinterest","has_counter":true},"reddit":{"title":"Reddit","has_counter":true},"vk":{"title":"VK","has_counter":true},"odnoklassniki":{"title":"OK","has_counter":true},"tumblr":{"title":"Tumblr"},"digg":{"title":"Digg"},"skype":{"title":"Skype"},"stumbleupon":{"title":"StumbleUpon","has_counter":true},"mix":{"title":"Mix"},"telegram":{"title":"Telegram"},"pocket":{"title":"Pocket","has_counter":true},"xing":{"title":"XING","has_counter":true},"whatsapp":{"title":"WhatsApp"},"email":{"title":"Email"},"print":{"title":"Print"},"x-twitter":{"title":"X"},"threads":{"title":"Threads"}},"woocommerce":{"menu_cart":{"cart_page_url":"https:\/\/omid.hospital","checkout_page_url":"https:\/\/omid.hospital\/checkout\/","fragments_nonce":"51d4282620"}},"facebook_sdk":{"lang":"fa_IR","app_id":""},"lottie":{"defaultAnimationUrl":"https:\/\/omid.hospital\/wp-content\/plugins\/elementor-pro\/modules\/lottie\/assets\/animations\/default.json"}};
+//# sourceURL=elementor-pro-frontend-js-before
+</script>
+<script id="elementor-pro-frontend-js" src="https://omid.hospital/wp-content/plugins/elementor-pro/assets/js/frontend.min.js?ver=3.32.2"></script>
+<script id="pro-elements-handlers-js" src="https://omid.hospital/wp-content/plugins/elementor-pro/assets/js/elements-handlers.min.js?ver=3.32.2"></script>
+<script id="wp-emoji-settings" type="application/json">
+{"baseUrl":"https://s.w.org/images/core/emoji/17.0.2/72x72/","ext":".png","svgUrl":"https://s.w.org/images/core/emoji/17.0.2/svg/","svgExt":".svg","source":{"concatemoji":"https://omid.hospital/wp-includes/js/wp-emoji-release.min.js?ver=7.0.2"}}
+</script>
+<script type="module">
+/*! This file is auto-generated */
+const a=JSON.parse(document.getElementById("wp-emoji-settings").textContent),o=(window._wpemojiSettings=a,"wpEmojiSettingsSupports"),s=["flag","emoji"];function i(e){try{var t={supportTests:e,timestamp:(new Date).valueOf()};sessionStorage.setItem(o,JSON.stringify(t))}catch(e){}}function c(e,t,n){e.clearRect(0,0,e.canvas.width,e.canvas.height),e.fillText(t,0,0);t=new Uint32Array(e.getImageData(0,0,e.canvas.width,e.canvas.height).data);e.clearRect(0,0,e.canvas.width,e.canvas.height),e.fillText(n,0,0);const a=new Uint32Array(e.getImageData(0,0,e.canvas.width,e.canvas.height).data);return t.every((e,t)=>e===a[t])}function p(e,t){e.clearRect(0,0,e.canvas.width,e.canvas.height),e.fillText(t,0,0);var n=e.getImageData(16,16,1,1);for(let e=0;e<n.data.length;e++)if(0!==n.data[e])return!1;return!0}function u(e,t,n,a){switch(t){case"flag":return n(e,"\ud83c\udff3\ufe0f\u200d\u26a7\ufe0f","\ud83c\udff3\ufe0f\u200b\u26a7\ufe0f")?!1:!n(e,"\ud83c\udde8\ud83c\uddf6","\ud83c\udde8\u200b\ud83c\uddf6")&&!n(e,"\ud83c\udff4\udb40\udc67\udb40\udc62\udb40\udc65\udb40\udc6e\udb40\udc67\udb40\udc7f","\ud83c\udff4\u200b\udb40\udc67\u200b\udb40\udc62\u200b\udb40\udc65\u200b\udb40\udc6e\u200b\udb40\udc67\u200b\udb40\udc7f");case"emoji":return!a(e,"\ud83e\u1fac8")}return!1}function f(e,t,n,a){let r;const o=(r="undefined"!=typeof WorkerGlobalScope&&self instanceof WorkerGlobalScope?new OffscreenCanvas(300,150):document.createElement("canvas")).getContext("2d",{willReadFrequently:!0}),s=(o.textBaseline="top",o.font="600 32px Arial",{});return e.forEach(e=>{s[e]=t(o,e,n,a)}),s}function r(e){var t=document.createElement("script");t.src=e,t.defer=!0,document.head.appendChild(t)}a.supports={everything:!0,everythingExceptFlag:!0},new Promise(t=>{let n=function(){try{var e=JSON.parse(sessionStorage.getItem(o));if("object"==typeof e&&"number"==typeof e.timestamp&&(new Date).valueOf()<e.timestamp+604800&&"object"==typeof e.supportTests)return e.supportTests}catch(e){}return null}();if(!n){if("undefined"!=typeof Worker&&"undefined"!=typeof OffscreenCanvas&&"undefined"!=typeof URL&&URL.createObjectURL&&"undefined"!=typeof Blob)try{var e="postMessage("+f.toString()+"("+[JSON.stringify(s),u.toString(),c.toString(),p.toString()].join(",")+"));",a=new Blob([e],{type:"text/javascript"});const r=new Worker(URL.createObjectURL(a),{name:"wpTestEmojiSupports"});return void(r.onmessage=e=>{i(n=e.data),r.terminate(),t(n)})}catch(e){}i(n=f(s,u,c,p))}t(n)}).then(e=>{for(const n in e)a.supports[n]=e[n],a.supports.everything=a.supports.everything&&a.supports[n],"flag"!==n&&(a.supports.everythingExceptFlag=a.supports.everythingExceptFlag&&a.supports[n]);var t;a.supports.everythingExceptFlag=a.supports.everythingExceptFlag&&!a.supports.flag,a.supports.everything||((t=a.source||{}).concatemoji?r(t.concatemoji):t.wpemoji&&t.twemoji&&(r(t.twemoji),r(t.wpemoji)))});
+//# sourceURL=https://omid.hospital/wp-includes/js/wp-emoji-loader.min.js
+</script>
+		<div class="drplus-custom-select-popover">
+			<div class="drplus-custom-select-popover-search-wrap">
+				<input type="search" class="drplus-custom-select-popover-search" placeholder="جستجو...">
+			</div>
+
+			<div class="drplus-custom-select-popover-list"></div>
+		</div>
+				<div class="drplus-search-input-popover loading">
+			<div class="drplus-loading drplus-search-input-popover-loading">
+	<svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><circle cx="4" cy="12" r="3" opacity="1"><animate id="spinner_qYjJ" begin="0;spinner_t4KZ.end-0.25s" attributeName="opacity" dur="0.75s" values="1;.2" fill="freeze"/></circle><circle cx="12" cy="12" r="3" opacity=".4"><animate begin="spinner_qYjJ.begin+0.15s" attributeName="opacity" dur="0.75s" values="1;.2" fill="freeze"/></circle><circle cx="20" cy="12" r="3" opacity=".3"><animate id="spinner_t4KZ" begin="spinner_qYjJ.begin+0.3s" attributeName="opacity" dur="0.75s" values="1;.2" fill="freeze"/></circle></svg>			<span class="drplus-loading-text">جستجو...</span>
+	</div>
+			<div class="drplus-search-input-popover-list"></div>
+
+			<div class="drplus-search-input-popover-empty">
+				<i class="drplus-icon-search-2"></i>
+				<span class="drplus-search-input-popover-empty-text">نتیجه‌ای در بر نداشت. لطفا با یک متن متفاوت امتحان کنید.</span>
+			</div>
+		</div>
+		
+</body>
+</html>
