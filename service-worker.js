@@ -1,5 +1,5 @@
 // Omid Hospital PWA service worker.
-const CACHE_NAME = 'omid-hospital-v2';
+const CACHE_NAME = 'omid-hospital-v3';
 const OFFLINE_URL = '/offline.html';
 const PRECACHE_URLS = [
   '/',
@@ -12,8 +12,11 @@ const PRECACHE_URLS = [
   '/pages/news-events.html',
   '/pages/doctor-profile.html',
   '/pages/doctors-list.html',
+  '/pages/virtual-tour.html',
+  '/pages/virtual-tour-editor.html',
   '/about.html',
   '/js/site-shell.js',
+  '/js/tour-scenes.js',
   '/pages/departments/nicu.html',
   '/pages/departments/royal.html',
   '/pages/departments/ipd.html',

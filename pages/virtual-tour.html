@@ -6,28 +6,106 @@
   <title>تور مجازی بیمارستان امید</title>
   <link rel="stylesheet" href="/css/theme.css">
   <style>
-    body { min-height: 100vh; padding-top: 78px; background: #071f2b; color: #fff; }
-    .tour-shell { min-height: 100vh; display: flex; flex-direction: column; }
+    body { min-height:100vh; padding-top:78px; background:#071f2b; color:#fff; }
+    .tour-shell { min-height:calc(100vh - 78px); display:flex; flex-direction:column; }
     .tour-topbar { display:flex; align-items:center; justify-content:space-between; gap:1rem; padding:1rem 1.5rem; background:rgba(7,31,43,.94); border-bottom:1px solid rgba(255,255,255,.14); }
     .tour-title { font-size:1.05rem; font-weight:800; }
     .tour-title small { display:block; color:#a8c1ca; font-size:.76rem; font-weight:500; margin-top:.15rem; }
-    .tour-frame { flex:1; position:relative; min-height:calc(100vh - 78px); }
-    .tour-frame iframe { position:absolute; inset:0; width:100%; height:100%; border:0; background:#071f2b; }
-    .tour-back { color:#fff; border-color:rgba(255,255,255,.3); }
-    .tour-back:hover { background:rgba(255,255,255,.12); color:#fff; border-color:#fff; }
-    @media(max-width:560px){ .tour-topbar{padding:.8rem 1rem}.tour-title{font-size:.9rem}.tour-title small{font-size:.68rem}.tour-back{padding:.5rem .8rem;font-size:.78rem} }
+    .tour-frame { position:relative; width:100%; height:min(62vh,700px); min-height:430px; background:#061923; }
+    .tour-frame iframe { position:absolute; inset:0; width:100%; height:100%; border:0; background:#061923; }
+    .tour-guide { max-width:1240px; width:100%; box-sizing:border-box; margin:0 auto; padding:1.25rem 1.5rem .5rem; }
+    .tour-guide-row { display:flex; align-items:center; justify-content:space-between; gap:1rem; flex-wrap:wrap; }
+    .tour-guide h1 { font-size:1.1rem; margin:0 0 .25rem; }
+    .tour-guide p { color:#a8c1ca; font-size:.8rem; margin:0; }
+    .tour-actions { display:flex; gap:.55rem; flex-wrap:wrap; }
+    .tour-actions .btn { color:#fff; border-color:rgba(255,255,255,.32); font-size:.78rem; padding:.55rem .8rem; }
+    .tour-actions .btn:hover { color:#fff; background:rgba(255,255,255,.1); }
+    .tour-scenes { max-width:1240px; width:100%; box-sizing:border-box; margin:0 auto; padding:1rem 1.5rem 2.5rem; }
+    .scene-strip { display:grid; grid-template-columns:repeat(auto-fill,minmax(135px,1fr)); gap:.7rem; }
+    .scene-button { min-width:0; padding:.4rem; color:#dcebee; text-align:right; cursor:pointer; border:1px solid rgba(255,255,255,.13); border-radius:12px; background:rgba(255,255,255,.06); transition:var(--transition); font-family:'Vazirmatn',sans-serif; }
+    .scene-button:hover,.scene-button.active { border-color:#75d7d3; background:rgba(18,148,154,.22); transform:translateY(-2px); }
+    .scene-button img { display:block; width:100%; height:76px; object-fit:cover; border-radius:8px; margin-bottom:.38rem; background:#163746; }
+    .scene-button strong,.scene-button small { display:block; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+    .scene-button strong { font-size:.76rem; }
+    .scene-button small { color:#a8c1ca; font-size:.65rem; margin-top:.18rem; }
+    .tour-empty { color:#a8c1ca; padding:1rem; border:1px dashed rgba(255,255,255,.25); border-radius:12px; }
+    @media(max-width:560px){
+      .tour-topbar{padding:.8rem 1rem}.tour-title{font-size:.9rem}.tour-title small{font-size:.68rem}
+      .tour-frame{height:54vh;min-height:340px}.tour-guide,.tour-scenes{padding-left:1rem;padding-right:1rem}.scene-strip{grid-template-columns:repeat(2,minmax(0,1fr))}.scene-button img{height:70px}
+    }
   </style>
 </head>
 <body>
   <main class="tour-shell">
     <header class="tour-topbar">
-      <div class="tour-title">تور مجازی بیمارستان امید<small>حرکت، چرخش و انتخاب فضاها از داخل تصویر</small></div>
+      <div class="tour-title">تور مجازی بیمارستان امید<small>نمایش زوم‌اوت و انتخاب فضا از منوی تصاویر زیر تور</small></div>
       <a class="btn btn-outline tour-back" href="/">بازگشت به صفحه اصلی</a>
     </header>
     <section class="tour-frame" aria-label="تور مجازی بیمارستان امید">
-      <iframe src="/assets/virtual-tour/embedded/2/index.htm" title="تور مجازی بیمارستان امید" allowfullscreen></iframe>
+      <iframe id="tourFrame" src="/assets/virtual-tour/embedded/2/index.htm" title="تور مجازی بیمارستان امید" allowfullscreen></iframe>
+    </section>
+    <section class="tour-guide">
+      <div class="tour-guide-row">
+        <div><h1 id="sceneTitle">در حال بارگذاری صحنه‌ها...</h1><p id="sceneLocation">برای انتخاب فضا، یکی از تصاویر کوچک زیر را انتخاب کنید.</p></div>
+        <div class="tour-actions"><a class="btn btn-outline" href="/pages/virtual-tour-editor.html">ویرایش نام و محل تصاویر</a></div>
+      </div>
+    </section>
+    <section class="tour-scenes" aria-label="فهرست فضاهای تور">
+      <div class="scene-strip" id="sceneStrip"><div class="tour-empty">در حال آماده‌سازی فهرست تصاویر...</div></div>
     </section>
   </main>
+  <script src="/js/tour-scenes.js"></script>
+  <script>
+    (function () {
+      'use strict';
+      var frame = document.getElementById('tourFrame');
+      var strip = document.getElementById('sceneStrip');
+      var title = document.getElementById('sceneTitle');
+      var location = document.getElementById('sceneLocation');
+      var scenes = [];
+      var current;
+
+      function esc(value) {
+        return String(value == null ? '' : value).replace(/[&<>"']/g, function (char) {
+          return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[char];
+        });
+      }
+
+      function selectScene(scene) {
+        current = scene;
+        frame.src = OmidTour.sceneUrl(scene);
+        title.textContent = scene.title || scene.originalLabel;
+        location.textContent = scene.location ? (scene.floor + ' — ' + scene.location) : 'محل این تصویر هنوز در صفحه ویرایش مشخص نشده است.';
+        strip.querySelectorAll('.scene-button').forEach(function (button) { button.classList.toggle('active', button.dataset.id === scene.id); });
+      }
+
+      function render() {
+        scenes = OmidTour.ordered(scenes);
+        strip.innerHTML = scenes.map(function (scene) {
+          return '<button class="scene-button" type="button" data-id="' + esc(scene.id) + '">' +
+            '<img src="' + esc(OmidTour.assetUrl(scene.thumbnail)) + '" alt="' + esc(scene.title) + '" loading="lazy">' +
+            '<strong>' + esc(scene.title) + '</strong>' +
+            '<small>' + esc(scene.location || scene.floor) + '</small>' +
+          '</button>';
+        }).join('');
+        strip.querySelectorAll('.scene-button').forEach(function (button) {
+          button.addEventListener('click', function () {
+            var selected = scenes.find(function (scene) { return scene.id === button.dataset.id; });
+            if (selected) selectScene(selected);
+          });
+        });
+        if (scenes.length) selectScene(scenes[0]);
+      }
+
+      fetch(OmidTour.BASE + 'script.js').then(function (response) { return response.text(); }).then(function (source) {
+        scenes = OmidTour.mergeSaved(OmidTour.parseScenes(source));
+        render();
+      }).catch(function () {
+        strip.innerHTML = '<div class="tour-empty">فهرست تصاویر در دسترس نیست؛ خود تور همچنان قابل استفاده است.</div>';
+        title.textContent = 'تور مجازی بیمارستان امید';
+      });
+    })();
+  </script>
   <script src="/js/site-shell.js"></script>
 </body>
 </html>
