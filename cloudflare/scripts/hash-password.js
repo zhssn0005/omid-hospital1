@@ -7,7 +7,7 @@ if (!password || password.length < 12) {
 }
 
 const salt = crypto.randomBytes(16);
-crypto.pbkdf2(password, salt, 120000, 32, 'sha256', (_, derived) => {
+crypto.pbkdf2(password, salt, 100000, 32, 'sha256', (_, derived) => {
   if (!derived) process.exit(1);
   const b64 = value => value.toString('base64url');
   console.log(`pbkdf2$${b64(salt)}$${b64(derived)}`);

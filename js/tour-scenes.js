@@ -12,7 +12,7 @@
   }
 
   function parseScenes(source) {
-    var pattern = /"class"\s*:\s*"Panorama"[\s\S]*?"label"\s*:\s*"([^"]+)"[\s\S]*?"thumbnailUrl"\s*:\s*"([^"]+)"/g;
+    var pattern = /\"class\"\s*:\s*\"Panorama\"[\s\S]*?\"label\"\s*:\s*\"([^\"]+)\"[\s\S]*?\"thumbnailUrl\"\s*:\s*\"([^\"]+)\"/g;
     var scenes = [];
     var match;
     while ((match = pattern.exec(source))) {
@@ -40,17 +40,17 @@
     }
   }
 
-  function mergeSaved(scenes) {
-    var saved = readSaved();
+  function mergeSaved(scenes, savedScenesOverride) {
+    var saved = savedScenesOverride === undefined ? readSaved() : { scenes: savedScenesOverride };
     var savedScenes = saved && Array.isArray(saved.scenes) ? saved.scenes : [];
     var savedById = {};
     savedScenes.forEach(function (scene) { savedById[scene.id] = scene; });
     return scenes.map(function (scene) {
       var custom = savedById[scene.id] || {};
       return Object.assign({}, scene, {
-        title: custom.title || scene.title,
-        location: custom.location || '',
-        floor: custom.floor || 'همکف',
+        title: typeof custom.title === 'string' && custom.title.trim() ? custom.title : scene.title,
+        location: typeof custom.location === 'string' ? custom.location : '',
+        floor: typeof custom.floor === 'string' && custom.floor.trim() ? custom.floor : 'همکف',
         order: Number(custom.order) || scene.order
       });
     });
@@ -78,7 +78,8 @@
   }
 
   function assetUrl(relativePath) {
-    return BASE + relativePath;
+    var path = String(relativePath || '');
+    return BASE + path.replace(/^\/+/, '');
   }
 
   function sceneUrl(scene) {

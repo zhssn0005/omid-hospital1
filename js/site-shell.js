@@ -22,7 +22,7 @@
         '</nav>' +
         '<div class="site-header-actions">' +
           '<a href="/booking.html" class="btn btn-primary site-booking-link">رزرو نوبت</a>' +
-          '<button class="site-menu-toggle" type="button" aria-label="باز کردن منو" aria-expanded="false">☰</button>' +
+          '<button class="site-menu-toggle" type="button" aria-label="باز کردن منو" aria-expanded="false"><svg class="ui-icon" aria-hidden="true" viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h16"/></svg></button>' +
         '</div>' +
       '</div>' +
     '</header>';

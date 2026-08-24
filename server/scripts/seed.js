@@ -111,10 +111,10 @@ const seed = async () => {
     // ─── Admin user ─────────────────────────────────────────────────────────
     console.log('👤 Creating admin user...');
     const configuredAdminPassword = process.env.ADMIN_PASSWORD;
-    if (process.env.NODE_ENV === 'production' && (!configuredAdminPassword || configuredAdminPassword.length < 12)) {
-      throw new Error('ADMIN_PASSWORD must be set to at least 12 characters in production');
+    if (!configuredAdminPassword || configuredAdminPassword.length < 6) {
+      throw new Error('ADMIN_PASSWORD must be set to at least 6 characters before seeding');
     }
-    const adminPassword = await bcrypt.hash(configuredAdminPassword || 'admin123', 10);
+    const adminPassword = await bcrypt.hash(configuredAdminPassword, 10);
     db.prepare(`
       INSERT INTO users (username, email, password_hash, full_name, phone, role)
       VALUES (?, ?, ?, ?, ?, 'admin')

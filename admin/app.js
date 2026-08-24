@@ -182,7 +182,9 @@ const api = {
   deleteScheduleDate: (id, date) => api.request(`/doctors/${id}/schedule-dates/${date}`, { method: 'DELETE' }),
 
   // Stats
-  getDashboardStats: () => api.request('/stats/dashboard')
+  getDashboardStats: () => api.request('/stats/dashboard'),
+  getTourSettings: () => api.request('/tour-settings'),
+  saveTourSettings: (scenes) => api.request('/tour-settings', { method: 'PUT', body: JSON.stringify({ scenes }) })
 };
 
 // Auth Handler
@@ -199,6 +201,7 @@ const handleLogin = async (e) => {
     state.token = response.data.token;
     state.user = response.data.user;
     localStorage.setItem('token', state.token);
+    localStorage.setItem('user', JSON.stringify(state.user));
     
     showToast('ورود موفقیت‌آمیز بود', 'success');
     showDashboard();
@@ -211,21 +214,24 @@ const handleLogout = () => {
   state.token = null;
   state.user = null;
   localStorage.removeItem('token');
+  localStorage.removeItem('user');
   location.reload();
 };
 
 const showDashboard = async () => {
-  document.getElementById('login-page').style.display = 'none';
-  document.getElementById('dashboard').style.display = 'flex';
-  
-  // Get user info
+  // Get user info before revealing the panel; patient tokens must not see admin UI.
   try {
     const response = await api.getMe();
     state.user = response.data;
+    if (!['admin', 'secretary'].includes(state.user.role)) {
+      throw new Error('این حساب دسترسی به پنل مدیریت ندارد');
+    }
+    document.getElementById('login-page').style.display = 'none';
+    document.getElementById('dashboard').style.display = 'flex';
     document.getElementById('user-name').textContent = `${state.user.full_name} (${state.user.role === 'secretary' ? 'منشی' : 'مدیر'})`;
     if (state.user.role === 'secretary') {
       document.querySelectorAll('.nav-item').forEach(item => {
-        if (['users', 'specialties', 'departments', 'reviews', 'settings'].includes(item.dataset.page)) item.style.display = 'none';
+        if (['users', 'specialties', 'departments', 'reviews', 'tour', 'settings'].includes(item.dataset.page)) item.style.display = 'none';
       });
     }
   } catch (error) {
@@ -239,6 +245,10 @@ const showDashboard = async () => {
 
 // Page Navigation
 const loadPage = async (pageName) => {
+  if (pageName === 'tour' && state.user?.role !== 'admin') {
+    showToast('ویرایش تور فقط برای مدیر سیستم فعال است', 'error');
+    return;
+  }
   state.currentPage = pageName;
   
   // Update active nav
@@ -275,6 +285,9 @@ const loadPage = async (pageName) => {
       break;
     case 'users':
       await loadUsersPage(container);
+      break;
+    case 'tour':
+      await loadTourPage(container);
       break;
     default:
       container.innerHTML = '<div class="empty-state"><h2>صفحه در دست ساخت</h2></div>';
@@ -736,6 +749,50 @@ const loadDepartmentsPage = async (container) => {
 
     <div id="department-modal"></div>
   `;
+};
+
+// Virtual tour editor (kept inside the authenticated admin panel)
+const loadTourPage = async (container) => {
+  container.innerHTML = `
+    <div class="page-header"><h1>ویرایش تور مجازی</h1></div>
+    <div class="card mb-2"><p style="color:var(--text2);line-height:2;">عنوان، محل و طبقه تصاویر تور را ویرایش کنید. تغییرات پس از ذخیره برای همه بازدیدکنندگان سایت اعمال می‌شود.</p></div>
+    <div class="tour-editor-toolbar">
+      <input id="admin-tour-search" type="search" placeholder="جستجوی تصویر یا محل...">
+      <button class="btn btn-primary" id="admin-tour-sort" type="button">مرتب‌سازی</button>
+      <button class="btn btn-secondary" id="admin-tour-save" type="button">ذخیره تغییرات</button>
+      <button class="btn btn-secondary" id="admin-tour-reset" type="button">بازنشانی</button>
+    </div>
+    <div class="tour-editor-grid" id="admin-tour-grid"><div class="card">در حال خواندن تصاویر تور...</div></div>
+  `;
+  const grid = document.getElementById('admin-tour-grid');
+  const search = document.getElementById('admin-tour-search');
+  const floors = ['زیرزمین', 'همکف', 'طبقه اول', 'طبقه دوم', 'طبقه سوم', 'طبقه چهارم', 'سایر'];
+  let scenes = [];
+  const esc = value => escapeHtml(value);
+  const options = selected => floors.map(floor => `<option ${floor === selected ? 'selected' : ''}>${esc(floor)}</option>`).join('');
+  const render = () => {
+    const query = search.value.trim().toLowerCase();
+    const visible = scenes.filter(scene => !query || [scene.originalLabel, scene.title, scene.location, scene.floor].join(' ').toLowerCase().includes(query));
+    grid.innerHTML = visible.length ? visible.map(scene => `<article class="tour-editor-card" data-id="${esc(scene.id)}"><img src="${esc(OmidTour.assetUrl(scene.thumbnail))}" alt="${esc(scene.title)}" loading="lazy"><div><small>تصویر ${scene.originalIndex + 1}</small><code>${esc(scene.originalLabel)}</code><label>عنوان<input class="tour-title-input" value="${esc(scene.title)}"></label><label>محل<input class="tour-location-input" value="${esc(scene.location)}"></label><label>طبقه<select class="tour-floor-input">${options(scene.floor)}</select></label><label>ترتیب<input class="tour-order-input" type="number" min="1" value="${esc(scene.order)}"></label></div></article>`).join('') : '<div class="card">تصویری پیدا نشد.</div>';
+  };
+  const collect = () => grid.querySelectorAll('.tour-editor-card').forEach(card => { const scene = scenes.find(item => item.id === card.dataset.id); if (!scene) return; scene.title = card.querySelector('.tour-title-input').value.trim() || scene.originalLabel; scene.location = card.querySelector('.tour-location-input').value.trim(); scene.floor = card.querySelector('.tour-floor-input').value; scene.order = Math.max(1, Number(card.querySelector('.tour-order-input').value) || scene.originalIndex + 1); });
+  try {
+    const sourceResponse = await fetch(`${OmidTour.BASE}script.js`);
+    const sourceScenes = OmidTour.parseScenes(await sourceResponse.text());
+    let savedScenes;
+    try {
+      const savedResponse = await api.getTourSettings();
+      savedScenes = savedResponse.data?.scenes;
+    } catch (_) {
+      savedScenes = undefined;
+    }
+    scenes = OmidTour.mergeSaved(sourceScenes, savedScenes);
+    render();
+    document.getElementById('admin-tour-save').onclick = async () => { collect(); try { await api.saveTourSettings(scenes); OmidTour.save(scenes); showToast('تنظیمات تور ذخیره شد'); } catch (_) {} };
+    document.getElementById('admin-tour-sort').onclick = () => { collect(); scenes = OmidTour.ordered(scenes); scenes.forEach((scene, index) => { scene.order = index + 1; }); render(); };
+    document.getElementById('admin-tour-reset').onclick = async () => { if (!confirm('تنظیمات تور بازنشانی شود؟')) return; scenes = scenes.map((scene, index) => Object.assign({}, scene, { title: scene.originalLabel, location: '', floor: 'همکف', order: index + 1 })); try { await api.saveTourSettings(scenes); OmidTour.clear(); render(); showToast('تنظیمات تور بازنشانی شد'); } catch (_) {} };
+    search.oninput = render;
+  } catch (_) { grid.innerHTML = '<div class="card">خواندن فایل تور ممکن نشد.</div>'; }
 };
 
 // Reviews Page

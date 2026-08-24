@@ -1,6 +1,23 @@
 /* ═══════════════════════════════════
-   Booking Wizard — تم روشن مدرن
+   Booking Wizard — مسیر رزرو با هویت بصری امید
    ═══════════════════════════════════ */
+.wizard-wrap { background: linear-gradient(145deg, rgba(255,255,255,.84), rgba(224,241,242,.58)); backdrop-filter: blur(20px) saturate(120%); border-color: rgba(255,255,255,.84); }
+.wizard-progress, .wizard-nav { background: rgba(4,27,39,.94); color: #fff; }
+.wp-step { color: rgba(255,255,255,.6); }
+.wp-step.active .wp-circle { background: rgba(53,194,189,.18); color: var(--teal); }
+.wp-circle { background: rgba(255,255,255,.08); border-color: rgba(255,255,255,.25); }
+.wp-line { background: rgba(255,255,255,.2); }
+.wp-step.done .wp-circle { background: var(--teal-dark); border-color: var(--teal); }
+.wizard-body { background: rgba(255,255,255,.36); }
+.doc-card, .date-cell, .visit-type-opt, .confirm-card { background: rgba(255,255,255,.72); border-color: rgba(255,255,255,.9); backdrop-filter: blur(14px); }
+.doc-card:hover, .date-cell:hover, .visit-type-opt:hover { box-shadow: var(--shadow-md); }
+.spec-btn { background: rgba(255,255,255,.7); border-color: rgba(13,83,101,.16); }
+.slots-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(105px, 1fr)); gap: .75rem; }
+.slot-btn { width: 100%; padding: .72rem .6rem; border-radius: 12px; border-color: rgba(13,83,101,.16); background: rgba(255,255,255,.78); font-variant-numeric: tabular-nums; }
+.slot-btn:hover { transform: translateY(-2px); box-shadow: var(--shadow-sm); }
+.wbtn-next, .wbtn-submit { background: linear-gradient(135deg, var(--teal-dark), var(--primary)); }
+.wbtn-back { background: rgba(255,255,255,.12); color: #fff; border-color: rgba(255,255,255,.28); }
+
 .wizard-wrap {
   background: #fff; border: 1px solid var(--border);
   border-radius: var(--radius-lg); box-shadow: var(--shadow-md);
@@ -75,8 +92,12 @@
 .dc-month { display: block; font-size: 0.7rem; color: var(--text-secondary); }
 
 .slots-placeholder { text-align: center; color: var(--text-muted); padding: 2rem; }
-.slots-grid { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+.slots-grid {
+  display:grid;grid-template-columns:repeat(auto-fill,minmax(105px,1fr));gap:.75rem;
+ display: flex; flex-wrap: wrap; gap: 0.5rem; }
 .slot-btn {
+  font-family:'IRANSans','IRANSansX','Vazirmatn',Tahoma,sans-serif;font-variant-numeric:tabular-nums;
+
   padding: 0.6rem 1.2rem; border: 1.5px solid var(--border); border-radius: 8px;
   background: #fff; cursor: pointer; font-size: 0.95rem; transition: var(--transition);
   color: var(--text-primary); font-family: 'Vazirmatn', sans-serif;

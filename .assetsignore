@@ -2,8 +2,10 @@ server/
 data/
 cloudflare/
 node_modules/
+.wrangler/
 .git/
 .env*
+.dev.vars
 *.db
 *.sqlite
 *.log

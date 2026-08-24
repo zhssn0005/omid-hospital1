@@ -23,7 +23,11 @@ const pageArgs = request => {
 };
 
 function base64Url(value) {
-  const bytes = value instanceof ArrayBuffer ? new Uint8Array(value) : new TextEncoder().encode(value);
+  const bytes = value instanceof ArrayBuffer
+    ? new Uint8Array(value)
+    : ArrayBuffer.isView(value)
+      ? new Uint8Array(value.buffer, value.byteOffset, value.byteLength)
+      : new TextEncoder().encode(String(value));
   let binary = '';
   bytes.forEach(byte => { binary += String.fromCharCode(byte); });
   return btoa(binary).replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/g, '');
@@ -72,15 +76,65 @@ async function verifyToken(request, secret) {
 
 async function passwordHash(password, saltBytes = crypto.getRandomValues(new Uint8Array(16))) {
   const key = await crypto.subtle.importKey('raw', new TextEncoder().encode(password), 'PBKDF2', false, ['deriveBits']);
-  const bits = await crypto.subtle.deriveBits({ name: 'PBKDF2', salt: saltBytes, iterations: 120000, hash: 'SHA-256' }, key, 256);
+  const bits = await crypto.subtle.deriveBits({ name: 'PBKDF2', salt: saltBytes, iterations: 100000, hash: 'SHA-256' }, key, 256);
   return `pbkdf2$${base64Url(saltBytes)}$${base64Url(bits)}`;
 }
 
 async function passwordMatches(password, stored) {
-  const [, salt, expected] = String(stored || '').split('$');
-  if (!salt || !expected) return false;
-  const actual = await passwordHash(password, fromBase64Url(salt));
-  return actual === `pbkdf2$${salt}$${expected}`;
+  try {
+    const value = String(stored || '');
+    if (!value.startsWith('pbkdf2$')) return false;
+    const [, salt, expected] = value.split('$');
+    if (!salt || !expected) return false;
+    const actual = await passwordHash(password, fromBase64Url(salt));
+    return actual === `pbkdf2$${salt}$${expected}`;
+  } catch (_) {
+    return false;
+  }
+}
+
+function constantTimeEqual(left, right) {
+  const a = new TextEncoder().encode(String(left || ''));
+  const b = new TextEncoder().encode(String(right || ''));
+  let difference = a.length ^ b.length;
+  const length = Math.max(a.length, b.length);
+  for (let index = 0; index < length; index += 1) difference |= (a[index] || 0) ^ (b[index] || 0);
+  return difference === 0;
+}
+
+function configuredAdmin(env) {
+  const password = typeof env.ADMIN_PASSWORD === 'string' ? env.ADMIN_PASSWORD : '';
+  if (password.length < 6) return { username: '', password: '', email: '', phone: '' };
+  return {
+    username: text(env.ADMIN_USERNAME) || 'admin',
+    password,
+    email: text(env.ADMIN_EMAIL) || 'admin@omid.hospital',
+    phone: text(env.ADMIN_PHONE) || '00000000000'
+  };
+}
+
+async function provisionConfiguredAdmin(env, credentials) {
+  const existing = await env.DB.prepare('SELECT * FROM users WHERE username = ?').bind(credentials.username).first();
+  if (existing && existing.role !== 'admin') return null;
+  if (existing) {
+    if (existing.role !== 'admin' || !existing.is_active) return null;
+    if (!await passwordMatches(credentials.password, existing.password_hash)) {
+      const nextHash = await passwordHash(credentials.password);
+      await env.DB.prepare('UPDATE users SET password_hash = ?, updated_at = CURRENT_TIMESTAMP WHERE id = ?')
+        .bind(nextHash, existing.id).run();
+      existing.password_hash = nextHash;
+    }
+    return existing;
+  }
+  try {
+    const result = await env.DB.prepare(`
+      INSERT INTO users (username, email, password_hash, full_name, phone, role, is_active)
+      VALUES (?, ?, ?, ?, ?, 'admin', 1)
+    `).bind(credentials.username, credentials.email, await passwordHash(credentials.password), 'مدیر سیستم', credentials.phone).run();
+    return await env.DB.prepare('SELECT * FROM users WHERE id = ?').bind(result.meta.last_row_id).first();
+  } catch (_) {
+    return null;
+  }
 }
 
 async function body(request) {
@@ -247,7 +301,14 @@ async function login(request, env) {
   const username = text(input.username);
   const password = typeof input.password === 'string' ? input.password : '';
   if (!username || password.length < 1 || password.length > 128) return error('نام کاربری یا رمز عبور نامعتبر است');
-  const user = await env.DB.prepare('SELECT * FROM users WHERE (username = ? OR phone = ?) AND is_active = 1').bind(username, username).first();
+  const credentials = configuredAdmin(env);
+  let user = await env.DB.prepare('SELECT * FROM users WHERE (username = ? OR phone = ?) AND is_active = 1').bind(username, username).first();
+  if (!user && username === credentials.username && credentials.password.length >= 6) {
+    if (!constantTimeEqual(password, credentials.password)) return error('نام کاربری یا رمز عبور اشتباه است', 401);
+    user = await provisionConfiguredAdmin(env, credentials);
+  } else if (user && user.role === 'admin' && username === credentials.username && credentials.password.length >= 6 && constantTimeEqual(password, credentials.password)) {
+    user = await provisionConfiguredAdmin(env, credentials);
+  }
   if (!user || !(await passwordMatches(password, user.password_hash))) return error('نام کاربری یا رمز عبور اشتباه است', 401);
   await env.DB.prepare('UPDATE users SET updated_at = CURRENT_TIMESTAMP WHERE id = ?').bind(user.id).run();
   delete user.password_hash;
@@ -490,6 +551,54 @@ async function adminReviews(request, env, user, id = null) {
   return error('آدرس مورد نظر یافت نشد', 404);
 }
 
+const TOUR_FLOORS = ['زیرزمین', 'همکف', 'طبقه اول', 'طبقه دوم', 'طبقه سوم', 'طبقه چهارم', 'سایر'];
+
+function sanitizeTourScenes(value) {
+  if (!Array.isArray(value) || value.length > 200) return null;
+  const seen = new Set();
+  const scenes = value.map((scene, index) => {
+    if (!scene || typeof scene !== 'object') return null;
+    const id = text(scene.id);
+    const thumbnail = text(scene.thumbnail);
+    if (!id || id !== thumbnail || !thumbnail.startsWith('media/') || thumbnail.includes('..') || !/^[A-Za-z0-9_./-]+$/.test(thumbnail) || seen.has(id)) return null;
+    seen.add(id);
+    const floor = TOUR_FLOORS.includes(text(scene.floor)) ? text(scene.floor) : 'همکف';
+    return {
+      id: id.slice(0, 300),
+      originalLabel: text(scene.originalLabel).slice(0, 200) || `تصویر ${index + 1}`,
+      thumbnail: thumbnail.slice(0, 300),
+      originalIndex: Math.max(0, Math.min(199, integer(scene.originalIndex) ?? index)),
+      title: text(scene.title).slice(0, 200) || text(scene.originalLabel).slice(0, 200) || `تصویر ${index + 1}`,
+      location: text(scene.location).slice(0, 200),
+      floor,
+      order: Math.max(1, Math.min(200, integer(scene.order) || index + 1))
+    };
+  });
+  return scenes.some(scene => !scene) ? null : scenes;
+}
+
+async function getTourSettings(env) {
+  const row = await env.DB.prepare("SELECT value FROM settings WHERE key = 'virtual_tour_map'").first();
+  if (!row?.value) return ok({ scenes: null });
+  try {
+    const saved = JSON.parse(row.value);
+    return ok({ scenes: sanitizeTourScenes(saved?.scenes) });
+  } catch (_) {
+    return ok({ scenes: null });
+  }
+}
+
+async function saveTourSettings(request, env) {
+  const input = await body(request) || {};
+  const scenes = sanitizeTourScenes(input.scenes);
+  if (!scenes) return error('تنظیمات تور نامعتبر است');
+  await env.DB.prepare(`
+    INSERT INTO settings (key, value, description) VALUES (?, ?, ?)
+    ON CONFLICT(key) DO UPDATE SET value = excluded.value, description = excluded.description, updated_at = CURRENT_TIMESTAMP
+  `).bind('virtual_tour_map', JSON.stringify({ version: 1, scenes }), 'تنظیمات نمایش تور مجازی').run();
+  return ok({ scenes }, 'تنظیمات تور مجازی ذخیره شد');
+}
+
 async function adminUsers(request, env, id = null) {
   if (request.method === 'GET') {
     const role = new URL(request.url).searchParams.get('role') === 'doctor' ? 'doctor' : 'secretary';
@@ -536,6 +645,7 @@ async function routeApi(request, env) {
   if (request.method === 'GET' && path === 'specialties') return specialties(env);
   if (request.method === 'GET' && path === 'departments') return departments(env);
   if (request.method === 'GET' && path === 'doctors') return doctors(request, env);
+  if (request.method === 'GET' && path === 'tour-settings') return getTourSettings(env);
   const doctorMatch = path.match(/^doctors\/(\d+)$/);
   if (request.method === 'GET' && doctorMatch) return doctor(request, env, doctorMatch[1]);
   const slotMatch = path.match(/^appointments\/doctor\/(\d+)\/available-slots$/);
@@ -544,6 +654,11 @@ async function routeApi(request, env) {
   if (path === 'auth/me' && request.method === 'GET') return user ? ok(user) : error('دسترسی غیرمجاز', 401);
   if (path === 'auth/profile' && request.method === 'PUT') return user ? updateProfile(request, env, user) : error('دسترسی غیرمجاز', 401);
   if (path === 'auth/password' && request.method === 'PUT') return user ? changePassword(request, env, user) : error('دسترسی غیرمجاز', 401);
+  if (path === 'tour-settings' && request.method === 'PUT') {
+    const auth = await requireUser(request, env, ['admin']);
+    if (auth.response) return auth.response;
+    return saveTourSettings(request, env);
+  }
   if (path === 'reviews' && request.method === 'GET') {
     if (user?.role === 'admin' && url.searchParams.get('approved_only') === 'false') {
       return adminReviews(request, env, user);
@@ -627,7 +742,7 @@ async function routeApi(request, env) {
 export default {
   async fetch(request, env) {
     try {
-      if (new URL(request.url).pathname.startsWith('/api/')) return routeApi(request, env);
+      if (new URL(request.url).pathname.startsWith('/api/')) return await routeApi(request, env);
       return env.ASSETS.fetch(request);
     } catch (err) {
       console.error('Worker error:', err);

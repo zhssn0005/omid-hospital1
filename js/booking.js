@@ -3,6 +3,16 @@
  * Full appointment booking flow with calendar + time slots
  */
 
+function bookingIcon(name) {
+  const paths = {
+    calendar: '<rect x="3" y="4.5" width="18" height="16" rx="2.5"/><path d="M7.5 3v3M16.5 3v3M3 9h18M7 13h.01M12 13h.01M17 13h.01M7 17h.01M12 17h.01"/>',
+    doctor: '<circle cx="12" cy="7.5" r="3.5"/><path d="M5 20.5c.4-4 2.7-6 7-6s6.6 2 7 6M16.5 15.5l2 2 2.5-3"/>',
+    phone: '<path d="M7 3.5 4.5 5c-.8.5-1 1.5-.7 2.4 1.9 5.5 6.3 9.9 11.8 11.8.9.3 1.9 0 2.4-.7l1.5-2.5-3.8-2.3-1.8 1.8a14.5 14.5 0 0 1-5.6-5.6l1.8-1.8z"/>',
+    video: '<rect x="3" y="5" width="13" height="14" rx="2"/><path d="m16 10 5-3v10l-5-3z"/>'
+  };
+  return '<svg class="booking-icon ui-icon" aria-hidden="true" viewBox="0 0 24 24">' + (paths[name] || paths.doctor) + '</svg>';
+}
+
 const Booking = {
   state: {
     step: 1,
@@ -13,6 +23,7 @@ const Booking = {
     patientInfo: null,
     availableSlots: [],
     doctors: [],
+    allSpecialties: [],
     specialties: [],
   },
 
@@ -26,6 +37,12 @@ const Booking = {
   init() {
     const container = document.getElementById('booking-wizard');
     if (!container) return;
+    const params = new URLSearchParams(window.location.search);
+    const requestedDoctorId = Number(params.get('doctor_id'));
+    this.requestedDoctorId = Number.isInteger(requestedDoctorId) && requestedDoctorId > 0 ? requestedDoctorId : null;
+    this.requestedDoctorName = params.get('doctor_name') || '';
+    this.requestedSpecialty = params.get('specialty') || params.get('specialty_slug') || null;
+    this.requestedSpecialty = this.requestedSpecialty ? decodeURIComponent(this.requestedSpecialty) : null;
     this.render();
   },
 
@@ -72,6 +89,11 @@ const Booking = {
       case 3: return this.renderStep3();
       case 4: return this.renderStep4();
     }
+  },
+
+  filterActiveSpecialties() {
+    const doctorSpecs = new Set(this.state.doctors.map(d => d.specialty_slug).filter(Boolean));
+    this.state.specialties = this.state.allSpecialties.filter(s => doctorSpecs.has(s.slug));
   },
 
   // Step 1: Select Doctor
@@ -124,9 +146,8 @@ const Booking = {
           <h3>${this.escapeHtml(doc.full_name)}</h3>
           <p class="doc-spec">${this.escapeHtml(doc.specialty_name)}</p>
           <div class="doc-meta">
-            <span>⭐ ${parseFloat(doc.rating || 0).toFixed(1)}</span>
-            <span>🕐 ${doc.experience_years} سال</span>
-            <span>💰 ${(doc.consultation_fee || 0).toLocaleString('fa-IR')} تومان</span>
+            <span>${bookingIcon('doctor')} ${parseFloat(doc.rating || 0).toFixed(1)}</span>
+            <span>${bookingIcon('calendar')} ${doc.experience_years} سال</span>
           </div>
           ${selected ? `<div class="doc-selected-badge">✓ انتخاب شده</div>` : ''}
         </div>
@@ -196,14 +217,14 @@ const Booking = {
           <label>نوع مراجعه</label>
           <div class="visit-types">
             ${[
-              { val: 'in-person', icon: '🏥', label: 'حضوری' },
-              { val: 'online-video', icon: '📹', label: 'ویدیو کال' },
-              { val: 'phone', icon: '📞', label: 'تلفنی' },
+              { val: 'in-person', icon: 'doctor', label: 'حضوری' },
+              { val: 'online-video', icon: 'video', label: 'ویدیو کال' },
+              { val: 'phone', icon: 'phone', label: 'تلفنی' },
             ].map(t => `
               <label class="visit-type-opt ${this.state.patientInfo?.type === t.val ? 'selected' : ''}">
                 <input type="radio" name="visit_type" value="${t.val}" 
                   ${this.state.patientInfo?.type === t.val ? 'checked' : ''}>
-                <span>${t.icon} ${t.label}</span>
+                <span>${bookingIcon(t.icon)} ${t.label}</span>
               </label>
             `).join('')}
           </div>
@@ -280,10 +301,7 @@ const Booking = {
             <span class="confirm-label">موبایل</span>
             <span class="confirm-value">${this.escapeHtml(d.patientInfo?.phone)}</span>
           </div>
-          <div class="confirm-row highlight">
-            <span class="confirm-label">هزینه ویزیت</span>
-            <span class="confirm-value">${(d.selectedDoctor?.consultation_fee || 0).toLocaleString('fa-IR')} تومان</span>
-          </div>
+
         </div>
 
         <p class="confirm-note">
@@ -298,9 +316,16 @@ const Booking = {
   async loadSpecialties() {
     try {
       const res = await OmidAPI.getSpecialties();
-      this.state.specialties = res.data || [];
-      await this.loadDoctors();
+      this.state.allSpecialties = res.data || [];
+      if (this.requestedSpecialty) {
+        const requested = this.state.allSpecialties.find(s => s.slug === this.requestedSpecialty || s.name_fa === this.requestedSpecialty);
+        if (requested) this.state.selectedSpecialty = requested.slug;
+      }
+      await this.loadDoctors(this.state.selectedSpecialty);
+      this.filterActiveSpecialties();
+      this.render();
     } catch (e) {
+      this.state.allSpecialties = [];
       this.state.specialties = [];
       this.render();
     }
@@ -313,6 +338,16 @@ const Booking = {
       if (search) params.search = search;
       const res = await OmidAPI.getDoctors(params);
       this.state.doctors = res.data || [];
+      if (this.requestedDoctorId || this.requestedDoctorName) {
+        const requested = this.state.doctors.find(doc => Number(doc.id) === this.requestedDoctorId) ||
+          this.state.doctors.find(doc => doc.full_name === this.requestedDoctorName || String(doc.bio || '').indexOf(this.requestedDoctorName) >= 0);
+        if (requested) {
+          this.state.selectedDoctor = requested;
+          this.state.selectedSpecialty = requested.specialty_slug || this.state.selectedSpecialty;
+          this.requestedDoctorId = null;
+          this.requestedDoctorName = '';
+        }
+      }
       this.render();
     } catch (e) {
       this.state.doctors = [];
@@ -326,6 +361,7 @@ const Booking = {
     try {
       const res = await OmidAPI.getDoctorSlots(doctorId, date);
       this.state.availableSlots = res.data?.available_slots || [];
+      this.state.availableSlots = this.state.availableSlots.filter(slot => /^([01]?\d|2[0-3]):[0-5]\d$/.test(String(slot)));
       this.updateSlotsUI();
     } catch (e) {
       this.state.availableSlots = [];
@@ -348,6 +384,10 @@ const Booking = {
     document.getElementById('wiz-submit')?.addEventListener('click', () => this.submit());
 
     if (this.state.step === 1) {
+      if (this.state.selectedDoctor) {
+        const selectedCard = document.querySelector(`.doc-card[data-docid="${this.state.selectedDoctor.id}"]`);
+        if (selectedCard) selectedCard.scrollIntoView({ block: 'nearest' });
+      }
       // Specialty filter
       document.querySelectorAll('.spec-btn').forEach(btn => {
         btn.addEventListener('click', () => {
@@ -499,7 +539,9 @@ const Booking = {
 
   localImageUrl(value) {
     const image = String(value || '');
-    return /^\/(assets|uploads)\/[\w./-]+$/.test(image) ? image : '/assets/logo.png';
+    if (/^\/(assets|uploads)\/[\w./-]+$/.test(image)) return image;
+    if (/^(assets|uploads)\/[\w./-]+$/.test(image)) return `/${image}`;
+    return '/assets/logo.png';
   },
 
   getNext30Days() {
@@ -508,6 +550,7 @@ const Booking = {
     for (let i = 0; i < 30; i++) {
       const d = new Date(today);
       d.setDate(today.getDate() + i);
+      if (d.getDay() === 5) continue;
       const iso = d.toISOString().split('T')[0];
       days.push({
         iso,

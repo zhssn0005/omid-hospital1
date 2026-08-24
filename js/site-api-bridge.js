@@ -23,7 +23,9 @@
 
   const localImageUrl = (value) => {
     const image = String(value || '');
-    return /^\/(assets|uploads)\/[\w./-]+$/.test(image) ? image : '/assets/logo.png';
+    if (/^\/(assets|uploads)\/[\w./-]+$/.test(image)) return image;
+    if (/^(assets|uploads)\/[\w./-]+$/.test(image)) return `/${image}`;
+    return '/assets/logo.png';
   };
 
   // ─── Dynamic Specialties / Bento Grid ────────────────────────────────────────
@@ -76,7 +78,7 @@
               <div class="dcn">${escapeHtml(doc.full_name)}</div>
               <div class="dcs">${escapeHtml(doc.specialty_name)}</div>
               <button class="btn btn-p btn-sm btn-r" 
-                onclick="event.stopPropagation(); window.location.href='/booking.html?doctor=${doc.id}'"
+                onclick="event.stopPropagation(); window.location.href='/booking.html?doctor_id=${doc.id}'"
                 style="width:100%;justify-content:center;margin-top:8px">
                 📅 رزرو نوبت
               </button>
@@ -106,9 +108,9 @@
         if (idx >= 0) { showDocModal(idx); return; }
       }
       // Redirect to booking with pre-selected doctor
-      window.location.href = `/booking.html?doctor=${id}`;
+      window.location.href = `/pages/doctor-profile.html?id=${encodeURIComponent(id)}`;
     } catch (e) {
-      window.location.href = `/booking.html?doctor=${id}`;
+      window.location.href = `/pages/doctor-profile.html?id=${encodeURIComponent(id)}`;
     }
   };
 
@@ -117,7 +119,7 @@
     document.querySelectorAll('[onclick*="goToBook"]').forEach(btn => {
       const match = btn.getAttribute('onclick')?.match(/goToBook\((\d+)\)/);
       if (match) {
-        btn.setAttribute('onclick', `window.location.href='/booking.html'`);
+        btn.setAttribute('onclick', `window.location.href='/booking.html?doctor_id=${encodeURIComponent(match[1])}'`);
       }
     });
   }

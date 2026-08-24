@@ -38,7 +38,7 @@
 <body>
   <main class="tour-shell">
     <header class="tour-topbar">
-      <div class="tour-title">تور مجازی بیمارستان امید<small>نمایش زوم‌اوت و انتخاب فضا از منوی تصاویر زیر تور</small></div>
+      <div class="tour-title">تور مجازی بیمارستان امید<small>انتخاب فضا از منوی تصاویر زیر تور</small></div>
       <a class="btn btn-outline tour-back" href="/">بازگشت به صفحه اصلی</a>
     </header>
     <section class="tour-frame" aria-label="تور مجازی بیمارستان امید">
@@ -47,7 +47,6 @@
     <section class="tour-guide">
       <div class="tour-guide-row">
         <div><h1 id="sceneTitle">در حال بارگذاری صحنه‌ها...</h1><p id="sceneLocation">برای انتخاب فضا، یکی از تصاویر کوچک زیر را انتخاب کنید.</p></div>
-        <div class="tour-actions"><a class="btn btn-outline" href="/pages/virtual-tour-editor.html">ویرایش نام و محل تصاویر</a></div>
       </div>
     </section>
     <section class="tour-scenes" aria-label="فهرست فضاهای تور">
@@ -98,8 +97,17 @@
       }
 
       fetch(OmidTour.BASE + 'script.js').then(function (response) { return response.text(); }).then(function (source) {
-        scenes = OmidTour.mergeSaved(OmidTour.parseScenes(source));
-        render();
+        var baseScenes = OmidTour.parseScenes(source);
+        return fetch('/api/tour-settings').then(function (response) {
+          if (!response.ok) throw new Error('tour settings unavailable');
+          return response.json();
+        }).then(function (settings) {
+          scenes = OmidTour.mergeSaved(baseScenes, settings.data && Array.isArray(settings.data.scenes) ? settings.data.scenes : undefined);
+          render();
+        }).catch(function () {
+          scenes = OmidTour.mergeSaved(baseScenes);
+          render();
+        });
       }).catch(function () {
         strip.innerHTML = '<div class="tour-empty">فهرست تصاویر در دسترس نیست؛ خود تور همچنان قابل استفاده است.</div>';
         title.textContent = 'تور مجازی بیمارستان امید';

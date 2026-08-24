@@ -70,7 +70,7 @@ body { padding-top: 5.3rem; }
   font-size: 2.6rem; margin: 0 auto 1rem; border: 3px solid var(--teal-light);
   overflow: hidden;
 }
-.doctor-avatar img { width: 100%; height: 100%; object-fit: contain; object-position: center; padding: 7px; box-sizing: border-box; image-rendering: auto; }
+.doctor-avatar img { width: 100%; height: 100%; object-fit: cover; object-position: center top; padding: 0; box-sizing: border-box; image-rendering: auto; cursor: zoom-in; transition: transform .35s ease; } .doctor-avatar:hover img { transform: scale(1.06); } .doctor-card { overflow: hidden; }
 .doctor-name { font-weight: 800; color: var(--text-primary); font-size: 1rem; margin-bottom: 0.3rem; }
 .doctor-specialty { color: var(--teal); font-size: 0.82rem; margin-bottom: 0.7rem; font-weight: 600; }
 .doctor-badges { display: flex; gap: 0.4rem; justify-content: center; margin-bottom: 1rem; flex-wrap: wrap; }
@@ -182,7 +182,7 @@ body { padding-top: 5.3rem; }
 /* ─── داده پزشکان از doctors-data.js ─── */
 var allDoctors = (typeof DOCTORS !== 'undefined') ? DOCTORS.map(function (d) {
   return {
-    id: d.n,
+    id: Number.isInteger(d.id) ? d.id : null,
     name: d.n,
     specialty: d.sp,
     gender: d.g || '',
@@ -201,6 +201,7 @@ function buildSpecialtyOptions() {
   var specs = {};
   allDoctors.forEach(function (d) { if (d.specialty) specs[d.specialty] = true; });
   var sel = document.getElementById('specialtyFilter');
+  sel.innerHTML = '<option value="">همه تخصص‌ها</option>';
   Object.keys(specs).sort().forEach(function (s) {
     var opt = document.createElement('option');
     opt.value = s;
@@ -213,12 +214,64 @@ function buildSpecialtyOptions() {
 document.getElementById('totalDoctors').textContent = allDoctors.length.toLocaleString('fa-IR');
 document.getElementById('bookableDoctors').textContent = allDoctors.filter(function (d) { return d.bookable; }).length.toLocaleString('fa-IR');
 
+function safeImagePath(value) {
+  var image = String(value || '').replace(/^\/+/, '');
+  return /^(assets|uploads)\/[\w./-]+$/.test(image) ? '/' + image : '';
+}
+
+function doctorNameKey(value) {
+  return String(value || '').replace(/\s+/g, ' ').trim();
+}
+
+function profileHref(d) {
+  return d.id ? '/pages/doctor-profile.html?id=' + encodeURIComponent(d.id) + '&name=' + encodeURIComponent(d.name) : '/pages/doctor-profile.html?name=' + encodeURIComponent(d.name);
+}
+
+function bookingHref(d) {
+  return d.id ? '/booking.html?doctor_id=' + encodeURIComponent(d.id) + '&doctor_name=' + encodeURIComponent(d.name) : '/booking.html?doctor_name=' + encodeURIComponent(d.name);
+}
+
 function avatarHTML(d) {
-  if (d.img) {
-    return '<img src="/' + d.img + '" alt="' + d.name + '" loading="lazy" onerror="this.parentNode.innerHTML=\'👨‍⚕️\'">';
+  var image = safeImagePath(d.img);
+  if (image) {
+    return '<img src="' + image + '" alt="' + d.name + '" loading="lazy" decoding="async" onerror="this.parentNode.innerHTML=\'👨‍⚕️\'">';
   }
   var g = (d.name.indexOf('خانم') !== -1 || d.name.indexOf('سرکار') !== -1) ? '👩‍⚕️' : '👨‍⚕️';
   return g;
+}
+
+async function syncDoctorsWithApi() {
+  try {
+    var firstResponse = await fetch('/api/doctors?limit=100&page=1');
+    if (!firstResponse.ok) return;
+    var first = await firstResponse.json();
+    var apiDoctors = first.data || [];
+    var pages = Number(first.pagination && first.pagination.pages) || 1;
+    for (var page = 2; page <= pages; page += 1) {
+      var pageResponse = await fetch('/api/doctors?limit=100&page=' + page);
+      if (!pageResponse.ok) continue;
+      var pageData = await pageResponse.json();
+      apiDoctors = apiDoctors.concat(pageData.data || []);
+    }
+    var byKey = {};
+    apiDoctors.forEach(function (doc) {
+      var name = doc.full_name || String(doc.bio || '').split(' — ')[0];
+      var key = doctorNameKey(name) + '|' + doctorNameKey(doc.specialty_name);
+      if (name && doc.specialty_name) byKey[key] = doc;
+    });
+    allDoctors.forEach(function (doctor) {
+      var apiDoctor = byKey[doctorNameKey(doctor.name) + '|' + doctorNameKey(doctor.specialty)];
+      if (!apiDoctor) return;
+      doctor.id = Number(apiDoctor.id);
+      doctor.bookable = !!apiDoctor.is_available;
+      if (!doctor.img && apiDoctor.image_url) doctor.img = apiDoctor.image_url;
+    });
+    filteredDoctors = allDoctors.slice();
+    buildSpecialtyOptions();
+    renderDoctors();
+  } catch (_) {
+    // The static archive remains usable when the API is unavailable.
+  }
 }
 
 function renderDoctors() {
@@ -236,8 +289,8 @@ function renderDoctors() {
         '<span class="badge">' + d.gender + '</span>' +
       '</div>' +
       '<div class="doctor-actions">' +
-        (d.bookable ? '<a href="/booking.html" class="btn-sm btn-primary-sm">رزرو نوبت</a>' : '') +
-        '<a href="/booking.html" class="btn-sm btn-secondary-sm">مشاهده</a>' +
+        (d.bookable ? '<a href="' + bookingHref(d) + '" class="btn-sm btn-primary-sm">رزرو نوبت</a>' : '') +
+        '<a href="' + profileHref(d) + '" class="btn-sm btn-secondary-sm">مشاهده پروفایل</a>' +
       '</div>' +
     '</div>';
   }).join('');
@@ -254,8 +307,8 @@ function renderDoctors() {
         '</div>' +
       '</div>' +
       '<div class="list-actions">' +
-        (d.bookable ? '<a href="/booking.html" class="btn-sm btn-primary-sm">📅 رزرو نوبت</a>' : '') +
-        '<a href="/booking.html" class="btn-sm btn-secondary-sm">مشاهده پروفایل</a>' +
+        (d.bookable ? '<a href="' + bookingHref(d) + '" class="btn-sm btn-primary-sm">📅 رزرو نوبت</a>' : '') +
+        '<a href="' + profileHref(d) + '" class="btn-sm btn-secondary-sm">مشاهده پروفایل</a>' +
       '</div>' +
     '</div>';
   }).join('');
@@ -318,6 +371,7 @@ document.getElementById('searchInput').addEventListener('keypress', function (e)
 /* ─── راه‌اندازی ─── */
 buildSpecialtyOptions();
 renderDoctors();
+syncDoctorsWithApi();
 </script>
 
 <script src="/js/site-shell.js"></script>

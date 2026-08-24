@@ -12,20 +12,19 @@ This project can run as one Cloudflare Worker serving the static website and the
 wrangler secret put JWT_SECRET
 ```
 
-4. Apply the schema:
+4. Apply the schema and public content migrations:
 
 ```bash
 bun run cf:migrate
 ```
 
-5. Import the exported public content into D1. The repository includes `cloudflare/migrations/0002_seed_content.sql`, generated from the local database without private users or passwords. Applying `bun run cf:migrate` runs both the schema and this content migration.
-6. Create the first admin row in D1 using a password hash generated locally:
+5. Configure the admin password as a Cloudflare Worker secret. The value is never stored in this repository. The first successful admin login creates or synchronizes the `admin` row in D1:
 
 ```bash
-node cloudflare/scripts/hash-password.js "your-admin-password"
+wrangler secret put ADMIN_PASSWORD
 ```
 
-Use the resulting value in an explicit D1 insert from your secure terminal or Cloudflare dashboard. Do not commit the password or hash to source control.
+Optionally set `ADMIN_USERNAME`, `ADMIN_EMAIL`, and `ADMIN_PHONE` as Worker variables/secrets. Do not commit any of these values or a password hash to source control.
 
 ## Local Worker
 

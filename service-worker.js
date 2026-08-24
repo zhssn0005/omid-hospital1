@@ -13,7 +13,14 @@ const PRECACHE_URLS = [
   '/pages/doctor-profile.html',
   '/pages/doctors-list.html',
   '/pages/virtual-tour.html',
-  '/pages/virtual-tour-editor.html',
+  '/pages/patient-guide.html',
+  '/pages/patient-admission.html',
+  '/pages/insurance.html',
+  '/pages/clinic-calendar.html',
+  '/pages/visitor-guide.html',
+  '/pages/floor-guide.html',
+  '/pages/employee-dress.html',
+  '/pages/patient-affairs.html',
   '/about.html',
   '/js/site-shell.js',
   '/js/tour-scenes.js',
@@ -27,7 +34,10 @@ const PRECACHE_URLS = [
   '/js/site-api-bridge.js',
   '/assets/logo-no-bg.png',
   '/assets/logo-main.png',
-  '/assets/Logo-scaled-e1754348924179.png'
+  '/assets/Logo-scaled-e1754348924179.png',
+  '/assets/guide/floor-guide.png',
+  '/assets/guide/employee-dress.png',
+  '/assets/guide/patient-affairs.jpg'
 ];
 
 self.addEventListener('install', event => {
