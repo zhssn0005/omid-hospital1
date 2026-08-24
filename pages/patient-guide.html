@@ -14,47 +14,59 @@
   background-size: cover;
   background-position: center;
 }
-.guide-icon-card {
-  background: var(--card-bg);
-  border: 2px solid var(--border);
-  border-radius: 16px;
-  padding: 2rem;
-  text-align: center;
-  transition: all 0.3s;
-  cursor: pointer;
-}
-.guide-icon-card:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 12px 32px rgba(0,180,180,0.2);
-  border-color: var(--teal);
-}
-.guide-icon-card .icon-box {
-  width: 80px;
-  height: 80px;
-  background: linear-gradient(135deg, var(--teal), var(--primary));
+.guide-main-card {
+  background: white;
   border-radius: 20px;
+  padding: 3rem;
+  margin: -4rem auto 3rem;
+  max-width: 900px;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+  position: relative;
+  z-index: 10;
+}
+.guide-icon-box {
+  width: 120px;
+  height: 120px;
+  background: linear-gradient(135deg, #00b4b4, #007896);
+  border-radius: 24px;
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: 0 auto 1.5rem;
-  font-size: 2.5rem;
+  margin: 0 auto 2rem;
+  box-shadow: 0 12px 32px rgba(0,180,180,0.3);
 }
-.guide-section-title {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-  font-size: 1.75rem;
-  font-weight: 700;
-  margin: 3rem 0 2rem;
-  color: var(--primary);
-  padding-bottom: 1rem;
-  border-bottom: 3px solid var(--teal);
+.guide-nav-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+  margin: 3rem 0;
 }
-.guide-image {
-  width: 100%;
+.guide-nav-card {
+  background: linear-gradient(135deg, #f8f9fa, #ffffff);
+  border: 2px solid #e9ecef;
   border-radius: 16px;
-  margin: 2rem 0;
-  box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+  padding: 2rem;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.3s;
+  text-decoration: none;
+  color: inherit;
+  display: block;
+}
+.guide-nav-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 16px 40px rgba(0,180,180,0.2);
+  border-color: #00b4b4;
+}
+.guide-nav-icon {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+.guide-nav-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #1a202c;
+  margin: 0;
 }
 </style>
 </head>
@@ -62,8 +74,6 @@
 
 <svg class="icon-sprite" aria-hidden="true" focusable="false">
   <symbol id="icon-home" viewBox="0 0 24 24"><path d="m3 11 9-7 9 7v9H3zM9 20v-5h6v5"/></symbol>
-  <symbol id="icon-file" viewBox="0 0 24 24"><path d="M6 3.5h8l4 4V20a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 6 20z"/><path d="M14 3.5V8h4M9 12h6M9 16h6"/></symbol>
-  <symbol id="icon-heart" viewBox="0 0 24 24"><path d="M20.8 8.8c0 5.2-8.8 10.2-8.8 10.2S3.2 14 3.2 8.8A4.5 4.5 0 0 1 12 6.5a4.5 4.5 0 0 1 8.8 2.3Z"/></symbol>
 </svg>
 
 <header class="header" id="header">
@@ -88,210 +98,92 @@
         <span>راهنمای مراجعین</span>
       </div>
       <h1 class="page-title">راهنمای مراجعین</h1>
-      <p class="page-subtitle">اطلاعات کامل برای بیماران و همراهان محترم</p>
+      <p class="page-subtitle">بیمارستان تخصصی و فوق‌تخصصی امید</p>
     </div>
   </div>
 
-  <div class="container page-content">
-    
-    <section class="content-section">
-      <p class="lead" style="text-align: justify; line-height: 2;">
-        بیمارستان تخصصی و فوق تخصصی امید تهران، در پاییز سال ۱۳۹۵ با بهره‌گیری از مدرن‌ترین تجهیزات پزشکی و مطابق با بالاترین سطح استانداردهای درمانی و بهداشتی ملی و بین‌المللی در منطقه غرب تهران افتتاح شد. بیمارستان شامل بخش‌های کلینیکی، پاراکلینیکی، بستری و سرپایی بوده و با بهره‌گیری از نیروی انسانی متخصص و متعهد و تجهیزات پزشکی مدرن، آماده ارائه خدمات درمانی و بهداشتی مطلوب در سطح بین‌الملل می‌باشد.
+  <div class="container">
+    <div class="guide-main-card">
+      <div class="guide-icon-box">
+        <span style="font-size: 4rem; color: white;">📋</span>
+      </div>
+      <h2 style="text-align: center; font-size: 2rem; margin-bottom: 1rem; color: #1a202c;">راهنمای مراجعین</h2>
+      <p style="text-align: center; color: #6c757d; font-size: 1.125rem; line-height: 1.8; margin-bottom: 2rem;">
+        بیمارستان تخصصی و فوق تخصصی امید تهران، در پاییز سال ۱۳۹۵ با بهره‌گیری از مدرن‌ترین تجهیزات پزشکی و مطابق با بالاترین سطح استانداردهای درمانی و بهداشتی ملی و بین‌المللی در منطقه غرب تهران افتتاح شد.
       </p>
-    </section>
-
-    <div class="guide-icon-card" style="background: linear-gradient(135deg, rgba(0,180,180,0.1), rgba(0,120,150,0.1)); margin: 3rem 0; padding: 3rem;">
-      <div style="display: flex; align-items: center; justify-content: center; gap: 2rem; flex-wrap: wrap;">
-        <div style="text-align: center;">
-          <div style="font-size: 3rem; font-weight: 800; color: var(--teal); margin-bottom: 0.5rem;">۱۱۵</div>
-          <div style="color: var(--text2);">تخت فعال</div>
-        </div>
-        <div style="text-align: center;">
-          <div style="font-size: 3rem; font-weight: 800; color: var(--primary); margin-bottom: 0.5rem;">۱۹۹</div>
-          <div style="color: var(--text2);">پزشک متخصص</div>
-        </div>
-        <div style="text-align: center;">
-          <div style="font-size: 3rem; font-weight: 800; color: var(--teal); margin-bottom: 0.5rem;">۳۲</div>
-          <div style="color: var(--text2);">تخصص مختلف</div>
-        </div>
-      </div>
-    </div>
-
-    <h2 class="guide-section-title">
-      <span style="font-size: 2rem;">📋</span>
-      راهنمای سریع
-    </h2>
-
-    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; margin: 2rem 0;">
-      <div class="guide-icon-card">
-        <div class="icon-box">📝</div>
-        <h3 style="margin: 0 0 0.5rem; font-size: 1.125rem;">مدارک پذیرش</h3>
-        <p style="margin: 0; font-size: 0.875rem; color: var(--text2);">اطلاعات مدارک مورد نیاز</p>
-      </div>
-      <div class="guide-icon-card">
-        <div class="icon-box">🏥</div>
-        <h3 style="margin: 0 0 0.5rem; font-size: 1.125rem;">فرآیند پذیرش</h3>
-        <p style="margin: 0; font-size: 0.875rem; color: var(--text2);">مراحل بستری بیمار</p>
-      </div>
-      <div class="guide-icon-card">
-        <div class="icon-box">👥</div>
-        <h3 style="margin: 0 0 0.5rem; font-size: 1.125rem;">قوانین ملاقات</h3>
-        <p style="margin: 0; font-size: 0.875rem; color: var(--text2);">ساعات و ضوابط</p>
-      </div>
-      <div class="guide-icon-card">
-        <div class="icon-box">🚪</div>
-        <h3 style="margin: 0 0 0.5rem; font-size: 1.125rem;">ترخیص بیمار</h3>
-        <p style="margin: 0; font-size: 0.875rem; color: var(--text2);">مراحل تسویه و خروج</p>
-      </div>
-    </div>
-
-    <img src="/assets/guide/patient-affairs.jpg" alt="امور بیماران" class="guide-image">
-
-    <h2 class="guide-section-title">
-      <span style="font-size: 2rem;">📄</span>
-      مدارک مورد نیاز برای پذیرش
-    </h2>
-    
-    <div class="card-list">
-      <div class="info-card">
-        <div class="info-icon">🆔</div>
-        <h3>کارت ملی</h3>
-        <p>اصل کارت ملی بیمار و همراه (تصویر قبول نیست)</p>
-      </div>
-      <div class="info-card">
-        <div class="info-icon">🏥</div>
-        <h3>دفترچه بیمه</h3>
-        <p>دفترچه بیمه‌های پایه و تکمیلی (در صورت داشتن)</p>
-      </div>
-      <div class="info-card">
-        <div class="info-icon">📝</div>
-        <h3>نامه پزشک</h3>
-        <p>نامه یا نسخه پزشک معالج برای بستری</p>
-      </div>
-      <div class="info-card">
-        <div class="info-icon">🩺</div>
-        <h3>سوابق پزشکی</h3>
-        <p>آزمایشات و سوابق قبلی (در صورت وجود)</p>
-      </div>
-    </div>
-
-    <h2 class="guide-section-title">
-      <span style="font-size: 2rem;">🏥</span>
-      مراحل پذیرش بیمار
-    </h2>
-    
-    <div class="timeline">
-      <div class="timeline-item">
-        <div class="timeline-marker">1</div>
-        <div class="timeline-content">
-          <h3>مراجعه به پذیرش</h3>
-          <p>ارائه مدارک و کارت ملی به واحد پذیرش طبقه همکف</p>
-        </div>
-      </div>
-      <div class="timeline-item">
-        <div class="timeline-marker">2</div>
-        <div class="timeline-content">
-          <h3>تکمیل فرم‌ها</h3>
-          <p>تکمیل فرم‌های پذیرش و رضایت‌نامه</p>
-        </div>
-      </div>
-      <div class="timeline-item">
-        <div class="timeline-marker">3</div>
-        <div class="timeline-content">
-          <h3>پرداخت بیعانه</h3>
-          <p>پرداخت مبلغ بیعانه بر اساس نوع بیمه</p>
-        </div>
-      </div>
-      <div class="timeline-item">
-        <div class="timeline-marker">4</div>
-        <div class="timeline-content">
-          <h3>دریافت دستبند</h3>
-          <p>دریافت دستبند شناسایی بیمار</p>
-        </div>
-      </div>
-      <div class="timeline-item">
-        <div class="timeline-marker">5</div>
-        <div class="timeline-content">
-          <h3>اعزام به بخش</h3>
-          <p>هدایت بیمار به بخش مربوطه توسط پرستار راهنما</p>
+      
+      <div style="background: linear-gradient(135deg, rgba(0,180,180,0.1), rgba(0,120,150,0.1)); border-radius: 16px; padding: 2rem; margin: 2rem 0;">
+        <div style="display: flex; justify-content: space-around; flex-wrap: wrap; gap: 2rem;">
+          <div style="text-align: center;">
+            <div style="font-size: 2.5rem; font-weight: 800; color: #00b4b4;">۱۱۵</div>
+            <div style="color: #6c757d; font-size: 0.875rem;">تخت فعال</div>
+          </div>
+          <div style="text-align: center;">
+            <div style="font-size: 2.5rem; font-weight: 800; color: #007896;">۱۹۹</div>
+            <div style="color: #6c757d; font-size: 0.875rem;">پزشک متخصص</div>
+          </div>
+          <div style="text-align: center;">
+            <div style="font-size: 2.5rem; font-weight: 800; color: #00b4b4;">۳۲</div>
+            <div style="color: #6c757d; font-size: 0.875rem;">تخصص مختلف</div>
+          </div>
         </div>
       </div>
     </div>
 
-    <img src="/assets/guide/floor-guide.png" alt="راهنمای طبقات" class="guide-image">
+    <div style="max-width: 1200px; margin: 0 auto; padding: 2rem;">
+      <h2 style="text-align: center; font-size: 2rem; margin-bottom: 3rem; color: #1a202c;">انتخاب کنید</h2>
+      
+      <div class="guide-nav-grid">
+        <a href="/pages/visitor-guide.html" class="guide-nav-card">
+          <div class="guide-nav-icon">👥</div>
+          <h3 class="guide-nav-title">راهنمای ملاقات</h3>
+          <p style="font-size: 0.875rem; color: #6c757d; margin: 0.5rem 0 0;">ساعات و قوانین ملاقات</p>
+        </a>
 
-    <h2 class="guide-section-title">
-      <span style="font-size: 2rem;">👥</span>
-      قوانین و ساعات ملاقات
-    </h2>
-    
-    <div class="rule-grid">
-      <div class="rule-card">
-        <h3>⏰ ساعات ملاقات</h3>
-        <ul>
-          <li><strong>صبح:</strong> ۱۰:۰۰ الی ۱۲:۰۰</li>
-          <li><strong>عصر:</strong> ۱۶:۰۰ الی ۱۸:۰۰</li>
-          <li><strong>شب:</strong> ۲۰:۰۰ الی ۲۱:۰۰</li>
-        </ul>
-      </div>
-      <div class="rule-card">
-        <h3>👤 تعداد ملاقات‌کننده</h3>
-        <ul>
-          <li>حداکثر ۲ نفر همزمان</li>
-          <li>کودکان زیر ۱۲ سال ممنوع</li>
-          <li>رعایت آرامش بیماران الزامی</li>
-          <li>همراه داشتن کارت ملی</li>
-        </ul>
-      </div>
-      <div class="rule-card">
-        <h3>🚫 ممنوعیت‌ها</h3>
-        <ul>
-          <li>استعمال دخانیات و سیگار</li>
-          <li>گل و گیاهان طبیعی</li>
-          <li>عکس و فیلمبرداری</li>
-          <li>ایجاد سر و صدا</li>
-        </ul>
-      </div>
-    </div>
+        <a href="/pages/floor-guide.html" class="guide-nav-card">
+          <div class="guide-nav-icon">🏥</div>
+          <h3 class="guide-nav-title">راهنمای طبقات</h3>
+          <p style="font-size: 0.875rem; color: #6c757d; margin: 0.5rem 0 0;">مسیریابی داخل بیمارستان</p>
+        </a>
 
-    <img src="/assets/guide/employee-dress.png" alt="راهنمای لباس کارکنان" class="guide-image">
+        <a href="/pages/employee-dress.html" class="guide-nav-card">
+          <div class="guide-nav-icon">👔</div>
+          <h3 class="guide-nav-title">لباس فرم کارکنان</h3>
+          <p style="font-size: 0.875rem; color: #6c757d; margin: 0.5rem 0 0;">شناسایی پرسنل بیمارستان</p>
+        </a>
 
-    <h2 class="guide-section-title">
-      <span style="font-size: 2rem;">🚪</span>
-      مراحل ترخیص بیمار
-    </h2>
-    
-    <div class="steps-box">
-      <div class="step-item">
-        <span class="step-num">۱</span>
-        <p>دریافت برگه ترخیص از پزشک معالج</p>
-      </div>
-      <div class="step-item">
-        <span class="step-num">۲</span>
-        <p>مراجعه به واحد مالی و تسویه حساب</p>
-      </div>
-      <div class="step-item">
-        <span class="step-num">۳</span>
-        <p>دریافت نسخه و توصیه‌های پزشکی</p>
-      </div>
-      <div class="step-item">
-        <span class="step-num">۴</span>
-        <p>تحویل دستبند شناسایی به پرستار</p>
-      </div>
-    </div>
+        <a href="/pages/patient-affairs.html" class="guide-nav-card">
+          <div class="guide-nav-icon">📞</div>
+          <h3 class="guide-nav-title">امور بیماران</h3>
+          <p style="font-size: 0.875rem; color: #6c757d; margin: 0.5rem 0 0;">ارتباط و پیگیری امور</p>
+        </a>
 
-    <section class="content-section">
-      <div class="cta-box">
-        <svg class="ui-icon large"><use href="#icon-heart"></use></svg>
-        <h3>برای اطلاعات بیشتر با ما تماس بگیرید</h3>
-        <p>واحد امور بیماران: ۰۲۱-۴۴۴۸۰۱۸۵ داخلی ۲۰۰</p>
-        <div class="cta-buttons">
-          <a href="tel:02144480185" class="btn btn-primary">تماس تلفنی</a>
-          <a href="/booking.html" class="btn btn-outline">رزرو نوبت</a>
+        <a href="/pages/patient-admission.html" class="guide-nav-card">
+          <div class="guide-nav-icon">📝</div>
+          <h3 class="guide-nav-title">پذیرش و ترخیص</h3>
+          <p style="font-size: 0.875rem; color: #6c757d; margin: 0.5rem 0 0;">مراحل پذیرش و خروج</p>
+        </a>
+
+        <a href="/pages/insurances.html" class="guide-nav-card">
+          <div class="guide-nav-icon">🏦</div>
+          <h3 class="guide-nav-title">بیمه‌ها</h3>
+          <p style="font-size: 0.875rem; color: #6c757d; margin: 0.5rem 0 0;">لیست بیمه‌های طرف قرارداد</p>
+        </a>
+      </div>
+
+      <div style="text-align: center; margin: 4rem 0 2rem;">
+        <img src="/assets/guide/patient-affairs.jpg" alt="امور بیماران" style="width: 100%; max-width: 800px; border-radius: 16px; box-shadow: 0 8px 24px rgba(0,0,0,0.12);">
+      </div>
+
+      <div style="background: linear-gradient(135deg, #00b4b4, #007896); color: white; border-radius: 20px; padding: 3rem; text-align: center; margin: 3rem 0;">
+        <h3 style="font-size: 1.75rem; margin: 0 0 1rem; color: white;">برای اطلاعات بیشتر با ما تماس بگیرید</h3>
+        <p style="font-size: 1.25rem; margin: 0 0 2rem; opacity: 0.9;">واحد امور بیماران: ۰۲۱-۴۴۴۸۰۱۸۵ داخلی ۲۰۰</p>
+        <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+          <a href="tel:02144480185" class="btn btn-outline" style="background: white; color: #00b4b4; border: none;">تماس تلفنی</a>
+          <a href="/booking.html" class="btn btn-outline" style="border-color: white; color: white;">رزرو نوبت</a>
         </div>
       </div>
-    </section>
-
+    </div>
   </div>
 </main>
 
@@ -301,24 +193,17 @@
       <div class="footer-col">
         <h4>بیمارستان امید</h4>
         <p>تخصصی و فوق‌تخصصی</p>
-        <p>📍 تهران، جنت‌آباد مرکزی، خیابان شاهین شمالی</p>
+        <p>📍 تهران، جنت‌آباد مرکزی</p>
         <p>📞 ۰۲۱-۴۴۴۸۰۱۸۵</p>
       </div>
       <div class="footer-col">
         <h4>دسترسی سریع</h4>
         <a href="/booking.html">رزرو نوبت</a>
         <a href="/pages/doctors-list.html">پزشکان</a>
-        <a href="/pages/insurances.html">بیمه‌ها</a>
-      </div>
-      <div class="footer-col">
-        <h4>راهنما</h4>
-        <a href="/pages/patient-guide.html">راهنمای مراجعین</a>
-        <a href="/pages/visitor-guide.html">راهنمای ملاقات</a>
-        <a href="/pages/floor-guide.html">راهنمای طبقات</a>
       </div>
     </div>
     <div class="footer-bottom">
-      <p>&copy; ۱۴۰۴ بیمارستان امید - تمام حقوق محفوظ است</p>
+      <p>&copy; ۱۴۰۴ بیمارستان امید</p>
     </div>
   </div>
 </footer>
