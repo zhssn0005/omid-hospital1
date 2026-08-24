@@ -19,19 +19,13 @@ const hideLoading = () => {
   document.getElementById('loading-overlay').style.display = 'none';
 };
 
-const showToast = (message, type = 'info') => {
+const showToast = (message, type = 'success') => {
   const container = document.getElementById('toast-container');
   const toast = document.createElement('div');
-  toast.className = `toast toast-${type}`;
-  toast.innerHTML = `
-    <span>${type === 'success' ? '✓' : type === 'error' ? '✗' : 'ℹ'}</span>
-    <span>${message}</span>
-  `;
+  toast.className = `toast${type === 'error' ? ' error' : ''}`;
+  toast.textContent = message;
   container.appendChild(toast);
-  
-  setTimeout(() => {
-    toast.remove();
-  }, 3000);
+  setTimeout(() => toast.remove(), 3000);
 };
 
 // API Functions
@@ -261,147 +255,41 @@ const loadPage = async (pageName) => {
 
 // Dashboard Page
 const loadDashboardPage = async (container) => {
-  const stats = await api.getDashboardStats();
-  const data = stats.data;
-
   container.innerHTML = `
-    <div class="page-header">
-      <h1>داشبورد</h1>
-      <p>خوش آمدید، ${state.user.full_name}</p>
-    </div>
-
+    <h2 style="margin-bottom:1.5rem;">📊 داشبورد مدیریت</h2>
     <div class="stats-grid">
-      <div class="stat-card">
-        <div class="stat-icon">👨‍⚕️</div>
-        <div class="stat-info">
-          <h3>${data.doctors.total}</h3>
-          <p>تعداد پزشکان</p>
-        </div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-icon">📅</div>
-        <div class="stat-info">
-          <h3>${data.appointments.total}</h3>
-          <p>کل نوبت‌ها</p>
-        </div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-icon">👥</div>
-        <div class="stat-info">
-          <h3>${data.users.total}</h3>
-          <p>تعداد کاربران</p>
-        </div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-icon">⭐</div>
-        <div class="stat-info">
-          <h3>${data.reviews.total}</h3>
-          <p>نظرات</p>
-        </div>
-      </div>
+      <div class="stat-card"><div class="num" id="d-stats-docs">--</div><div class="lbl">پزشکان</div></div>
+      <div class="stat-card"><div class="num" id="d-stats-apts">--</div><div class="lbl">نوبت‌ها</div></div>
+      <div class="stat-card"><div class="num" id="d-stats-specs">--</div><div class="lbl">تخصص‌ها</div></div>
+      <div class="stat-card"><div class="num" id="d-stats-depts">--</div><div class="lbl">بخش‌ها</div></div>
     </div>
-
-    <div class="table-container">
-      <div class="table-header">
-        <h2>آخرین نوبت‌ها</h2>
-      </div>
-      <table>
-        <thead>
-          <tr>
-            <th>بیمار</th>
-            <th>پزشک</th>
-            <th>تاریخ</th>
-            <th>ساعت</th>
-            <th>وضعیت</th>
-          </tr>
-        </thead>
-        <tbody>
-          ${data.recentAppointments.map(apt => `
-            <tr>
-              <td>${apt.patient_name}</td>
-              <td>${apt.doctor_name}</td>
-              <td>${apt.appointment_date}</td>
-              <td>${apt.appointment_time}</td>
-              <td><span class="badge badge-${getStatusBadge(apt.status)}">${getStatusText(apt.status)}</span></td>
-            </tr>
-          `).join('')}
-        </tbody>
-      </table>
-    </div>
-
-    <div class="table-container">
-      <div class="table-header">
-        <h2>برترین پزشکان</h2>
-      </div>
-      <table>
-        <thead>
-          <tr>
-            <th>نام</th>
-            <th>تخصص</th>
-            <th>امتیاز</th>
-            <th>تعداد نظرات</th>
-          </tr>
-        </thead>
-        <tbody>
-          ${data.topDoctors.map(doc => `
-            <tr>
-              <td>${doc.full_name}</td>
-              <td>${doc.specialty}</td>
-              <td>⭐ ${doc.rating.toFixed(1)}</td>
-              <td>${doc.review_count}</td>
-            </tr>
-          `).join('')}
-        </tbody>
-      </table>
-    </div>
+    <div class="card"><p style="color:var(--text2);">به پنل مدیریت بیمارستان امید خوش آمدید. از منوی کناری بخش مورد نظر را انتخاب کنید.</p></div>
   `;
+  try {
+    var s=await api.getDashboardStats(); var d=s.data;
+    document.getElementById('d-stats-docs').textContent=d.doctors?.total||0;
+    document.getElementById('d-stats-apts').textContent=d.appointments?.total||0;
+    document.getElementById('d-stats-specs').textContent=d.specialties?.total||0;
+    document.getElementById('d-stats-depts').textContent=d.departments?.total||0;
+  } catch(e) {}
 };
 
 // Doctors Page
 const loadDoctorsPage = async (container) => {
-  const response = await api.getDoctors();
-  const doctors = response.data;
-
-  container.innerHTML = `
-    <div class="page-header">
-      <h1>مدیریت پزشکان</h1>
-      <p>مشاهده و مدیریت اطلاعات پزشکان</p>
+  var resp=await api.getDoctors(); var docs=resp.data;
+  container.innerHTML=`
+    <h2 style="margin-bottom:1.5rem;">👨‍⚕️ مدیریت پزشکان</h2>
+    <div class="flex flex-between mb-2">
+      <div class="search-bar"><input type="search" placeholder="جستجوی پزشک..." id="search-doctors"></div>
     </div>
-
-    <div class="table-container">
-      <div class="table-header">
-        <h2>لیست پزشکان</h2>
-        <div class="table-actions">
-          <input type="search" class="search-input" placeholder="جستجو..." id="search-doctors">
-          <button class="btn btn-primary btn-sm" onclick="showDoctorModal()">+ افزودن پزشک</button>
-        </div>
-      </div>
-      <table id="doctors-table">
-        <thead>
-          <tr>
-            <th>نام</th>
-            <th>تخصص</th>
-            <th>کد نظام</th>
-            <th>هزینه ویزیت</th>
-            <th>امتیاز</th>
-            <th>وضعیت</th>
-            <th>عملیات</th>
-          </tr>
-        </thead>
-        <tbody>
-          ${renderDoctorsTable(doctors)}
-        </tbody>
-      </table>
-    </div>
-
+    <div class="table-wrap"><table id="doctors-table"><thead><tr>
+      <th>نام</th><th>تخصص</th><th>کد نظام</th><th>هزینه (تومان)</th><th>امتیاز</th><th>وضعیت</th><th>عملیات</th>
+    </tr></thead><tbody id="doctors-tbody">${renderDoctorsTable(docs)}</tbody></table></div>
     <div id="doctor-modal"></div>
   `;
-
-  // Search functionality
-  document.getElementById('search-doctors').addEventListener('input', async (e) => {
-    const searchTerm = e.target.value;
-    const response = await api.getDoctors({ search: searchTerm });
-    document.querySelector('#doctors-table tbody').innerHTML = renderDoctorsTable(response.data);
+  document.getElementById('search-doctors').addEventListener('input',async function(e){
+    var r=await api.getDoctors({search:e.target.value});
+    document.getElementById('doctors-tbody').innerHTML=renderDoctorsTable(r.data);
   });
 };
 

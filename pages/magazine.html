@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>مجله سلامت بیمارستان امید | ۲۰+ مقاله تخصصی پزشکی</title>
+<meta name="description" content="مجله سلامت بیمارستان امید - مقالات تخصصی پزشکی، نکات سلامتی، راهنماهای درمانی و پیشگیری از بیماری‌ها">
+<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/theme.css">
+<style>
+body { padding-top:5rem; }
+.magazine-hero { text-align:center; padding:4rem 1rem; background:linear-gradient(135deg, rgba(6,182,212,0.1), rgba(139,92,246,0.1)); border-bottom:1px solid var(--glass-border); }
+.magazine-hero h1 { font-size:2.8rem; font-weight:900; background:linear-gradient(135deg, var(--accent-cyan), var(--accent-blue)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; }
+.magazine-hero p { color:var(--text-secondary); font-size:1.1rem; margin-top:1rem; }
+.magazine-categories { display:flex; gap:0.5rem; flex-wrap:wrap; justify-content:center; margin:2rem 0; }
+.mag-cat { padding:0.5rem 1.2rem; border-radius:50px; border:1px solid var(--glass-border); background:var(--glass); color:var(--text-secondary); cursor:pointer; font-size:0.85rem; font-family:'Vazirmatn',sans-serif; transition:var(--transition); }
+.mag-cat:hover, .mag-cat.active { background:var(--accent-cyan); color:#fff; border-color:var(--accent-cyan); }
+.magazine-grid { display:grid; grid-template-columns:repeat(auto-fill, minmax(350px, 1fr)); gap:1.5rem; max-width:1280px; margin:2rem auto; padding:0 1.5rem; }
+.mag-card { background:var(--glass); border:1px solid var(--glass-border); border-radius:var(--radius); overflow:hidden; transition:var(--transition); }
+.mag-card:hover { transform:translateY(-4px); border-color:rgba(6,182,212,0.4); box-shadow:0 8px 30px rgba(6,182,212,0.1); }
+.mag-card-img { height:200px; display:flex; align-items:center; justify-content:center; font-size:4rem; }
+.mag-card-body { padding:1.5rem; }
+.mag-card-date { font-size:0.8rem; color:var(--text-muted); }
+.mag-card h3 { font-size:1.15rem; margin:0.5rem 0; line-height:1.6; }
+.mag-card p { color:var(--text-muted); font-size:0.9rem; line-height:1.7; }
+.mag-card-tags { margin-top:1rem; display:flex; gap:0.5rem; flex-wrap:wrap; }
+.mag-tag { padding:0.2rem 0.75rem; background:rgba(6,182,212,0.15); color:var(--accent-cyan); border-radius:20px; font-size:0.75rem; }
+.back-link { display:block; padding:1rem 2rem; color:var(--accent-cyan); text-decoration:none; font-weight:600; }
+@media (max-width:768px) { .magazine-grid { grid-template-columns:1fr; } .magazine-hero h1 { font-size:1.8rem; } }
+</style>
+</head>
+<body>
+<canvas id="particles"></canvas>
+
+<div style="max-width:1400px;margin:0 auto;padding:0 1rem;">
+  <a href="/" class="back-link" style="display:inline-block;padding:1rem 2rem;">← بازگشت به صفحه اصلی</a>
+</div>
+
+<section class="magazine-hero">
+  <h1>📚 مجله سلامت بیمارستان امید</h1>
+  <p>مقالات تخصصی پزشکی، نکات سلامتی، راهنماهای درمانی و پیشگیری از بیماری‌ها</p>
+  <div class="magazine-categories" id="categories">
+    <button class="mag-cat active" data-cat="all">همه مقالات</button>
+    <button class="mag-cat" data-cat="قلب">❤️ قلب و عروق</button>
+    <button class="mag-cat" data-cat="تغذیه">🥗 تغذیه</button>
+    <button class="mag-cat" data-cat="کودکان">🧒 کودکان</button>
+    <button class="mag-cat" data-cat="ارتوپدی">🦴 ارتوپدی</button>
+    <button class="mag-cat" data-cat="روان">🧠 روانشناسی</button>
+    <button class="mag-cat" data-cat="زنان">👶 زنان</button>
+    <button class="mag-cat" data-cat="عمومی">🩺 سلامت عمومی</button>
+  </div>
+</section>
+
+<div class="magazine-grid" id="magazineGrid"></div>
+
+<script>
+var articles=[
+  {cat:'قلب',tag:'قلب و عروق',img:'❤️',date:'۳۰ مرداد ۱۴۰۴',title:'فشار خون بالا: قاتل خاموش — علائم هشداردهنده، روش‌های پیشگیری و درمان دارویی',desc:'فشار خون بالا یکی از شایع‌ترین بیماری‌های قلبی-عروقی است که اغلب بدون علامت بوده و می‌تواند منجر به سکته قلبی و مغزی شود. در این مقاله علائم، روش‌های تشخیص و درمان آن را بررسی می‌کنیم.'},
+  {cat:'قلب',tag:'قلب و عروق',img:'🫀',date:'۲۵ مرداد ۱۴۰۴',title:'آنژیوگرافی قلب: هر آنچه باید قبل از انجام این آزمایش بدانید',desc:'آنژیوگرافی روشی تشخیصی-درمانی برای بررسی عروق کرونر قلب است. با آمادگی‌های قبل از آنژیوگرافی، مراحل انجام و مراقبت‌های بعد از آن آشنا شوید.'},
+  {cat:'قلب',tag:'قلب و عروق',img:'💓',date:'۱۸ مرداد ۱۴۰۴',title:'کلسترول بالا و سلامت قلب: رژیم غذایی مناسب برای کاهش کلسترول',desc:'کلسترول بالا یکی از عوامل اصلی بیماری‌های قلبی است. با رژیم غذایی مناسب، ورزش منظم و اصلاح سبک زندگی می‌توان کلسترول را کنترل کرد.'},
+  {cat:'تغذیه',tag:'تغذیه و رژیم',img:'🥗',date:'۲۸ مرداد ۱۴۰۴',title:'تغذیه سالم در ماه رمضان: راهنمای کامل روزه‌داری برای بیماران دیابتی و قلبی',desc:'روزه‌داری برای بیماران مبتلا به دیابت و بیماری‌های قلبی نیازمند رعایت نکات تغذیه‌ای خاص است. در این مقاله راهنمای کامل تغذیه در ماه رمضان را ارائه می‌دهیم.'},
+  {cat:'تغذیه',tag:'تغذیه و رژیم',img:'🥦',date:'۲۰ مرداد ۱۴۰۴',title:'۱۰ ماده غذایی معجزه‌آسا برای تقویت سیستم ایمنی بدن',desc:'سیستم ایمنی قوی اولین خط دفاعی بدن در برابر بیماری‌هاست. با مصرف این ۱۰ ماده غذایی مغذی، سیستم ایمنی خود را به طور طبیعی تقویت کنید.'},
+  {cat:'تغذیه',tag:'تغذیه و رژیم',img:'💧',date:'۱۲ مرداد ۱۴۰۴',title:'اهمیت مصرف آب در سلامت بدن: چقدر آب بخوریم و چرا؟',desc:'آب حدود ۶۰٪ وزن بدن را تشکیل می‌دهد و نقش حیاتی در تمام عملکردهای بدن دارد. میزان مصرف روزانه آب و نشانه‌های کم‌آبی را بشناسید.'},
+  {cat:'کودکان',tag:'کودکان و نوزادان',img:'🧒',date:'۲۵ مرداد ۱۴۰۴',title:'واکسیناسیون کودکان: برنامه کامل واکسن‌های ضروری از بدو تولد تا ۱۸ سالگی',desc:'واکسیناسیون یکی از مهم‌ترین اقدامات پیشگیرانه برای حفظ سلامت کودکان است. برنامه کامل واکسیناسیون کشوری و نکات مهم قبل و بعد از تزریق واکسن.'},
+  {cat:'کودکان',tag:'کودکان و نوزادان',img:'👶',date:'۲۲ مرداد ۱۴۰۴',title:'زردی نوزادان (ایکتر): علل، تشخیص و درمان با فتوتراپی',desc:'زردی یا ایکتر یکی از مشکلات شایع نوزادان است که در ۶۰٪ نوزادان ترم دیده می‌شود. با علل زردی، روش‌های تشخیص و درمان آن با فتوتراپی آشنا شوید.'},
+  {cat:'کودکان',tag:'کودکان و نوزادان',img:'🍼',date:'۱۵ مرداد ۱۴۰۴',title:'تغذیه با شیر مادر: فواید طلایی برای مادر و نوزاد',desc:'شیر مادر کامل‌ترین تغذیه برای نوزاد است. در این مقاله فواید شیر مادر، تکنیک‌های صحیح شیردهی و مشکلات رایج شیردهی را بررسی می‌کنیم.'},
+  {cat:'کودکان',tag:'کودکان و نوزادان',img:'🤒',date:'۱۰ مرداد ۱۴۰۴',title:'تب در کودکان: چه زمانی باید به پزشک مراجعه کنیم؟',desc:'تب یکی از شایع‌ترین علل مراجعه کودکان به پزشک است. در این مقاله راهنمای کامل تشخیص و درمان خانگی تب کودک و علائم هشداردهنده را ارائه می‌دهیم.'},
+  {cat:'ارتوپدی',tag:'ارتوپدی و ستون فقرات',img:'🦴',date:'۲۰ مرداد ۱۴۰۴',title:'دیسک کمر و گردن: علل، علائم و جدیدترین روش‌های درمان غیرجراحی',desc:'بیرون‌زدگی دیسک از شایع‌ترین علل کمردرد و گردن‌درد است. روش‌های نوین درمان غیرجراحی از جمله فیزیوتراپی، لیزر و PRP را بشناسید.'},
+  {cat:'ارتوپدی',tag:'ارتوپدی',img:'🦵',date:'۱۶ مرداد ۱۴۰۴',title:'آرتروز زانو: از تشخیص تا درمان — راهنمای کامل بیماران',desc:'آرتروز زانو بیماری تخریبی مفصل است که با افزایش سن شایع‌تر می‌شود. روش‌های درمانی از ورزش و فیزیوتراپی تا تعویض مفصل زانو را بررسی می‌کنیم.'},
+  {cat:'ارتوپدی',tag:'ارتوپدی',img:'🏃',date:'۸ مرداد ۱۴۰۴',title:'پوکی استخوان: پیشگیری و درمان — استخوان‌های خود را قوی نگه دارید',desc:'پوکی استخوان بیماری خاموشی است که میلیون‌ها نفر را تحت تأثیر قرار می‌دهد. با تغذیه مناسب، ورزش و مکمل‌های کلسیم و ویتامین D از پوکی استخوان پیشگیری کنید.'},
+  {cat:'روان',tag:'روانشناسی و سلامت روان',img:'🧠',date:'۲۴ مرداد ۱۴۰۴',title:'مدیریت استرس و اضطراب: ۱۰ تکنیک علمی برای آرامش ذهن',desc:'استرس مزمن می‌تواند سلامت جسمی و روانی شما را تهدید کند. ۱۰ تکنیک اثبات‌شده علمی برای مدیریت استرس و اضطراب در زندگی روزمره را بیاموزید.'},
+  {cat:'روان',tag:'روانشناسی',img:'😴',date:'۱۹ مرداد ۱۴۰۴',title:'بی‌خوابی و اختلالات خواب: علل، عوارض و راهکارهای درمانی مؤثر',desc:'اختلالات خواب یکی از مشکلات شایع در دنیای مدرن است. با علل بی‌خوابی، عوارض آن بر سلامت و روش‌های درمانی دارویی و غیردارویی آشنا شوید.'},
+  {cat:'روان',tag:'روانشناسی',img:'🧘',date:'۱۴ مرداد ۱۴۰۴',title:'مدیتیشن و ذهن‌آگاهی: راهنمای شروع برای مبتدیان',desc:'مدیتیشن و ذهن‌آگاهی (Mindfulness) روش‌های اثبات‌شده برای کاهش استرس و بهبود کیفیت زندگی هستند. راهنمای گام‌به‌گام شروع مدیتیشن روزانه.'},
+  {cat:'زنان',tag:'زنان و زایمان',img:'👶',date:'۲۳ مرداد ۱۴۰۴',title:'مراقبت‌های دوران بارداری: راهنمای کامل از هفته اول تا زایمان',desc:'بارداری دوره حساسی است که نیازمند مراقبت‌های ویژه می‌باشد. راهنمای کامل مراقبت‌های دوران بارداری، تغذیه مناسب، آزمایش‌های ضروری و آمادگی برای زایمان.'},
+  {cat:'زنان',tag:'زنان',img:'🎗️',date:'۱۷ مرداد ۱۴۰۴',title:'سرطان پستان: اهمیت غربالگری و تشخیص زودهنگام',desc:'سرطان پستان شایع‌ترین سرطان در زنان است اما با تشخیص زودهنگام کاملاً قابل درمان می‌باشد. روش‌های خودآزمایی، ماموگرافی و سونوگرافی را بشناسید.'},
+  {cat:'عمومی',tag:'سلامت عمومی',img:'🩺',date:'۲۶ مرداد ۱۴۰۴',title:'دیابت نوع ۲: پیشگیری، کنترل و درمان — راهنمای جامع بیماران',desc:'دیابت نوع ۲ یکی از شایع‌ترین بیماری‌های مزمن در ایران است. با تغذیه صحیح، ورزش و دارودرمانی می‌توان دیابت را کنترل و از عوارض آن پیشگیری کرد.'},
+  {cat:'عمومی',tag:'سلامت عمومی',img:'🦷',date:'۲۱ مرداد ۱۴۰۴',title:'بهداشت دهان و دندان: ۱۰ عادت طلایی برای دندان‌های سالم',desc:'سلامت دهان و دندان تأثیر مستقیمی بر سلامت عمومی بدن دارد. ۱۰ عادت روزانه برای حفظ سلامت دندان‌ها و پیشگیری از پوسیدگی و بیماری‌های لثه.'},
+  {cat:'عمومی',tag:'سلامت عمومی',img:'🫁',date:'۱۳ مرداد ۱۴۰۴',title:'ترک سیگار: بهترین روش‌های علمی و دارویی برای ترک دائم',desc:'سیگار عامل اصلی سرطان ریه و بیماری‌های قلبی است. روش‌های نوین ترک سیگار شامل دارودرمانی، مشاوره و رفتاردرمانی را بررسی می‌کنیم.'},
+  {cat:'عمومی',tag:'سلامت عمومی',img:'🏋️',date:'۵ مرداد ۱۴۰۴',title:'ورزش و سلامت: حداقل میزان فعالیت بدنی برای حفظ سلامتی',desc:'سازمان بهداشت جهانی حداقل ۱۵۰ دقیقه فعالیت بدنی متوسط در هفته را توصیه می‌کند. بهترین ورزش‌ها برای گروه‌های سنی مختلف را بشناسید.'},
+  {cat:'عمومی',tag:'پیشگیری',img:'💉',date:'۱ مرداد ۱۴۰۴',title:'آنفولانزا: پیشگیری، علائم و درمان — هر آنچه باید بدانید',desc:'آنفولانزا بیماری ویروسی واگیرداری است که سالانه میلیون‌ها نفر را مبتلا می‌کند. واکسن آنفولانزا، علائم بیماری و روش‌های درمان خانگی و دارویی.'},
+];
+
+function renderArticles(cat){
+  var list=cat==='all'?articles:articles.filter(function(a){return a.cat===cat;});
+  var g=document.getElementById('magazineGrid');
+  g.innerHTML=list.map(function(a){return'<div class="mag-card"><div class="mag-card-img" style="background:var(--bg-secondary);">'+a.img+'</div><div class="mag-card-body"><span class="mag-card-date">📅 '+a.date+'</span><h3>'+a.title+'</h3><p>'+a.desc+'</p><div class="mag-card-tags"><span class="mag-tag">'+a.tag+'</span></div></div></div>';}).join('');
+}
+
+document.querySelectorAll('.mag-cat').forEach(function(b){
+  b.addEventListener('click',function(){
+    document.querySelectorAll('.mag-cat').forEach(function(x){x.classList.remove('active');});
+    this.classList.add('active');
+    renderArticles(this.dataset.cat);
+  });
+});
+
+renderArticles('all');
+
+// Particles
+(function(){
+  var c=document.getElementById('particles'),ctx=c.getContext('2d'),w,h,pts=[];
+  function rs(){w=c.width=innerWidth;h=c.height=innerHeight;}
+  rs();addEventListener('resize',rs);
+  for(var i=0;i<40;i++)pts.push({x:Math.random()*w,y:Math.random()*h,vx:(Math.random()-0.5)*0.4,vy:(Math.random()-0.5)*0.4,r:Math.random()*1.2+0.3,a:Math.random()*0.3+0.05});
+  (function dr(){
+    ctx.clearRect(0,0,w,h);
+    pts.forEach(function(p){p.x+=p.vx;p.y+=p.vy;if(p.x<0||p.x>w)p.vx*=-1;if(p.y<0||p.y>h)p.vy*=-1;ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,6.28);ctx.fillStyle='rgba(6,182,212,'+p.a+')';ctx.fill();});
+    requestAnimationFrame(dr);
+  })();
+})();
+</script>
+</body>
+</html>

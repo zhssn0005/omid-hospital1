@@ -4,10 +4,11 @@
   "description": "Omid Hospital Management System - Full Stack",
   "main": "server/server.js",
   "scripts": {
-    "start": "node server/server.js",
+    "start": "cd server && node scripts/seed.js && node server.js",
     "dev": "cd server && nodemon server.js",
     "seed": "cd server && node scripts/seed.js",
-    "build": "echo 'No build step required'"
+    "build": "echo 'No build step required'",
+    "postinstall": "cd server && npm install"
   },
   "engines": {
     "node": ">=18.0.0"

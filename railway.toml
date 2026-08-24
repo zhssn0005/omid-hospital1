@@ -1,9 +1,0 @@
-[build]
-builder = "nixpacks"
-buildCommand = "cd server && npm install && node scripts/seed.js"
-
-[deploy]
-startCommand = "node server/server.js"
-healthcheckPath = "/api/health"
-healthcheckTimeout = 30
-restartPolicyType = "on_failure"

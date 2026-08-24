@@ -3,97 +3,75 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>پنل مدیریت - بیمارستان امید</title>
-  <link rel="stylesheet" href="style.css">
+  <meta name="robots" content="noindex,nofollow">
+  <title>پنل مدیریت | بیمارستان امید</title>
+  <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/admin/style.css">
 </head>
 <body>
   <div id="app" class="app-container">
     <!-- Login Page -->
     <div id="login-page" class="login-page">
       <div class="login-card">
-        <div class="login-header">
-          <h1>پنل مدیریت بیمارستان امید</h1>
-          <p>لطفاً وارد حساب کاربری خود شوید</p>
-        </div>
+        <div style="font-size:3rem;margin-bottom:1rem;">🏥</div>
+        <h1>پنل مدیریت بیمارستان امید</h1>
+        <p>لطفاً وارد حساب کاربری خود شوید</p>
         <form id="login-form" class="login-form">
           <div class="form-group">
             <label>نام کاربری</label>
-            <input type="text" id="login-username" required autocomplete="username">
+            <input type="text" id="login-username" required autocomplete="username" placeholder="admin">
           </div>
           <div class="form-group">
             <label>رمز عبور</label>
             <input type="password" id="login-password" required autocomplete="current-password">
           </div>
-          <div class="form-actions">
-            <button type="submit" class="btn btn-primary">ورود</button>
-          </div>
           <div id="login-error" class="error-message"></div>
+          <button type="submit" class="btn btn-primary btn-block" style="margin-top:1rem;">ورود به پنل مدیریت</button>
         </form>
+        <div style="margin-top:1.5rem;">
+          <a href="/" style="color:var(--text2);font-size:0.85rem;">← بازگشت به سایت</a>
+        </div>
       </div>
     </div>
 
     <!-- Main Dashboard -->
-    <div id="dashboard" class="dashboard" style="display: none;">
-      <!-- Sidebar -->
+    <div id="dashboard" class="dashboard" style="display:none;">
       <aside class="sidebar">
         <div class="sidebar-header">
-          <h2>بیمارستان امید</h2>
-          <p id="user-name"></p>
+          <h2>🏥 بیمارستان امید</h2>
+          <p id="user-name">مدیر سیستم</p>
         </div>
         <nav class="sidebar-nav">
-          <a href="#" class="nav-item active" data-page="dashboard">
-            <span class="icon">📊</span>
-            داشبورد
-          </a>
-          <a href="#" class="nav-item" data-page="doctors">
-            <span class="icon">👨‍⚕️</span>
-            مدیریت پزشکان
-          </a>
-          <a href="#" class="nav-item" data-page="specialties">
-            <span class="icon">🏥</span>
-            تخصص‌ها
-          </a>
-          <a href="#" class="nav-item" data-page="appointments">
-            <span class="icon">📅</span>
-            نوبت‌ها
-          </a>
-          <a href="#" class="nav-item" data-page="departments">
-            <span class="icon">🏨</span>
-            بخش‌ها
-          </a>
-          <a href="#" class="nav-item" data-page="reviews">
-            <span class="icon">⭐</span>
-            نظرات
-          </a>
-          <a href="#" class="nav-item" data-page="users">
-            <span class="icon">👥</span>
-            کاربران
-          </a>
-          <a href="#" class="nav-item" data-page="settings">
-            <span class="icon">⚙️</span>
-            تنظیمات
-          </a>
+          <a href="#" class="nav-item active" data-page="dashboard"><span class="icon">📊</span> داشبورد</a>
+          <a href="#" class="nav-item" data-page="doctors"><span class="icon">👨‍⚕️</span> مدیریت پزشکان</a>
+          <a href="#" class="nav-item" data-page="specialties"><span class="icon">🏥</span> تخصص‌ها</a>
+          <a href="#" class="nav-item" data-page="appointments"><span class="icon">📅</span> نوبت‌ها</a>
+          <a href="#" class="nav-item" data-page="departments"><span class="icon">🏨</span> بخش‌ها</a>
+          <a href="#" class="nav-item" data-page="reviews"><span class="icon">⭐</span> نظرات</a>
+          <a href="#" class="nav-item" data-page="users"><span class="icon">👥</span> کاربران</a>
+          <a href="#" class="nav-item" data-page="settings"><span class="icon">⚙️</span> تنظیمات</a>
         </nav>
         <div class="sidebar-footer">
-          <button id="logout-btn" class="btn btn-secondary">خروج</button>
+          <button id="logout-btn" class="btn btn-secondary btn-block">🚪 خروج</button>
         </div>
       </aside>
-
-      <!-- Main Content -->
-      <main class="main-content">
-        <div id="page-container"></div>
+      <main class="main-content" id="page-container">
+        <h2 style="margin-bottom:1.5rem;">📊 داشبورد مدیریت</h2>
+        <div class="stats-grid" id="stats-grid">
+          <div class="stat-card"><div class="num" id="stat-doctors">--</div><div class="lbl">پزشکان</div></div>
+          <div class="stat-card"><div class="num" id="stat-appointments">--</div><div class="lbl">نوبت‌های امروز</div></div>
+          <div class="stat-card"><div class="num" id="stat-specialties">--</div><div class="lbl">تخصص‌ها</div></div>
+          <div class="stat-card"><div class="num" id="stat-departments">--</div><div class="lbl">بخش‌ها</div></div>
+        </div>
+        <div class="card"><p style="color:var(--text2);">به پنل مدیریت بیمارستان امید خوش آمدید. از منوی سمت راست بخش مورد نظر را انتخاب کنید.</p></div>
       </main>
     </div>
   </div>
 
-  <!-- Loading Spinner -->
-  <div id="loading-overlay" class="loading-overlay" style="display: none;">
-    <div class="spinner"></div>
-  </div>
-
-  <!-- Toast Notifications -->
+  <div id="loading-overlay" class="loading-overlay" style="display:none;"><div class="spinner"></div></div>
   <div id="toast-container" class="toast-container"></div>
 
-  <script src="app.js"></script>
+  <script src="/js/api.js"></script>
+  <script src="/admin/app.js"></script>
 </body>
 </html>

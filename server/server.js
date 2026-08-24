@@ -1,4 +1,5 @@
 require('dotenv').config();
+require('dotenv').config({ path: require('path').join(__dirname, '../.env.local'), override: true });
 const express = require('express');
 const cors = require('cors');
 const helmet = require('helmet');
@@ -19,11 +20,20 @@ app.use(helmet({
 // CORS configuration
 const corsOrigin = process.env.CORS_ORIGIN;
 const corsOptions = {
-  origin: corsOrigin ? corsOrigin.split(',') : true,
+  origin: corsOrigin ? corsOrigin.split(',').map(s => s.trim()) : (process.env.NODE_ENV === 'production' ? 'https://omid.hospital' : 'http://localhost:5000'),
   credentials: true,
   optionsSuccessStatus: 200
 };
 app.use(cors(corsOptions));
+
+// Rate limiting
+const rateLimit = require('express-rate-limit');
+const limiter = rateLimit({
+  windowMs: 15 * 60 * 1000,
+  max: 100,
+  message: { success: false, message: 'درخواست‌های بیش از حد - لطفاً بعداً تلاش کنید' }
+});
+app.use('/api/', limiter);
 
 // Body parser
 app.use(express.json());
@@ -37,9 +47,13 @@ if (process.env.NODE_ENV === 'development') {
   app.use(morgan('dev'));
 }
 
-// Serve static files
+// Serve static files - only public directories
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
-app.use(express.static(path.join(__dirname, '../')));
+app.use('/assets', express.static(path.join(__dirname, '../assets')));
+app.use('/css', express.static(path.join(__dirname, '../css')));
+app.use('/js', express.static(path.join(__dirname, '../js')));
+app.use('/pages', express.static(path.join(__dirname, '../pages')));
+app.use('/admin', express.static(path.join(__dirname, '../admin')));
 
 // API Routes
 app.use('/api/auth', require('./routes/auth'));
@@ -70,16 +84,14 @@ app.get('/booking', (req, res) => {
   res.sendFile(path.join(__dirname, '../booking.html'));
 });
 
-// Serve main site (catch-all)
-app.get('*', (req, res, next) => {
-  if (req.path.startsWith('/api')) return next();
-  const indexPath = path.join(__dirname, '../index.html');
-  const fs = require('fs');
-  if (fs.existsSync(indexPath)) {
-    res.sendFile(indexPath);
-  } else {
-    next();
-  }
+// Serve SPA-like routes for main pages
+app.get(['/', '/index.html', '/doctors', '/specialties', '/departments', '/blog', '/contact', '/about', '/guide'], (req, res) => {
+  res.sendFile(path.join(__dirname, '../index.html'));
+});
+
+// Serve magazine page
+app.get('/pages/magazine.html', (req, res) => {
+  res.sendFile(path.join(__dirname, '../pages/magazine.html'));
 });
 
 // 404 handler
@@ -94,18 +106,10 @@ const HOST = process.env.HOST || '0.0.0.0';
 
 initDatabase().then(() => {
   app.listen(PORT, HOST, () => {
-    console.log(`
-╔══════════════════════════════════════════════╗
-║   🏥 Omid Hospital Management System        ║
-║                                              ║
-║   Running on: http://${HOST}:${PORT}          ║
-║   Admin Panel: http://${HOST}:${PORT}/admin   ║
-║   API Health:  http://${HOST}:${PORT}/api/health ║
-╚══════════════════════════════════════════════╝
-    `);
+    console.log(`\n🏥 Omid Hospital running on http://${HOST}:${PORT}\n`);
   });
 }).catch(err => {
-  console.error('❌ Failed to initialize database:', err);
+  console.error('❌ Failed to start:', err);
   process.exit(1);
 });
 
