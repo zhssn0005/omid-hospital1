@@ -1,579 +1,87 @@
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>بخش NICU - مراقبت‌های ویژه نوزادان | بیمارستان امید</title>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>بخش NICU (نوزادان) | بیمارستان امید</title>
+<meta name="description" content="بخش مراقبت‌های ویژه نوزادان NICU بیمارستان امید تحت مدیریت دکتر اسدالله فغانی — ۸ تخت، ونتیلاتور، فتوتراپی، اینکوباتور">
+<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/css/theme.css">
 <style>
-body { padding-top: 5rem; }
-.page-back { display: inline-block; padding: 1rem 2rem; color: var(--accent-cyan); text-decoration: none; font-weight: 600; font-size: 0.9rem; }
-</style>
-
-<meta name="description" content="بخش مراقبت‌های ویژه نوزادان (NICU) با 8 تخت مجهز، تجهیزات پیشرفته و تیم متخصص نوزادان">
-<style>
-:root {
-  --c1: #070E1A; --c2: #0C1A2E; --c3: #122340;
-  --c5: #0284C7; --c6: #06B6D4; --c7: #22D3EE;
-  --f: 'Vazirmatn', system-ui, sans-serif;
-}
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-body {
-  font-family: var(--f);
-  background: var(--c1);
-  color: #CBD5E1;
-  line-height: 1.7;
-}
-.hero {
-  min-height: 60vh;
-  background: linear-gradient(135deg, var(--c2) 0%, var(--c1) 100%);
-  display: flex;
-  align-items: center;
-  padding: 120px 24px 60px;
-  position: relative;
-  overflow: hidden;
-}
-.hero::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(6,182,212,0.08), transparent);
-}
-.hero-content {
-  max-width: 1200px;
-  margin: 0 auto;
-  position: relative;
-  text-align: center;
-}
-.hero-badge {
-  display: inline-block;
-  padding: 8px 20px;
-  background: rgba(6,182,212,0.15);
-  border: 1px solid rgba(6,182,212,0.3);
-  border-radius: 99px;
-  color: var(--c7);
-  font-weight: 700;
-  font-size: 0.85rem;
-  margin-bottom: 20px;
-}
-.hero-title {
-  font-size: clamp(2.5rem, 5vw, 4rem);
-  font-weight: 900;
-  color: #fff;
-  margin-bottom: 20px;
-  line-height: 1.2;
-}
-.hero-subtitle {
-  font-size: 1.3rem;
-  color: #94A3B8;
-  margin-bottom: 30px;
-}
-.hero-stats {
-  display: flex;
-  gap: 40px;
-  justify-content: center;
-  margin-top: 40px;
-}
-.hero-stat {
-  text-align: center;
-}
-.stat-number {
-  font-size: 3rem;
-  font-weight: 900;
-  color: var(--c7);
-  display: block;
-}
-.stat-label {
-  color: #64748B;
-  font-size: 0.9rem;
-  margin-top: 8px;
-}
-.container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 80px 24px;
-}
-.section {
-  margin-bottom: 80px;
-}
-.section-header {
-  text-align: center;
-  margin-bottom: 50px;
-}
-.section-title {
-  font-size: 2.5rem;
-  font-weight: 900;
-  color: #fff;
-  margin-bottom: 16px;
-}
-.section-desc {
-  color: #64748B;
-  font-size: 1.1rem;
-  max-width: 700px;
-  margin: 0 auto;
-}
-.grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 24px;
-}
-.card {
-  background: var(--c2);
-  border: 1px solid rgba(6,182,212,0.1);
-  border-radius: 16px;
-  padding: 32px;
-  transition: all 0.3s;
-}
-.card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 12px 40px rgba(6,182,212,0.15);
-  border-color: rgba(6,182,212,0.3);
-}
-.card-icon {
-  width: 60px;
-  height: 60px;
-  border-radius: 14px;
-  background: linear-gradient(135deg, var(--c6), var(--c5));
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 2rem;
-  margin-bottom: 20px;
-  box-shadow: 0 8px 24px rgba(6,182,212,0.3);
-}
-.card-title {
-  font-size: 1.3rem;
-  font-weight: 800;
-  color: #fff;
-  margin-bottom: 12px;
-}
-.card-text {
-  color: #94A3B8;
-  line-height: 1.8;
-}
-.equipment-list {
-  display: grid;
-  gap: 16px;
-}
-.equipment-item {
-  background: var(--c2);
-  border: 1px solid rgba(6,182,212,0.1);
-  border-radius: 12px;
-  padding: 20px;
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  transition: all 0.3s;
-}
-.equipment-item:hover {
-  background: var(--c3);
-  border-color: rgba(6,182,212,0.2);
-}
-.equipment-icon {
-  width: 50px;
-  height: 50px;
-  border-radius: 10px;
-  background: rgba(6,182,212,0.1);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1.5rem;
-  flex-shrink: 0;
-}
-.equipment-info {
-  flex: 1;
-}
-.equipment-name {
-  font-weight: 800;
-  color: #fff;
-  margin-bottom: 4px;
-}
-.equipment-desc {
-  font-size: 0.85rem;
-  color: #64748B;
-}
-.team-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-  gap: 24px;
-}
-.team-card {
-  background: var(--c2);
-  border: 1px solid rgba(6,182,212,0.1);
-  border-radius: 16px;
-  padding: 24px;
-  text-align: center;
-  transition: all 0.3s;
-}
-.team-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 12px 40px rgba(0,0,0,0.3);
-}
-.team-avatar {
-  width: 100px;
-  height: 100px;
-  border-radius: 50%;
-  background: linear-gradient(135deg, var(--c3), var(--c2));
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 3rem;
-  margin: 0 auto 16px;
-  border: 3px solid rgba(6,182,212,0.2);
-}
-.team-name {
-  font-weight: 800;
-  color: #fff;
-  font-size: 1.1rem;
-  margin-bottom: 6px;
-}
-.team-role {
-  color: var(--c7);
-  font-size: 0.9rem;
-}
-.info-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 24px;
-}
-.info-card {
-  background: var(--c2);
-  border: 1px solid rgba(6,182,212,0.1);
-  border-radius: 16px;
-  padding: 32px;
-}
-.info-title {
-  font-size: 1.3rem;
-  font-weight: 800;
-  color: #fff;
-  margin-bottom: 20px;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-.info-list {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-.info-item {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  color: #94A3B8;
-}
-.info-item-icon {
-  color: var(--c7);
-  font-size: 1.2rem;
-}
-.cta-section {
-  background: linear-gradient(135deg, var(--c2), var(--c3));
-  border-radius: 24px;
-  padding: 60px 40px;
-  text-align: center;
-  border: 1px solid rgba(6,182,212,0.2);
-}
-.cta-title {
-  font-size: 2rem;
-  font-weight: 900;
-  color: #fff;
-  margin-bottom: 16px;
-}
-.cta-text {
-  color: #94A3B8;
-  font-size: 1.1rem;
-  margin-bottom: 30px;
-}
-.cta-buttons {
-  display: flex;
-  gap: 16px;
-  justify-content: center;
-  flex-wrap: wrap;
-}
-.btn {
-  padding: 14px 32px;
-  border-radius: 12px;
-  font-weight: 800;
-  font-size: 1rem;
-  cursor: pointer;
-  transition: all 0.3s;
-  border: none;
-  font-family: var(--f);
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  text-decoration: none;
-}
-.btn-primary {
-  background: linear-gradient(135deg, var(--c6), var(--c5));
-  color: #fff;
-  box-shadow: 0 4px 20px rgba(6,182,212,0.3);
-}
-.btn-primary:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 30px rgba(6,182,212,0.5);
-}
-.btn-secondary {
-  background: transparent;
-  border: 2px solid rgba(6,182,212,0.3);
-  color: var(--c7);
-}
-.btn-secondary:hover {
-  background: rgba(6,182,212,0.1);
-}
-@media (max-width: 768px) {
-  .hero-stats {
-    flex-direction: column;
-    gap: 30px;
-  }
-  .grid {
-    grid-template-columns: 1fr;
-  }
-  .info-grid {
-    grid-template-columns: 1fr;
-  }
-  .cta-buttons {
-    flex-direction: column;
-  }
-  .btn {
-    width: 100%;
-    justify-content: center;
-  }
-}
+body { padding-top:5rem; }
+.page-back { display:inline-block; padding:1rem 2rem; color:var(--accent-cyan); text-decoration:none; font-weight:600; }
+.dept-hero { text-align:center; padding:3rem 1rem; background:linear-gradient(135deg,rgba(6,182,212,0.1),rgba(139,92,246,0.1)); border-bottom:1px solid var(--glass-border); }
+.dept-hero h1 { font-size:2.5rem; font-weight:900; }
+.dept-hero .sub { color:var(--text-secondary); margin-top:0.5rem; font-size:1.1rem; }
+.dept-content { max-width:1000px; margin:2rem auto; padding:0 1.5rem; }
+.dept-card { background:var(--glass); border:1px solid var(--glass-border); border-radius:var(--radius); padding:2rem; margin-bottom:1.5rem; }
+.dept-card h3 { color:var(--accent-cyan); margin-bottom:1rem; font-size:1.2rem; }
+.dept-card p, .dept-card li { color:var(--text-secondary); line-height:1.9; font-size:0.95rem; }
+.dept-card ul { padding-right:1.5rem; }
+.dept-stats { display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:1rem; margin-bottom:2rem; }
+.dept-stat { background:var(--glass); border:1px solid var(--glass-border); border-radius:var(--radius-sm); padding:1.5rem; text-align:center; }
+.dept-stat .num { font-size:2rem; font-weight:900; color:var(--accent-cyan); }
+.dept-doctors { display:grid; grid-template-columns:repeat(auto-fill,minmax(200px,1fr)); gap:1rem; }
+.dept-doctor { background:var(--glass); border:1px solid var(--glass-border); border-radius:var(--radius-sm); padding:1rem; text-align:center; }
+.dept-doctor .name { font-weight:700; margin-bottom:0.25rem; }
+.dept-doctor .spec { color:var(--accent-cyan); font-size:0.85rem; }
 </style>
 </head>
 <body>
-
 <canvas id="particles"></canvas>
 <div style="max-width:1400px;margin:0 auto;">
   <a href="/" class="page-back">← بازگشت به صفحه اصلی</a>
 </div>
 
-
-<section class="hero">
-  <div class="hero-content">
-    <span class="hero-badge">🏥 بخش مراقبت‌های ویژه نوزادان</span>
-    <h1 class="hero-title">NICU</h1>
-    <p class="hero-subtitle">Neonatal Intensive Care Unit</p>
-    <div class="hero-stats">
-      <div class="hero-stat">
-        <span class="stat-number">8</span>
-        <span class="stat-label">تخت فعال</span>
-      </div>
-      <div class="hero-stat">
-        <span class="stat-number">24/7</span>
-        <span class="stat-label">مراقبت شبانه‌روزی</span>
-      </div>
-      <div class="hero-stat">
-        <span class="stat-number">6</span>
-        <span class="stat-label">متخصص نوزادان</span>
-      </div>
-    </div>
-  </div>
+<section class="dept-hero">
+  <h1>👶 بخش NICU (نوزادان)</h1>
+  <p class="sub">بخش مراقبت‌های ویژه نوزادان — بیمارستان تخصصی و فوق‌تخصصی امید</p>
 </section>
 
-<div class="container">
-  <section class="section">
-    <div class="section-header">
-      <h2 class="section-title">درباره بخش NICU</h2>
-      <p class="section-desc">
-        بخش مراقبت‌های ویژه نوزادان بیمارستان امید با 8 تخت مجهز و تیم متخصص، آماده ارائه خدمات تخصصی به نوزادان نارس و بیمار است
-      </p>
-    </div>
-    <div class="grid">
-      <div class="card">
-        <div class="card-icon">🏥</div>
-        <h3 class="card-title">امکانات پیشرفته</h3>
-        <p class="card-text">
-          تجهیزات پزشکی روز دنیا شامل ونتیلاتورها، مانیتورهای پیشرفته، دستگاه‌های فتوتراپی و تجهیزات حمایت تنفسی
-        </p>
-      </div>
-      <div class="card">
-        <div class="card-icon">👨‍⚕️</div>
-        <h3 class="card-title">تیم متخصص</h3>
-        <p class="card-text">
-          6 متخصص نوزادان، پرستاران ویژه NICU و کادر پشتیبانی با تجربه بالا در مراقبت از نوزادان
-        </p>
-      </div>
-      <div class="card">
-        <div class="card-icon">⏰</div>
-        <h3 class="card-title">مراقبت 24 ساعته</h3>
-        <p class="card-text">
-          حضور دائمی متخصص نوزادان و پرستاران آموزش‌دیده در تمام ساعات شبانه‌روز
-        </p>
-      </div>
-    </div>
-  </section>
+<div class="dept-content">
+  <div class="dept-stats">
+    <div class="dept-stat"><div class="num">۸</div><div style="color:var(--text-muted);margin-top:0.25rem;">تخت فعال</div></div>
+    <div class="dept-stat"><div class="num">۲</div><div style="color:var(--text-muted);margin-top:0.25rem;">ونتیلاتور</div></div>
+    <div class="dept-stat"><div class="num">۴</div><div style="color:var(--text-muted);margin-top:0.25rem;">تخت فتوتراپی</div></div>
+    <div class="dept-stat"><div class="num">۲</div><div style="color:var(--text-muted);margin-top:0.25rem;">تخت نارس</div></div>
+  </div>
 
-  <section class="section">
-    <div class="section-header">
-      <h2 class="section-title">تجهیزات بخش</h2>
-      <p class="section-desc">مجهزترین بخش NICU در غرب تهران</p>
-    </div>
-    <div class="equipment-list">
-      <div class="equipment-item">
-        <div class="equipment-icon">🫁</div>
-        <div class="equipment-info">
-          <div class="equipment-name">ونتیلاتور نوزادان (2 دستگاه)</div>
-          <div class="equipment-desc">حمایت تنفسی پیشرفته برای نوزادان با مشکلات تنفسی</div>
-        </div>
-      </div>
-      <div class="equipment-item">
-        <div class="equipment-icon">💡</div>
-        <div class="equipment-info">
-          <div class="equipment-name">فتوتراپی (4 دستگاه)</div>
-          <div class="equipment-desc">درمان زردی نوزادان با نور LED</div>
-        </div>
-      </div>
-      <div class="equipment-item">
-        <div class="equipment-icon">🛏️</div>
-        <div class="equipment-info">
-          <div class="equipment-name">اینکوباتور (2 دستگاه)</div>
-          <div class="equipment-desc">محیط کنترل شده برای نوزادان نارس</div>
-        </div>
-      </div>
-      <div class="equipment-item">
-        <div class="equipment-icon">📊</div>
-        <div class="equipment-info">
-          <div class="equipment-name">مانیتور هوشمند (8 دستگاه)</div>
-          <div class="equipment-desc">پایش مداوم علائم حیاتی نوزادان</div>
-        </div>
-      </div>
-      <div class="equipment-item">
-        <div class="equipment-icon">💉</div>
-        <div class="equipment-info">
-          <div class="equipment-name">پمپ تزریق (8 دستگاه)</div>
-          <div class="equipment-desc">تجویز دقیق داروها و مایعات</div>
-        </div>
-      </div>
-      <div class="equipment-item">
-        <div class="equipment-icon">🌡️</div>
-        <div class="equipment-info">
-          <div class="equipment-name">سیستم کنترل دما</div>
-          <div class="equipment-desc">حفظ دمای مناسب برای هر نوزاد</div>
-        </div>
-      </div>
-    </div>
-  </section>
+  <div class="dept-card">
+    <h3>📋 معرفی بخش NICU</h3>
+    <p>بخش مراقبت‌های ویژه نوزادان (NICU) در بیمارستان تخصصی و فوق تخصصی امید، تحت مدیریت <strong>جناب آقای دکتر اسدالله فغانی</strong>، با هدف ارائه خدمات دقیق و پیشرفته برای نوزادان راه‌اندازی شده است. این بخش با طراحی علمی و امکانات مدرن، بستری ایمن و استاندارد برای رسیدگی به نوزادان با شرایط خاص فراهم می‌کند.</p>
+  </div>
 
-  <section class="section">
-    <div class="section-header">
-      <h2 class="section-title">تیم پزشکی</h2>
-      <p class="section-desc">متخصصان نوزادان با تجربه بالای بالینی</p>
-    </div>
-    <div class="team-grid">
-      <div class="team-card">
-        <div class="team-avatar">👨‍⚕️</div>
-        <div class="team-name">دکتر اسدالله فغانی</div>
-        <div class="team-role">مدیر بخش NICU</div>
-      </div>
-      <div class="team-card">
-        <div class="team-avatar">👨‍⚕️</div>
-        <div class="team-name">دکتر احمد بهرامی</div>
-        <div class="team-role">فوق تخصص نوزادان</div>
-      </div>
-      <div class="team-card">
-        <div class="team-avatar">👩‍⚕️</div>
-        <div class="team-name">دکتر سیما ایوبی</div>
-        <div class="team-role">متخصص اطفال</div>
-      </div>
-      <div class="team-card">
-        <div class="team-avatar">👨‍⚕️</div>
-        <div class="team-name">دکتر علی محمدی</div>
-        <div class="team-role">متخصص نوزادان</div>
-      </div>
-    </div>
-  </section>
+  <div class="dept-card">
+    <h3>🏥 تجهیزات و امکانات</h3>
+    <ul>
+      <li><strong>۲ تخت مجهز به ونتیلاتور</strong> — برای نوزادانی که نیاز به حمایت تنفسی دارند</li>
+      <li><strong>۴ تخت فتوتراپی</strong> — برای نوزادان مبتلا به ایکتر (زردی نوزادان)</li>
+      <li><strong>۲ تخت نوزادان نارس</strong> — مراقبت‌های اختصاصی برای نوزادان زودرس</li>
+      <li>مانیتورینگ دائمی علائم حیاتی | کنترل دقیق دما و رطوبت</li>
+      <li>رعایت اصول کنترل عفونت با استانداردهای روز دنیا</li>
+      <li>کادر مجرب و متخصص در مراقبت از نوزادان</li>
+    </ul>
+  </div>
 
-  <section class="section">
-    <div class="info-grid">
-      <div class="info-card">
-        <h3 class="info-title">
-          <span>🏥</span>
-          <span>خدمات درمانی</span>
-        </h3>
-        <div class="info-list">
-          <div class="info-item">
-            <span class="info-item-icon">✓</span>
-            <span>مراقبت از نوزادان نارس</span>
-          </div>
-          <div class="info-item">
-            <span class="info-item-icon">✓</span>
-            <span>درمان مشکلات تنفسی</span>
-          </div>
-          <div class="info-item">
-            <span class="info-item-icon">✓</span>
-            <span>فتوتراپی زردی</span>
-          </div>
-          <div class="info-item">
-            <span class="info-item-icon">✓</span>
-            <span>تغذیه تخصصی نوزادان</span>
-          </div>
-          <div class="info-item">
-            <span class="info-item-icon">✓</span>
-            <span>درمان عفونت‌های نوزادی</span>
-          </div>
-          <div class="info-item">
-            <span class="info-item-icon">✓</span>
-            <span>پایش علائم حیاتی 24/7</span>
-          </div>
-        </div>
-      </div>
+  <div class="dept-card">
+    <h3>📍 آدرس و دسترسی</h3>
+    <p><strong>آدرس:</strong> تهران، جنت‌آباد مرکزی، خ شاهین شمالی، خ کبیری طامه، خ بهار — بیمارستان امید، طبقه دوم، بخش NICU</p>
+    <p><strong>تلفن بیمارستان:</strong> ۰۲۱-۴۴۴۸۰۱۸۵</p>
+  </div>
 
-      <div class="info-card">
-        <h3 class="info-title">
-          <span>📞</span>
-          <span>تماس با بخش</span>
-        </h3>
-        <div class="info-list">
-          <div class="info-item">
-            <span class="info-item-icon">☎️</span>
-            <span>021-44480185 داخلی 220</span>
-          </div>
-          <div class="info-item">
-            <span class="info-item-icon">📧</span>
-            <span>nicu@omid.hospital</span>
-          </div>
-          <div class="info-item">
-            <span class="info-item-icon">🏢</span>
-            <span>طبقه دوم، بخش مراقبت‌های ویژه</span>
-          </div>
-          <div class="info-item">
-            <span class="info-item-icon">🕐</span>
-            <span>ملاقات: روزانه 14:00 - 16:00</span>
-          </div>
-          <div class="info-item">
-            <span class="info-item-icon">👨‍👩‍👧</span>
-            <span>حداکثر 2 نفر در هر نوبت</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="section">
-    <div class="cta-section">
-      <h2 class="cta-title">نیاز به مشاوره دارید؟</h2>
-      <p class="cta-text">تیم متخصص NICU آماده پاسخگویی به سوالات شماست</p>
-      <div class="cta-buttons">
-        <a href="../../booking.html" class="btn btn-primary">
-          📅 رزرو نوبت مشاوره
-        </a>
-        <a href="../telemedicine.html" class="btn btn-secondary">
-          💻 مشاوره آنلاین
-        </a>
-        <a href="../../index.html" class="btn btn-secondary">
-          ← بازگشت به صفحه اصلی
-        </a>
-      </div>
-    </div>
-  </section>
+  <h3 style="margin-bottom:1rem;color:var(--text-primary);">👨‍⚕️ پزشکان بخش NICU</h3>
+  <div class="dept-doctors">
+    <div class="dept-doctor"><div class="name">دکتر اسدالله فغانی</div><div class="spec">مدیر بخش — متخصص اطفال</div></div>
+    <div class="dept-doctor"><div class="name">دکتر احمد بهرامی</div><div class="spec">متخصص اطفال</div></div>
+    <div class="dept-doctor"><div class="name">دکتر سیما ایوبی</div><div class="spec">متخصص اطفال</div></div>
+    <div class="dept-doctor"><div class="name">دکتر احمد اسفندیار</div><div class="spec">متخصص اطفال</div></div>
+    <div class="dept-doctor"><div class="name">دکتر محمدرضا بقایی‌پور</div><div class="spec">متخصص اطفال</div></div>
+    <div class="dept-doctor"><div class="name">دکتر احسان اکرمی</div><div class="spec">متخصص اطفال</div></div>
+    <div class="dept-doctor"><div class="name">دکتر علیرضا ابراهیمی</div><div class="spec">متخصص اطفال</div></div>
+    <div class="dept-doctor"><div class="name">دکتر پریسا ایزدیار</div><div class="spec">متخصص اطفال</div></div>
+  </div>
 </div>
 
-
-<script>
-(function(){var c=document.getElementById('particles'),ctx=c.getContext('2d'),w,h,pts=[];function rs(){w=c.width=innerWidth;h=c.height=innerHeight;}rs();addEventListener('resize',rs);for(var i=0;i<40;i++)pts.push({x:Math.random()*w,y:Math.random()*h,vx:(Math.random()-0.5)*0.4,vy:(Math.random()-0.5)*0.4,r:Math.random()*1.2+0.3,a:Math.random()*0.3+0.05});(function dr(){ctx.clearRect(0,0,w,h);pts.forEach(function(p){p.x+=p.vx;p.y+=p.vy;if(p.x<0||p.x>w)p.vx*=-1;if(p.y<0||p.y>h)p.vy*=-1;ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,6.28);ctx.fillStyle='rgba(6,182,212,'+p.a+')';ctx.fill();});requestAnimationFrame(dr);})();})();
-</script>
-
+<script src="/js/api.js"></script>
+<script>(function(){var c=document.getElementById('particles'),ctx=c.getContext('2d'),w,h,pts=[];function rs(){w=c.width=innerWidth;h=c.height=innerHeight;}rs();addEventListener('resize',rs);for(var i=0;i<40;i++)pts.push({x:Math.random()*w,y:Math.random()*h,vx:(Math.random()-0.5)*0.4,vy:(Math.random()-0.5)*0.4,r:Math.random()*1.2+0.3,a:Math.random()*0.3+0.05});(function dr(){ctx.clearRect(0,0,w,h);pts.forEach(function(p){p.x+=p.vx;p.y+=p.vy;if(p.x<0||p.x>w)p.vx*=-1;if(p.y<0||p.y>h)p.vy*=-1;ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,6.28);ctx.fillStyle='rgba(6,182,212,'+p.a+')';ctx.fill();});requestAnimationFrame(dr);})();})();</script>
 </body>
 </html>

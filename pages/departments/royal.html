@@ -1,605 +1,85 @@
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>بخش Royal - اتاق‌های VIP | بیمارستان امید</title>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>بخش رویال (VIP) | بیمارستان امید</title>
+<meta name="description" content="بخش رویال VIP بیمارستان امید — ۵ اتاق اختصاصی، ۴ تخت بستری فعال، مانیتورینگ کامل، خدمات هتلینگ ممتاز">
+<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/css/theme.css">
 <style>
-body { padding-top: 5rem; }
-.page-back { display: inline-block; padding: 1rem 2rem; color: var(--accent-cyan); text-decoration: none; font-weight: 600; font-size: 0.9rem; }
-</style>
-
-<meta name="description" content="اتاق‌های ویژه Royal با امکانات هتلینگ، خدمات اختصاصی و کیفیت بالا برای آسایش بیشتر بیماران">
-<style>
-:root {
-  --c1: #070E1A; --c2: #0C1A2E; --c3: #122340;
-  --c5: #0284C7; --c6: #06B6D4; --c7: #22D3EE;
-  --gold: #D4A843; --gold2: #F0D78C;
-  --f: 'Vazirmatn', system-ui, sans-serif;
-}
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-body {
-  font-family: var(--f);
-  background: var(--c1);
-  color: #CBD5E1;
-  line-height: 1.7;
-}
-.hero {
-  min-height: 70vh;
-  background: linear-gradient(135deg, #1a1a2e 0%, var(--c1) 100%);
-  display: flex;
-  align-items: center;
-  padding: 120px 24px 60px;
-  position: relative;
-  overflow: hidden;
-}
-.hero::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(212,168,67,0.08), transparent);
-}
-.hero-content {
-  max-width: 1200px;
-  margin: 0 auto;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 60px;
-  align-items: center;
-  position: relative;
-}
-.hero-text h1 {
-  font-size: clamp(2.5rem, 5vw, 4rem);
-  font-weight: 900;
-  color: #fff;
-  margin-bottom: 20px;
-  line-height: 1.2;
-}
-.hero-text h1 span {
-  background: linear-gradient(135deg, var(--gold2), var(--gold));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-.hero-text p {
-  font-size: 1.2rem;
-  color: #94A3B8;
-  margin-bottom: 30px;
-  line-height: 1.8;
-}
-.hero-features {
-  display: grid;
-  gap: 12px;
-}
-.hero-feature {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  padding: 12px;
-  background: rgba(212,168,67,0.05);
-  border-radius: 10px;
-  border: 1px solid rgba(212,168,67,0.2);
-}
-.feature-icon {
-  width: 40px;
-  height: 40px;
-  border-radius: 8px;
-  background: linear-gradient(135deg, var(--gold2), var(--gold));
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1.3rem;
-}
-.hero-image {
-  position: relative;
-  height: 500px;
-  border-radius: 20px;
-  overflow: hidden;
-  box-shadow: 0 20px 60px rgba(0,0,0,0.4);
-}
-.hero-image img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-.container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 80px 24px;
-}
-.section {
-  margin-bottom: 80px;
-}
-.section-header {
-  text-align: center;
-  margin-bottom: 50px;
-}
-.section-title {
-  font-size: 2.5rem;
-  font-weight: 900;
-  color: #fff;
-  margin-bottom: 16px;
-}
-.section-desc {
-  color: #64748B;
-  font-size: 1.1rem;
-}
-.amenities-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 24px;
-}
-.amenity-card {
-  background: var(--c2);
-  border: 1px solid rgba(212,168,67,0.2);
-  border-radius: 16px;
-  padding: 32px;
-  text-align: center;
-  transition: all 0.3s;
-}
-.amenity-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 12px 40px rgba(212,168,67,0.15);
-  border-color: rgba(212,168,67,0.4);
-}
-.amenity-icon {
-  width: 70px;
-  height: 70px;
-  border-radius: 16px;
-  background: linear-gradient(135deg, var(--gold2), var(--gold));
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 2.2rem;
-  margin: 0 auto 20px;
-  box-shadow: 0 8px 24px rgba(212,168,67,0.3);
-}
-.amenity-title {
-  font-size: 1.2rem;
-  font-weight: 800;
-  color: #fff;
-  margin-bottom: 10px;
-}
-.amenity-desc {
-  color: #94A3B8;
-  font-size: 0.9rem;
-  line-height: 1.7;
-}
-.rooms-grid {
-  display: grid;
-  gap: 32px;
-}
-.room-card {
-  background: var(--c2);
-  border: 1px solid rgba(212,168,67,0.1);
-  border-radius: 20px;
-  overflow: hidden;
-  display: grid;
-  grid-template-columns: 400px 1fr;
-}
-.room-image {
-  height: 300px;
-  background: linear-gradient(135deg, var(--c3), var(--c2));
-  position: relative;
-}
-.room-image img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-.room-badge {
-  position: absolute;
-  top: 16px;
-  right: 16px;
-  padding: 8px 16px;
-  background: linear-gradient(135deg, var(--gold2), var(--gold));
-  color: #000;
-  border-radius: 8px;
-  font-weight: 800;
-  font-size: 0.85rem;
-}
-.room-content {
-  padding: 32px;
-  display: flex;
-  flex-direction: column;
-}
-.room-title {
-  font-size: 1.8rem;
-  font-weight: 900;
-  color: #fff;
-  margin-bottom: 12px;
-}
-.room-desc {
-  color: #94A3B8;
-  line-height: 1.8;
-  margin-bottom: 20px;
-  flex: 1;
-}
-.room-features {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 10px;
-  margin-bottom: 20px;
-}
-.room-feature {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  font-size: 0.9rem;
-  color: #94A3B8;
-}
-.room-price {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding-top: 20px;
-  border-top: 1px solid rgba(255,255,255,0.05);
-}
-.price-tag {
-  font-size: 1.5rem;
-  font-weight: 900;
-  color: var(--gold);
-}
-.price-tag span {
-  font-size: 0.9rem;
-  color: #64748B;
-}
-.btn {
-  padding: 12px 24px;
-  border-radius: 10px;
-  font-weight: 800;
-  font-size: 0.9rem;
-  cursor: pointer;
-  transition: all 0.3s;
-  border: none;
-  font-family: var(--f);
-  background: linear-gradient(135deg, var(--gold2), var(--gold));
-  color: #000;
-}
-.btn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 24px rgba(212,168,67,0.4);
-}
-.services-list {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 24px;
-}
-.service-card {
-  background: var(--c2);
-  border: 1px solid rgba(212,168,67,0.1);
-  border-radius: 16px;
-  padding: 24px;
-}
-.service-header {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  margin-bottom: 16px;
-}
-.service-icon {
-  width: 50px;
-  height: 50px;
-  border-radius: 12px;
-  background: rgba(212,168,67,0.1);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1.5rem;
-}
-.service-title {
-  font-size: 1.2rem;
-  font-weight: 800;
-  color: #fff;
-}
-.service-items {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
-.service-item {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  color: #94A3B8;
-  font-size: 0.9rem;
-}
-.cta-section {
-  background: linear-gradient(135deg, rgba(212,168,67,0.1), rgba(212,168,67,0.05));
-  border: 1px solid rgba(212,168,67,0.2);
-  border-radius: 24px;
-  padding: 60px 40px;
-  text-align: center;
-}
-.cta-title {
-  font-size: 2rem;
-  font-weight: 900;
-  color: #fff;
-  margin-bottom: 16px;
-}
-.cta-text {
-  color: #94A3B8;
-  font-size: 1.1rem;
-  margin-bottom: 30px;
-}
-.cta-buttons {
-  display: flex;
-  gap: 16px;
-  justify-content: center;
-  flex-wrap: wrap;
-}
-.btn-secondary {
-  background: transparent;
-  border: 2px solid rgba(212,168,67,0.3);
-  color: var(--gold);
-}
-.btn-secondary:hover {
-  background: rgba(212,168,67,0.1);
-}
-@media (max-width: 1100px) {
-  .hero-content {
-    grid-template-columns: 1fr;
-  }
-  .room-card {
-    grid-template-columns: 1fr;
-  }
-  .room-image {
-    height: 250px;
-  }
-}
-@media (max-width: 768px) {
-  .services-list, .room-features {
-    grid-template-columns: 1fr;
-  }
-  .cta-buttons {
-    flex-direction: column;
-  }
-}
+body { padding-top:5rem; }
+.page-back { display:inline-block; padding:1rem 2rem; color:var(--accent-cyan); text-decoration:none; font-weight:600; }
+.dept-hero { text-align:center; padding:3rem 1rem; background:linear-gradient(135deg,rgba(245,158,11,0.1),rgba(239,68,68,0.08)); border-bottom:1px solid var(--glass-border); }
+.dept-hero h1 { font-size:2.5rem; font-weight:900; background:linear-gradient(135deg,#f59e0b,#fbbf24); -webkit-background-clip:text; -webkit-text-fill-color:transparent; }
+.dept-hero .sub { color:var(--text-secondary); margin-top:0.5rem; font-size:1.1rem; }
+.dept-content { max-width:1000px; margin:2rem auto; padding:0 1.5rem; }
+.dept-card { background:var(--glass); border:1px solid var(--glass-border); border-radius:var(--radius); padding:2rem; margin-bottom:1.5rem; }
+.dept-card h3 { color:#f59e0b; margin-bottom:1rem; font-size:1.2rem; }
+.dept-card p, .dept-card li { color:var(--text-secondary); line-height:1.9; font-size:0.95rem; }
+.dept-card ul { padding-right:1.5rem; }
+.amenities { display:grid; grid-template-columns:repeat(auto-fit,minmax(180px,1fr)); gap:1rem; margin-top:1rem; }
+.amenity { background:rgba(245,158,11,0.05); border:1px solid rgba(245,158,11,0.15); border-radius:var(--radius-sm); padding:1.25rem; text-align:center; }
+.amenity .icon { font-size:2rem; margin-bottom:0.5rem; }
 </style>
 </head>
 <body>
-
 <canvas id="particles"></canvas>
 <div style="max-width:1400px;margin:0 auto;">
   <a href="/" class="page-back">← بازگشت به صفحه اصلی</a>
 </div>
 
-
-<section class="hero">
-  <div class="hero-content">
-    <div class="hero-text">
-      <h1>بخش <span>Royal</span></h1>
-      <p>تجربه‌ای متفاوت از بستری شدن در بیمارستان با اتاق‌های VIP و خدمات پنج ستاره</p>
-      <div class="hero-features">
-        <div class="hero-feature">
-          <div class="feature-icon">🏨</div>
-          <span>امکانات هتلینگ کامل</span>
-        </div>
-        <div class="hero-feature">
-          <div class="feature-icon">👨‍⚕️</div>
-          <span>مراقبت اختصاصی</span>
-        </div>
-        <div class="hero-feature">
-          <div class="feature-icon">🍽️</div>
-          <span>منوی غذایی سفارشی</span>
-        </div>
-        <div class="hero-feature">
-          <div class="feature-icon">🌐</div>
-          <span>WiFi پرسرعت</span>
-        </div>
-      </div>
-    </div>
-    <div class="hero-image">
-      <img src="https://via.placeholder.com/600x500/D4A843/ffffff?text=Royal+Room" alt="اتاق Royal">
-    </div>
-  </div>
+<section class="dept-hero">
+  <h1>👑 بخش رویال (VIP)</h1>
+  <p class="sub">بیمارستان تخصصی و فوق‌تخصصی امید — خدمات درمانی ممتاز با امکانات ویژه</p>
 </section>
 
-<div class="container">
-  <section class="section">
-    <div class="section-header">
-      <h2 class="section-title">امکانات و تسهیلات</h2>
-      <p class="section-desc">آسایش و راحتی شما اولویت ماست</p>
+<div class="dept-content">
+  <div class="dept-card">
+    <h3>📋 معرفی بخش رویال</h3>
+    <p>بخش رویال بیمارستان امید ویژه بیمارانی طراحی شده است که در کنار خدمات درمانی و مراقبتی پیشرفته، به دنبال بالاترین سطح از رفاه، آرامش و امکانات ویژه هستند. این بخش با طراحی مدرن، فضای آرام و خدمات اختصاصی، تجربه‌ای متفاوت از اقامت بیمارستانی را فراهم می‌کند.</p>
+  </div>
+
+  <div class="dept-card">
+    <h3>🏨 ظرفیت و امکانات</h3>
+    <ul>
+      <li><strong>۵ اتاق اختصاصی</strong> با طراحی شیک و استانداردهای بین‌المللی</li>
+      <li><strong>۴ تخت بستری فعال</strong> مجهز به مانیتورینگ کامل وضعیت بیمار</li>
+      <li>امکان بستری بیماران در فضایی آرام، ایمن و مجهز به تکنولوژی‌های نوین</li>
+    </ul>
+  </div>
+
+  <div class="dept-card">
+    <h3>✨ امکانات ویژه هر اتاق</h3>
+    <div class="amenities">
+      <div class="amenity"><div class="icon">🫀</div><strong>مانیتورینگ دائم</strong><br><span style="font-size:0.85rem;color:var(--text-muted);">علائم حیاتی بیمار</span></div>
+      <div class="amenity"><div class="icon">🛏️</div><strong>تخت مدرن</strong><br><span style="font-size:0.85rem;color:var(--text-muted);">کاملاً اتوماتیک</span></div>
+      <div class="amenity"><div class="icon">🚿</div><strong>سرویس اختصاصی</strong><br><span style="font-size:0.85rem;color:var(--text-muted);">حمام و بهداشتی</span></div>
+      <div class="amenity"><div class="icon">🛋️</div><strong>فضای همراه</strong><br><span style="font-size:0.85rem;color:var(--text-muted);">استراحت همراه بیمار</span></div>
+      <div class="amenity"><div class="icon">📺</div><strong>تلویزیون</strong><br><span style="font-size:0.85rem;color:var(--text-muted);">صفحه نمایش LED</span></div>
+      <div class="amenity"><div class="icon">📶</div><strong>اینترنت</strong><br><span style="font-size:0.85rem;color:var(--text-muted);">پرسرعت WiFi</span></div>
+      <div class="amenity"><div class="icon">🌡️</div><strong>تهویه مطبوع</strong><br><span style="font-size:0.85rem;color:var(--text-muted);">کنترل مستقل دما</span></div>
+      <div class="amenity"><div class="icon">🍽️</div><strong>پذیرایی</strong><br><span style="font-size:0.85rem;color:var(--text-muted);">هتلینگ ممتاز</span></div>
     </div>
-    <div class="amenities-grid">
-      <div class="amenity-card">
-        <div class="amenity-icon">🛏️</div>
-        <h3 class="amenity-title">اتاق اختصاصی</h3>
-        <p class="amenity-desc">اتاق یک تخته با دکوراسیون مدرن و فضای دلنشین</p>
-      </div>
-      <div class="amenity-card">
-        <div class="amenity-icon">🚿</div>
-        <h3 class="amenity-title">سرویس بهداشتی اختصاصی</h3>
-        <p class="amenity-desc">حمام و سرویس مجهز با امکانات کامل</p>
-      </div>
-      <div class="amenity-card">
-        <div class="amenity-icon">📺</div>
-        <h3 class="amenity-title">تلویزیون هوشمند</h3>
-        <p class="amenity-desc">LED 43 اینچ با کانال‌های ماهواره‌ای</p>
-      </div>
-      <div class="amenity-card">
-        <div class="amenity-icon">🌡️</div>
-        <h3 class="amenity-title">کنترل دما</h3>
-        <p class="amenity-desc">سیستم سرمایش و گرمایش اختصاصی</p>
-      </div>
-      <div class="amenity-card">
-        <div class="amenity-icon">🍽️</div>
-        <h3 class="amenity-title">سرویس غذا</h3>
-        <p class="amenity-desc">منوی متنوع با رژیم‌های غذایی مختلف</p>
-      </div>
-      <div class="amenity-card">
-        <div class="amenity-icon">🛋️</div>
-        <h3 class="amenity-title">فضای همراه</h3>
-        <p class="amenity-desc">مبلمان راحت برای استراحت همراهان</p>
-      </div>
-    </div>
-  </section>
+  </div>
 
-  <section class="section">
-    <div class="section-header">
-      <h2 class="section-title">انواع اتاق</h2>
-      <p class="section-desc">5 اتاق ویژه با تجهیزات کامل</p>
-    </div>
-    <div class="rooms-grid">
-      <div class="room-card">
-        <div class="room-image">
-          <img src="https://via.placeholder.com/400x300/D4A843/ffffff?text=Royal+Suite" alt="Royal Suite">
-          <span class="room-badge">⭐ ویژه</span>
-        </div>
-        <div class="room-content">
-          <h3 class="room-title">Royal Suite</h3>
-          <p class="room-desc">
-            بزرگترین اتاق با فضای 45 متر مربع، شامل اتاق خواب جداگانه، نشیمن مجزا و تراس خصوصی
-          </p>
-          <div class="room-features">
-            <div class="room-feature">✓ مساحت 45 متر</div>
-            <div class="room-feature">✓ تراس خصوصی</div>
-            <div class="room-feature">✓ اتاق نشیمن جدا</div>
-            <div class="room-feature">✓ یخچال و مینی بار</div>
-            <div class="room-feature">✓ کتری برقی</div>
-            <div class="room-feature">✓ تخت الکتریکی</div>
-          </div>
-          <div class="room-price">
-            <div class="price-tag">
-              8,000,000 <span>تومان/شب</span>
-            </div>
-            <button class="btn">رزرو اتاق</button>
-          </div>
-        </div>
-      </div>
+  <div class="dept-card">
+    <h3>⭐ مزایای بستری در بخش رویال</h3>
+    <ul>
+      <li>آرامش و آسایش کامل برای بیمار و همراهان</li>
+      <li>حفظ حریم خصوصی در محیطی لوکس و مدرن</li>
+      <li>دسترسی سریع به کادر درمانی و خدمات پرستاری ۲۴ ساعته</li>
+      <li>ترکیب خدمات درمانی پیشرفته با امکانات رفاهی ممتاز</li>
+    </ul>
+  </div>
 
-      <div class="room-card">
-        <div class="room-image">
-          <img src="https://via.placeholder.com/400x300/06B6D4/ffffff?text=Royal+Premium" alt="Royal Premium">
-          <span class="room-badge">⭐ پرطرفدار</span>
-        </div>
-        <div class="room-content">
-          <h3 class="room-title">Royal Premium</h3>
-          <p class="room-desc">
-            اتاق 30 متری با امکانات کامل، مناسب برای بستری متوسط‌مدت
-          </p>
-          <div class="room-features">
-            <div class="room-feature">✓ مساحت 30 متر</div>
-            <div class="room-feature">✓ پنجره بزرگ</div>
-            <div class="room-feature">✓ مبلمان راحت</div>
-            <div class="room-feature">✓ یخچال کوچک</div>
-            <div class="room-feature">✓ تخت الکتریکی</div>
-            <div class="room-feature">✓ کمد لباس</div>
-          </div>
-          <div class="room-price">
-            <div class="price-tag">
-              5,000,000 <span>تومان/شب</span>
-            </div>
-            <button class="btn">رزرو اتاق</button>
-          </div>
-        </div>
-      </div>
-
-      <div class="room-card">
-        <div class="room-image">
-          <img src="https://via.placeholder.com/400x300/22D3EE/ffffff?text=Royal+Standard" alt="Royal Standard">
-        </div>
-        <div class="room-content">
-          <h3 class="room-title">Royal Standard</h3>
-          <p class="room-desc">
-            اتاق 25 متری با امکانات استاندارد، مناسب برای بستری کوتاه‌مدت
-          </p>
-          <div class="room-features">
-            <div class="room-feature">✓ مساحت 25 متر</div>
-            <div class="room-feature">✓ تلویزیون LED</div>
-            <div class="room-feature">✓ صندلی همراه</div>
-            <div class="room-feature">✓ کمد دیواری</div>
-            <div class="room-feature">✓ تخت الکتریکی</div>
-            <div class="room-feature">✓ حمام اختصاصی</div>
-          </div>
-          <div class="room-price">
-            <div class="price-tag">
-              3,500,000 <span>تومان/شب</span>
-            </div>
-            <button class="btn">رزرو اتاق</button>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="section">
-    <div class="section-header">
-      <h2 class="section-title">خدمات اختصاصی</h2>
-      <p class="section-desc">مراقبت ویژه برای آسایش بیشتر</p>
-    </div>
-    <div class="services-list">
-      <div class="service-card">
-        <div class="service-header">
-          <div class="service-icon">👨‍⚕️</div>
-          <h3 class="service-title">خدمات پزشکی</h3>
-        </div>
-        <div class="service-items">
-          <div class="service-item">✓ پزشک مشاور اختصاصی</div>
-          <div class="service-item">✓ پرستار ویژه 24 ساعته</div>
-          <div class="service-item">✓ مانیتورینگ دائم</div>
-          <div class="service-item">✓ ویزیت روزانه متخصص</div>
-        </div>
-      </div>
-
-      <div class="service-card">
-        <div class="service-header">
-          <div class="service-icon">🍽️</div>
-          <h3 class="service-title">خدمات غذایی</h3>
-        </div>
-        <div class="service-items">
-          <div class="service-item">✓ منوی متنوع 3 وعده</div>
-          <div class="service-item">✓ رژیم‌های تخصصی</div>
-          <div class="service-item">✓ سرویس غذا در اتاق</div>
-          <div class="service-item">✓ میان‌وعده و نوشیدنی</div>
-        </div>
-      </div>
-
-      <div class="service-card">
-        <div class="service-header">
-          <div class="service-icon">🧹</div>
-          <h3 class="service-title">خدمات هتلینگ</h3>
-        </div>
-        <div class="service-items">
-          <div class="service-item">✓ نظافت روزانه</div>
-          <div class="service-item">✓ تعویض ملحفه</div>
-          <div class="service-item">✓ خدمات لباسشویی</div>
-          <div class="service-item">✓ روزنامه و مجله</div>
-        </div>
-      </div>
-
-      <div class="service-card">
-        <div class="service-header">
-          <div class="service-icon">📞</div>
-          <h3 class="service-title">خدمات رفاهی</h3>
-        </div>
-        <div class="service-items">
-          <div class="service-item">✓ WiFi پرسرعت رایگان</div>
-          <div class="service-item">✓ تلفن مستقیم</div>
-          <div class="service-item">✓ گاوصندوق</div>
-          <div class="service-item">✓ کتابخانه و مطالعه</div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="section">
-    <div class="cta-section">
-      <h2 class="cta-title">آماده رزرو اتاق هستید؟</h2>
-      <p class="cta-text">تیم ما آماده پاسخگویی و راهنمایی شماست</p>
-      <div class="cta-buttons">
-        <button class="btn">📞 021-44480185 داخلی 310</button>
-        <button class="btn">📧 royal@omid.hospital</button>
-        <a href="../../index.html" class="btn btn-secondary">← بازگشت به صفحه اصلی</a>
-      </div>
-    </div>
-  </section>
+  <div class="dept-card" style="background:rgba(245,158,11,0.05);border-color:rgba(245,158,11,0.2);">
+    <h3>📞 اطلاعات تماس و پذیرش</h3>
+    <p><strong>پذیرش بخش رویال:</strong> ۰۲۱-۴۴۴۲۶۶۹۰</p>
+    <p><strong>تلفن بیمارستان:</strong> ۰۲۱-۴۴۴۸۰۱۸۵</p>
+    <p><strong>آدرس:</strong> تهران، جنت‌آباد مرکزی، خ شاهین شمالی، خ کبیری طامه، خ بهار — بیمارستان امید، طبقه چهارم</p>
+  </div>
 </div>
 
-
-<script>
-(function(){var c=document.getElementById('particles'),ctx=c.getContext('2d'),w,h,pts=[];function rs(){w=c.width=innerWidth;h=c.height=innerHeight;}rs();addEventListener('resize',rs);for(var i=0;i<40;i++)pts.push({x:Math.random()*w,y:Math.random()*h,vx:(Math.random()-0.5)*0.4,vy:(Math.random()-0.5)*0.4,r:Math.random()*1.2+0.3,a:Math.random()*0.3+0.05});(function dr(){ctx.clearRect(0,0,w,h);pts.forEach(function(p){p.x+=p.vx;p.y+=p.vy;if(p.x<0||p.x>w)p.vx*=-1;if(p.y<0||p.y>h)p.vy*=-1;ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,6.28);ctx.fillStyle='rgba(6,182,212,'+p.a+')';ctx.fill();});requestAnimationFrame(dr);})();})();
-</script>
-
+<script>(function(){var c=document.getElementById('particles'),ctx=c.getContext('2d'),w,h,pts=[];function rs(){w=c.width=innerWidth;h=c.height=innerHeight;}rs();addEventListener('resize',rs);for(var i=0;i<40;i++)pts.push({x:Math.random()*w,y:Math.random()*h,vx:(Math.random()-0.5)*0.4,vy:(Math.random()-0.5)*0.4,r:Math.random()*1.2+0.3,a:Math.random()*0.3+0.05});(function dr(){ctx.clearRect(0,0,w,h);pts.forEach(function(p){p.x+=p.vx;p.y+=p.vy;if(p.x<0||p.x>w)p.vx*=-1;if(p.y<0||p.y>h)p.vy*=-1;ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,6.28);ctx.fillStyle='rgba(245,158,11,'+p.a+')';ctx.fill();});requestAnimationFrame(dr);})();})();</script>
 </body>
 </html>
