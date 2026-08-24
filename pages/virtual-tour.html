@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>تور مجازی بیمارستان امید</title>
+  <link rel="stylesheet" href="/css/theme.css">
+  <style>
+    body { min-height: 100vh; background: #071f2b; color: #fff; }
+    .tour-shell { min-height: 100vh; display: flex; flex-direction: column; }
+    .tour-topbar { display:flex; align-items:center; justify-content:space-between; gap:1rem; padding:1rem 1.5rem; background:rgba(7,31,43,.94); border-bottom:1px solid rgba(255,255,255,.14); }
+    .tour-title { font-size:1.05rem; font-weight:800; }
+    .tour-title small { display:block; color:#a8c1ca; font-size:.76rem; font-weight:500; margin-top:.15rem; }
+    .tour-frame { flex:1; position:relative; min-height:calc(100vh - 78px); }
+    .tour-frame iframe { position:absolute; inset:0; width:100%; height:100%; border:0; background:#071f2b; }
+    .tour-back { color:#fff; border-color:rgba(255,255,255,.3); }
+    .tour-back:hover { background:rgba(255,255,255,.12); color:#fff; border-color:#fff; }
+    @media(max-width:560px){ .tour-topbar{padding:.8rem 1rem}.tour-title{font-size:.9rem}.tour-title small{font-size:.68rem}.tour-back{padding:.5rem .8rem;font-size:.78rem} }
+  </style>
+</head>
+<body>
+  <main class="tour-shell">
+    <header class="tour-topbar">
+      <div class="tour-title">تور مجازی بیمارستان امید<small>حرکت، چرخش و انتخاب فضاها از داخل تصویر</small></div>
+      <a class="btn btn-outline tour-back" href="/">بازگشت به صفحه اصلی</a>
+    </header>
+    <section class="tour-frame" aria-label="تور مجازی بیمارستان امید">
+      <iframe src="/assets/virtual-tour/embedded/2/index.htm" title="تور مجازی بیمارستان امید" allowfullscreen></iframe>
+    </section>
+  </main>
+</body>
+</html>

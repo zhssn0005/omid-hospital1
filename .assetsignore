@@ -7,6 +7,7 @@ node_modules/
 *.db
 *.sqlite
 *.log
+assets/virtual-tour/1-2.zip
 wrangler.toml
 package.json
 package-lock.json
