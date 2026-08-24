@@ -1,27 +1,211 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="fa" dir="rtl">
 <head>
-  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="robots" content="index,follow">
-  <title>راهنمای مراجعین | بیمارستان امید</title>
-  <meta name="description" content="راهنمای کامل مراجعین بیمارستان امید؛ پذیرش، بیمه، برنامه درمانگاه، ملاقات و طبقات.">
-  <link rel="stylesheet" href="/css/theme.css">
-  <style>
-    body{padding-top:78px}.guide-hero{padding:4rem 1.5rem;background:linear-gradient(135deg,var(--primary-dark),var(--teal));color:#fff}.guide-hero-inner,.guide-grid{max-width:1240px;margin:auto}.guide-hero h1{font-size:clamp(2rem,5vw,3.5rem);margin:.5rem 0}.guide-hero p{max-width:720px;color:#d9f0f0;line-height:2}.guide-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1rem;padding:3rem 1.5rem}.guide-card{display:flex;flex-direction:column;gap:.5rem;background:#fff;border:1px solid var(--border);border-radius:18px;padding:1.4rem;box-shadow:var(--shadow-sm);text-decoration:none;transition:var(--transition)}.guide-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg);border-color:var(--teal)}.guide-card .icon{font-size:2rem}.guide-card h2{font-size:1.1rem;color:var(--text-primary)}.guide-card p{color:var(--text-secondary);font-size:.88rem;line-height:1.9}.guide-card span:last-child{margin-top:auto;color:var(--teal);font-weight:800;font-size:.82rem}.guide-note{max-width:1240px;margin:0 auto 3rem;padding:1rem 1.5rem;color:var(--text-secondary);font-size:.82rem}
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>راهنمای مراجعین | بیمارستان امید</title>
+<meta name="description" content="راهنمای کامل پذیرش، بستری و ترخیص بیماران در بیمارستان امید">
+<link rel="icon" href="/assets/logo-no-bg.png">
+<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/theme.css">
 </head>
 <body>
-  <section class="guide-hero"><div class="guide-hero-inner"><div class="section-kicker" style="color:#a5eeee">راهنمای شما</div><h1>قبل از مراجعه، با خیال راحت آماده شوید</h1><p>اطلاعات کاربردی پذیرش، بیمه، برنامه درمانگاه و قوانین ملاقات را یک‌جا ببینید. این بخش با استفاده از اطلاعات عمومی منتشرشده در وب‌سایت بیمارستان امید تهیه شده است.</p></div></section>
-  <main class="guide-grid">
-    <a class="guide-card" href="/pages/patient-admission.html"><span class="icon">🧾</span><h2>راهنمای پذیرش تا ترخیص</h2><p>مدارک لازم، مراحل بستری، بیمه، هزینه‌ها و روند ترخیص.</p><span>مشاهده راهنما ←</span></a>
-    <a class="guide-card" href="/pages/insurance.html"><span class="icon">🛡️</span><h2>بیمه‌های طرف قرارداد</h2><p>فهرست بیمه‌ها، روش دریافت معرفی‌نامه و نوع پوشش.</p><span>مشاهده فهرست ←</span></a>
-    <a class="guide-card" href="/pages/clinic-calendar.html"><span class="icon">🗓️</span><h2>برنامه درمانگاه</h2><p>برنامه عمومی کلینیک‌ها و شماره نوبت‌دهی تلفنی.</p><span>مشاهده برنامه ←</span></a>
-    <a class="guide-card" href="/pages/visitor-guide.html"><span class="icon">🤝</span><h2>راهنمای ملاقات</h2><p>ساعت ملاقات، نکات امنیتی، اقلام ممنوع و خدمات تغذیه.</p><span>مشاهده قوانین ←</span></a>
-    <a class="guide-card" href="/pages/floor-guide.html"><span class="icon">🏢</span><h2>راهنمای طبقات</h2><p>راهنمای پیدا کردن بخش‌ها در ساختمان بیمارستان.</p><span>مشاهده راهنما ←</span></a>
-    <a class="guide-card" href="/pages/employee-dress.html"><span class="icon">🧥</span><h2>پوشش کارکنان</h2><p>راهنمای تشخیص و پوشش یکپارچه کارکنان بیمارستان.</p><span>مشاهده راهنما ←</span></a>
-    <a class="guide-card" href="/pages/patient-affairs.html"><span class="icon">📞</span><h2>امور بیماران</h2><p>مسیرهای پیگیری، ارتباط با واحدها و ثبت درخواست.</p><span>مشاهده اطلاعات ←</span></a>
-  </main>
-  <p class="guide-note">برای اطلاعات لحظه‌ای و مواردی که ممکن است تغییر کنند، پیش از مراجعه با بیمارستان به شماره ۰۲۱-۴۴۴۸۰۱۸۵ تماس بگیرید.</p>
-  <script src="/js/site-shell.js"></script>
+
+<svg class="icon-sprite" aria-hidden="true" focusable="false">
+  <symbol id="icon-home" viewBox="0 0 24 24"><path d="m3 11 9-7 9 7v9H3zM9 20v-5h6v5"/></symbol>
+  <symbol id="icon-file" viewBox="0 0 24 24"><path d="M6 3.5h8l4 4V20a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 6 20z"/><path d="M14 3.5V8h4M9 12h6M9 16h6"/></symbol>
+  <symbol id="icon-heart" viewBox="0 0 24 24"><path d="M20.8 8.8c0 5.2-8.8 10.2-8.8 10.2S3.2 14 3.2 8.8A4.5 4.5 0 0 1 12 6.5a4.5 4.5 0 0 1 8.8 2.3Z"/></symbol>
+</svg>
+
+<header class="header" id="header">
+  <div class="header-inner">
+    <a href="/" class="logo">
+      <div class="logo-icon">+</div>
+      <div>
+        <div class="logo-text">بیمارستان <span>امید</span></div>
+        <div class="logo-sub">تخصصی و فوق‌تخصصی</div>
+      </div>
+    </a>
+    <nav class="nav">
+      <a href="/">خانه</a>
+      <a href="/pages/doctors-list.html">پزشکان</a>
+      <a href="/booking.html" class="btn btn-primary btn-sm">رزرو نوبت</a>
+    </nav>
+  </div>
+</header>
+
+<main class="page-main">
+  <div class="page-hero" style="background: linear-gradient(135deg, var(--teal) 0%, var(--primary) 100%);">
+    <div class="container">
+      <div class="breadcrumb">
+        <a href="/"><svg class="ui-icon"><use href="#icon-home"></use></svg> خانه</a>
+        <span>/</span>
+        <span>راهنمای مراجعین</span>
+      </div>
+      <h1 class="page-title">راهنمای مراجعین</h1>
+      <p class="page-subtitle">راهنمای کامل پذیرش، بستری و ترخیص بیماران</p>
+    </div>
+  </div>
+
+  <div class="container page-content">
+    <div class="content-grid">
+      
+      <section class="content-section">
+        <h2>📋 مدارک مورد نیاز برای پذیرش</h2>
+        <div class="card-list">
+          <div class="info-card">
+            <div class="info-icon">🆔</div>
+            <h3>کارت ملی</h3>
+            <p>اصل کارت ملی بیمار و همراه (تصویر قبول نیست)</p>
+          </div>
+          <div class="info-card">
+            <div class="info-icon">🏥</div>
+            <h3>دفترچه بیمه</h3>
+            <p>دفترچه بیمه‌های پایه و تکمیلی (در صورت داشتن)</p>
+          </div>
+          <div class="info-card">
+            <div class="info-icon">📝</div>
+            <h3>نامه پزشک</h3>
+            <p>نامه یا نسخه پزشک معالج برای بستری</p>
+          </div>
+          <div class="info-card">
+            <div class="info-icon">🩺</div>
+            <h3>سوابق پزشکی</h3>
+            <p>آزمایشات و سوابق قبلی (در صورت وجود)</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="content-section">
+        <h2>🏥 مراحل پذیرش بیمار</h2>
+        <div class="timeline">
+          <div class="timeline-item">
+            <div class="timeline-marker">1</div>
+            <div class="timeline-content">
+              <h3>مراجعه به پذیرش</h3>
+              <p>ارائه مدارک و کارت ملی به واحد پذیرش طبقه همکف</p>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-marker">2</div>
+            <div class="timeline-content">
+              <h3>تکمیل فرم‌ها</h3>
+              <p>تکمیل فرم‌های پذیرش و رضایت‌نامه</p>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-marker">3</div>
+            <div class="timeline-content">
+              <h3>دریافت دستبند شناسایی</h3>
+              <p>دریافت دستبند شناسایی بیمار</p>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-marker">4</div>
+            <div class="timeline-content">
+              <h3>اعزام به بخش</h3>
+              <p>هدایت بیمار به بخش مربوطه توسط پرستار راهنما</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="content-section">
+        <h2>👥 قوانین ملاقات</h2>
+        <div class="rule-grid">
+          <div class="rule-card">
+            <h3>⏰ ساعات ملاقات</h3>
+            <ul>
+              <li>صبح: ۱۰ الی ۱۲</li>
+              <li>عصر: ۱۶ الی ۱۸</li>
+              <li>شب: ۲۰ الی ۲۱</li>
+            </ul>
+          </div>
+          <div class="rule-card">
+            <h3>👤 تعداد ملاقات‌کننده</h3>
+            <ul>
+              <li>حداکثر ۲ نفر همزمان</li>
+              <li>کودکان زیر ۱۲ سال ممنوع</li>
+              <li>رعایت آرامش بیماران</li>
+            </ul>
+          </div>
+          <div class="rule-card">
+            <h3>🚫 ممنوعیت‌ها</h3>
+            <ul>
+              <li>سیگار و مواد دخانی</li>
+              <li>گل و گیاهان طبیعی</li>
+              <li>عکس و فیلمبرداری</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section class="content-section">
+        <h2>🚪 مراحل ترخیص</h2>
+        <div class="steps-box">
+          <div class="step-item">
+            <span class="step-num">۱</span>
+            <p>دریافت برگه ترخیص از پزشک معالج</p>
+          </div>
+          <div class="step-item">
+            <span class="step-num">۲</span>
+            <p>تسویه حساب در واحد مالی</p>
+          </div>
+          <div class="step-item">
+            <span class="step-num">۳</span>
+            <p>دریافت نسخه و توصیه‌های پزشکی</p>
+          </div>
+          <div class="step-item">
+            <span class="step-num">۴</span>
+            <p>تحویل دستبند شناسایی</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="content-section">
+        <div class="cta-box">
+          <svg class="ui-icon large"><use href="#icon-heart"></use></svg>
+          <h3>برای اطلاعات بیشتر با ما تماس بگیرید</h3>
+          <p>واحد امور بیماران: ۰۲۱-۴۴۴۸۰۱۸۵ داخلی ۲۰۰</p>
+          <div class="cta-buttons">
+            <a href="tel:02144480185" class="btn btn-primary">تماس تلفنی</a>
+            <a href="/booking.html" class="btn btn-outline">رزرو نوبت</a>
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </div>
+</main>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <h4>بیمارستان امید</h4>
+        <p>تخصصی و فوق‌تخصصی</p>
+        <p>📍 تهران، جنت‌آباد مرکزی، خیابان شاهین شمالی</p>
+        <p>📞 ۰۲۱-۴۴۴۸۰۱۸۵</p>
+      </div>
+      <div class="footer-col">
+        <h4>دسترسی سریع</h4>
+        <a href="/booking.html">رزرو نوبت</a>
+        <a href="/pages/doctors-list.html">پزشکان</a>
+        <a href="/pages/insurances.html">بیمه‌ها</a>
+      </div>
+      <div class="footer-col">
+        <h4>راهنما</h4>
+        <a href="/pages/patient-guide.html">راهنمای مراجعین</a>
+        <a href="/pages/visitor-guide.html">راهنمای ملاقات</a>
+        <a href="/pages/floor-guide.html">راهنمای طبقات</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; ۱۴۰۴ بیمارستان امید - تمام حقوق محفوظ است</p>
+    </div>
+  </div>
+</footer>
+
+<script src="/js/site-shell.js"></script>
 </body>
 </html>

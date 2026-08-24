@@ -17,9 +17,13 @@
     "node": ">=18.0.0"
   },
   "devDependencies": {
-    "wrangler": "^4.29.0"
+    "wrangler": "^4.125.0"
   },
-  "keywords": ["hospital", "medical", "appointment"],
+  "keywords": [
+    "hospital",
+    "medical",
+    "appointment"
+  ],
   "author": "Omid Hospital",
   "license": "MIT"
 }

@@ -2,6 +2,7 @@ name = "omid-hospital"
 main = "cloudflare/worker.js"
 compatibility_date = "2026-08-24"
 workers_dev = true
+account_id = "e450231daff68b2fc637b498ae38dc98"
 
 [assets]
 directory = "."
