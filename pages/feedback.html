@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>فرم رضایتمندی | بیمارستان امید</title>
+<link rel="icon" href="/assets/logo-no-bg.png">
+<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/theme.css">
+<link rel="stylesheet" href="/css/guide-pages.css">
+</head>
+<body>
+
+<header class="header">
+  <div class="header-inner">
+    <a href="/" class="logo">
+      <img src="/assets/logo-main-original.png" alt="لوگو بیمارستان امید" style="height: 60px; width: auto;">
+    </a>
+    <nav class="nav">
+      <a href="/">خانه</a>
+      <a href="/pages/online-services.html">خدمات آنلاین</a>
+      <a href="/booking.html" class="btn btn-primary btn-sm">رزرو نوبت</a>
+    </nav>
+  </div>
+</header>
+
+<div class="page-header">
+  <div class="container">
+    <div class="breadcrumb">
+      <a href="/">خانه</a>
+      <span>/</span>
+      <a href="/pages/online-services.html">خدمات آنلاین</a>
+      <span>/</span>
+      <span>فرم رضایتمندی</span>
+    </div>
+    <div class="page-header-content">
+      <div class="page-icon">📝</div>
+      <h1>فرم رضایتمندی مراجعین</h1>
+    </div>
+  </div>
+</div>
+
+<main class="page-content">
+  <div class="container">
+    <div class="content-wrapper">
+      
+      <p class="lead">نظرات، انتقادات و پیشنهادات شما باعث بهبود کیفیت خدمات ما می‌شود. لطفاً چند دقیقه از وقت خود را به ما اختصاص دهید.</p>
+
+      <div style="background: white; border: 2px solid #e9ecef; border-radius: 16px; padding: 3rem; margin: 2rem 0;">
+        <form id="feedbackForm">
+          
+          <h3 style="margin-top: 0; margin-bottom: 1.5rem;">اطلاعات فردی</h3>
+          
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; margin-bottom: 2rem;">
+            <div>
+              <label style="display: block; font-weight: 600; margin-bottom: 0.5rem;">نام و نام خانوادگی *</label>
+              <input type="text" required placeholder="علی احمدی" 
+                style="width: 100%; padding: 0.875rem; border: 2px solid #e9ecef; border-radius: 8px; font-size: 1rem; font-family: inherit;">
+            </div>
+            
+            <div>
+              <label style="display: block; font-weight: 600; margin-bottom: 0.5rem;">شماره تماس *</label>
+              <input type="tel" required placeholder="۰۹۱۲۳۴۵۶۷۸۹" 
+                style="width: 100%; padding: 0.875rem; border: 2px solid #e9ecef; border-radius: 8px; font-size: 1rem; font-family: inherit;">
+            </div>
+          </div>
+
+          <div style="margin-bottom: 2rem;">
+            <label style="display: block; font-weight: 600; margin-bottom: 0.5rem;">ایمیل (اختیاری)</label>
+            <input type="email" placeholder="email@example.com" 
+              style="width: 100%; padding: 0.875rem; border: 2px solid #e9ecef; border-radius: 8px; font-size: 1rem; font-family: inherit;">
+          </div>
+
+          <hr style="border: none; border-top: 2px solid #e9ecef; margin: 2rem 0;">
+
+          <h3 style="margin-bottom: 1.5rem;">ارزیابی خدمات</h3>
+
+          <div style="margin-bottom: 2rem;">
+            <label style="display: block; font-weight: 600; margin-bottom: 0.5rem;">بخش مراجعه شده *</label>
+            <select required style="width: 100%; padding: 0.875rem; border: 2px solid #e9ecef; border-radius: 8px; font-size: 1rem; font-family: inherit;">
+              <option value="">انتخاب کنید</option>
+              <option>اورژانس</option>
+              <option>کلینیک</option>
+              <option>بستری</option>
+              <option>آزمایشگاه</option>
+              <option>تصویربرداری</option>
+              <option>داروخانه</option>
+              <option>پذیرش و ترخیص</option>
+              <option>سایر</option>
+            </select>
+          </div>
+
+          <div style="margin-bottom: 2rem;">
+            <label style="display: block; font-weight: 600; margin-bottom: 1rem;">رضایت کلی از خدمات *</label>
+            <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+              <label style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer; padding: 0.75rem 1.5rem; background: #f8f9fa; border-radius: 8px; border: 2px solid #e9ecef;">
+                <input type="radio" name="satisfaction" value="5" required style="width: 20px; height: 20px;">
+                <span>😊 عالی</span>
+              </label>
+              <label style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer; padding: 0.75rem 1.5rem; background: #f8f9fa; border-radius: 8px; border: 2px solid #e9ecef;">
+                <input type="radio" name="satisfaction" value="4" style="width: 20px; height: 20px;">
+                <span>🙂 خوب</span>
+              </label>
+              <label style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer; padding: 0.75rem 1.5rem; background: #f8f9fa; border-radius: 8px; border: 2px solid #e9ecef;">
+                <input type="radio" name="satisfaction" value="3" style="width: 20px; height: 20px;">
+                <span>😐 متوسط</span>
+              </label>
+              <label style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer; padding: 0.75rem 1.5rem; background: #f8f9fa; border-radius: 8px; border: 2px solid #e9ecef;">
+                <input type="radio" name="satisfaction" value="2" style="width: 20px; height: 20px;">
+                <span>🙁 ضعیف</span>
+              </label>
+              <label style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer; padding: 0.75rem 1.5rem; background: #f8f9fa; border-radius: 8px; border: 2px solid #e9ecef;">
+                <input type="radio" name="satisfaction" value="1" style="width: 20px; height: 20px;">
+                <span>😞 بسیار ضعیف</span>
+              </label>
+            </div>
+          </div>
+
+          <div style="margin-bottom: 2rem;">
+            <label style="display: block; font-weight: 600; margin-bottom: 0.5rem;">نوع بازخورد *</label>
+            <select required style="width: 100%; padding: 0.875rem; border: 2px solid #e9ecef; border-radius: 8px; font-size: 1rem; font-family: inherit;">
+              <option value="">انتخاب کنید</option>
+              <option>تشکر و تقدیر</option>
+              <option>پیشنهاد</option>
+              <option>انتقاد</option>
+              <option>شکایت</option>
+              <option>سوال</option>
+            </select>
+          </div>
+
+          <div style="margin-bottom: 2rem;">
+            <label style="display: block; font-weight: 600; margin-bottom: 0.5rem;">توضیحات *</label>
+            <textarea required rows="6" placeholder="لطفاً نظرات، انتقادات یا پیشنهادات خود را با جزئیات بنویسید..." 
+              style="width: 100%; padding: 0.875rem; border: 2px solid #e9ecef; border-radius: 8px; font-size: 1rem; font-family: inherit; resize: vertical;"></textarea>
+          </div>
+
+          <div style="margin-bottom: 2rem;">
+            <label style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer;">
+              <input type="checkbox" style="width: 20px; height: 20px;">
+              <span style="font-size: 0.875rem; color: #6c757d;">می‌خواهم نتیجه بررسی به من اطلاع داده شود</span>
+            </label>
+          </div>
+
+          <button type="submit" class="btn btn-primary" style="width: 100%; padding: 1rem; font-size: 1.125rem;">
+            ✉️ ارسال بازخورد
+          </button>
+        </form>
+      </div>
+
+      <div class="info-box success">
+        <h3>✅ تضمین رسیدگی</h3>
+        <p>تمامی نظرات و بازخوردهای ارسال شده توسط مدیریت بیمارستان بررسی و پیگیری می‌شود. در صورت درخواست، نتیجه بررسی به شما اطلاع داده خواهد شد.</p>
+      </div>
+
+      <div style="background: linear-gradient(135deg, #e3f2fd, #bbdefb); border-radius: 12px; padding: 2rem; margin: 2rem 0; text-align: center;">
+        <h3 style="margin-top: 0;">📞 تماس مستقیم</h3>
+        <p>برای موارد فوری می‌توانید با واحد امور بیماران تماس بگیرید</p>
+        <p style="font-size: 1.25rem; font-weight: 700; color: #0088cc; margin: 1rem 0;">۰۲۱-۴۴۴۸۰۱۸۵ داخلی ۲۰۰</p>
+      </div>
+
+    </div>
+    
+    <div class="back-to-guide">
+      <a href="/pages/online-services.html" class="btn btn-outline">← بازگشت به خدمات آنلاین</a>
+    </div>
+  </div>
+</main>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-bottom">
+      <p>&copy; ۱۴۰۴ بیمارستان امید</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+document.getElementById('feedbackForm').addEventListener('submit', function(e) {
+  e.preventDefault();
+  alert('بازخورد شما با موفقیت ثبت شد!\n\nاز اینکه وقت خود را در اختیار ما قرار دادید سپاسگزاریم. نظرات شما برای ما بسیار ارزشمند است و به بهبود کیفیت خدمات کمک می‌کند.\n\nکد پیگیری: FB-' + Math.floor(Math.random() * 10000));
+  this.reset();
+});
+</script>
+<script src="/js/site-shell.js"></script>
+</body>
+</html>

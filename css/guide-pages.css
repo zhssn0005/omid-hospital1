@@ -1,0 +1,719 @@
+/* Guide Pages Styles */
+
+.page-header {
+  background: linear-gradient(135deg, #0088cc 0%, #005580 100%);
+  color: white;
+  padding: 3rem 0 2rem;
+}
+
+.page-header-content {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  margin-top: 1rem;
+}
+
+.page-icon {
+  font-size: 4rem;
+  background: rgba(255,255,255,0.15);
+  width: 100px;
+  height: 100px;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.page-header h1 {
+  font-size: 2.5rem;
+  font-weight: 800;
+  margin: 0;
+}
+
+.breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.875rem;
+  opacity: 0.9;
+}
+
+.breadcrumb a {
+  color: white;
+  text-decoration: none;
+  transition: opacity 0.2s;
+}
+
+.breadcrumb a:hover {
+  opacity: 0.7;
+}
+
+.page-content {
+  padding: 3rem 0;
+}
+
+.content-wrapper {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.content-wrapper h2 {
+  font-size: 2rem;
+  font-weight: 700;
+  margin: 2rem 0 1.5rem;
+  color: #1a202c;
+}
+
+.content-wrapper h3 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin: 2rem 0 1rem;
+  color: #2d3748;
+}
+
+.content-wrapper h4 {
+  font-size: 1.125rem;
+  font-weight: 600;
+  margin: 1rem 0 0.5rem;
+}
+
+.content-wrapper p {
+  line-height: 1.8;
+  color: #4a5568;
+  margin-bottom: 1rem;
+}
+
+.lead {
+  font-size: 1.25rem !important;
+  line-height: 1.8 !important;
+  color: #2d3748 !important;
+  margin-bottom: 2rem !important;
+}
+
+/* Info Box */
+.info-box {
+  background: #e3f2fd;
+  border-right: 4px solid #0088cc;
+  border-radius: 8px;
+  padding: 1.5rem;
+  margin: 2rem 0;
+}
+
+.info-box.warning {
+  background: #fff3cd;
+  border-right-color: #ffc107;
+}
+
+.info-box.success {
+  background: #d4edda;
+  border-right-color: #28a745;
+}
+
+.info-box h3 {
+  margin: 0 0 1rem;
+  font-size: 1.125rem;
+}
+
+.info-box ul {
+  margin: 0;
+  padding-right: 1.5rem;
+}
+
+/* Doc Grid */
+.doc-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.5rem;
+  margin: 2rem 0;
+}
+
+.doc-item {
+  text-align: center;
+  padding: 1.5rem;
+  background: #f8f9fa;
+  border-radius: 12px;
+  border: 2px solid #e9ecef;
+}
+
+.doc-icon {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+
+.doc-item h4 {
+  margin: 0 0 0.5rem;
+  font-size: 1.125rem;
+}
+
+.doc-item p {
+  margin: 0;
+  font-size: 0.875rem;
+  color: #6c757d;
+}
+
+/* Steps Timeline */
+.steps-timeline {
+  margin: 2rem 0;
+}
+
+.step {
+  display: flex;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+  position: relative;
+  padding-bottom: 2rem;
+}
+
+.step::after {
+  content: '';
+  position: absolute;
+  right: 1.5rem;
+  top: 3rem;
+  bottom: -2rem;
+  width: 2px;
+  background: #e9ecef;
+}
+
+.step:last-child::after {
+  display: none;
+}
+
+.step-num {
+  width: 3rem;
+  height: 3rem;
+  background: linear-gradient(135deg, #0088cc, #00b4b4);
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 1.25rem;
+  flex-shrink: 0;
+}
+
+.step-content h4 {
+  margin: 0 0 0.5rem;
+}
+
+.step-content p {
+  margin: 0;
+  color: #6c757d;
+}
+
+/* Floor List */
+.floor-list {
+  margin: 2rem 0;
+}
+
+.floor-item {
+  background: white;
+  border: 2px solid #e9ecef;
+  border-radius: 12px;
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.floor-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.floor-number {
+  width: 60px;
+  height: 60px;
+  background: linear-gradient(135deg, #0088cc, #00b4b4);
+  color: white;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 1.5rem;
+}
+
+.floor-item h3 {
+  margin: 0;
+  font-size: 1.25rem;
+}
+
+.floor-item ul {
+  columns: 2;
+  column-gap: 2rem;
+  margin: 0;
+  padding-right: 1.5rem;
+}
+
+.floor-item li {
+  margin-bottom: 0.5rem;
+  break-inside: avoid;
+}
+
+/* Facilities Grid */
+.facilities-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 1rem;
+  margin: 2rem 0;
+}
+
+.facility {
+  text-align: center;
+  padding: 1rem;
+  background: #f8f9fa;
+  border-radius: 8px;
+}
+
+.facility-icon {
+  font-size: 2rem;
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+/* Contact Box */
+.contact-box {
+  background: linear-gradient(135deg, #0088cc, #005580);
+  color: white;
+  border-radius: 12px;
+  padding: 2rem;
+  text-align: center;
+  margin: 2rem 0;
+}
+
+.contact-box.primary {
+  background: linear-gradient(135deg, #0088cc, #00b4b4);
+}
+
+.contact-box h3 {
+  margin: 0 0 1rem;
+  color: white;
+}
+
+.contact-box p {
+  margin: 0.5rem 0;
+  font-size: 1.125rem;
+  color: white;
+}
+
+/* Service Grid */
+.service-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+  margin: 2rem 0;
+}
+
+.service-card {
+  background: white;
+  border: 2px solid #e9ecef;
+  border-radius: 12px;
+  padding: 1.5rem;
+  text-align: center;
+  transition: all 0.3s;
+}
+
+.service-card:hover {
+  border-color: #0088cc;
+  box-shadow: 0 4px 12px rgba(0,136,204,0.1);
+}
+
+.service-icon {
+  font-size: 3rem;
+  display: block;
+  margin-bottom: 1rem;
+}
+
+.service-card h4 {
+  margin: 0 0 0.5rem;
+}
+
+.service-card p {
+  margin: 0;
+  font-size: 0.875rem;
+  color: #6c757d;
+}
+
+/* Language Badges */
+.lang-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin: 2rem 0;
+}
+
+.lang-badge {
+  background: #e3f2fd;
+  color: #0088cc;
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  font-weight: 600;
+  font-size: 1rem;
+}
+
+/* Visiting Hours */
+.visiting-hours {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 2rem;
+  margin: 2rem 0;
+}
+
+.visit-time {
+  text-align: center;
+  padding: 2rem;
+  background: linear-gradient(135deg, #e3f2fd, #bbdefb);
+  border-radius: 12px;
+}
+
+.time-icon {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+
+.visit-time h4 {
+  margin: 0 0 0.5rem;
+}
+
+.time {
+  font-size: 1.5rem !important;
+  font-weight: 700 !important;
+  color: #0088cc !important;
+  margin: 0 !important;
+}
+
+/* Rules Grid */
+.rules-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.5rem;
+  margin: 2rem 0;
+}
+
+.rule-box {
+  text-align: center;
+  padding: 1.5rem;
+  background: white;
+  border: 2px solid #e9ecef;
+  border-radius: 12px;
+}
+
+.rule-icon {
+  font-size: 2.5rem;
+  display: block;
+  margin-bottom: 1rem;
+}
+
+.rule-box h4 {
+  margin: 0 0 0.5rem;
+  font-size: 1rem;
+}
+
+.rule-box p {
+  margin: 0;
+  font-size: 0.875rem;
+  color: #6c757d;
+}
+
+/* Lists */
+.feature-list, .transit-list, .prohibited-list, .doc-checklist {
+  padding-right: 1.5rem;
+  margin: 1.5rem 0;
+}
+
+.feature-list li, .transit-list li, .prohibited-list li, .doc-checklist li {
+  margin-bottom: 0.75rem;
+  line-height: 1.6;
+}
+
+.prohibited-list {
+  columns: 2;
+  column-gap: 2rem;
+}
+
+/* Alert Grid */
+.alert-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+  margin: 2rem 0;
+}
+
+.alert-item {
+  padding: 1rem;
+  border-radius: 8px;
+  text-align: center;
+  font-weight: 600;
+}
+
+.alert-item.danger {
+  background: #f8d7da;
+  color: #721c24;
+  border: 2px solid #f5c6cb;
+}
+
+.alert-item.warning {
+  background: #fff3cd;
+  color: #856404;
+  border: 2px solid #ffeaa7;
+}
+
+/* Route Card */
+.route-card {
+  background: #f8f9fa;
+  border-right: 4px solid #0088cc;
+  border-radius: 8px;
+  padding: 1.5rem;
+  margin: 1rem 0;
+}
+
+.route-card h4 {
+  margin: 0 0 0.5rem;
+  color: #0088cc;
+}
+
+.route-card p {
+  margin: 0;
+}
+
+/* Address Box */
+.address-box, .schedule-box, .booking-box {
+  background: #e3f2fd;
+  border-radius: 12px;
+  padding: 2rem;
+  text-align: center;
+  margin: 2rem 0;
+}
+
+.address-box h3, .schedule-box h3, .booking-box h3 {
+  margin: 0 0 1rem;
+}
+
+.booking-options {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 1.5rem;
+}
+
+/* Discharge Steps */
+.discharge-steps {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.5rem;
+  margin: 2rem 0;
+}
+
+.discharge-step {
+  text-align: center;
+  padding: 1.5rem;
+  background: white;
+  border: 2px solid #e9ecef;
+  border-radius: 12px;
+}
+
+.step-icon {
+  font-size: 3rem;
+  display: block;
+  margin-bottom: 1rem;
+}
+
+.discharge-step h4 {
+  margin: 0 0 0.5rem;
+}
+
+.discharge-step p {
+  margin: 0;
+  font-size: 0.875rem;
+  color: #6c757d;
+}
+
+/* Clinic List */
+.clinic-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+  margin: 2rem 0;
+}
+
+.clinic-item {
+  background: white;
+  border: 2px solid #e9ecef;
+  border-radius: 12px;
+  padding: 1.5rem;
+  text-align: center;
+}
+
+.clinic-icon {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+
+.clinic-item h4 {
+  margin: 0 0 1rem;
+}
+
+.clinic-item p {
+  margin: 0.5rem 0;
+  font-size: 0.875rem;
+}
+
+/* Lab Services */
+.lab-services {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+  margin: 2rem 0;
+}
+
+.lab-service {
+  background: white;
+  border: 2px solid #e9ecef;
+  border-radius: 12px;
+  padding: 1.5rem;
+}
+
+.lab-service h4 {
+  margin: 0 0 1rem;
+  color: #0088cc;
+}
+
+.lab-service ul {
+  margin: 0;
+  padding-right: 1.5rem;
+}
+
+.lab-service li {
+  margin-bottom: 0.5rem;
+}
+
+/* Result Options */
+.result-options {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.5rem;
+  margin: 2rem 0;
+}
+
+.result-option {
+  background: white;
+  border: 2px solid #e9ecef;
+  border-radius: 12px;
+  padding: 1.5rem;
+  text-align: center;
+}
+
+.option-icon {
+  font-size: 3rem;
+  display: block;
+  margin-bottom: 1rem;
+}
+
+.result-option h4 {
+  margin: 0 0 0.5rem;
+}
+
+.result-option p {
+  margin: 0.5rem 0;
+  font-size: 0.875rem;
+}
+
+/* Birth Steps */
+.birth-steps {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.5rem;
+  margin: 2rem 0;
+}
+
+.birth-step {
+  text-align: center;
+  padding: 1.5rem;
+  background: white;
+  border: 2px solid #e9ecef;
+  border-radius: 12px;
+}
+
+.step-number {
+  display: inline-block;
+  width: 50px;
+  height: 50px;
+  background: linear-gradient(135deg, #0088cc, #00b4b4);
+  color: white;
+  border-radius: 50%;
+  line-height: 50px;
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+
+.birth-step h4 {
+  margin: 0 0 0.5rem;
+}
+
+.birth-step p {
+  margin: 0;
+  font-size: 0.875rem;
+  color: #6c757d;
+}
+
+/* Homecare Services */
+.homecare-services {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+  margin: 2rem 0;
+}
+
+.homecare-item {
+  background: white;
+  border: 2px solid #e9ecef;
+  border-radius: 12px;
+  padding: 1.5rem;
+}
+
+.homecare-item h4 {
+  margin: 0 0 1rem;
+  color: #0088cc;
+}
+
+.homecare-item ul {
+  margin: 0;
+  padding-right: 1.5rem;
+}
+
+.homecare-item li {
+  margin-bottom: 0.5rem;
+}
+
+/* Back to Guide */
+.back-to-guide {
+  text-align: center;
+  margin: 3rem 0 2rem;
+  padding-top: 2rem;
+  border-top: 2px solid #e9ecef;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .page-header h1 {
+    font-size: 1.75rem;
+  }
+  
+  .page-icon {
+    width: 70px;
+    height: 70px;
+    font-size: 2.5rem;
+  }
+  
+  .floor-item ul {
+    columns: 1;
+  }
+  
+  .prohibited-list {
+    columns: 1;
+  }
+}

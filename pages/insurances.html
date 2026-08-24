@@ -2,251 +2,261 @@
 <html lang="fa" dir="rtl">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>بیمه‌های طرف قرارداد | بیمارستان امید</title>
-<meta name="description" content="لیست کامل بیمه‌های طرف قرارداد با بیمارستان امید">
-<link rel="icon" href="/assets/logo-no-bg.png">
 <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/css/theme.css">
+<link rel="stylesheet" href="/css/guide-pages.css">
 </head>
 <body>
 
-<svg class="icon-sprite" aria-hidden="true" focusable="false">
-  <symbol id="icon-home" viewBox="0 0 24 24"><path d="m3 11 9-7 9 7v9H3zM9 20v-5h6v5"/></symbol>
-  <symbol id="icon-shield" viewBox="0 0 24 24"><path d="M12 3 19 6v5c0 4.7-2.8 8-7 10-4.2-2-7-5.3-7-10V6z"/><path d="m8.5 12 2.2 2.2 4.8-5"/></symbol>
-</svg>
-
-<header class="header">
-  <div class="header-inner">
-    <a href="/" class="logo">
-      <div class="logo-icon">+</div>
-      <div>
-        <div class="logo-text">بیمارستان <span>امید</span></div>
-        <div class="logo-sub">تخصصی و فوق‌تخصصی</div>
+<header class="site-header">
+  <div class="site-header-inner">
+    <a href="/" class="site-brand">
+      <img src="/assets/logo-main-original.png" alt="بیمارستان امید" class="site-brand-image">
+      <div class="site-brand-copy">
+        <strong>بیمارستان تخصصی امید</strong>
+        <small>۱۸۶ پزشک فعال | ۳۲ رشته تخصصی</small>
       </div>
     </a>
-    <nav class="nav">
+    <nav class="site-nav" id="siteNav">
       <a href="/">خانه</a>
       <a href="/pages/doctors-list.html">پزشکان</a>
-      <a href="/booking.html" class="btn btn-primary btn-sm">رزرو نوبت</a>
+      <a href="/pages/patient-guide.html">راهنمای مراجعین</a>
+      <a href="/pages/online-services.html">خدمات آنلاین</a>
+      <a href="/pages/contact.html">تماس با ما</a>
     </nav>
+    <div class="site-header-actions">
+      <a href="/booking.html" class="btn btn-primary site-booking-link">رزرو نوبت</a>
+      <button class="site-menu-toggle" id="siteMenuToggle" onclick="document.getElementById('siteNav').classList.toggle('open')">☰</button>
+    </div>
   </div>
 </header>
 
-<main class="page-main">
-  <div class="page-hero" style="background: linear-gradient(135deg, var(--gold) 0%, var(--orange) 100%);">
+<main class="guide-page">
+  <div class="guide-hero">
     <div class="container">
-      <div class="breadcrumb">
-        <a href="/"><svg class="ui-icon"><use href="#icon-home"></use></svg> خانه</a>
-        <span>/</span>
-        <span>بیمه‌ها</span>
-      </div>
-      <h1 class="page-title">بیمه‌های طرف قرارداد</h1>
-      <p class="page-subtitle">پذیرش ۳۲ بیمه پایه و تکمیلی</p>
+      <a href="/pages/patient-guide.html" class="breadcrumb">← بازگشت به راهنمای مراجعین</a>
+      <h1>بیمه‌های طرف قرارداد</h1>
+      <p>بیمارستان امید با ۳۲ بیمه پایه و تکمیلی طرف قرارداد است</p>
     </div>
   </div>
 
-  <div class="container page-content">
-    
-    <div class="alert-box info">
-      <svg class="ui-icon"><use href="#icon-shield"></use></svg>
-      <div>
-        <h3>توجه مهم</h3>
-        <p>لطفاً قبل از مراجعه، دفترچه بیمه و کارت ملی خود را همراه داشته باشید. برای اطمینان از پوشش بیمه خود می‌توانید با شماره ۰۲۱-۴۴۴۸۰۱۸۵ داخلی ۲۵۰ تماس بگیرید.</p>
-      </div>
-    </div>
+  <div class="container">
+    <div class="guide-content">
+      
+      <section class="content-section">
+        <h2>📋 لیست کامل بیمه‌ها</h2>
+        <div class="info-box">
+          <p><strong>توجه:</strong> لطفاً قبل از مراجعه، اعتبار دفترچه بیمه خود را بررسی فرمایید و در صورت داشتن بیمه تکمیلی، آن را همراه داشته باشید.</p>
+        </div>
 
-    <section class="content-section">
-      <h2>🏥 بیمه‌های پایه</h2>
-      <div class="insurance-grid">
-        <div class="insurance-card">
-          <div class="insurance-badge primary">پایه</div>
-          <h3>تأمین اجتماعی</h3>
-          <p>پوشش: بستری - سرپایی</p>
-          <span class="insurance-status">✓ فعال</span>
+        <div class="table-wrap">
+          <table style="width: 100%;">
+            <thead>
+              <tr>
+                <th>نام بیمه</th>
+                <th>نوع پوشش</th>
+                <th>توضیحات</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>بیمه خدمات درمانی</td>
+                <td><span class="badge badge-primary">پایه</span></td>
+                <td>تمامی خدمات درمانی</td>
+              </tr>
+              <tr>
+                <td>بیمه تامین اجتماعی</td>
+                <td><span class="badge badge-primary">پایه</span></td>
+                <td>تمامی خدمات درمانی</td>
+              </tr>
+              <tr>
+                <td>بیمه سلامت ایرانیان</td>
+                <td><span class="badge badge-primary">پایه</span></td>
+                <td>تمامی خدمات درمانی</td>
+              </tr>
+              <tr>
+                <td>بیمه نیروهای مسلح</td>
+                <td><span class="badge badge-primary">پایه</span></td>
+                <td>تمامی خدمات درمانی</td>
+              </tr>
+              <tr>
+                <td>آتیه‌سازان حافظ</td>
+                <td><span class="badge badge-success">تکمیلی</span></td>
+                <td>خدمات بستری و سرپایی</td>
+              </tr>
+              <tr>
+                <td>بیمه ملت</td>
+                <td><span class="badge badge-success">تکمیلی</span></td>
+                <td>خدمات بستری و سرپایی</td>
+              </tr>
+              <tr>
+                <td>بیمه آرمان</td>
+                <td><span class="badge badge-success">تکمیلی</span></td>
+                <td>خدمات بستری و سرپایی</td>
+              </tr>
+              <tr>
+                <td>بیمه رازی</td>
+                <td><span class="badge badge-success">تکمیلی</span></td>
+                <td>خدمات بستری و سرپایی</td>
+              </tr>
+              <tr>
+                <td>بیمه سامان</td>
+                <td><span class="badge badge-success">تکمیلی</span></td>
+                <td>خدمات بستری و سرپایی</td>
+              </tr>
+              <tr>
+                <td>بیمه سینا</td>
+                <td><span class="badge badge-success">تکمیلی</span></td>
+                <td>خدمات بستری و سرپایی</td>
+              </tr>
+              <tr>
+                <td>بیمه کارآفرین</td>
+                <td><span class="badge badge-success">تکمیلی</span></td>
+                <td>خدمات بستری و سرپایی</td>
+              </tr>
+              <tr>
+                <td>بیمه کوثر</td>
+                <td><span class="badge badge-success">تکمیلی</span></td>
+                <td>خدمات بستری و سرپایی</td>
+              </tr>
+              <tr>
+                <td>بیمه آسیا</td>
+                <td><span class="badge badge-success">تکمیلی</span></td>
+                <td>خدمات بستری و سرپایی</td>
+              </tr>
+              <tr>
+                <td>بیمه ایران</td>
+                <td><span class="badge badge-success">تکمیلی</span></td>
+                <td>خدمات بستری و سرپایی</td>
+              </tr>
+              <tr>
+                <td>بیمه پارسیان</td>
+                <td><span class="badge badge-success">تکمیلی</span></td>
+                <td>خدمات بستری و سرپایی</td>
+              </tr>
+              <tr>
+                <td>بیمه دی</td>
+                <td><span class="badge badge-success">تکمیلی</span></td>
+                <td>خدمات بستری و سرپایی</td>
+              </tr>
+              <tr>
+                <td>بیمه نوین</td>
+                <td><span class="badge badge-success">تکمیلی</span></td>
+                <td>خدمات بستری و سرپایی</td>
+              </tr>
+              <tr>
+                <td>بیمه پاسارگاد</td>
+                <td><span class="badge badge-success">تکمیلی</span></td>
+                <td>خدمات بستری و سرپایی</td>
+              </tr>
+              <tr>
+                <td>بیمه دانا</td>
+                <td><span class="badge badge-success">تکمیلی</span></td>
+                <td>خدمات بستری و سرپایی</td>
+              </tr>
+              <tr>
+                <td>بیمه البرز</td>
+                <td><span class="badge badge-success">تکمیلی</span></td>
+                <td>خدمات بستری و سرپایی</td>
+              </tr>
+            </tbody>
+          </table>
         </div>
-        <div class="insurance-card">
-          <div class="insurance-badge primary">پایه</div>
-          <h3>خدمات درمانی</h3>
-          <p>پوشش: بستری - سرپایی</p>
-          <span class="insurance-status">✓ فعال</span>
-        </div>
-        <div class="insurance-card">
-          <div class="insurance-badge primary">پایه</div>
-          <h3>نیروهای مسلح</h3>
-          <p>پوشش: بستری - سرپایی</p>
-          <span class="insurance-status">✓ فعال</span>
-        </div>
-        <div class="insurance-card">
-          <div class="insurance-badge primary">پایه</div>
-          <h3>سلامت ایرانیان</h3>
-          <p>پوشش: بستری - سرپایی</p>
-          <span class="insurance-status">✓ فعال</span>
-        </div>
-      </div>
-    </section>
+      </section>
 
-    <section class="content-section">
-      <h2>💎 بیمه‌های تکمیلی</h2>
-      <div class="insurance-table">
-        <table>
-          <thead>
-            <tr>
-              <th>ردیف</th>
-              <th>نام بیمه</th>
-              <th>نوع پوشش</th>
-              <th>وضعیت</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>۱</td>
-              <td>آتیه‌سازان حافظ</td>
-              <td><span class="badge">بستری</span></td>
-              <td><span class="status-active">✓ فعال</span></td>
-            </tr>
-            <tr>
-              <td>۲</td>
-              <td>ملت (شاغلین)</td>
-              <td><span class="badge">بستری - سرپایی</span></td>
-              <td><span class="status-active">✓ فعال</span></td>
-            </tr>
-            <tr>
-              <td>۳</td>
-              <td>آرمان</td>
-              <td><span class="badge">بستری</span></td>
-              <td><span class="status-active">✓ فعال</span></td>
-            </tr>
-            <tr>
-              <td>۴</td>
-              <td>رازی</td>
-              <td><span class="badge">بستری - سرپایی</span></td>
-              <td><span class="status-active">✓ فعال</span></td>
-            </tr>
-            <tr>
-              <td>۵</td>
-              <td>سامان (درمانت)</td>
-              <td><span class="badge">بستری - سرپایی</span></td>
-              <td><span class="status-active">✓ فعال</span></td>
-            </tr>
-            <tr>
-              <td>۶</td>
-              <td>سینا</td>
-              <td><span class="badge">بستری - سرپایی</span></td>
-              <td><span class="status-active">✓ فعال</span></td>
-            </tr>
-            <tr>
-              <td>۷</td>
-              <td>کارآفرین</td>
-              <td><span class="badge">بستری - سرپایی</span></td>
-              <td><span class="status-active">✓ فعال</span></td>
-            </tr>
-            <tr>
-              <td>۸</td>
-              <td>کوثر</td>
-              <td><span class="badge">بستری - سرپایی</span></td>
-              <td><span class="status-active">✓ فعال</span></td>
-            </tr>
-            <tr>
-              <td>۹</td>
-              <td>نوین</td>
-              <td><span class="badge">بستری - سرپایی</span></td>
-              <td><span class="status-active">✓ فعال</span></td>
-            </tr>
-            <tr>
-              <td>۱۰</td>
-              <td>آسیا</td>
-              <td><span class="badge">بستری - سرپایی</span></td>
-              <td><span class="status-active">✓ فعال</span></td>
-            </tr>
-            <tr>
-              <td>۱۱</td>
-              <td>تجارت نو</td>
-              <td><span class="badge">بستری - سرپایی</span></td>
-              <td><span class="status-active">✓ فعال</span></td>
-            </tr>
-            <tr>
-              <td>۱۲</td>
-              <td>سرمد</td>
-              <td><span class="badge">بستری - سرپایی</span></td>
-              <td><span class="status-active">✓ فعال</span></td>
-            </tr>
-            <tr>
-              <td>۱۳</td>
-              <td>دی</td>
-              <td><span class="badge">بستری</span></td>
-              <td><span class="status-active">✓ فعال</span></td>
-            </tr>
-            <tr>
-              <td>۱۴</td>
-              <td>ایران</td>
-              <td><span class="badge">بستری - سرپایی</span></td>
-              <td><span class="status-active">✓ فعال</span></td>
-            </tr>
-            <tr>
-              <td>۱۵</td>
-              <td>پارسیان</td>
-              <td><span class="badge">بستری - سرپایی</span></td>
-              <td><span class="status-active">✓ فعال</span></td>
-            </tr>
-            <tr>
-              <td>۱۶</td>
-              <td>معلم</td>
-              <td><span class="badge">بستری - سرپایی</span></td>
-              <td><span class="status-active">✓ فعال</span></td>
-            </tr>
-            <tr>
-              <td>۱۷</td>
-              <td>بانک مرکزی</td>
-              <td><span class="badge">بستری - سرپایی</span></td>
-              <td><span class="status-active">✓ فعال</span></td>
-            </tr>
-            <tr>
-              <td>۱۸</td>
-              <td>کمک رسان SOS</td>
-              <td><span class="badge">بستری - سرپایی</span></td>
-              <td><span class="status-active">✓ فعال</span></td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </section>
+      <section class="content-section">
+        <h2>📞 تماس با واحد بیمه</h2>
+        <div class="info-grid">
+          <div class="info-card">
+            <h3>شماره تماس</h3>
+            <p><strong>۰۲۱-۴۴۴۸۰۱۸۵</strong></p>
+            <p>داخلی: <strong>۱۲۳</strong></p>
+          </div>
+          <div class="info-card">
+            <h3>ساعت کاری</h3>
+            <p>شنبه تا چهارشنبه: ۸ صبح الی ۱۶</p>
+            <p>پنجشنبه: ۸ صبح الی ۱۳</p>
+          </div>
+        </div>
+      </section>
 
-    <section class="content-section">
+      <section class="content-section">
+        <h2>💡 نکات مهم</h2>
+        <ul class="checklist">
+          <li>دفترچه بیمه و کارت ملی خود را همراه داشته باشید</li>
+          <li>در صورت داشتن بیمه تکمیلی، حتماً آن را ارائه دهید</li>
+          <li>اعتبار دفترچه بیمه خود را قبل از مراجعه بررسی کنید</li>
+          <li>برای خدمات خاص، پیش از مراجعه با واحد بیمه هماهنگ کنید</li>
+          <li>در صورت عدم قبول بیمه، هزینه‌ها آزاد محاسبه می‌شود</li>
+        </ul>
+      </section>
+
       <div class="cta-box">
-        <svg class="ui-icon large"><use href="#icon-shield"></use></svg>
-        <h3>سوال درباره بیمه خود دارید؟</h3>
-        <p>واحد بیمه: ۰۲۱-۴۴۴۸۰۱۸۵ داخلی ۲۵۰</p>
-        <div class="cta-buttons">
-          <a href="tel:02144480185" class="btn btn-primary">تماس تلفنی</a>
-          <a href="/booking.html" class="btn btn-outline">رزرو نوبت</a>
+        <h3>سوال یا مشکلی دارید؟</h3>
+        <p>برای اطلاعات بیشتر درباره پوشش بیمه‌ها با ما تماس بگیرید</p>
+        <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+          <a href="tel:02144480185" class="btn btn-primary">تماس با بیمارستان</a>
+          <a href="/pages/patient-guide.html" class="btn btn-outline">بازگشت به راهنما</a>
         </div>
       </div>
-    </section>
 
+    </div>
   </div>
 </main>
 
-<footer class="footer">
-  <div class="container">
-    <div class="footer-grid">
-      <div class="footer-col">
-        <h4>بیمارستان امید</h4>
-        <p>📍 تهران، جنت‌آباد مرکزی</p>
-        <p>📞 ۰۲۱-۴۴۴۸۰۱۸۵</p>
+<footer class="site-footer">
+  <div class="site-footer-grid">
+    <div class="site-footer-brand">
+      <div class="site-footer-logo">
+        <img src="/assets/logo-main-original.png" alt="بیمارستان امید">
       </div>
-      <div class="footer-col">
-        <h4>دسترسی سریع</h4>
-        <a href="/booking.html">رزرو نوبت</a>
-        <a href="/pages/doctors-list.html">پزشکان</a>
-      </div>
+      <p>بیمارستان تخصصی و فوق‌تخصصی امید تهران<br>تأسیس پاییز ۱۳۹۵ | ۱۱۵ تخت فعال</p>
     </div>
-    <div class="footer-bottom">
-      <p>&copy; ۱۴۰۴ بیمارستان امید</p>
+    <div>
+      <h4>دسترسی سریع</h4>
+      <a href="/booking.html">رزرو نوبت آنلاین</a>
+      <a href="/pages/online-services.html">خدمات آنلاین</a>
+      <a href="/pages/doctors-list.html">لیست پزشکان</a>
     </div>
+    <div>
+      <h4>راهنمای مراجعین</h4>
+      <a href="/pages/patient-guide.html">راهنمای کامل</a>
+      <a href="/pages/guide-emergency.html">راهنمای اورژانس</a>
+      <a href="/pages/guide-admission.html">راهنمای پذیرش</a>
+    </div>
+    <div>
+      <h4>ارتباط با ما</h4>
+      <a href="tel:02144480185">۰۲۱-۴۴۴۸۰۱۸۵</a>
+      <a href="mailto:info@omid-hospital.ir">info@omid-hospital.ir</a>
+    </div>
+  </div>
+  <div class="site-footer-bottom">
+    © ۱۴۰۴ بیمارستان تخصصی و فوق‌تخصصی امید تهران
   </div>
 </footer>
 
-<script src="/js/site-shell.js"></script>
+<style>
+.badge {
+  display: inline-block;
+  padding: 0.25rem 0.75rem;
+  border-radius: 12px;
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+.badge-primary {
+  background: var(--primary-light);
+  color: var(--primary);
+}
+.badge-success {
+  background: var(--success-light);
+  color: var(--success);
+}
+.table-wrap table td {
+  vertical-align: middle;
+}
+</style>
+
 </body>
 </html>
