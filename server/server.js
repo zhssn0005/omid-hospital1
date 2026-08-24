@@ -47,13 +47,25 @@ if (process.env.NODE_ENV === 'development') {
   app.use(morgan('dev'));
 }
 
-// Serve static files - only public directories
+// Serve static files — public directories only (NOT entire project root)
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 app.use('/assets', express.static(path.join(__dirname, '../assets')));
 app.use('/css', express.static(path.join(__dirname, '../css')));
 app.use('/js', express.static(path.join(__dirname, '../js')));
 app.use('/pages', express.static(path.join(__dirname, '../pages')));
 app.use('/admin', express.static(path.join(__dirname, '../admin')));
+
+// Serve specific public root files (whitelist) — NEVER serve .env, data/*, server/*
+const ROOT_PUBLIC_FILES = [
+  'booking.html', 'manifest.json', 'service-worker.js',
+  'robots.txt', 'sitemap.xml', 'doctors.js', 'doctors-data.js',
+  'hospitals-data.js', 'test-img.html'
+];
+ROOT_PUBLIC_FILES.forEach(f => {
+  app.get('/' + f, (req, res) => {
+    res.sendFile(path.join(__dirname, '..', f));
+  });
+});
 
 // API Routes
 app.use('/api/auth', require('./routes/auth'));
@@ -84,14 +96,9 @@ app.get('/booking', (req, res) => {
   res.sendFile(path.join(__dirname, '../booking.html'));
 });
 
-// Serve SPA-like routes for main pages
-app.get(['/', '/index.html', '/doctors', '/specialties', '/departments', '/blog', '/contact', '/about', '/guide'], (req, res) => {
+// Serve index.html for root and SPA routes
+app.get(['/', '/index.html'], (req, res) => {
   res.sendFile(path.join(__dirname, '../index.html'));
-});
-
-// Serve magazine page
-app.get('/pages/magazine.html', (req, res) => {
-  res.sendFile(path.join(__dirname, '../pages/magazine.html'));
 });
 
 // 404 handler
