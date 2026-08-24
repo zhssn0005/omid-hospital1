@@ -12,6 +12,8 @@ const PRECACHE_URLS = [
   '/pages/news-events.html',
   '/pages/doctor-profile.html',
   '/pages/doctors-list.html',
+  '/about.html',
+  '/js/site-shell.js',
   '/pages/departments/nicu.html',
   '/pages/departments/royal.html',
   '/pages/departments/ipd.html',
@@ -21,7 +23,8 @@ const PRECACHE_URLS = [
   '/js/booking.js',
   '/js/site-api-bridge.js',
   '/assets/logo-no-bg.png',
-  '/assets/logo-main.png'
+  '/assets/logo-main.png',
+  '/assets/Logo-scaled-e1754348924179.png'
 ];
 
 self.addEventListener('install', event => {

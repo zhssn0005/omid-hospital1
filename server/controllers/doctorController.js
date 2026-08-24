@@ -22,7 +22,7 @@ exports.getAllDoctors = (req, res, next) => {
       FROM doctors d
       LEFT JOIN specialties s ON d.specialty_id = s.id
       LEFT JOIN users u ON d.user_id = u.id
-      WHERE 1=1
+      WHERE (u.full_name IS NULL OR u.full_name NOT LIKE 'مرحوم%')
     `;
     
     const params = [];
@@ -69,7 +69,7 @@ exports.getAllDoctors = (req, res, next) => {
       FROM doctors d
       LEFT JOIN specialties s ON d.specialty_id = s.id
       LEFT JOIN users u ON d.user_id = u.id
-      WHERE 1=1
+      WHERE (u.full_name IS NULL OR u.full_name NOT LIKE 'مرحوم%')
     `;
     
     const countParams = [];
@@ -127,6 +127,8 @@ exports.getDoctor = (req, res, next) => {
       LEFT JOIN specialties s ON d.specialty_id = s.id
       LEFT JOIN users u ON d.user_id = u.id
       WHERE d.id = ?
+        AND (u.full_name IS NULL OR u.full_name NOT LIKE 'مرحوم%')
+        AND (d.bio IS NULL OR d.bio NOT LIKE 'مرحوم%')
     `).get(req.params.id);
 
     if (!doctor) {

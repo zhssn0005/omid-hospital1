@@ -111,7 +111,7 @@ function doctorProjection() {
 
 async function doctors(request, env) {
   const { url, page, limit, offset } = pageArgs(request);
-  const conditions = ['1 = 1'];
+  const conditions = ["(u.full_name IS NULL OR u.full_name NOT LIKE 'مرحوم%')"];
   const params = [];
   const specialty = text(url.searchParams.get('specialty'));
   const search = text(url.searchParams.get('search'));
@@ -132,7 +132,7 @@ async function doctors(request, env) {
 }
 
 async function doctor(request, env, id) {
-  const found = await env.DB.prepare(`${doctorProjection()} WHERE d.id = ?`).bind(id).first();
+  const found = await env.DB.prepare(`${doctorProjection()} WHERE d.id = ? AND (u.full_name IS NULL OR u.full_name NOT LIKE 'مرحوم%') AND (d.bio IS NULL OR d.bio NOT LIKE 'مرحوم%')`).bind(id).first();
   if (!found) return error('پزشک مورد نظر یافت نشد', 404);
   if (!found.full_name && found.bio) found.full_name = found.bio.split(' — ')[0].trim();
   found.reviews = (await env.DB.prepare(`
