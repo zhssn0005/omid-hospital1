@@ -32,3 +32,5 @@ build/
 
 # Cache
 .cache/
+.wrangler/
+.dev.vars

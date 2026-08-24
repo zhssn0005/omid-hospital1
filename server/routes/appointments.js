@@ -11,10 +11,10 @@ const {
 } = require('../controllers/appointmentController');
 
 router.get('/', authenticate, getAllAppointments);
-router.get('/:id', authenticate, getAppointment);
+router.get('/doctor/:doctorId/available-slots', getAvailableSlots);
 router.post('/', optionalAuth, createAppointment);
+router.get('/:id', authenticate, getAppointment);
 router.put('/:id', authenticate, updateAppointment);
 router.delete('/:id', authenticate, cancelAppointment);
-router.get('/doctor/:doctorId/available-slots', getAvailableSlots);
 
 module.exports = router;

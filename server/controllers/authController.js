@@ -14,10 +14,17 @@ const generateToken = (id) => {
 // @access  Public
 exports.register = async (req, res, next) => {
   try {
-    const { username, email, password, full_name, phone, role = 'patient' } = req.body;
+    const { username, email, password, full_name, phone } = req.body;
 
-    // Validation
-    if (!username || !password || !full_name || !phone) {
+    // Public registration can only create patient accounts.
+    const validUsername = typeof username === 'string' && /^[a-zA-Z0-9_.-]{3,40}$/.test(username);
+    const validPassword = typeof password === 'string' && password.length >= 8 && password.length <= 128;
+    const validName = typeof full_name === 'string' && full_name.trim().length >= 2 && full_name.length <= 120;
+    const validPhone = typeof phone === 'string' && /^[+\d][\d\s-]{7,19}$/.test(phone);
+    const validEmail = email === undefined || email === null || email === '' ||
+      (typeof email === 'string' && email.length <= 160 && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email));
+
+    if (!validUsername || !validPassword || !validName || !validPhone || !validEmail) {
       return res.status(400).json({
         success: false,
         message: 'لطفاً تمام فیلدهای الزامی را پر کنید'
@@ -45,7 +52,7 @@ exports.register = async (req, res, next) => {
       VALUES (?, ?, ?, ?, ?, ?)
     `);
 
-    const result = insert.run(username, email, password_hash, full_name, phone, role);
+    const result = insert.run(username.trim(), email || null, password_hash, full_name.trim(), phone.trim(), 'patient');
 
     // Generate token
     const token = generateToken(result.lastInsertRowid);
@@ -61,7 +68,7 @@ exports.register = async (req, res, next) => {
           email,
           full_name,
           phone,
-          role
+          role: 'patient'
         }
       }
     });
@@ -78,7 +85,8 @@ exports.login = async (req, res, next) => {
     const { username, password } = req.body;
 
     // Validation
-    if (!username || !password) {
+    if (typeof username !== 'string' || username.length < 3 || username.length > 160 ||
+        typeof password !== 'string' || password.length < 1 || password.length > 128) {
       return res.status(400).json({
         success: false,
         message: 'لطفاً نام کاربری و رمز عبور را وارد کنید'
@@ -147,25 +155,33 @@ exports.updateProfile = async (req, res, next) => {
   try {
     const { full_name, email, phone, avatar } = req.body;
     const userId = req.user.id;
-
     const updates = [];
     const values = [];
+    const validEmail = email === undefined || email === null || email === '' ||
+      (typeof email === 'string' && email.length <= 160 && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email));
+    const validPhone = phone === undefined || (typeof phone === 'string' && /^[+\d][\d\s-]{7,19}$/.test(phone));
+    const validName = full_name === undefined ||
+      (typeof full_name === 'string' && full_name.trim().length >= 2 && full_name.length <= 120);
 
-    if (full_name) {
+    if (!validEmail || !validPhone || !validName || (avatar !== undefined && typeof avatar !== 'string')) {
+      return res.status(400).json({ success: false, message: 'اطلاعات پروفایل نامعتبر است' });
+    }
+
+    if (full_name !== undefined) {
       updates.push('full_name = ?');
-      values.push(full_name);
+      values.push(full_name.trim());
     }
-    if (email) {
+    if (email !== undefined) {
       updates.push('email = ?');
-      values.push(email);
+      values.push(email || null);
     }
-    if (phone) {
+    if (phone !== undefined) {
       updates.push('phone = ?');
-      values.push(phone);
+      values.push(phone.trim());
     }
-    if (avatar) {
+    if (avatar !== undefined) {
       updates.push('avatar = ?');
-      values.push(avatar);
+      values.push(avatar.slice(0, 500));
     }
 
     if (updates.length === 0) {
@@ -205,7 +221,8 @@ exports.changePassword = async (req, res, next) => {
     const { current_password, new_password } = req.body;
     const userId = req.user.id;
 
-    if (!current_password || !new_password) {
+    if (typeof current_password !== 'string' || typeof new_password !== 'string' ||
+        new_password.length < 8 || new_password.length > 128) {
       return res.status(400).json({
         success: false,
         message: 'لطفاً رمز عبور فعلی و جدید را وارد کنید'
@@ -215,6 +232,10 @@ exports.changePassword = async (req, res, next) => {
     // Get current password hash
     const user = db.prepare('SELECT password_hash FROM users WHERE id = ?')
       .get(userId);
+
+    if (!user) {
+      return res.status(401).json({ success: false, message: 'کاربر یافت نشد' });
+    }
 
     // Verify current password
     const isMatch = await bcrypt.compare(current_password, user.password_hash);

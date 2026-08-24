@@ -2,7 +2,11 @@ const initSqlJs = require('sql.js');
 const path = require('path');
 const fs = require('fs');
 
-const dbPath = process.env.DB_PATH || './data/omid_hospital.db';
+const projectRoot = path.resolve(__dirname, '../..');
+const configuredDbPath = process.env.DB_PATH || path.join(projectRoot, 'data', 'omid_hospital.db');
+const dbPath = path.isAbsolute(configuredDbPath)
+  ? configuredDbPath
+  : path.resolve(projectRoot, configuredDbPath);
 const dbDir = path.dirname(dbPath);
 
 // Create data directory if it doesn't exist
@@ -17,10 +21,14 @@ let SQL, _db;
 // ─── Persistence helpers ──────────────────────────────────────────────────────
 function saveDb() {
   try {
-    const data = _db.export();
-    fs.writeFileSync(dbPath, Buffer.from(data));
+    const data = Buffer.from(_db.export());
+    const tempPath = `${dbPath}.tmp`;
+    fs.writeFileSync(tempPath, data);
+    fs.renameSync(tempPath, dbPath);
   } catch (e) {
     console.error('DB save error:', e.message);
+    try { fs.unlinkSync(`${dbPath}.tmp`); } catch (_) {}
+    throw e;
   }
 }
 
@@ -278,6 +286,11 @@ const initDatabase = async () => {
   _db.run(SCHEMA);
   // Run migrations for columns added after initial release
   try { _db.run("ALTER TABLE doctors ADD COLUMN image_local TEXT DEFAULT NULL"); } catch(e) {}
+  // Keep cancelled appointments from blocking the same slot while enforcing
+  // uniqueness for all active appointments at the database boundary.
+  _db.run("DROP INDEX IF EXISTS appointments_slot_unique");
+  _db.run("DROP INDEX IF EXISTS appointments_slot_unique_active");
+  _db.run("CREATE UNIQUE INDEX appointments_slot_unique_active ON appointments (doctor_id, appointment_date, appointment_time) WHERE status <> 'cancelled'");
   saveDb();
   console.log('✅ Database schema initialized');
 };

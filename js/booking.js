@@ -89,8 +89,8 @@ const Booking = {
         <div class="spec-filter">
           <button class="spec-btn ${!this.state.selectedSpecialty ? 'active' : ''}" data-spec="">همه تخصص‌ها</button>
           ${this.state.specialties.map(s => `
-            <button class="spec-btn ${this.state.selectedSpecialty === s.slug ? 'active' : ''}" data-spec="${s.slug}">
-              ${s.name_fa}
+            <button class="spec-btn ${this.state.selectedSpecialty === s.slug ? 'active' : ''}" data-spec="${this.escapeHtml(s.slug)}">
+              ${this.escapeHtml(s.name_fa)}
             </button>
           `).join('')}
         </div>
@@ -116,13 +116,13 @@ const Booking = {
     return `
       <div class="doc-card ${selected ? 'selected' : ''}" data-docid="${doc.id}">
         <div class="doc-card-img">
-          <img src="${doc.image || '/assets/doctors/default.png'}" 
+          <img src="${this.localImageUrl(doc.image_url)}"
                onerror="this.src='/assets/logo.png'" 
-               alt="${doc.full_name}">
+               alt="${this.escapeHtml(doc.full_name)}">
         </div>
         <div class="doc-card-info">
-          <h3>${doc.full_name}</h3>
-          <p class="doc-spec">${doc.specialty_name}</p>
+          <h3>${this.escapeHtml(doc.full_name)}</h3>
+          <p class="doc-spec">${this.escapeHtml(doc.specialty_name)}</p>
           <div class="doc-meta">
             <span>⭐ ${parseFloat(doc.rating || 0).toFixed(1)}</span>
             <span>🕐 ${doc.experience_years} سال</span>
@@ -142,7 +142,7 @@ const Booking = {
     return `
       <div class="wiz-step2">
         <h2 class="wiz-title">تاریخ و ساعت مناسب خود را انتخاب کنید</h2>
-        <p class="wiz-subtitle">پزشک: <strong>${this.state.selectedDoctor?.full_name}</strong></p>
+        <p class="wiz-subtitle">پزشک: <strong>${this.escapeHtml(this.state.selectedDoctor?.full_name)}</strong></p>
 
         <!-- Calendar Strip -->
         <div class="date-strip" id="date-strip">
@@ -176,8 +176,8 @@ const Booking = {
     return `
       <div class="slots-grid">
         ${this.state.availableSlots.map(slot => `
-          <button class="slot-btn ${this.state.selectedTime === slot ? 'selected' : ''}" data-slot="${slot}">
-            ${slot}
+          <button class="slot-btn ${this.state.selectedTime === slot ? 'selected' : ''}" data-slot="${this.escapeHtml(slot)}">
+            ${this.escapeHtml(slot)}
           </button>
         `).join('')}
       </div>
@@ -212,12 +212,12 @@ const Booking = {
         <div class="form-row">
           <div class="form-group">
             <label>نام و نام‌خانوادگی *</label>
-            <input type="text" id="pt-name" value="${user?.full_name || this.state.patientInfo?.name || ''}" 
+            <input type="text" id="pt-name" value="${this.escapeHtml(user?.full_name || this.state.patientInfo?.name || '')}"
               placeholder="نام کامل بیمار">
           </div>
           <div class="form-group">
             <label>شماره موبایل *</label>
-            <input type="tel" id="pt-phone" value="${user?.phone || this.state.patientInfo?.phone || ''}" 
+            <input type="tel" id="pt-phone" value="${this.escapeHtml(user?.phone || this.state.patientInfo?.phone || '')}"
               placeholder="09XXXXXXXXX">
           </div>
         </div>
@@ -225,19 +225,19 @@ const Booking = {
         <div class="form-row">
           <div class="form-group">
             <label>سن</label>
-            <input type="number" id="pt-age" value="${this.state.patientInfo?.age || ''}" 
+            <input type="number" id="pt-age" value="${this.escapeHtml(this.state.patientInfo?.age || '')}"
               placeholder="سن بیمار" min="1" max="120">
           </div>
           <div class="form-group">
             <label>علت مراجعه</label>
-            <input type="text" id="pt-reason" value="${this.state.patientInfo?.reason || ''}" 
+            <input type="text" id="pt-reason" value="${this.escapeHtml(this.state.patientInfo?.reason || '')}"
               placeholder="علت مراجعه را بنویسید">
           </div>
         </div>
 
         <div class="form-group">
           <label>توضیحات بیشتر</label>
-          <textarea id="pt-notes" placeholder="اگر توضیح خاصی دارید اینجا بنویسید...">${this.state.patientInfo?.notes || ''}</textarea>
+          <textarea id="pt-notes" placeholder="اگر توضیح خاصی دارید اینجا بنویسید...">${this.escapeHtml(this.state.patientInfo?.notes || '')}</textarea>
         </div>
       </div>
     `;
@@ -254,31 +254,31 @@ const Booking = {
         <div class="confirm-card">
           <div class="confirm-row">
             <span class="confirm-label">پزشک</span>
-            <span class="confirm-value">${d.selectedDoctor?.full_name}</span>
+            <span class="confirm-value">${this.escapeHtml(d.selectedDoctor?.full_name)}</span>
           </div>
           <div class="confirm-row">
             <span class="confirm-label">تخصص</span>
-            <span class="confirm-value">${d.selectedDoctor?.specialty_name}</span>
+            <span class="confirm-value">${this.escapeHtml(d.selectedDoctor?.specialty_name)}</span>
           </div>
           <div class="confirm-row">
             <span class="confirm-label">تاریخ</span>
-            <span class="confirm-value">${dateLabel}</span>
+            <span class="confirm-value">${this.escapeHtml(dateLabel)}</span>
           </div>
           <div class="confirm-row">
             <span class="confirm-label">ساعت</span>
-            <span class="confirm-value">${d.selectedTime}</span>
+            <span class="confirm-value">${this.escapeHtml(d.selectedTime)}</span>
           </div>
           <div class="confirm-row">
             <span class="confirm-label">نوع مراجعه</span>
-            <span class="confirm-value">${this.getVisitTypeLabel(d.patientInfo?.type)}</span>
+            <span class="confirm-value">${this.escapeHtml(this.getVisitTypeLabel(d.patientInfo?.type))}</span>
           </div>
           <div class="confirm-row">
             <span class="confirm-label">بیمار</span>
-            <span class="confirm-value">${d.patientInfo?.name}</span>
+            <span class="confirm-value">${this.escapeHtml(d.patientInfo?.name)}</span>
           </div>
           <div class="confirm-row">
             <span class="confirm-label">موبایل</span>
-            <span class="confirm-value">${d.patientInfo?.phone}</span>
+            <span class="confirm-value">${this.escapeHtml(d.patientInfo?.phone)}</span>
           </div>
           <div class="confirm-row highlight">
             <span class="confirm-label">هزینه ویزیت</span>
@@ -308,7 +308,7 @@ const Booking = {
 
   async loadDoctors(specialty = null, search = null) {
     try {
-      const params = {};
+      const params = { available: 'true' };
       if (specialty) params.specialty = specialty;
       if (search) params.search = search;
       const res = await OmidAPI.getDoctors(params);
@@ -474,9 +474,9 @@ const Booking = {
         <div class="booking-success">
           <div class="bs-icon">✅</div>
           <h2>نوبت شما با موفقیت ثبت شد!</h2>
-          <p>کد پیگیری: <strong>#${res.data.id}</strong></p>
-          <p>پزشک: <strong>${this.state.selectedDoctor.full_name}</strong></p>
-          <p>تاریخ: <strong>${new Date(this.state.selectedDate).toLocaleDateString('fa-IR')}</strong> | ساعت: <strong>${this.state.selectedTime}</strong></p>
+          <p>کد پیگیری: <strong>#${this.escapeHtml(res.data.id)}</strong></p>
+          <p>پزشک: <strong>${this.escapeHtml(this.state.selectedDoctor.full_name)}</strong></p>
+          <p>تاریخ: <strong>${this.escapeHtml(new Date(this.state.selectedDate).toLocaleDateString('fa-IR'))}</strong> | ساعت: <strong>${this.escapeHtml(this.state.selectedTime)}</strong></p>
           <button onclick="location.reload()" class="wbtn wbtn-next" style="margin-top:1.5rem;">بازگشت به صفحه اصلی</button>
         </div>
       `;
@@ -487,6 +487,20 @@ const Booking = {
   },
 
   // ─── Helpers ─────────────────────────────────────────────────────────────────
+
+  escapeHtml(value) {
+    return String(value ?? '')
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/\"/g, '&quot;')
+      .replace(/'/g, '&#039;');
+  },
+
+  localImageUrl(value) {
+    const image = String(value || '');
+    return /^\/(assets|uploads)\/[\w./-]+$/.test(image) ? image : '/assets/logo.png';
+  },
 
   getNext14Days() {
     const days = [];

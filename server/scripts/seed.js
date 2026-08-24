@@ -1,6 +1,7 @@
-require('dotenv').config();
-const bcrypt = require('bcryptjs');
 const path = require('path');
+require('dotenv').config();
+require('dotenv').config({ path: path.join(__dirname, '../../.env.local'), override: true });
+const bcrypt = require('bcryptjs');
 const fs = require('fs');
 const { db, initDatabase } = require('../config/database');
 
@@ -109,7 +110,11 @@ const seed = async () => {
 
     // ─── Admin user ─────────────────────────────────────────────────────────
     console.log('👤 Creating admin user...');
-    const adminPassword = await bcrypt.hash(process.env.ADMIN_PASSWORD || 'admin123', 10);
+    const configuredAdminPassword = process.env.ADMIN_PASSWORD;
+    if (process.env.NODE_ENV === 'production' && (!configuredAdminPassword || configuredAdminPassword.length < 12)) {
+      throw new Error('ADMIN_PASSWORD must be set to at least 12 characters in production');
+    }
+    const adminPassword = await bcrypt.hash(configuredAdminPassword || 'admin123', 10);
     db.prepare(`
       INSERT INTO users (username, email, password_hash, full_name, phone, role)
       VALUES (?, ?, ?, ?, ?, 'admin')
@@ -242,7 +247,7 @@ const seed = async () => {
     console.log(`   🏥  ${sortedSpecs.length} specialties`);
     console.log(`   🏨  10 departments`);
     console.log('\n📝 Admin login:');
-    console.log(`   ${process.env.ADMIN_USERNAME || 'admin'} / ${process.env.ADMIN_PASSWORD || 'admin123'}\n`);
+    console.log(`   username: ${process.env.ADMIN_USERNAME || 'admin'}\n`);
 
   } catch (error) {
     console.error('❌ Seeding error:', error);

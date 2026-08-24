@@ -5,7 +5,9 @@ const { db } = require('../config/database');
 // @access  Public
 exports.getAllDoctors = (req, res, next) => {
   try {
-    const { specialty, search, featured, available, page = 1, limit = 20 } = req.query;
+    const { specialty, search, featured, available } = req.query;
+    const page = Math.max(1, Math.min(10000, Number.parseInt(req.query.page, 10) || 1));
+    const limit = Math.max(1, Math.min(100, Number.parseInt(req.query.limit, 10) || 20));
     
     let query = `
       SELECT 
@@ -47,8 +49,8 @@ exports.getAllDoctors = (req, res, next) => {
 
     // Pagination
     const offset = (page - 1) * limit;
-    query += ` LIMIT ? OFFSET ?`;
-    params.push(parseInt(limit), parseInt(offset));
+    query += ' LIMIT ? OFFSET ?';
+    params.push(limit, offset);
 
     const doctors = db.prepare(query).all(...params);
     
@@ -92,8 +94,8 @@ exports.getAllDoctors = (req, res, next) => {
       success: true,
       data: doctors,
       pagination: {
-        page: parseInt(page),
-        limit: parseInt(limit),
+        page,
+        limit,
         total,
         pages: Math.ceil(total / limit)
       }
@@ -270,12 +272,14 @@ exports.updateDoctor = (req, res, next) => {
       }
     }
 
-    const allowedFields = [
-      'bio', 'education', 'experience_years', 'consultation_fee',
-      'office_address', 'office_phone', 'office_lat', 'office_lng',
-      'working_hours', 'accepts_insurance', 'insurance_types',
-      'is_available', 'is_featured', 'image'
-    ];
+    const allowedFields = req.user.role === 'admin'
+      ? [
+          'bio', 'education', 'experience_years', 'consultation_fee',
+          'office_address', 'office_phone', 'office_lat', 'office_lng',
+          'working_hours', 'accepts_insurance', 'insurance_types',
+          'is_available', 'is_featured', 'image'
+        ]
+      : ['bio', 'education', 'office_address', 'office_phone', 'working_hours'];
 
     const updates = [];
     const values = [];

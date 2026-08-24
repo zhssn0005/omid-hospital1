@@ -14,6 +14,18 @@
     else setTimeout(() => waitFor(condition, cb, tries + 1), 200);
   }
 
+  const escapeHtml = (value) => String(value ?? '')
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/\"/g, '&quot;')
+    .replace(/'/g, '&#039;');
+
+  const localImageUrl = (value) => {
+    const image = String(value || '');
+    return /^\/(assets|uploads)\/[\w./-]+$/.test(image) ? image : '/assets/logo.png';
+  };
+
   // ─── Dynamic Specialties / Bento Grid ────────────────────────────────────────
   async function loadSpecialtiesBento() {
     try {
@@ -28,9 +40,9 @@
       specs.forEach((s, i) => {
         bh += `
           <div class="bc${i === 0 ? ' ft' : ''}" onclick="go('doctors')">
-            <div class="bci">${s.icon || '🏥'}</div>
-            <div class="bcn">${s.name_fa}</div>
-            <div class="bcs">${s.doctor_count || 0} پزشک</div>
+            <div class="bci">${escapeHtml(s.icon || '🏥')}</div>
+            <div class="bcn">${escapeHtml(s.name_fa)}</div>
+            <div class="bcs">${escapeHtml(s.doctor_count || 0)} پزشک</div>
           </div>`;
       });
       bentoEl.innerHTML = bh;
@@ -54,15 +66,15 @@
         ph += `
           <div class="dc" onclick="openDoctorFromAPI(${doc.id})">
             <div class="dci">
-              <img src="${doc.image_url || '/assets/logo.png'}" 
+              <img src="${localImageUrl(doc.image_url)}"
                    onerror="this.src='/assets/logo.png'" 
-                   alt="${doc.full_name}" 
+                   alt="${escapeHtml(doc.full_name)}"
                    style="width:100%;height:100%;object-fit:cover;">
               <div class="dcb">📅 رزرو</div>
             </div>
             <div class="dc-body">
-              <div class="dcn">${doc.full_name}</div>
-              <div class="dcs">${doc.specialty_name}</div>
+              <div class="dcn">${escapeHtml(doc.full_name)}</div>
+              <div class="dcs">${escapeHtml(doc.specialty_name)}</div>
               <button class="btn btn-p btn-sm btn-r" 
                 onclick="event.stopPropagation(); window.location.href='/booking.html?doctor=${doc.id}'"
                 style="width:100%;justify-content:center;margin-top:8px">

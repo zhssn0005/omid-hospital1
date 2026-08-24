@@ -1,0 +1,15 @@
+server/
+data/
+cloudflare/
+node_modules/
+.git/
+.env*
+*.db
+*.sqlite
+*.log
+wrangler.toml
+package.json
+package-lock.json
+bun.lockb
+README.md
+*.md

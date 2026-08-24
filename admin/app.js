@@ -11,6 +11,13 @@ const state = {
 };
 
 // Utility Functions
+const escapeHtml = (value) => String(value ?? '')
+  .replace(/&/g, '&amp;')
+  .replace(/</g, '&lt;')
+  .replace(/>/g, '&gt;')
+  .replace(/\"/g, '&quot;')
+  .replace(/'/g, '&#039;');
+
 const showLoading = () => {
   document.getElementById('loading-overlay').style.display = 'flex';
 };
@@ -300,9 +307,9 @@ const renderDoctorsTable = (doctors) => {
 
   return doctors.map(doc => `
     <tr>
-      <td>${doc.full_name}</td>
-      <td>${doc.specialty_name}</td>
-      <td>${doc.medical_code}</td>
+      <td>${escapeHtml(doc.full_name)}</td>
+      <td>${escapeHtml(doc.specialty_name)}</td>
+      <td>${escapeHtml(doc.medical_code)}</td>
       <td>${(doc.consultation_fee || 0).toLocaleString()} تومان</td>
       <td>⭐ ${(doc.rating || 0).toFixed(1)}</td>
       <td><span class="badge badge-${doc.is_available ? 'success' : 'danger'}">${doc.is_available ? 'فعال' : 'غیرفعال'}</span></td>
@@ -351,40 +358,40 @@ window.showDoctorModal = async (doctorId = null) => {
         <form id="doctor-form" class="modal-body">
           <div class="form-group">
             <label>کد نظام پزشکی *</label>
-            <input type="text" name="medical_code" value="${doctor?.medical_code || ''}" required>
+            <input type="text" name="medical_code" value="${escapeHtml(doctor?.medical_code || '')}" required>
           </div>
           <div class="form-group">
             <label>تخصص *</label>
             <select name="specialty_id" required>
               <option value="">انتخاب کنید</option>
               ${specialties.data.map(s => `
-                <option value="${s.id}" ${doctor?.specialty_id === s.id ? 'selected' : ''}>${s.name_fa}</option>
+                <option value="${escapeHtml(s.id)}" ${doctor?.specialty_id === s.id ? 'selected' : ''}>${escapeHtml(s.name_fa)}</option>
               `).join('')}
             </select>
           </div>
           <div class="form-group">
             <label>بیوگرافی</label>
-            <textarea name="bio">${doctor?.bio || ''}</textarea>
+            <textarea name="bio">${escapeHtml(doctor?.bio || '')}</textarea>
           </div>
           <div class="form-group">
             <label>تحصیلات</label>
-            <textarea name="education">${doctor?.education || ''}</textarea>
+            <textarea name="education">${escapeHtml(doctor?.education || '')}</textarea>
           </div>
           <div class="form-group">
             <label>سابقه کار (سال)</label>
-            <input type="number" name="experience_years" value="${doctor?.experience_years || 0}">
+            <input type="number" name="experience_years" value="${escapeHtml(doctor?.experience_years || 0)}">
           </div>
           <div class="form-group">
             <label>هزینه ویزیت (تومان)</label>
-            <input type="number" name="consultation_fee" value="${doctor?.consultation_fee || 0}">
+            <input type="number" name="consultation_fee" value="${escapeHtml(doctor?.consultation_fee || 0)}">
           </div>
           <div class="form-group">
             <label>آدرس مطب</label>
-            <textarea name="office_address">${doctor?.office_address || ''}</textarea>
+            <textarea name="office_address">${escapeHtml(doctor?.office_address || '')}</textarea>
           </div>
           <div class="form-group">
             <label>تلفن مطب</label>
-            <input type="text" name="office_phone" value="${doctor?.office_phone || ''}">
+            <input type="text" name="office_phone" value="${escapeHtml(doctor?.office_phone || '')}">
           </div>
         </form>
         <div class="modal-footer">
@@ -466,9 +473,9 @@ const loadSpecialtiesPage = async (container) => {
         <tbody>
           ${specialties.map(spec => `
             <tr>
-              <td>${spec.name_fa}</td>
-              <td>${spec.name_en}</td>
-              <td>${spec.doctor_count}</td>
+              <td>${escapeHtml(spec.name_fa)}</td>
+              <td>${escapeHtml(spec.name_en)}</td>
+              <td>${escapeHtml(spec.doctor_count)}</td>
               <td><span class="badge badge-${spec.is_active ? 'success' : 'danger'}">${spec.is_active ? 'فعال' : 'غیرفعال'}</span></td>
               <td class="action-buttons">
                 <button class="btn btn-sm btn-primary" onclick="editSpecialty(${spec.id})">ویرایش</button>
@@ -540,11 +547,11 @@ const renderAppointmentsTable = (appointments) => {
   return appointments.map(apt => `
     <tr>
       <td>${apt.id}</td>
-      <td>${apt.patient_name}</td>
-      <td>${apt.doctor_name}</td>
-      <td>${apt.appointment_date}</td>
-      <td>${apt.appointment_time}</td>
-      <td>${apt.type}</td>
+      <td>${escapeHtml(apt.patient_name)}</td>
+      <td>${escapeHtml(apt.doctor_name)}</td>
+      <td>${escapeHtml(apt.appointment_date)}</td>
+      <td>${escapeHtml(apt.appointment_time)}</td>
+      <td>${escapeHtml(apt.type)}</td>
       <td><span class="badge badge-${getStatusBadge(apt.status)}">${getStatusText(apt.status)}</span></td>
       <td class="action-buttons">
         ${apt.status === 'pending' ? `
@@ -595,10 +602,10 @@ const loadDepartmentsPage = async (container) => {
         <tbody>
           ${departments.map(dept => `
             <tr>
-              <td>${dept.name_fa}</td>
-              <td>طبقه ${dept.floor || '-'}</td>
-              <td>${dept.phone || '-'}</td>
-              <td>${dept.head_doctor_name || '-'}</td>
+              <td>${escapeHtml(dept.name_fa)}</td>
+              <td>طبقه ${escapeHtml(dept.floor || '-')}</td>
+              <td>${escapeHtml(dept.phone || '-')}</td>
+              <td>${escapeHtml(dept.head_doctor_name || '-')}</td>
               <td><span class="badge badge-${dept.is_active ? 'success' : 'danger'}">${dept.is_active ? 'فعال' : 'غیرفعال'}</span></td>
               <td class="action-buttons">
                 <button class="btn btn-sm btn-primary" onclick="editDepartment(${dept.id})">ویرایش</button>
@@ -642,9 +649,9 @@ const loadReviewsPage = async (container) => {
         <tbody>
           ${reviews.map(review => `
             <tr>
-              <td>${review.patient_name}</td>
-              <td>${'⭐'.repeat(review.rating)}</td>
-              <td>${review.comment || '-'}</td>
+              <td>${escapeHtml(review.patient_name)}</td>
+              <td>${'⭐'.repeat(Math.max(0, Math.min(5, Number(review.rating) || 0)))}</td>
+              <td>${escapeHtml(review.comment || '-')}</td>
               <td>${new Date(review.created_at).toLocaleDateString('fa-IR')}</td>
               <td><span class="badge badge-${review.is_approved ? 'success' : 'warning'}">${review.is_approved ? 'تایید شده' : 'در انتظار'}</span></td>
               <td class="action-buttons">

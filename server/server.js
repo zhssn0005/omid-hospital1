@@ -12,15 +12,24 @@ const { errorHandler, notFound } = require('./middleware/errorHandler');
 // Create Express app first
 const app = express();
 
+// Fail closed in production instead of starting with unusable or guessable auth.
+if (process.env.NODE_ENV === 'production') {
+  const missing = ['JWT_SECRET'].filter(key => !process.env[key] || process.env[key].length < 32);
+  if (missing.length) {
+    throw new Error(`Missing or weak production secrets: ${missing.join(', ')}`);
+  }
+}
+
 // Security middleware
 app.use(helmet({
   crossOriginResourcePolicy: { policy: "cross-origin" }
 }));
 
-// CORS configuration
+// CORS configuration. Same-origin requests do not need CORS; external clients
+// must opt in explicitly through CORS_ORIGIN.
 const corsOrigin = process.env.CORS_ORIGIN;
 const corsOptions = {
-  origin: corsOrigin ? corsOrigin.split(',').map(s => s.trim()) : (process.env.NODE_ENV === 'production' ? 'https://omid.hospital' : 'http://localhost:5000'),
+  origin: corsOrigin ? corsOrigin.split(',').map(s => s.trim()) : false,
   credentials: true,
   optionsSuccessStatus: 200
 };
@@ -31,13 +40,24 @@ const rateLimit = require('express-rate-limit');
 const limiter = rateLimit({
   windowMs: 15 * 60 * 1000,
   max: 100,
+  standardHeaders: true,
+  legacyHeaders: false,
   message: { success: false, message: 'درخواست‌های بیش از حد - لطفاً بعداً تلاش کنید' }
 });
+const authLimiter = rateLimit({
+  windowMs: 15 * 60 * 1000,
+  max: 10,
+  standardHeaders: true,
+  legacyHeaders: false,
+  message: { success: false, message: 'تعداد تلاش‌ها بیش از حد مجاز است' }
+});
 app.use('/api/', limiter);
+app.use('/api/auth/login', authLimiter);
+app.use('/api/auth/register', authLimiter);
 
 // Body parser
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
+app.use(express.json({ limit: '256kb' }));
+app.use(express.urlencoded({ extended: true, limit: '256kb' }));
 
 // Compression
 app.use(compression());

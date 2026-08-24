@@ -4,14 +4,20 @@
   "description": "Omid Hospital Management System - Full Stack",
   "main": "server/server.js",
   "scripts": {
-    "start": "cd server && node scripts/seed.js && node server.js",
+    "start": "cd server && node server.js",
     "dev": "cd server && nodemon server.js",
     "seed": "cd server && node scripts/seed.js",
-    "build": "echo 'No build step required'",
+    "build": "node --check server/server.js",
+    "cf:dev": "wrangler dev",
+    "cf:migrate": "wrangler d1 migrations apply omid-hospital --remote",
+    "cf:deploy": "wrangler deploy",
     "postinstall": "cd server && npm install"
   },
   "engines": {
     "node": ">=18.0.0"
+  },
+  "devDependencies": {
+    "wrangler": "^4.29.0"
   },
   "keywords": ["hospital", "medical", "appointment"],
   "author": "Omid Hospital",

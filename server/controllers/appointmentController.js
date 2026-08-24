@@ -5,7 +5,9 @@ const { db } = require('../config/database');
 // @access  Private
 exports.getAllAppointments = (req, res, next) => {
   try {
-    const { status, doctor_id, patient_id, date, page = 1, limit = 20 } = req.query;
+    const { status, doctor_id, patient_id, date } = req.query;
+    const page = Math.max(1, Math.min(10000, Number.parseInt(req.query.page, 10) || 1));
+    const limit = Math.max(1, Math.min(100, Number.parseInt(req.query.limit, 10) || 20));
     
     let query = `
       SELECT 
@@ -32,6 +34,8 @@ exports.getAllAppointments = (req, res, next) => {
       if (doctor) {
         query += ' AND a.doctor_id = ?';
         params.push(doctor.id);
+      } else {
+        query += ' AND 1 = 0';
       }
     } else if (req.user.role === 'patient') {
       query += ' AND a.patient_id = ?';
@@ -62,13 +66,13 @@ exports.getAllAppointments = (req, res, next) => {
 
     // Pagination
     const offset = (page - 1) * limit;
-    query += ` LIMIT ? OFFSET ?`;
-    params.push(parseInt(limit), parseInt(offset));
+    query += ' LIMIT ? OFFSET ?';
+    params.push(limit, offset);
 
     const appointments = db.prepare(query).all(...params);
 
     // Get total count
-    let countQuery = query.split('ORDER BY')[0].replace(/SELECT .* FROM/, 'SELECT COUNT(*) as total FROM');
+    let countQuery = query.split('ORDER BY')[0].replace(/SELECT[\s\S]*?FROM/, 'SELECT COUNT(*) as total FROM');
     const countParams = params.slice(0, -2); // Remove LIMIT and OFFSET params
     
     const { total } = db.prepare(countQuery).get(...countParams);
@@ -77,8 +81,8 @@ exports.getAllAppointments = (req, res, next) => {
       success: true,
       data: appointments,
       pagination: {
-        page: parseInt(page),
-        limit: parseInt(limit),
+        page,
+        limit,
         total,
         pages: Math.ceil(total / limit)
       }
@@ -162,38 +166,31 @@ exports.createAppointment = (req, res, next) => {
       notes
     } = req.body;
 
-    // Validation
-    if (!doctor_id || !appointment_date || !appointment_time || !type || !patient_name || !patient_phone) {
+    // Validate the booking contract before touching the database.
+    const allowedTypes = ['in-person', 'online-video', 'online-chat', 'phone'];
+    const validDate = typeof appointment_date === 'string' && /^\d{4}-\d{2}-\d{2}$/.test(appointment_date);
+    const validTime = typeof appointment_time === 'string' && /^([01]\d|2[0-3]):[0-5]\d$/.test(appointment_time);
+    const validPhone = typeof patient_phone === 'string' && /^[+\d][\d\s-]{7,19}$/.test(patient_phone);
+    const normalizedDoctorId = Number(doctor_id);
+
+    if (!Number.isInteger(normalizedDoctorId) || !validDate || !validTime || !allowedTypes.includes(type) ||
+        typeof patient_name !== 'string' || patient_name.trim().length < 2 || patient_name.length > 120 ||
+        !validPhone || (patient_age !== undefined && patient_age !== null &&
+          (!Number.isInteger(Number(patient_age)) || Number(patient_age) < 0 || Number(patient_age) > 120))) {
       return res.status(400).json({
         success: false,
-        message: 'لطفاً تمام فیلدهای الزامی را پر کنید'
+        message: 'اطلاعات نوبت نامعتبر است'
       });
     }
 
     // Check if doctor exists
     const doctor = db.prepare('SELECT id FROM doctors WHERE id = ? AND is_available = 1')
-      .get(doctor_id);
+      .get(normalizedDoctorId);
 
     if (!doctor) {
       return res.status(404).json({
         success: false,
         message: 'پزشک مورد نظر یافت نشد یا در حال حاضر قابل رزرو نیست'
-      });
-    }
-
-    // Check if time slot is available
-    const existingAppointment = db.prepare(`
-      SELECT id FROM appointments 
-      WHERE doctor_id = ? 
-      AND appointment_date = ? 
-      AND appointment_time = ?
-      AND status != 'cancelled'
-    `).get(doctor_id, appointment_date, appointment_time);
-
-    if (existingAppointment) {
-      return res.status(400).json({
-        success: false,
-        message: 'این زمان قبلاً رزرو شده است'
       });
     }
 
@@ -208,15 +205,15 @@ exports.createAppointment = (req, res, next) => {
 
     const result = insert.run(
       patient_id,
-      doctor_id,
+      normalizedDoctorId,
       appointment_date,
       appointment_time,
       type,
-      patient_name,
-      patient_phone,
-      patient_age || null,
-      reason || null,
-      notes || null
+      patient_name.trim(),
+      patient_phone.trim(),
+      patient_age === undefined || patient_age === null || patient_age === '' ? null : Number(patient_age),
+      typeof reason === 'string' ? reason.slice(0, 500) : null,
+      typeof notes === 'string' ? notes.slice(0, 2000) : null
     );
 
     const newAppointment = db.prepare('SELECT * FROM appointments WHERE id = ?')
@@ -228,6 +225,12 @@ exports.createAppointment = (req, res, next) => {
       data: newAppointment
     });
   } catch (error) {
+    if (error.message && error.message.includes('appointments_slot_unique_active')) {
+      return res.status(409).json({
+        success: false,
+        message: 'این زمان هم‌زمان توسط کاربر دیگری رزرو شد'
+      });
+    }
     next(error);
   }
 };
@@ -250,26 +253,39 @@ exports.updateAppointment = (req, res, next) => {
       });
     }
 
-    // Check permission
+    // Check permission. Doctors may only manage their own appointments.
     if (req.user.role === 'patient' && appointment.patient_id !== req.user.id) {
       return res.status(403).json({
         success: false,
         message: 'شما دسترسی به ویرایش این نوبت را ندارید'
       });
     }
-
-    const allowedFields = ['appointment_date', 'appointment_time', 'type', 'notes', 'reason'];
-    
-    if (req.user.role === 'admin' || req.user.role === 'doctor') {
-      allowedFields.push('status');
+    if (req.user.role === 'doctor') {
+      const doctor = db.prepare('SELECT id FROM doctors WHERE user_id = ?').get(req.user.id);
+      if (!doctor || appointment.doctor_id !== doctor.id) {
+        return res.status(403).json({
+          success: false,
+          message: 'شما دسترسی به ویرایش این نوبت را ندارید'
+        });
+      }
     }
 
+    const allowedFields = ['appointment_date', 'appointment_time', 'type', 'notes', 'reason'];
+    const allowedStatuses = ['pending', 'confirmed', 'completed', 'cancelled'];
+    
     const updates = [];
     const values = [];
 
     Object.keys(req.body).forEach(key => {
       if (allowedFields.includes(key)) {
+        if (key === 'appointment_date' && !/^\d{4}-\d{2}-\d{2}$/.test(String(req.body[key]))) return;
+        if (key === 'appointment_time' && !/^([01]\d|2[0-3]):[0-5]\d$/.test(String(req.body[key]))) return;
+        if (key === 'type' && !['in-person', 'online-video', 'online-chat', 'phone'].includes(req.body[key])) return;
         updates.push(`${key} = ?`);
+        values.push(typeof req.body[key] === 'string' ? req.body[key].slice(0, 2000) : req.body[key]);
+      }
+      if (key === 'status' && (req.user.role === 'admin' || req.user.role === 'doctor') && allowedStatuses.includes(req.body[key])) {
+        updates.push('status = ?');
         values.push(req.body[key]);
       }
     });
@@ -285,7 +301,17 @@ exports.updateAppointment = (req, res, next) => {
     values.push(appointmentId);
 
     const query = `UPDATE appointments SET ${updates.join(', ')} WHERE id = ?`;
-    db.prepare(query).run(...values);
+    try {
+      db.prepare(query).run(...values);
+    } catch (error) {
+      if (error.message && error.message.includes('appointments_slot_unique_active')) {
+        return res.status(409).json({
+          success: false,
+          message: 'این زمان هم‌زمان توسط کاربر دیگری رزرو شده است'
+        });
+      }
+      throw error;
+    }
 
     const updatedAppointment = db.prepare('SELECT * FROM appointments WHERE id = ?')
       .get(appointmentId);
@@ -317,12 +343,22 @@ exports.cancelAppointment = (req, res, next) => {
       });
     }
 
-    // Check permission
+    // Check permission. Doctors may only cancel their own appointments.
     if (req.user.role === 'patient' && appointment.patient_id !== req.user.id) {
       return res.status(403).json({
         success: false,
         message: 'شما دسترسی به لغو این نوبت را ندارید'
       });
+    }
+    if (req.user.role === 'doctor') {
+      const doctor = db.prepare('SELECT id FROM doctors WHERE user_id = ?').get(req.user.id);
+      const appointmentDoctor = db.prepare('SELECT doctor_id FROM appointments WHERE id = ?').get(appointmentId);
+      if (!doctor || !appointmentDoctor || appointmentDoctor.doctor_id !== doctor.id) {
+        return res.status(403).json({
+          success: false,
+          message: 'شما دسترسی به لغو این نوبت را ندارید'
+        });
+      }
     }
 
     db.prepare('UPDATE appointments SET status = ?, updated_at = CURRENT_TIMESTAMP WHERE id = ?')
@@ -342,10 +378,10 @@ exports.cancelAppointment = (req, res, next) => {
 // @access  Public
 exports.getAvailableSlots = (req, res, next) => {
   try {
-    const { doctorId } = req.params;
+    const doctorId = Number.parseInt(req.params.doctorId, 10);
     const { date } = req.query;
 
-    if (!date) {
+    if (!Number.isInteger(doctorId) || !/^\d{4}-\d{2}-\d{2}$/.test(String(date || ''))) {
       return res.status(400).json({
         success: false,
         message: 'لطفاً تاریخ را مشخص کنید'
@@ -363,7 +399,12 @@ exports.getAvailableSlots = (req, res, next) => {
       });
     }
 
-    const workingHours = doctor.working_hours ? JSON.parse(doctor.working_hours) : {};
+    let workingHours = {};
+    try {
+      workingHours = doctor.working_hours ? JSON.parse(doctor.working_hours) : {};
+    } catch (_) {
+      workingHours = {};
+    }
     
     // Get day of week from date
     const dateObj = new Date(date);
@@ -390,6 +431,11 @@ exports.getAvailableSlots = (req, res, next) => {
 
     // Generate available slots based on working hours
     const { start, end, duration = 30 } = workingHours[dayOfWeek];
+    if (!/^([01]\d|2[0-3]):[0-5]\d$/.test(start || '') ||
+        !/^([01]\d|2[0-3]):[0-5]\d$/.test(end || '') ||
+        !Number.isInteger(Number(duration)) || Number(duration) < 5 || Number(duration) > 240 || start >= end) {
+      return res.json({ success: true, data: { date, day: dayOfWeek, available_slots: [], consultation_fee: doctor.consultation_fee } });
+    }
     const availableSlots = [];
     
     let currentTime = start;
