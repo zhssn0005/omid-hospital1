@@ -54,7 +54,7 @@
         ph += `
           <div class="dc" onclick="openDoctorFromAPI(${doc.id})">
             <div class="dci">
-              <img src="${doc.image || (doc.avatar || '/assets/logo.png')}" 
+              <img src="${doc.image_url || '/assets/logo.png'}" 
                    onerror="this.src='/assets/logo.png'" 
                    alt="${doc.full_name}" 
                    style="width:100%;height:100%;object-fit:cover;">

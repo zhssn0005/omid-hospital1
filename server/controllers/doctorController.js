@@ -13,7 +13,10 @@ exports.getAllDoctors = (req, res, next) => {
         s.name_fa as specialty_name,
         s.slug as specialty_slug,
         u.full_name,
-        u.avatar
+        u.avatar,
+        CASE WHEN d.image_local IS NOT NULL AND d.image_local != '' 
+             THEN '/assets/doctors/' || d.image_local 
+             ELSE NULL END as image_url
       FROM doctors d
       LEFT JOIN specialties s ON d.specialty_id = s.id
       LEFT JOIN users u ON d.user_id = u.id
@@ -48,6 +51,15 @@ exports.getAllDoctors = (req, res, next) => {
     params.push(parseInt(limit), parseInt(offset));
 
     const doctors = db.prepare(query).all(...params);
+    
+    // Fix null full_name: extract name from bio, set image_url
+    doctors.forEach(d => {
+      if (!d.full_name && d.bio) {
+        const parts = d.bio.split(' — ');
+        d.full_name = parts[0].trim();
+      }
+      if (!d.full_name) d.full_name = 'پزشک متخصص';
+    });
 
     // Get total count
     let countQuery = `
@@ -105,7 +117,10 @@ exports.getDoctor = (req, res, next) => {
         u.full_name,
         u.email,
         u.phone,
-        u.avatar
+        u.avatar,
+        CASE WHEN d.image_local IS NOT NULL AND d.image_local != '' 
+             THEN '/assets/doctors/' || d.image_local 
+             ELSE NULL END as image_url
       FROM doctors d
       LEFT JOIN specialties s ON d.specialty_id = s.id
       LEFT JOIN users u ON d.user_id = u.id

@@ -157,6 +157,7 @@ const SCHEMA = `
     is_available INTEGER DEFAULT 1,
     is_featured INTEGER DEFAULT 0,
     image TEXT,
+    image_local TEXT,
     created_at TEXT DEFAULT (datetime('now')),
     updated_at TEXT DEFAULT (datetime('now'))
   );
@@ -275,6 +276,8 @@ const initDatabase = async () => {
 
   // Run schema
   _db.run(SCHEMA);
+  // Run migrations for columns added after initial release
+  try { _db.run("ALTER TABLE doctors ADD COLUMN image_local TEXT DEFAULT NULL"); } catch(e) {}
   saveDb();
   console.log('✅ Database schema initialized');
 };
