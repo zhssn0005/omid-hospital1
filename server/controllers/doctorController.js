@@ -372,6 +372,52 @@ exports.getSchedule = (req, res, next) => {
   }
 };
 
+// @desc    Get date-specific schedule overrides
+exports.getScheduleDates = (req, res, next) => {
+  try {
+    const rows = db.prepare(`
+      SELECT id, doctor_id, schedule_date, enabled, start_time, end_time, slot_duration, note
+      FROM doctor_schedule_dates WHERE doctor_id = ? ORDER BY schedule_date ASC
+    `).all(req.params.id);
+    res.json({ success: true, data: rows });
+  } catch (error) { next(error); }
+};
+
+// @desc    Create or update one date-specific schedule override
+exports.saveScheduleDate = (req, res, next) => {
+  try {
+    const doctorId = Number.parseInt(req.params.id, 10);
+    const { schedule_date, enabled = true, start_time, end_time, slot_duration = 30, note } = req.body;
+    if (!Number.isInteger(doctorId) || !/^\d{4}-\d{2}-\d{2}$/.test(String(schedule_date || ''))) {
+      return res.status(400).json({ success: false, message: 'تاریخ میلادی معتبر الزامی است' });
+    }
+    const duration = Number(slot_duration);
+    const validTime = value => /^([01]\d|2[0-3]):[0-5]\d$/.test(String(value || ''));
+    if (enabled && (!validTime(start_time) || !validTime(end_time) || start_time >= end_time || !Number.isInteger(duration) || duration < 5 || duration > 240)) {
+      return res.status(400).json({ success: false, message: 'بازه زمانی یا مدت نوبت نامعتبر است' });
+    }
+    if (!db.prepare('SELECT id FROM doctors WHERE id = ?').get(doctorId)) {
+      return res.status(404).json({ success: false, message: 'پزشک مورد نظر یافت نشد' });
+    }
+    db.prepare(`
+      INSERT INTO doctor_schedule_dates (doctor_id, schedule_date, enabled, start_time, end_time, slot_duration, note, created_by)
+      VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+      ON CONFLICT(doctor_id, schedule_date) DO UPDATE SET enabled=excluded.enabled, start_time=excluded.start_time,
+        end_time=excluded.end_time, slot_duration=excluded.slot_duration, note=excluded.note,
+        updated_at=CURRENT_TIMESTAMP
+    `).run(doctorId, schedule_date, enabled ? 1 : 0, enabled ? start_time : null, enabled ? end_time : null, duration, typeof note === 'string' ? note.slice(0, 300) : null, req.user.id);
+    res.json({ success: true, message: 'برنامه تاریخ با موفقیت ذخیره شد', data: db.prepare('SELECT * FROM doctor_schedule_dates WHERE doctor_id = ? AND schedule_date = ?').get(doctorId, schedule_date) });
+  } catch (error) { next(error); }
+};
+
+exports.deleteScheduleDate = (req, res, next) => {
+  try {
+    const result = db.prepare('DELETE FROM doctor_schedule_dates WHERE doctor_id = ? AND schedule_date = ?').run(req.params.id, req.params.date);
+    if (!result.changes) return res.status(404).json({ success: false, message: 'برنامه تاریخ یافت نشد' });
+    res.json({ success: true, message: 'استثنای تاریخ حذف شد' });
+  } catch (error) { next(error); }
+};
+
 // @desc    Update doctor schedule
 // @route   PUT /api/doctors/:id/schedule
 // @access  Private (Doctor)
@@ -391,7 +437,7 @@ exports.updateSchedule = (req, res, next) => {
       });
     }
 
-    if (req.user.role !== 'admin' && doctor.user_id !== req.user.id) {
+    if (!['admin', 'secretary'].includes(req.user.role) && doctor.user_id !== req.user.id) {
       return res.status(403).json({
         success: false,
         message: 'شما دسترسی به ویرایش برنامه این پزشک را ندارید'

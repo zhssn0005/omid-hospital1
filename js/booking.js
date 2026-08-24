@@ -137,7 +137,7 @@ const Booking = {
   // Step 2: Select Date & Time
   renderStep2() {
     const today = new Date();
-    const dates = this.getNext14Days();
+    const dates = this.getNext30Days();
 
     return `
       <div class="wiz-step2">
@@ -502,17 +502,17 @@ const Booking = {
     return /^\/(assets|uploads)\/[\w./-]+$/.test(image) ? image : '/assets/logo.png';
   },
 
-  getNext14Days() {
+  getNext30Days() {
     const days = [];
     const today = new Date();
-    for (let i = 0; i < 14; i++) {
+    for (let i = 0; i < 30; i++) {
       const d = new Date(today);
       d.setDate(today.getDate() + i);
       const iso = d.toISOString().split('T')[0];
       days.push({
         iso,
-        day: d.toLocaleDateString('fa-IR', { day: 'numeric' }),
-        month: d.toLocaleDateString('fa-IR', { month: 'short' }),
+        day: d.toLocaleDateString('fa-IR-u-ca-persian', { day: 'numeric' }),
+        month: d.toLocaleDateString('fa-IR-u-ca-persian', { month: 'short' }),
         dayName: this.dayMap[d.getDay()],
       });
     }

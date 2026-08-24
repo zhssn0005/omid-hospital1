@@ -284,7 +284,7 @@ exports.updateAppointment = (req, res, next) => {
         updates.push(`${key} = ?`);
         values.push(typeof req.body[key] === 'string' ? req.body[key].slice(0, 2000) : req.body[key]);
       }
-      if (key === 'status' && (req.user.role === 'admin' || req.user.role === 'doctor') && allowedStatuses.includes(req.body[key])) {
+      if (key === 'status' && ['admin', 'doctor', 'secretary'].includes(req.user.role) && allowedStatuses.includes(req.body[key])) {
         updates.push('status = ?');
         values.push(req.body[key]);
       }
@@ -389,17 +389,21 @@ exports.getAvailableSlots = (req, res, next) => {
     }
 
     // Get doctor's working hours
-    const doctor = db.prepare('SELECT working_hours, consultation_fee FROM doctors WHERE id = ?')
+    const doctor = db.prepare('SELECT working_hours, consultation_fee, is_available FROM doctors WHERE id = ?')
       .get(doctorId);
 
-    if (!doctor) {
+    if (!doctor || !doctor.is_available) {
       return res.status(404).json({
         success: false,
-        message: 'پزشک مورد نظر یافت نشد'
+        message: 'پزشک مورد نظر یافت نشد یا قابل رزرو نیست'
       });
     }
 
     let workingHours = {};
+    const dateOverride = db.prepare(`
+      SELECT enabled, start_time AS start, end_time AS end, slot_duration AS duration
+      FROM doctor_schedule_dates WHERE doctor_id = ? AND schedule_date = ?
+    `).get(doctorId, date);
     try {
       workingHours = doctor.working_hours ? JSON.parse(doctor.working_hours) : {};
     } catch (_) {
@@ -410,13 +414,11 @@ exports.getAvailableSlots = (req, res, next) => {
     const dateObj = new Date(date);
     const dayOfWeek = ['sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday'][dateObj.getDay()];
 
-    if (!workingHours[dayOfWeek] || !workingHours[dayOfWeek].enabled) {
+    const schedule = dateOverride || workingHours[dayOfWeek];
+    if (!schedule || !schedule.enabled) {
       return res.json({
         success: true,
-        data: {
-          available_slots: [],
-          message: 'پزشک در این روز حضور ندارد'
-        }
+        data: { date, day: dayOfWeek, available_slots: [], message: 'پزشک در این روز حضور ندارد' }
       });
     }
 
@@ -430,7 +432,7 @@ exports.getAvailableSlots = (req, res, next) => {
     `).all(doctorId, date).map(a => a.appointment_time);
 
     // Generate available slots based on working hours
-    const { start, end, duration = 30 } = workingHours[dayOfWeek];
+    const { start, end, duration = 30 } = schedule;
     if (!/^([01]\d|2[0-3]):[0-5]\d$/.test(start || '') ||
         !/^([01]\d|2[0-3]):[0-5]\d$/.test(end || '') ||
         !Number.isInteger(Number(duration)) || Number(duration) < 5 || Number(duration) > 240 || start >= end) {

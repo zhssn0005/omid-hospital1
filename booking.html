@@ -9,21 +9,21 @@
 <link rel="stylesheet" href="/css/theme.css">
 <link rel="stylesheet" href="/js/booking.css">
 <style>
-body { padding-top:5rem; background:var(--bg-primary); }
-.booking-header { 
-  text-align:center; padding:2rem 1rem; 
-  background:linear-gradient(135deg, rgba(6,182,212,0.1), rgba(139,92,246,0.1));
-  border-bottom:1px solid var(--glass-border);
+body { padding-top: 5.3rem; background: var(--bg); }
+.booking-header {
+  text-align: center; padding: 2.5rem 1rem;
+  background: linear-gradient(135deg, var(--primary-light), var(--teal-light));
+  border-bottom: 1px solid var(--border);
 }
-.booking-header h1 { font-size:2rem; color:var(--text-primary); }
-.booking-header p { color:var(--text-secondary); margin-top:0.5rem; }
+.booking-header h1 { font-size: 2rem; font-weight: 900; color: var(--text-primary); }
+.booking-header p { color: var(--text-secondary); margin-top: 0.4rem; font-size: 1rem; }
+.back-link { display: inline-block; padding: 1rem 2rem; color: var(--teal); text-decoration: none; font-weight: 700; }
 </style>
 </head>
 <body>
-<canvas id="particles"></canvas>
 
 <div style="max-width:1200px;margin:0 auto;padding:0 1rem;">
-  <a href="/" style="display:inline-block;padding:1rem 2rem;color:var(--accent-cyan);text-decoration:none;font-weight:600;">← بازگشت به صفحه اصلی</a>
+  <a href="/" class="back-link">← بازگشت به صفحه اصلی</a>
 </div>
 
 <section class="booking-header">
@@ -35,20 +35,6 @@ body { padding-top:5rem; background:var(--bg-primary); }
   <div id="booking-wizard"></div>
 </div>
 
-<script>
-// Particles
-(function(){
-  var c=document.getElementById('particles'),ctx=c.getContext('2d'),w,h,pts=[];
-  function rs(){w=c.width=innerWidth;h=c.height=innerHeight;}
-  rs();addEventListener('resize',rs);
-  for(var i=0;i<40;i++)pts.push({x:Math.random()*w,y:Math.random()*h,vx:(Math.random()-0.5)*0.4,vy:(Math.random()-0.5)*0.4,r:Math.random()*1.2+0.3,a:Math.random()*0.3+0.05});
-  (function dr(){
-    ctx.clearRect(0,0,w,h);
-    pts.forEach(function(p){p.x+=p.vx;p.y+=p.vy;if(p.x<0||p.x>w)p.vx*=-1;if(p.y<0||p.y>h)p.vy*=-1;ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,6.28);ctx.fillStyle='rgba(6,182,212,'+p.a+')';ctx.fill();});
-    requestAnimationFrame(dr);
-  })();
-})();
-</script>
 <script src="/js/api.js"></script>
 <script src="/js/booking.js"></script>
 </body>

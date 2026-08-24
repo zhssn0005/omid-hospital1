@@ -173,7 +173,8 @@ async function slots(request, env, doctorId) {
   let hours = {};
   try { hours = doctor.working_hours ? JSON.parse(doctor.working_hours) : {}; } catch (_) {}
   const day = ['sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday'][new Date(`${date}T00:00:00Z`).getUTCDay()];
-  const schedule = hours[day];
+  const override = await env.DB.prepare(`SELECT enabled, start_time AS start, end_time AS end, slot_duration AS duration FROM doctor_schedule_dates WHERE doctor_id = ? AND schedule_date = ?`).bind(doctorId, date).first();
+  const schedule = override || hours[day];
   if (!schedule || !schedule.enabled) return ok({ date, day, available_slots: [], consultation_fee: doctor.consultation_fee });
   const validTime = value => /^([01]\d|2[0-3]):[0-5]\d$/.test(value || '');
   const duration = Number(schedule.duration || 30);
@@ -191,6 +192,35 @@ async function slots(request, env, doctorId) {
     minutes += duration;
   }
   return ok({ date, day, available_slots: available, consultation_fee: doctor.consultation_fee });
+}
+
+async function scheduleDates(request, env, doctorId) {
+  const rows = await env.DB.prepare(`SELECT id, doctor_id, schedule_date, enabled, start_time, end_time, slot_duration, note FROM doctor_schedule_dates WHERE doctor_id = ? ORDER BY schedule_date ASC`).bind(doctorId).all();
+  return ok(rows.results);
+}
+
+async function saveScheduleDate(request, env, user, doctorId, dateParam = null) {
+  const input = await body(request) || {};
+  const date = dateParam || text(input.schedule_date);
+  const enabled = input.enabled !== false && input.enabled !== 0;
+  const start = text(input.start_time);
+  const end = text(input.end_time);
+  const duration = integer(input.slot_duration) || 30;
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(date)) return error('تاریخ میلادی معتبر الزامی است');
+  if (enabled && (!/^([01]\d|2[0-3]):[0-5]\d$/.test(start) || !/^([01]\d|2[0-3]):[0-5]\d$/.test(end) || start >= end || duration < 5 || duration > 240)) return error('بازه زمانی یا مدت نوبت نامعتبر است');
+  if (!await env.DB.prepare('SELECT id FROM doctors WHERE id = ?').bind(doctorId).first()) return error('پزشک مورد نظر یافت نشد', 404);
+  await env.DB.prepare(`
+    INSERT INTO doctor_schedule_dates (doctor_id, schedule_date, enabled, start_time, end_time, slot_duration, note, created_by)
+    VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+    ON CONFLICT(doctor_id, schedule_date) DO UPDATE SET enabled=excluded.enabled, start_time=excluded.start_time,
+      end_time=excluded.end_time, slot_duration=excluded.slot_duration, note=excluded.note, updated_at=CURRENT_TIMESTAMP
+  `).bind(doctorId, date, enabled ? 1 : 0, enabled ? start : null, enabled ? end : null, duration, text(input.note).slice(0, 300) || null, user.id).run();
+  return ok(await env.DB.prepare('SELECT * FROM doctor_schedule_dates WHERE doctor_id = ? AND schedule_date = ?').bind(doctorId, date).first(), 'برنامه تاریخ با موفقیت ذخیره شد');
+}
+
+async function deleteScheduleDate(env, doctorId, date) {
+  const result = await env.DB.prepare('DELETE FROM doctor_schedule_dates WHERE doctor_id = ? AND schedule_date = ?').bind(doctorId, date).run();
+  return result.meta.changes ? ok(null, 'استثنای تاریخ حذف شد') : error('برنامه تاریخ یافت نشد', 404);
 }
 
 async function register(request, env) {
@@ -366,7 +396,7 @@ async function updateAppointment(request, env, user, id) {
   if (input.type && ALLOWED_TYPES.includes(input.type)) { updates.push('type = ?'); values.push(input.type); }
   if (typeof input.reason === 'string') { updates.push('reason = ?'); values.push(input.reason.slice(0, 500)); }
   if (typeof input.notes === 'string') { updates.push('notes = ?'); values.push(input.notes.slice(0, 2000)); }
-  if ((user.role === 'admin' || user.role === 'doctor') && ALLOWED_STATUSES.includes(input.status)) { updates.push('status = ?'); values.push(input.status); }
+  if (['admin', 'doctor', 'secretary'].includes(user.role) && ALLOWED_STATUSES.includes(input.status)) { updates.push('status = ?'); values.push(input.status); }
   if (!updates.length) return error('هیچ فیلد معتبری برای به‌روزرسانی ارسال نشده است');
   updates.push('updated_at = CURRENT_TIMESTAMP');
   values.push(id);
@@ -460,6 +490,32 @@ async function adminReviews(request, env, user, id = null) {
   return error('آدرس مورد نظر یافت نشد', 404);
 }
 
+async function adminUsers(request, env, id = null) {
+  if (request.method === 'GET') {
+    const role = new URL(request.url).searchParams.get('role') === 'doctor' ? 'doctor' : 'secretary';
+    const rows = await env.DB.prepare(`SELECT id, username, email, full_name, phone, role, is_active, created_at FROM users WHERE role = ? ORDER BY created_at DESC`).bind(role).all();
+    return ok(rows.results);
+  }
+  if (request.method === 'PUT' && id) {
+    const input = await body(request) || {};
+    const active = input.is_active === true || input.is_active === 1;
+    const result = await env.DB.prepare("UPDATE users SET is_active = ?, updated_at = CURRENT_TIMESTAMP WHERE id = ? AND role = 'secretary'").bind(active ? 1 : 0, id).run();
+    return result.meta.changes ? ok(null, 'وضعیت منشی به‌روزرسانی شد') : error('منشی مورد نظر یافت نشد', 404);
+  }
+  if (request.method !== 'POST') return error('آدرس مورد نظر یافت نشد', 404);
+  const input = await body(request) || {};
+  const username = text(input.username);
+  const password = typeof input.password === 'string' ? input.password : '';
+  const fullName = text(input.full_name);
+  const phone = text(input.phone);
+  const email = input.email ? text(input.email) : null;
+  if (!/^[a-zA-Z0-9_.-]{3,40}$/.test(username) || password.length < 8 || password.length > 128 || fullName.length < 2 || fullName.length > 120 || !/^[+\d][\d\s-]{7,19}$/.test(phone) || (email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email))) return error('اطلاعات منشی نامعتبر است');
+  const exists = await env.DB.prepare('SELECT id FROM users WHERE username = ? OR phone = ? OR (email IS NOT NULL AND email = ?)').bind(username, phone, email).first();
+  if (exists) return error('نام کاربری، تلفن یا ایمیل قبلاً ثبت شده است', 409);
+  const result = await env.DB.prepare('INSERT INTO users (username, email, password_hash, full_name, phone, role, is_active) VALUES (?, ?, ?, ?, ?, \'secretary\', 1)').bind(username, email, await passwordHash(password), fullName, phone).run();
+  return json({ success: true, message: 'حساب منشی با موفقیت ایجاد شد', data: await env.DB.prepare('SELECT id, username, email, full_name, phone, role, is_active, created_at FROM users WHERE id = ?').bind(result.meta.last_row_id).first() }, 201);
+}
+
 async function adminStats(env) {
   const count = async sql => (await env.DB.prepare(sql).first())?.count || 0;
   return ok({
@@ -497,6 +553,36 @@ async function routeApi(request, env) {
   if (path === 'reviews' && request.method === 'POST') return user ? createReview(request, env, user) : error('دسترسی غیرمجاز', 401);
   const scheduleMatch = path.match(/^doctors\/(\d+)\/schedule$/);
   if (scheduleMatch && request.method === 'GET') return schedule(env, scheduleMatch[1]);
+  const scheduleDatesMatch = path.match(/^doctors\/(\d+)\/schedule-dates$/);
+  if (scheduleDatesMatch && request.method === 'GET') {
+    const auth = await requireUser(request, env, ['admin', 'secretary', 'doctor']);
+    if (auth.response) return auth.response;
+    return scheduleDates(request, env, scheduleDatesMatch[1]);
+  }
+  const scheduleDateMatch = path.match(/^doctors\/(\d+)\/schedule-dates\/([^/]+)$/);
+  if (scheduleDateMatch && ['POST', 'DELETE'].includes(request.method)) {
+    const auth = await requireUser(request, env, ['admin', 'secretary', 'doctor']);
+    if (auth.response) return auth.response;
+    if (request.method === 'DELETE') return deleteScheduleDate(env, scheduleDateMatch[1], scheduleDateMatch[2]);
+    return saveScheduleDate(request, env, auth.user, scheduleDateMatch[1], scheduleDateMatch[2]);
+  }
+  const schedulePutMatch = path.match(/^doctors\/(\d+)\/schedule$/);
+  if (schedulePutMatch && request.method === 'PUT') {
+    const auth = await requireUser(request, env, ['admin', 'secretary', 'doctor']);
+    if (auth.response) return auth.response;
+    return adminDoctors(request, env, auth.user, schedulePutMatch[1]);
+  }
+  const usersStatusMatch = path.match(/^users\/(\d+)\/status$/);
+  if (usersStatusMatch && request.method === 'PUT') {
+    const auth = await requireUser(request, env, ['admin']);
+    if (auth.response) return auth.response;
+    return adminUsers(request, env, usersStatusMatch[1]);
+  }
+  if ((path === 'users' && request.method === 'GET') || (path === 'users/secretaries' && request.method === 'POST')) {
+    const auth = await requireUser(request, env, ['admin']);
+    if (auth.response) return auth.response;
+    return adminUsers(request, env);
+  }
   if (path === 'stats/appointments' && request.method === 'GET') {
     const auth = await requireUser(request, env, ['admin']);
     if (auth.response) return auth.response;

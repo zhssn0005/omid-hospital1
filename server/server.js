@@ -95,6 +95,7 @@ app.use('/api/specialties', require('./routes/specialties'));
 app.use('/api/departments', require('./routes/departments'));
 app.use('/api/reviews', require('./routes/reviews'));
 app.use('/api/stats', require('./routes/stats'));
+app.use('/api/users', require('./routes/users'));
 
 // Health check
 app.get('/api/health', (req, res) => {

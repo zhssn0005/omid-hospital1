@@ -171,6 +171,16 @@ const api = {
       method: 'DELETE'
     }),
 
+  // Staff and scheduling
+  getStaff: (role = 'secretary') => api.request(`/users?role=${encodeURIComponent(role)}`),
+  createSecretary: (data) => api.request('/users/secretaries', { method: 'POST', body: JSON.stringify(data) }),
+  updateStaffStatus: (id, is_active) => api.request(`/users/${id}/status`, { method: 'PUT', body: JSON.stringify({ is_active }) }),
+  getSchedule: (id) => api.request(`/doctors/${id}/schedule`),
+  updateSchedule: (id, working_hours) => api.request(`/doctors/${id}/schedule`, { method: 'PUT', body: JSON.stringify({ working_hours }) }),
+  getScheduleDates: (id) => api.request(`/doctors/${id}/schedule-dates`),
+  saveScheduleDate: (id, data) => api.request(`/doctors/${id}/schedule-dates`, { method: 'POST', body: JSON.stringify(data) }),
+  deleteScheduleDate: (id, date) => api.request(`/doctors/${id}/schedule-dates/${date}`, { method: 'DELETE' }),
+
   // Stats
   getDashboardStats: () => api.request('/stats/dashboard')
 };
@@ -212,14 +222,19 @@ const showDashboard = async () => {
   try {
     const response = await api.getMe();
     state.user = response.data;
-    document.getElementById('user-name').textContent = state.user.full_name;
+    document.getElementById('user-name').textContent = `${state.user.full_name} (${state.user.role === 'secretary' ? 'منشی' : 'مدیر'})`;
+    if (state.user.role === 'secretary') {
+      document.querySelectorAll('.nav-item').forEach(item => {
+        if (['users', 'specialties', 'departments', 'reviews', 'settings'].includes(item.dataset.page)) item.style.display = 'none';
+      });
+    }
   } catch (error) {
     handleLogout();
     return;
   }
 
-  // Load dashboard
-  loadPage('dashboard');
+  // Secretaries start with the operational schedule view; administrators see dashboard stats.
+  loadPage(state.user.role === 'secretary' ? 'schedules' : 'dashboard');
 };
 
 // Page Navigation
@@ -249,11 +264,17 @@ const loadPage = async (pageName) => {
     case 'appointments':
       await loadAppointmentsPage(container);
       break;
+    case 'schedules':
+      await loadSchedulesPage(container);
+      break;
     case 'departments':
       await loadDepartmentsPage(container);
       break;
     case 'reviews':
       await loadReviewsPage(container);
+      break;
+    case 'users':
+      await loadUsersPage(container);
       break;
     default:
       container.innerHTML = '<div class="empty-state"><h2>صفحه در دست ساخت</h2></div>';
@@ -572,6 +593,102 @@ window.updateAppointmentStatus = async (id, status) => {
     // Error shown
   }
 };
+
+// Staff Page
+const loadUsersPage = async (container) => {
+  const response = await api.getStaff();
+  const staff = response.data || [];
+  container.innerHTML = `
+    <div class="page-header"><h1>مدیریت منشی‌ها</h1><button class="btn btn-primary btn-sm" onclick="showSecretaryModal()">+ تعریف منشی</button></div>
+    <div class="card" style="margin-bottom:1rem;"><p style="color:var(--text2);">منشی‌ها می‌توانند برنامه پزشکان، تاریخ‌های حضور و وضعیت نوبت‌ها را مدیریت کنند؛ دسترسی به مدیریت کاربران و تنظیمات ندارند.</p></div>
+    <div class="table-wrap"><table><thead><tr><th>نام</th><th>نام کاربری</th><th>تلفن</th><th>ایمیل</th><th>وضعیت</th><th>عملیات</th></tr></thead><tbody>
+      ${staff.length ? staff.map(user => `<tr><td>${escapeHtml(user.full_name)}</td><td>${escapeHtml(user.username)}</td><td>${escapeHtml(user.phone)}</td><td>${escapeHtml(user.email || '-')}</td><td><span class="badge badge-${user.is_active ? 'success' : 'danger'}">${user.is_active ? 'فعال' : 'غیرفعال'}</span></td><td><button class="btn btn-sm ${user.is_active ? 'btn-danger' : 'btn-success'}" onclick="toggleSecretary(${user.id}, ${!user.is_active})">${user.is_active ? 'غیرفعال‌سازی' : 'فعال‌سازی'}</button></td></tr>`).join('') : '<tr><td colspan="6" style="text-align:center;">هنوز منشی تعریف نشده است</td></tr>'}
+    </tbody></table></div><div id="secretary-modal"></div>`;
+};
+
+window.showSecretaryModal = () => {
+  document.getElementById('secretary-modal').innerHTML = `
+    <div class="modal-overlay" onclick="if(event.target===this)this.innerHTML=''">
+      <div class="modal" onclick="event.stopPropagation()"><h3>تعریف حساب منشی</h3>
+        <form id="secretary-form">
+          <div class="form-group"><label>نام و نام خانوادگی *</label><input name="full_name" required></div>
+          <div class="form-group"><label>نام کاربری *</label><input name="username" pattern="[A-Za-z0-9_.-]{3,40}" required></div>
+          <div class="form-group"><label>رمز عبور *</label><input name="password" type="password" minlength="8" required></div>
+          <div class="form-group"><label>موبایل *</label><input name="phone" type="tel" required></div>
+          <div class="form-group"><label>ایمیل</label><input name="email" type="email"></div>
+          <div class="flex flex-between"><button type="button" class="btn btn-secondary" onclick="this.closest('.modal-overlay').remove()">انصراف</button><button class="btn btn-primary">ذخیره</button></div>
+        </form>
+      </div>
+    </div>`;
+  document.getElementById('secretary-form').addEventListener('submit', async event => {
+    event.preventDefault();
+    try { await api.createSecretary(Object.fromEntries(new FormData(event.target).entries())); showToast('منشی با موفقیت تعریف شد'); loadPage('users'); } catch (_) {}
+  });
+};
+
+window.toggleSecretary = async (id, active) => {
+  try { await api.updateStaffStatus(id, active); showToast('وضعیت منشی به‌روزرسانی شد'); loadPage('users'); } catch (_) {}
+};
+
+// Doctors' schedules Page
+const persianWeek = [
+  ['saturday', 'شنبه'], ['sunday', 'یکشنبه'], ['monday', 'دوشنبه'], ['tuesday', 'سه‌شنبه'],
+  ['wednesday', 'چهارشنبه'], ['thursday', 'پنجشنبه'], ['friday', 'جمعه']
+];
+const toPersianDate = value => new Intl.DateTimeFormat('fa-IR-u-ca-persian', { dateStyle: 'full' }).format(new Date(`${value}T00:00:00Z`));
+const persianToLatin = value => String(value || '').replace(/[۰-۹]/g, digit => '۰۱۲۳۴۵۶۷۸۹'.indexOf(digit)).replace(/[٠-٩]/g, digit => '٠١٢٣٤٥٦٧٨٩'.indexOf(digit));
+const isGregorianDate = value => /^\d{4}-\d{2}-\d{2}$/.test(value);
+const jalaliToGregorian = input => {
+  const parts = persianToLatin(input).replace(/[.\-]/g, '/').split('/').map(Number);
+  if (parts.length !== 3 || parts.some(Number.isNaN)) return null;
+  let [jy, jm, jd] = parts;
+  if (jy < 1200 || jm < 1 || jm > 12 || jd < 1 || jd > (jm <= 6 ? 31 : jm === 12 ? 30 : 30)) return null;
+  jy -= 979;
+  let days = 365 * jy + Math.floor(jy / 33) * 8 + Math.floor((jy % 33 + 3) / 4) + jd - 1;
+  for (let i = 1; i < jm; i++) days += i <= 6 ? 31 : 30;
+  let gy = 1600 + 400 * Math.floor(days / 146097); days %= 146097;
+  if (days > 36524) { gy += 100 * Math.floor(--days / 36524); days %= 36524; if (days >= 365) days++; }
+  gy += 4 * Math.floor(days / 1461); days %= 1461;
+  if (days > 365) { gy += Math.floor((days - 1) / 365); days = (days - 1) % 365; }
+  let gd = days + 1; const leap = gy % 4 === 0 && (gy % 100 !== 0 || gy % 400 === 0);
+  const monthDays = [0,31,leap ? 29 : 28,31,30,31,30,31,31,30,31,30,31]; let gm = 1;
+  while (gm <= 12 && gd > monthDays[gm]) gd -= monthDays[gm++];
+  return `${gy}-${String(gm).padStart(2, '0')}-${String(gd).padStart(2, '0')}`;
+};
+
+const loadSchedulesPage = async (container) => {
+  const response = await api.getDoctors({ limit: 100, available: 'true' });
+  const doctors = response.data || [];
+  container.innerHTML = `<div class="page-header"><h1>برنامه و زمان‌بندی پزشکان</h1></div><div class="card" style="margin-bottom:1rem;"><p style="color:var(--text2);">برنامه هفتگی یا یک تاریخ خاص را ثبت کنید. تاریخ‌ها در فرم بیمار به شمسی نمایش داده می‌شوند.</p></div><div class="schedule-doctors">${doctors.map(doc => `<div class="card flex flex-between" style="margin-bottom:.6rem;"><div><strong>${escapeHtml(doc.full_name)}</strong><small style="display:block;color:var(--text2);">${escapeHtml(doc.specialty_name || '')}</small></div><button class="btn btn-primary btn-sm" onclick="showScheduleModal(${doc.id}, '${escapeHtml(doc.full_name)}')">تنظیم برنامه</button></div>`).join('')}</div>`;
+};
+
+window.showScheduleModal = async (doctorId, doctorName) => {
+  const [scheduleResponse, datesResponse] = await Promise.all([api.getSchedule(doctorId), api.getScheduleDates(doctorId)]);
+  const schedule = scheduleResponse.data || {};
+  const overrides = datesResponse.data || [];
+  const daysHtml = persianWeek.map(([key, label]) => { const day = schedule[key] || {}; return `<div class="schedule-row"><label><input type="checkbox" data-day="${key}" ${day.enabled ? 'checked' : ''}> ${label}</label><input type="time" data-start="${key}" value="${escapeHtml(day.start || '09:00')}"><span>تا</span><input type="time" data-end="${key}" value="${escapeHtml(day.end || '13:00')}"><input type="number" data-duration="${key}" min="5" max="240" step="5" value="${escapeHtml(day.duration || 30)}" title="مدت نوبت (دقیقه)"></div>`; }).join('');
+  const overrideRows = overrides.map(item => `<tr><td>${escapeHtml(toPersianDate(item.schedule_date))}</td><td>${item.enabled ? `${escapeHtml(item.start_time || '')} تا ${escapeHtml(item.end_time || '')}` : 'تعطیل'}</td><td>${escapeHtml(item.note || '-')}</td><td><button class="btn btn-sm btn-danger" onclick="deleteScheduleOverride(${doctorId}, '${item.schedule_date}')">حذف</button></td></tr>`).join('');
+  const host = document.createElement('div'); host.id = 'schedule-modal-host'; host.innerHTML = `<div class="modal-overlay" onclick="if(event.target===this)this.remove()"><div class="modal schedule-modal" onclick="event.stopPropagation()"><h3>برنامه ${escapeHtml(doctorName)}</h3><p style="color:var(--text2);font-size:.85rem;">فعال‌سازی روز، ساعت شروع، پایان و مدت هر نوبت را مشخص کنید.</p><div class="schedule-form">${daysHtml}</div><button class="btn btn-primary" id="save-weekly-schedule">ذخیره برنامه هفتگی</button><hr><h3>افزودن برنامه برای تاریخ خاص</h3><form id="date-override-form"><div class="form-row"><div class="form-group"><label>تاریخ شمسی (مثال: ۱۴۰۴/۰۷/۱۵)</label><input name="persian_date" placeholder="۱۴۰۴/۰۷/۱۵" inputmode="numeric" required><small class="date-convert-hint" id="date-convert-hint"></small></div><input name="schedule_date" type="hidden" required></div><div class="form-row"><div class="form-group"><label>از ساعت</label><input name="start_time" type="time" value="09:00"></div><div class="form-group"><label>تا ساعت</label><input name="end_time" type="time" value="13:00"></div></div><div class="form-row"><div class="form-group"><label><input type="checkbox" name="enabled" checked> روز کاری است</label></div><div class="form-group"><label>مدت هر نوبت</label><input name="slot_duration" type="number" min="5" max="240" value="30"></div></div><div class="form-group"><label>یادداشت</label><input name="note" placeholder="مثلاً شیفت فوق‌العاده"></div><button class="btn btn-secondary">ثبت تاریخ خاص</button></form><div class="table-wrap" style="margin-top:1rem;"><table><thead><tr><th>تاریخ</th><th>ساعت</th><th>یادداشت</th><th></th></tr></thead><tbody>${overrideRows || '<tr><td colspan="4" style="text-align:center;">تاریخ خاصی ثبت نشده است</td></tr>'}</tbody></table></div></div></div>`;
+  document.body.appendChild(host);
+  document.getElementById('save-weekly-schedule').addEventListener('click', async () => {
+    const working_hours = {};
+    persianWeek.forEach(([key]) => { working_hours[key] = { enabled: host.querySelector(`[data-day="${key}"]`).checked, start: host.querySelector(`[data-start="${key}"]`).value, end: host.querySelector(`[data-end="${key}"]`).value, duration: Number(host.querySelector(`[data-duration="${key}"]`).value) || 30 }; });
+    try { await api.updateSchedule(doctorId, working_hours); showToast('برنامه هفتگی ذخیره شد'); } catch (_) {}
+  });
+  const dateForm = document.getElementById('date-override-form');
+  dateForm.querySelector('[name="persian_date"]').addEventListener('input', event => {
+    const converted = jalaliToGregorian(event.target.value);
+    dateForm.querySelector('[name="schedule_date"]').value = converted || '';
+    document.getElementById('date-convert-hint').textContent = converted ? `معادل میلادی: ${converted}` : 'فرمت را به صورت سال/ماه/روز وارد کنید';
+  });
+  dateForm.addEventListener('submit', async event => {
+    event.preventDefault(); const data = Object.fromEntries(new FormData(event.target).entries()); data.enabled = event.target.enabled.checked; data.slot_duration = Number(data.slot_duration) || 30;
+    if (!isGregorianDate(data.schedule_date)) return showToast('تاریخ شمسی نامعتبر است', 'error');
+    try { await api.saveScheduleDate(doctorId, data); showToast('تاریخ خاص ذخیره شد'); showScheduleModal(doctorId, doctorName); host.remove(); } catch (_) {}
+  });
+};
+
+window.deleteScheduleOverride = async (doctorId, date) => { try { await api.deleteScheduleDate(doctorId, date); showToast('تاریخ خاص حذف شد'); document.getElementById('schedule-modal-host')?.remove(); } catch (_) {} };
 
 // Departments Page
 const loadDepartmentsPage = async (container) => {

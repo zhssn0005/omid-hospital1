@@ -7,21 +7,22 @@
 <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/css/theme.css">
 <style>
-body { padding-top:5rem; }
-.page-back { display:inline-block; padding:1rem 2rem; color:var(--accent-cyan); text-decoration:none; font-weight:600; }
-.dept-hero { text-align:center; padding:3rem 1rem; background:linear-gradient(135deg,rgba(16,185,129,0.1),rgba(6,182,212,0.1)); border-bottom:1px solid var(--glass-border); }
-.dept-hero h1 { font-size:2.5rem; font-weight:900; }
-.dept-hero .sub { color:var(--text-secondary); margin-top:0.5rem; font-size:1.1rem; }
-.dept-content { max-width:1000px; margin:2rem auto; padding:0 1.5rem; }
-.dept-card { background:var(--glass); border:1px solid var(--glass-border); border-radius:var(--radius); padding:2rem; margin-bottom:1.5rem; }
-.dept-card h3 { color:#10b981; margin-bottom:1rem; font-size:1.2rem; }
-.dept-card p, .dept-card li { color:var(--text-secondary); line-height:1.9; font-size:0.95rem; }
-.dept-card ul { padding-right:1.5rem; }
-.flag-bar { display:flex; gap:1rem; justify-content:center; font-size:2.5rem; margin-bottom:1rem; }
+body { padding-top: 5.3rem; }
+.page-back { display: inline-block; padding: 1rem 2rem; color: var(--teal); text-decoration: none; font-weight: 700; }
+.dept-hero { text-align: center; padding: 3rem 1rem; background: linear-gradient(135deg, var(--teal-light), var(--primary-light)); border-bottom: 1px solid var(--border); }
+.dept-hero h1 { font-size: 2.4rem; font-weight: 900; color: var(--text-primary); }
+.dept-hero .sub { color: var(--text-secondary); margin-top: 0.5rem; font-size: 1.05rem; }
+.dept-content { max-width: 1000px; margin: 2rem auto 4rem; padding: 0 1.5rem; }
+.dept-card { background: #fff; border: 1px solid var(--border); border-radius: var(--radius); padding: 2rem; margin-bottom: 1.5rem; box-shadow: var(--shadow-sm); }
+.dept-card h3 { color: var(--teal); margin-bottom: 1rem; font-size: 1.2rem; font-weight: 800; }
+.dept-card p, .dept-card li { color: var(--text-secondary); line-height: 2; font-size: 0.95rem; }
+.dept-card ul, .dept-card ol { padding-right: 1.5rem; }
+.flag-bar { display: flex; gap: 1rem; justify-content: center; font-size: 2.2rem; margin-bottom: 0.5rem; flex-wrap: wrap; }
+.contact-cta { background: var(--teal-light); border: 1px solid #bfe6e6; }
 </style>
 </head>
 <body>
-<canvas id="particles"></canvas>
+
 <div style="max-width:1400px;margin:0 auto;">
   <a href="/" class="page-back">← بازگشت به صفحه اصلی</a>
 </div>
@@ -35,7 +36,7 @@ body { padding-top:5rem; }
 <div class="dept-content">
   <div class="dept-card">
     <h3>📋 معرفی بخش</h3>
-    <p>بخش بیماران بین‌الملل (IPD) بیمارستان امید با هدف ارائه خدمات درمانی، تشخیصی و رفاهی به بیماران خارجی و همراهان آنان تأسیس شده است. این بخش با بهره‌گیری از استانداردهای بین‌المللی، تجهیزات روز دنیا و کادری متخصص، محیطی ایمن و حرفه‌ای را برای بیماران فراهم می‌آورد.</p>
+    <p>بخش بیماران بین‌الملل (IPD) با هدف ارائه خدمات درمانی، تشخیصی و رفاهی به بیماران خارجی و همراهان آنان تأسیس شده است. این بخش با بهره‌گیری از استانداردهای بین‌المللی، تجهیزات روز دنیا و کادری متخصص، محیطی ایمن و حرفه‌ای فراهم می‌آورد.</p>
     <p style="margin-top:1rem;"><strong>رئیس بخش:</strong> آقای دکتر مصطفی حسینی</p>
   </div>
 
@@ -52,34 +53,33 @@ body { padding-top:5rem; }
     <h3>🌟 خدمات ویژه بیماران بین‌الملل</h3>
     <ul>
       <li><strong>پذیرش و هماهنگی:</strong> پاسخگویی سریع به درخواست‌ها، بررسی پرونده‌های پزشکی و ارائه برآورد هزینه درمان</li>
-      <li><strong>مترجمان حرفه‌ای:</strong> همراهی بیماران به زبان‌های انگلیسی، عربی و سایر زبان‌ها جهت تسهیل ارتباط با پزشکان</li>
-      <li><strong>پزشکان و متخصصان برجسته:</strong> درمان تحت نظر اساتید و پزشکان فوق تخصصی با تجربه بالا</li>
-      <li><strong>امکانات رفاهی:</strong> اتاق‌های VIP و خصوصی، اقامت راحت برای همراهان، اینترنت پرسرعت و خدمات رفاهی ویژه</li>
-      <li><strong>پیگیری درمان:</strong> نظارت بر کل فرآیند درمان و ارائه خدمات پیگیری پس از ترخیص (Follow-Up)</li>
-      <li><strong>مستندسازی پرونده پزشکی:</strong> ارائه خلاصه پرونده به زبان مورد نظر بیمار</li>
+      <li><strong>مترجمان حرفه‌ای:</strong> همراهی بیماران به زبان‌های انگلیسی، عربی و سایر زبان‌ها</li>
+      <li><strong>پزشکان و متخصصان برجسته:</strong> درمان تحت نظر اساتید و پزشکان فوق‌تخصصی</li>
+      <li><strong>امکانات رفاهی:</strong> اتاق‌های VIP و خصوصی، اقامت راحت برای همراهان و اینترنت پرسرعت</li>
+      <li><strong>پیگیری درمان:</strong> نظارت بر کل فرآیند درمان و پیگیری پس از ترخیص (Follow-Up)</li>
+      <li><strong>مستندسازی پرونده:</strong> ارائه خلاصه پرونده به زبان مورد نظر بیمار</li>
     </ul>
   </div>
 
   <div class="dept-card">
     <h3>🔄 فرآیند پذیرش بیماران بین‌الملل</h3>
-    <ol style="padding-right:1.5rem;color:var(--text-secondary);line-height:2.2;">
+    <ol>
       <li><strong>تماس اولیه:</strong> ارسال درخواست و مدارک پزشکی از سوی بیمار یا نماینده او</li>
-      <li><strong>بررسی تخصصی:</strong> ارزیابی مدارک توسط تیم پزشکی بیمارستان و برآورد هزینه تخمینی</li>
+      <li><strong>بررسی تخصصی:</strong> ارزیابی مدارک توسط تیم پزشکی و برآورد هزینه تخمینی</li>
       <li><strong>هماهنگی سفر و پذیرش:</strong> راهنمایی در زمینه ورود، اقامت و پذیرش بیمار</li>
       <li><strong>درمان:</strong> بستری و درمان بیمار تحت نظر پزشکان متخصص</li>
-      <li><strong>ترخیص و پیگیری:</strong> ارائه گزارش کامل پزشکی و پیگیری روند درمان حتی پس از بازگشت به کشور بیمار</li>
+      <li><strong>ترخیص و پیگیری:</strong> ارائه گزارش کامل پزشکی و پیگیری روند درمان پس از بازگشت</li>
     </ol>
   </div>
 
-  <div class="dept-card" style="background:rgba(16,185,129,0.05);border-color:rgba(16,185,129,0.2);">
+  <div class="dept-card contact-cta">
     <h3>📞 اطلاعات تماس</h3>
     <p><strong>تلفن:</strong> ۰۲۱-۴۴۴۲۶۶۹۰</p>
-    <p><strong>ایمیل:</strong> ipd@omid.hospital</p>
+    <p><strong>ایمیل:</strong> ipd@omid-hospital.ir</p>
     <p><strong>آدرس:</strong> تهران، جنت‌آباد مرکزی، خ شاهین شمالی، خ کبیری طامه، خ بهار — بیمارستان امید، طبقه چهارم</p>
     <p><strong>تلفن بیمارستان:</strong> ۰۲۱-۴۴۴۸۰۱۸۵</p>
   </div>
 </div>
 
-<script>(function(){var c=document.getElementById('particles'),ctx=c.getContext('2d'),w,h,pts=[];function rs(){w=c.width=innerWidth;h=c.height=innerHeight;}rs();addEventListener('resize',rs);for(var i=0;i<40;i++)pts.push({x:Math.random()*w,y:Math.random()*h,vx:(Math.random()-0.5)*0.4,vy:(Math.random()-0.5)*0.4,r:Math.random()*1.2+0.3,a:Math.random()*0.3+0.05});(function dr(){ctx.clearRect(0,0,w,h);pts.forEach(function(p){p.x+=p.vx;p.y+=p.vy;if(p.x<0||p.x>w)p.vx*=-1;if(p.y<0||p.y>h)p.vy*=-1;ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,6.28);ctx.fillStyle='rgba(16,185,129,'+p.a+')';ctx.fill();});requestAnimationFrame(dr);})();})();</script>
 </body>
 </html>

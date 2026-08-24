@@ -4,556 +4,165 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>گالری ویدیو | بیمارستان امید</title>
+<meta name="description" content="ویدیوهای آموزشی، تور بخش‌های مختلف، مصاحبه با پزشکان و راهنمای خدمات بیمارستان امید">
+<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/css/theme.css">
 <style>
-body { padding-top: 5rem; }
-.page-back { display: inline-block; padding: 1rem 2rem; color: var(--accent-cyan); text-decoration: none; font-weight: 600; font-size: 0.9rem; }
-</style>
-
-<meta name="description" content="ویدیوهای آموزشی، تور بخش‌های مختلف، مصاحبه با پزشکان و راهنمای خدمات بیمارستان امید">
-<style>
-:root {
-  --c1: #070E1A; --c2: #0C1A2E; --c3: #122340; --c4: #163A5C;
-  --c5: #0284C7; --c6: #06B6D4; --c7: #22D3EE;
-  --f: 'Vazirmatn', system-ui, sans-serif;
+body { padding-top: 5.3rem; }
+.page-back { display: inline-block; padding: 1rem 2rem; color: var(--teal); text-decoration: none; font-weight: 700; font-size: 0.9rem; }
+.page-header {
+  text-align: center; padding: 2.5rem 1rem;
+  background: linear-gradient(135deg, var(--primary-light), var(--teal-light));
+  border-bottom: 1px solid var(--border);
 }
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-body {
-  font-family: var(--f);
-  background: var(--c1);
-  color: #CBD5E1;
-  line-height: 1.7;
-  padding-top: 5rem;
-}
-.container {
-  max-width: 1400px;
-  margin: 0 auto;
-  padding: 40px 24px;
-}
-.header {
-  text-align: center;
-  margin-bottom: 50px;
-}
-.header h1 {
-  font-size: clamp(2rem, 4vw, 3rem);
-  font-weight: 900;
-  color: #fff;
-  margin-bottom: 16px;
-}
-.header p {
-  color: #64748B;
-  font-size: 1.05rem;
-}
-.filters {
-  display: flex;
-  gap: 12px;
-  justify-content: center;
-  flex-wrap: wrap;
-  margin-bottom: 40px;
-}
+.page-header h1 { font-size: 2.2rem; font-weight: 900; color: var(--text-primary); }
+.page-header p { color: var(--text-secondary); margin-top: 0.4rem; }
+.container { max-width: 1300px; margin: 2rem auto 4rem; padding: 0 1.5rem; }
+.filters { display: flex; gap: 0.6rem; justify-content: center; flex-wrap: wrap; margin-bottom: 2rem; }
 .filter-btn {
-  padding: 10px 24px;
-  border-radius: 12px;
-  border: 2px solid rgba(6,182,212,0.2);
-  background: transparent;
-  color: #94A3B8;
-  font-weight: 700;
-  font-size: 0.9rem;
-  cursor: pointer;
-  transition: all 0.3s;
-  font-family: var(--f);
+  padding: 0.55rem 1.3rem; border-radius: var(--radius-full); border: 1.5px solid var(--border);
+  background: #fff; color: var(--text-secondary); font-weight: 700; font-size: 0.85rem;
+  cursor: pointer; transition: var(--transition); font-family: 'Vazirmatn', sans-serif;
 }
-.filter-btn:hover {
-  border-color: var(--c6);
-  color: var(--c7);
-}
-.filter-btn.active {
-  background: linear-gradient(135deg, var(--c6), var(--c5));
-  border-color: transparent;
-  color: #fff;
-  box-shadow: 0 4px 20px rgba(6,182,212,0.4);
-}
-.video-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
-  gap: 24px;
-  margin-bottom: 40px;
-}
-.video-card {
-  background: var(--c2);
-  border: 1px solid rgba(6,182,212,0.1);
-  border-radius: 16px;
-  overflow: hidden;
-  transition: all 0.3s;
-  cursor: pointer;
-}
-.video-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 12px 40px rgba(6,182,212,0.2);
-  border-color: rgba(6,182,212,0.3);
-}
+.filter-btn:hover { border-color: var(--teal); color: var(--teal); }
+.filter-btn.active { background: linear-gradient(135deg, var(--primary), var(--teal)); border-color: transparent; color: #fff; box-shadow: var(--shadow-md); }
+.video-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 1.5rem; }
+.video-card { background: #fff; border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; transition: var(--transition); cursor: pointer; }
+.video-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); }
 .video-thumb {
-  position: relative;
-  padding-top: 56.25%;
-  background: linear-gradient(135deg, var(--c3), var(--c2));
-  overflow: hidden;
+  position: relative; padding-top: 56.25%; overflow: hidden;
+  background: linear-gradient(135deg, var(--primary), var(--teal));
+  display: flex; align-items: center; justify-content: center;
 }
-.video-thumb img {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
+.video-thumb .thumb-icon { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font-size: 3.4rem; color: #fff; opacity: 0.85; }
 .play-btn {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 60px;
-  height: 60px;
-  border-radius: 50%;
-  background: rgba(6,182,212,0.9);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1.5rem;
-  transition: all 0.3s;
+  position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+  width: 58px; height: 58px; border-radius: 50%; background: rgba(255,255,255,0.9);
+  display: flex; align-items: center; justify-content: center; font-size: 1.3rem; color: var(--teal);
+  transition: var(--transition); z-index: 2;
 }
-.video-card:hover .play-btn {
-  background: var(--c6);
-  transform: translate(-50%, -50%) scale(1.1);
-}
+.video-card:hover .play-btn { transform: translate(-50%, -50%) scale(1.1); background: #fff; }
 .video-duration {
-  position: absolute;
-  bottom: 10px;
-  right: 10px;
-  padding: 4px 10px;
-  background: rgba(0,0,0,0.8);
-  border-radius: 6px;
-  font-size: 0.75rem;
-  font-weight: 700;
-  color: #fff;
+  position: absolute; bottom: 10px; right: 10px; padding: 0.25rem 0.6rem;
+  background: rgba(0,0,0,0.7); border-radius: 6px; font-size: 0.75rem; font-weight: 700; color: #fff; z-index: 2;
 }
-.video-info {
-  padding: 20px;
-}
+.video-info { padding: 1.3rem; }
 .video-category {
-  display: inline-block;
-  padding: 4px 12px;
-  background: rgba(6,182,212,0.15);
-  color: var(--c7);
-  border-radius: 99px;
-  font-size: 0.75rem;
-  font-weight: 700;
-  margin-bottom: 10px;
+  display: inline-block; padding: 0.2rem 0.7rem; background: var(--teal-light); color: var(--teal-dark);
+  border-radius: 99px; font-size: 0.75rem; font-weight: 700; margin-bottom: 0.6rem;
 }
-.video-title {
-  font-size: 1.05rem;
-  font-weight: 800;
-  color: #fff;
-  margin-bottom: 8px;
-  line-height: 1.4;
-}
-.video-desc {
-  color: #64748B;
-  font-size: 0.85rem;
-  line-height: 1.6;
-  margin-bottom: 12px;
-}
-.video-meta {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  font-size: 0.8rem;
-  color: #475569;
-}
-.video-meta span {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-}
-.modal {
-  display: none;
-  position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,0.95);
-  z-index: 9999;
-  padding: 20px;
-  align-items: center;
-  justify-content: center;
-}
-.modal.show {
-  display: flex;
-  animation: fadeIn 0.3s ease;
-}
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
-.modal-content {
-  max-width: 1200px;
-  width: 100%;
-  background: var(--c2);
-  border-radius: 20px;
-  overflow: hidden;
-  position: relative;
-  animation: slideUp 0.4s ease;
-}
-@keyframes slideUp {
-  from { transform: translateY(50px); opacity: 0; }
-  to { transform: translateY(0); opacity: 1; }
-}
+.video-title { font-size: 1.02rem; font-weight: 800; color: var(--text-primary); margin-bottom: 0.4rem; line-height: 1.5; }
+.video-desc { color: var(--text-secondary); font-size: 0.85rem; line-height: 1.7; margin-bottom: 0.7rem; }
+.video-meta { display: flex; align-items: center; gap: 1rem; font-size: 0.78rem; color: var(--text-muted); }
+
+.modal { display: none; position: fixed; inset: 0; background: rgba(9,53,68,0.7); backdrop-filter: blur(4px); z-index: 9999; padding: 1.5rem; align-items: center; justify-content: center; }
+.modal.show { display: flex; }
+.modal-content { max-width: 900px; width: 100%; background: #fff; border-radius: var(--radius-lg); overflow: hidden; position: relative; box-shadow: var(--shadow-xl); }
 .modal-close {
-  position: absolute;
-  top: 20px;
-  left: 20px;
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  background: rgba(0,0,0,0.8);
-  color: #fff;
-  border: none;
-  font-size: 1.5rem;
-  cursor: pointer;
-  z-index: 10;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: all 0.3s;
+  position: absolute; top: 0.9rem; left: 0.9rem; width: 40px; height: 40px; border-radius: 50%;
+  background: #fff; color: var(--text-primary); border: none; font-size: 1.3rem; cursor: pointer;
+  z-index: 10; display: flex; align-items: center; justify-content: center; box-shadow: var(--shadow-md); transition: var(--transition);
 }
-.modal-close:hover {
-  background: var(--c6);
-  transform: rotate(90deg);
-}
-.video-player {
-  position: relative;
-  padding-top: 56.25%;
-  background: #000;
-}
-.video-player iframe {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-}
-.modal-info {
-  padding: 24px;
-}
-.modal-title {
-  font-size: 1.5rem;
-  font-weight: 900;
-  color: #fff;
-  margin-bottom: 12px;
-}
-.modal-desc {
-  color: #94A3B8;
-  line-height: 1.8;
-}
-.back-btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 12px 24px;
-  background: transparent;
-  border: 1.5px solid rgba(255,255,255,0.1);
-  border-radius: 12px;
-  color: #94A3B8;
-  font-weight: 700;
-  font-size: 0.9rem;
-  cursor: pointer;
-  transition: all 0.3s;
-  font-family: var(--f);
-  text-decoration: none;
-}
-.back-btn:hover {
-  border-color: rgba(255,255,255,0.2);
-  color: #fff;
-  background: rgba(255,255,255,0.05);
-}
-@media (max-width: 768px) {
-  .video-grid {
-    grid-template-columns: 1fr;
-  }
-  .filters {
-    gap: 8px;
-  }
-  .filter-btn {
-    padding: 8px 16px;
-    font-size: 0.8rem;
-  }
-}
+.modal-close:hover { transform: rotate(90deg); }
+.video-player { position: relative; padding-top: 56.25%; background: #000; }
+.video-player .ph { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font-size: 4rem; background: linear-gradient(135deg, var(--primary), var(--teal)); color: #fff; }
+.modal-info { padding: 1.5rem; }
+.modal-title { font-size: 1.3rem; font-weight: 900; color: var(--text-primary); margin-bottom: 0.5rem; }
+.modal-desc { color: var(--text-secondary); line-height: 1.8; }
+@media (max-width: 768px) { .video-grid { grid-template-columns: 1fr; } }
 </style>
 </head>
 <body>
 
-<canvas id="particles"></canvas>
 <div style="max-width:1400px;margin:0 auto;">
   <a href="/" class="page-back">← بازگشت به صفحه اصلی</a>
 </div>
 
+<div class="page-header">
+  <h1>📹 گالری ویدیو</h1>
+  <p>ویدیوهای آموزشی، تور مجازی و مصاحبه با پزشکان</p>
+</div>
 
 <div class="container">
-  <div class="header">
-    <h1>📹 گالری ویدیو</h1>
-    <p>ویدیوهای آموزشی، تور مجازی و مصاحبه با پزشکان</p>
-  </div>
-
   <div class="filters">
-    <button class="filter-btn active" onclick="filterVideos('all')">🎬 همه</button>
-    <button class="filter-btn" onclick="filterVideos('tour')">🏥 تور بیمارستان</button>
-    <button class="filter-btn" onclick="filterVideos('education')">📚 آموزشی</button>
-    <button class="filter-btn" onclick="filterVideos('interview')">🎤 مصاحبه</button>
-    <button class="filter-btn" onclick="filterVideos('guide')">📋 راهنما</button>
+    <button class="filter-btn active" onclick="filterVideos('all', this)">🎬 همه</button>
+    <button class="filter-btn" onclick="filterVideos('tour', this)">🏥 تور بیمارستان</button>
+    <button class="filter-btn" onclick="filterVideos('education', this)">📚 آموزشی</button>
+    <button class="filter-btn" onclick="filterVideos('interview', this)">🎤 مصاحبه</button>
+    <button class="filter-btn" onclick="filterVideos('guide', this)">📋 راهنما</button>
   </div>
 
   <div class="video-grid" id="videoGrid"></div>
-
-  <div style="text-align: center; margin-top: 40px;">
-    <a href="/" class="back-btn">
-      ← بازگشت به صفحه اصلی
-    </a>
-  </div>
 </div>
 
 <div class="modal" id="videoModal">
-  <button class="modal-close" onclick="closeVideo()">✕</button>
   <div class="modal-content">
-    <div class="video-player" id="videoPlayer"></div>
-    <div class="modal-info">
-      <h2 class="modal-title" id="modalTitle"></h2>
-      <p class="modal-desc" id="modalDesc"></p>
-    </div>
+    <button class="modal-close" onclick="closeVideo()">✕</button>
+    <div class="video-player"><div class="ph" id="playerPh">▶️</div></div>
+    <div class="modal-info"><h2 class="modal-title" id="modalTitle"></h2><p class="modal-desc" id="modalDesc"></p></div>
   </div>
 </div>
 
 <script>
-const videos = [
-  {
-    id: 1,
-    title: 'تور کامل بخش NICU',
-    desc: 'بازدید از بخش مراقبت‌های ویژه نوزادان با آخرین تجهیزات پزشکی',
-    category: 'tour',
-    duration: '5:30',
-    views: '12.5K',
-    date: '1404/07/20',
-    thumb: 'https://via.placeholder.com/640x360/0284C7/ffffff?text=NICU+Tour',
-    videoUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ'
-  },
-  {
-    id: 2,
-    title: 'راهنمای رزرو نوبت آنلاین',
-    desc: 'آموزش گام به گام نحوه رزرو نوبت از طریق سایت',
-    category: 'guide',
-    duration: '3:45',
-    views: '25.3K',
-    date: '1404/07/18',
-    thumb: 'https://via.placeholder.com/640x360/06B6D4/ffffff?text=Booking+Guide',
-    videoUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ'
-  },
-  {
-    id: 3,
-    title: 'مصاحبه با دکتر بهرامی - متخصص اطفال',
-    desc: 'گفتگو در مورد مراقبت‌های دوران بارداری و نوزادی',
-    category: 'interview',
-    duration: '15:20',
-    views: '8.2K',
-    date: '1404/07/15',
-    thumb: 'https://via.placeholder.com/640x360/22D3EE/ffffff?text=Dr+Bahrami',
-    videoUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ'
-  },
-  {
-    id: 4,
-    title: 'تور اتاق‌های VIP بخش Royal',
-    desc: 'معرفی امکانات و خدمات اختصاصی اتاق‌های ویژه',
-    category: 'tour',
-    duration: '4:15',
-    views: '9.7K',
-    date: '1404/07/12',
-    thumb: 'https://via.placeholder.com/640x360/D4A843/ffffff?text=Royal+Rooms',
-    videoUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ'
-  },
-  {
-    id: 5,
-    title: 'آموزش مراقبت از بیمار در منزل',
-    desc: 'نکات کلیدی برای مراقبت صحیح از بیمار بستری در منزل',
-    category: 'education',
-    duration: '8:50',
-    views: '18.5K',
-    date: '1404/07/10',
-    thumb: 'https://via.placeholder.com/640x360/10B981/ffffff?text=Home+Care',
-    videoUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ'
-  },
-  {
-    id: 6,
-    title: 'راهنمای پذیرش و ترخیص',
-    desc: 'فرآیند کامل پذیرش تا ترخیص در بیمارستان امید',
-    category: 'guide',
-    duration: '6:30',
-    views: '22.1K',
-    date: '1404/07/08',
-    thumb: 'https://via.placeholder.com/640x360/0284C7/ffffff?text=Admission+Guide',
-    videoUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ'
-  },
-  {
-    id: 7,
-    title: 'معرفی خدمات بخش بین‌الملل IPD',
-    desc: 'ارائه خدمات به بیماران خارجی با مترجم و همراه',
-    category: 'tour',
-    duration: '7:10',
-    views: '5.8K',
-    date: '1404/07/05',
-    thumb: 'https://via.placeholder.com/640x360/06B6D4/ffffff?text=IPD+Services',
-    videoUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ'
-  },
-  {
-    id: 8,
-    title: 'آموزش CPR برای عموم',
-    desc: 'آموزش احیای قلبی ریوی برای افراد غیر پزشکی',
-    category: 'education',
-    duration: '12:40',
-    views: '42.3K',
-    date: '1404/07/01',
-    thumb: 'https://via.placeholder.com/640x360/F43F5E/ffffff?text=CPR+Training',
-    videoUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ'
-  },
-  {
-    id: 9,
-    title: 'مصاحبه با دکتر شمس - متخصص زنان',
-    desc: 'پاسخ به سوالات رایج دوران بارداری و زایمان',
-    category: 'interview',
-    duration: '18:55',
-    views: '14.2K',
-    date: '1404/06/28',
-    thumb: 'https://via.placeholder.com/640x360/22D3EE/ffffff?text=Dr+Shams',
-    videoUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ'
-  },
-  {
-    id: 10,
-    title: 'تور آزمایشگاه و تصویربرداری',
-    desc: 'بازدید از بخش آزمایشگاه، MRI و CT Scan',
-    category: 'tour',
-    duration: '5:45',
-    views: '11.4K',
-    date: '1404/06/25',
-    thumb: 'https://via.placeholder.com/640x360/D4A843/ffffff?text=Lab+Tour',
-    videoUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ'
-  },
-  {
-    id: 11,
-    title: 'آموزش تغذیه سالم برای کودکان',
-    desc: 'برنامه غذایی مناسب و نکات تغذیه‌ای کودکان',
-    category: 'education',
-    duration: '10:20',
-    views: '28.7K',
-    date: '1404/06/20',
-    thumb: 'https://via.placeholder.com/640x360/10B981/ffffff?text=Kids+Nutrition',
-    videoUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ'
-  },
-  {
-    id: 12,
-    title: 'راهنمای استفاده از تله‌مدیسین',
-    desc: 'نحوه دریافت مشاوره پزشکی آنلاین و ویدیو کال',
-    category: 'guide',
-    duration: '4:50',
-    views: '19.6K',
-    date: '1404/06/15',
-    thumb: 'https://via.placeholder.com/640x360/0284C7/ffffff?text=Telemedicine',
-    videoUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ'
-  }
+var videos = [
+  { id:1, title:'تور کامل بخش NICU', desc:'بازدید از بخش مراقبت‌های ویژه نوزادان با آخرین تجهیزات پزشکی', category:'tour', duration:'۵:۳۰', views:'۱۲.۵هزار', date:'۱۴۰۴/۰۷/۲۰', icon:'👶' },
+  { id:2, title:'راهنمای رزرو نوبت آنلاین', desc:'آموزش گام به گام نحوه رزرو نوبت از طریق سایت', category:'guide', duration:'۳:۴۵', views:'۲۵.۳هزار', date:'۱۴۰۴/۰۷/۱۸', icon:'📅' },
+  { id:3, title:'مصاحبه با دکتر بهرامی — متخصص اطفال', desc:'گفتگو درباره مراقبت‌های دوران بارداری و نوزادی', category:'interview', duration:'۱۵:۲۰', views:'۸.۲هزار', date:'۱۴۰۴/۰۷/۱۵', icon:'🎤' },
+  { id:4, title:'تور اتاق‌های VIP بخش رویال', desc:'معرفی امکانات و خدمات اختصاصی اتاق‌های ویژه', category:'tour', duration:'۴:۱۵', views:'۹.۷هزار', date:'۱۴۰۴/۰۷/۱۲', icon:'👑' },
+  { id:5, title:'آموزش مراقبت از بیمار در منزل', desc:'نکات کلیدی برای مراقبت صحیح از بیمار بستری در منزل', category:'education', duration:'۸:۵۰', views:'۱۸.۵هزار', date:'۱۴۰۴/۰۷/۱۰', icon:'🏠' },
+  { id:6, title:'راهنمای پذیرش و ترخیص', desc:'فرآیند کامل پذیرش تا ترخیص در بیمارستان امید', category:'guide', duration:'۶:۳۰', views:'۲۲.۱هزار', date:'۱۴۰۴/۰۷/۰۸', icon:'📋' },
+  { id:7, title:'معرفی خدمات بخش بین‌الملل IPD', desc:'ارائه خدمات به بیماران خارجی با مترجم و همراه', category:'tour', duration:'۷:۱۰', views:'۵.۸هزار', date:'۱۴۰۴/۰۷/۰۵', icon:'🌍' },
+  { id:8, title:'آموزش CPR برای عموم', desc:'آموزش احیای قلبی ریوی برای افراد غیرپزشکی', category:'education', duration:'۱۲:۴۰', views:'۴۲.۳هزار', date:'۱۴۰۴/۰۷/۰۱', icon:'🫀' },
+  { id:9, title:'مصاحبه با دکتر شمس — جراح عمومی', desc:'پاسخ به سوالات رایج درباره جراحی و مراقبت پس از آن', category:'interview', duration:'۱۸:۵۵', views:'۱۴.۲هزار', date:'۱۴۰۴/۰۶/۲۸', icon:'🎤' },
+  { id:10, title:'تور آزمایشگاه و تصویربرداری', desc:'بازدید از بخش آزمایشگاه، MRI و CT Scan', category:'tour', duration:'۵:۴۵', views:'۱۱.۴هزار', date:'۱۴۰۴/۰۶/۲۵', icon:'🔬' },
+  { id:11, title:'آموزش تغذیه سالم برای کودکان', desc:'برنامه غذایی مناسب و نکات تغذیه‌ای کودکان', category:'education', duration:'۱۰:۲۰', views:'۲۸.۷هزار', date:'۱۴۰۴/۰۶/۲۰', icon:'🥗' },
+  { id:12, title:'راهنمای استفاده از تله‌مدیسین', desc:'نحوه دریافت مشاوره پزشکی آنلاین و ویدیو کال', category:'guide', duration:'۴:۵۰', views:'۱۹.۶هزار', date:'۱۴۰۴/۰۶/۱۵', icon:'💻' }
 ];
 
-const categoryNames = {
-  tour: '🏥 تور',
-  education: '📚 آموزشی',
-  interview: '🎤 مصاحبه',
-  guide: '📋 راهنما'
-};
-
-let currentFilter = 'all';
+var categoryNames = { tour:'🏥 تور', education:'📚 آموزشی', interview:'🎤 مصاحبه', guide:'📋 راهنما' };
+var currentFilter = 'all';
 
 function renderVideos() {
-  const grid = document.getElementById('videoGrid');
-  const filtered = currentFilter === 'all' 
-    ? videos 
-    : videos.filter(v => v.category === currentFilter);
-  
-  grid.innerHTML = filtered.map(video => `
-    <div class="video-card" onclick="playVideo(${video.id})">
-      <div class="video-thumb">
-        <img src="${video.thumb}" alt="${video.title}" loading="lazy">
-        <div class="play-btn">▶</div>
-        <div class="video-duration">${video.duration}</div>
-      </div>
-      <div class="video-info">
-        <span class="video-category">${categoryNames[video.category]}</span>
-        <h3 class="video-title">${video.title}</h3>
-        <p class="video-desc">${video.desc}</p>
-        <div class="video-meta">
-          <span>👁️ ${video.views}</span>
-          <span>📅 ${video.date}</span>
-        </div>
-      </div>
-    </div>
-  `).join('');
+  var grid = document.getElementById('videoGrid');
+  var filtered = currentFilter === 'all' ? videos : videos.filter(function (v) { return v.category === currentFilter; });
+  grid.innerHTML = filtered.map(function (v) {
+    return '<div class="video-card" onclick="playVideo(' + v.id + ')">' +
+      '<div class="video-thumb"><div class="thumb-icon">' + v.icon + '</div>' +
+        '<div class="play-btn">▶</div><div class="video-duration">' + v.duration + '</div></div>' +
+      '<div class="video-info"><span class="video-category">' + categoryNames[v.category] + '</span>' +
+        '<h3 class="video-title">' + v.title + '</h3>' +
+        '<p class="video-desc">' + v.desc + '</p>' +
+        '<div class="video-meta"><span>👁️ ' + v.views + '</span><span>📅 ' + v.date + '</span></div>' +
+      '</div></div>';
+  }).join('');
 }
 
-function filterVideos(category) {
+function filterVideos(category, btn) {
   currentFilter = category;
-  
-  document.querySelectorAll('.filter-btn').forEach(btn => {
-    btn.classList.remove('active');
-  });
-  event.target.classList.add('active');
-  
+  document.querySelectorAll('.filter-btn').forEach(function (b) { b.classList.remove('active'); });
+  btn.classList.add('active');
   renderVideos();
 }
 
 function playVideo(id) {
-  const video = videos.find(v => v.id === id);
-  if (!video) return;
-  
-  document.getElementById('modalTitle').textContent = video.title;
-  document.getElementById('modalDesc').textContent = video.desc;
-  document.getElementById('videoPlayer').innerHTML = `
-    <iframe 
-      src="${video.videoUrl}" 
-      frameborder="0" 
-      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-      allowfullscreen
-    ></iframe>
-  `;
-  
+  var v = videos.find(function (x) { return x.id === id; });
+  if (!v) return;
+  document.getElementById('modalTitle').textContent = v.title;
+  document.getElementById('modalDesc').textContent = v.desc;
+  document.getElementById('playerPh').textContent = v.icon;
   document.getElementById('videoModal').classList.add('show');
   document.body.style.overflow = 'hidden';
 }
 
 function closeVideo() {
   document.getElementById('videoModal').classList.remove('show');
-  document.getElementById('videoPlayer').innerHTML = '';
   document.body.style.overflow = '';
 }
 
-document.getElementById('videoModal').addEventListener('click', function(e) {
-  if (e.target === this) {
-    closeVideo();
-  }
-});
-
-document.addEventListener('keydown', function(e) {
-  if (e.key === 'Escape') {
-    closeVideo();
-  }
-});
+document.getElementById('videoModal').addEventListener('click', function (e) { if (e.target === this) closeVideo(); });
+document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closeVideo(); });
 
 renderVideos();
-</script>
-
-
-<script>
-(function(){var c=document.getElementById('particles'),ctx=c.getContext('2d'),w,h,pts=[];function rs(){w=c.width=innerWidth;h=c.height=innerHeight;}rs();addEventListener('resize',rs);for(var i=0;i<40;i++)pts.push({x:Math.random()*w,y:Math.random()*h,vx:(Math.random()-0.5)*0.4,vy:(Math.random()-0.5)*0.4,r:Math.random()*1.2+0.3,a:Math.random()*0.3+0.05});(function dr(){ctx.clearRect(0,0,w,h);pts.forEach(function(p){p.x+=p.vx;p.y+=p.vy;if(p.x<0||p.x>w)p.vx*=-1;if(p.y<0||p.y>h)p.vy*=-1;ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,6.28);ctx.fillStyle='rgba(6,182,212,'+p.a+')';ctx.fill();});requestAnimationFrame(dr);})();})();
 </script>
 
 </body>
